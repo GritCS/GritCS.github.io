@@ -2,91 +2,6 @@
 <search>
   <entry>
     <title>决策树</title>
-    <url>/2020/05/29/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
-    <content><![CDATA[<h3 id="机器学习-—1-分类篇"><a href="#机器学习-—1-分类篇" class="headerlink" title="机器学习 —1 分类篇"></a>机器学习 —1 分类篇</h3><ul>
-<li><p><a href="#_2">决策树学习小结</a></p>
-</li>
-<li><p><a href="#1_summary_3">1. summary</a></p>
-</li>
-<li><p><a href="#2_11">2. 主要流程</a></p>
-</li>
-<li><p><a href="#3__20">3. 核心问题</a></p>
-</li>
-<li><p><a href="#31__26">3.1 如何决定测试条件的分配</a></p>
-</li>
-<li><p><a href="#32__29">3.2 贪心的策略:</a></p>
-</li>
-<li><p><a href="#_32">总结</a></p>
-</li>
-<li><p><a href="#321_GINI_37">3.2.1 GINI</a></p>
-</li>
-<li><p><a href="#322Entropy_51">3.2.2Entropy</a></p>
-</li>
-<li><p><a href="#323_Misclassification_error_62">3.2.3 Misclassification error</a></p>
-</li>
-<li><p><a href="#_67">何时停止划分结点?</a></p>
-</li>
-</ul>
-<h1 id="决策树学习小结"><a href="#决策树学习小结" class="headerlink" title="决策树学习小结"></a>决策树学习小结</h1><ol>
-<li>summary</li>
-</ol>
-<hr>
-<ul>
-<li><pre><code>优点:    
-         1.计算复杂度不高
-         2.输出结果易于结束,
-         3.对中间值不敏感,可以处理不相关特征数据
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-缺点:易产生过拟合现象
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-适用数据类型:数值型和标称型
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">2. 主要流程</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">1: 收集数据  </span><br><span class="line">2: 准备数据: 树的构造算法只适用于标称型数据, 因此数值型数据必须离散化  </span><br><span class="line">而且不能处理缺失值, 在执行算法之前必须处理缺失值  </span><br><span class="line">3: 分析数据: 可以适用任何方法, 构造树完成之后, 我们应该检查图形是否符合预期  </span><br><span class="line">4: 训练算法: 构造树的数据结构  </span><br><span class="line">5: 测试算法: 适用经验树计算错误率  </span><br><span class="line">6: 适用算法: 此步骤可以适用于任何监督学习算法, 而使用决策树可以更好的理解数据的内在含义</span><br><span class="line"></span><br><span class="line">3. 核心问题</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">*   如何划分?  </span><br><span class="line">    1. 如何决定测试条件的分配 (划分节点时, 使用什么特征?)  </span><br><span class="line">    2. 如何决定最好的划分?---------------- 贪心策略</span><br><span class="line">*   何时停止划分</span><br><span class="line"></span><br><span class="line">### 3.1 如何决定测试条件的分配</span><br></pre></td></tr></table></figure>
-由特征的类型以及分类的种类(形成2叉树,还是多叉树)有关系
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 3.2 贪心的策略:</span><br></pre></td></tr></table></figure>
-在不同的划分策略中,选择划分结果中,**子节点不纯度最高**(less impurity&amp;&amp;homogeneous class)对应的划分结果</code></pre></li>
-</ul>
-<p><strong>如何评价 impurity?</strong></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
-<thead>
-<tr>
-<th align="center">评价不纯度的方法</th>
-<th align="center">使用这种方法相应的算法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">GINI</td>
-<td align="center">SLIQ, CART , SLIQ ,SP RINT</td>
-</tr>
-<tr>
-<td align="center">GAIN</td>
-<td align="center">ID3C4.5ID3C4.5 ID_3 \quad C_{4.5}<math><semantics><mrow><mi>I</mi><msub><mi>D</mi><mn>3</mn></msub><mspace width="1em"></mspace><msub><mi>C</mi><mn>4.5</mn></msub></mrow><annotation encoding="application/x-tex">ID_3 \quad C_{4.5}</annotation></semantics></math>ID3​C4.5​</td>
-</tr>
-</tbody></table>
-<h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>单个结点的不纯度计算<br>GINI(t)=1−∑j[p(j∣t)]2GINI(t)=1−∑j[p(j∣t)]2 GINI (t) = 1 -\sum_j [p(j |t )]^2 <math><semantics><mrow><mi>G</mi><mi>I</mi><mi>N</mi><mi>I</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><munder><mo>∑</mo><mi>j</mi></munder><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">(</mo><mi>j</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex"> GINI (t) = 1 -\sum_j [p(j |t )]^2 </annotation></semantics></math>GINI(t)=1−j∑​[p(j∣t)]2<br>其中 t 表示结点 t,GINI(t) 表示该结点 t 的不纯度的 p(j∣t) 表示类别 j 在结点 t 中所占的比例 t 表示结点 t,GINI(t) 表示该结点 t 的不纯度的 p(j∣t) 表示类别 j 在结点 t 中所占的比例 t 表示结点 t ,GINI (t) 表示该结点 t 的不纯度的 \p(j| t) 表示类别 j 在结点 t 中所占的比例<math><semantics><mrow><mi>t</mi><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">结</mi><mi mathvariant="normal">点</mi><mi>t</mi><mo separator="true">,</mo><mi>G</mi><mi>I</mi><mi>N</mi><mi>I</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">该</mi><mi mathvariant="normal">结</mi><mi mathvariant="normal">点</mi><mi>t</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">不</mi><mi mathvariant="normal">纯</mi><mi mathvariant="normal">度</mi><mi mathvariant="normal">的</mi><mspace linebreak="newline"></mspace><mi>p</mi><mo stretchy="false">(</mo><mi>j</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">)</mo><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">类</mi><mi mathvariant="normal">别</mi><mi>j</mi><mi mathvariant="normal">在</mi><mi mathvariant="normal">结</mi><mi mathvariant="normal">点</mi><mi>t</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">所</mi><mi mathvariant="normal">占</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">比</mi><mi mathvariant="normal">例</mi></mrow><annotation encoding="application/x-tex">t 表示结点t ,GINI (t)表示该结点t的不纯度的 \p(j| t)表示类别j在结点t中所占的比例</annotation></semantics></math>t 表示结点 t,GINI(t) 表示该结点 t 的不纯度的 p(j∣t) 表示类别 j 在结点 t 中所占的比例<br>如何选择最佳的划分方法?<br><strong>计算不同划分方法的 GINI, 选择最小的 GINI</strong> 可以是多分类<br>GINIsplit=∑ki=1ninGINI(i)GINIsplit=∑i=1kninGINI(i) GINI_{split} =\sum_{i=1}^k\frac{n_i}{n}GINI(i)<math><semantics><mrow><mi>G</mi><mi>I</mi><mi>N</mi><msub><mi>I</mi><mrow><mi>s</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mfrac><msub><mi>n</mi><mi>i</mi></msub><mi>n</mi></mfrac><mi>G</mi><mi>I</mi><mi>N</mi><mi>I</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">GINI_{split} =\sum_{i=1}^k\frac{n_i}{n}GINI(i)</annotation></semantics></math>GINIsplit​=i=1∑k​nni​​GINI(i)<br>其中 ni=numberofrecordsatchildin=numberofrecordsatnodepni=numberofrecordsatchildin=numberofrecordsatnodep n_i =number\quad of\quad records\quad at\quad child_i \ n = number\quad of\quad records\quad at \quad node_p<math><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>r</mi><mspace width="1em"></mspace><mi>o</mi><mi>f</mi><mspace width="1em"></mspace><mi>r</mi><mi>e</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="1em"></mspace><mi>a</mi><mi>t</mi><mspace width="1em"></mspace><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><msub><mi>d</mi><mi>i</mi></msub><mspace linebreak="newline"></mspace><mi>n</mi><mo>=</mo><mi>n</mi><mi>u</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>r</mi><mspace width="1em"></mspace><mi>o</mi><mi>f</mi><mspace width="1em"></mspace><mi>r</mi><mi>e</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>d</mi><mi>s</mi><mspace width="1em"></mspace><mi>a</mi><mi>t</mi><mspace width="1em"></mspace><mi>n</mi><mi>o</mi><mi>d</mi><msub><mi>e</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">n_i =number\quad of\quad records\quad at\quad child_i \ n = number\quad of\quad records\quad at \quad node_p</annotation></semantics></math>ni​=numberofrecordsatchildi​n=numberofrecordsatnodep​<br>k: 表示分成了 k 类<br>例子: 二分类类型的数值<img src="https://img-blog.csdnimg.cn/20200525191524408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>连续型数值类型</p>
-<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p>计算公式:  </p>
-<ol>
-<li>对于整个整体来说:<br>Entropy(t)=−∑(p(j∣t)log2p(j∣t))Entropy(t)=−∑(p(j∣t)log2p(j∣t)) Entropy(t) = -\sum (p(j|t) log_2 p(j|t) )<math><semantics><mrow><mi>E</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mo>∑</mo><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">(</mo><mi>j</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">)</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>p</mi><mo stretchy="false">(</mo><mi>j</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Entropy(t) = -\sum (p(j|t) log_2 p(j|t) )</annotation></semantics></math>Entropy(t)=−∑(p(j∣t)log2​p(j∣t))<br>GAINsplit=Entropy(p)−(∑ki=1ninEntropy(i))GAINsplit=Entropy(p)−(∑i=1kninEntropy(i)) GAIN <em>{split}= Entropy(p) -(\sum</em>{i=1}^k\frac{n_i}{n}Entropy(i) )<math><semantics><mrow><mi>G</mi><mi>A</mi><mi>I</mi><msub><mi>N</mi><mrow><mi>s</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi></mrow></msub><mo>=</mo><mi>E</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mfrac><msub><mi>n</mi><mi>i</mi></msub><mi>n</mi></mfrac><mi>E</mi><mi>n</mi><mi>t</mi><mi>r</mi><mi>o</mi><mi>p</mi><mi>y</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">GAIN <em>{split}= Entropy(p) -(\sum</em>{i=1}^k\frac{n_i}{n}Entropy(i) )</annotation></semantics></math>GAINsplit​=Entropy(p)−(i=1∑k​nni​​Entropy(i))<br>各个变量的含义和上面 GINI 是相同的<br>缺点: GAIN 更倾向于选择分类类别比较多的方法, 不一定是最优的<br>所以设计了其他类似的指标 (used in C4.5)–对那些分类比较多的划分方法进行惩罚<br>GainRATIOspilt=GAINsplitSplitINFOGainRATIOspilt=GAINsplitSplitINFO GainRATIO_{spilt} = \frac{GAIN_{split}}{SplitINFO}<math><semantics><mrow><mi>G</mi><mi>a</mi><mi>i</mi><mi>n</mi><mi>R</mi><mi>A</mi><mi>T</mi><mi>I</mi><msub><mi>O</mi><mrow><mi>s</mi><mi>p</mi><mi>i</mi><mi>l</mi><mi>t</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>G</mi><mi>A</mi><mi>I</mi><msub><mi>N</mi><mrow><mi>s</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi></mrow></msub></mrow><mrow><mi>S</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>I</mi><mi>N</mi><mi>F</mi><mi>O</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">GainRATIO_{spilt} = \frac{GAIN_{split}}{SplitINFO}</annotation></semantics></math>GainRATIOspilt​=SplitINFOGAINsplit​​<br>SplitINFO=−∑ki=1ninlogninSplitINFO=−∑i=1kninlognin SplitINFO = -\sum_{i=1}^{k} \frac{n_i}{n}log\frac{n_i}{n}<math><semantics><mrow><mi>S</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>t</mi><mi>I</mi><mi>N</mi><mi>F</mi><mi>O</mi><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mfrac><msub><mi>n</mi><mi>i</mi></msub><mi>n</mi></mfrac><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><msub><mi>n</mi><mi>i</mi></msub><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">SplitINFO = -\sum_{i=1}^{k} \frac{n_i}{n}log\frac{n_i}{n}</annotation></semantics></math>SplitINFO=−i=1∑k​nni​​lognni​​</li>
-</ol>
-<h4 id="3-2-3-Misclassification-error"><a href="#3-2-3-Misclassification-error" class="headerlink" title="3.2.3 Misclassification error"></a>3.2.3 Misclassification error</h4><p>Error(t)=1−maxiP(i∣t)Error(t)=1−maxiP(i∣t) Error(t)=1-max_iP(i|t)<math><semantics><mrow><mi>E</mi><mi>r</mi><mi>r</mi><mi>o</mi><mi>r</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>m</mi><mi>a</mi><msub><mi>x</mi><mi>i</mi></msub><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Error(t)=1-max_iP(i|t)</annotation></semantics></math>Error(t)=1−maxi​P(i∣t)</p>
-<h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>
-<li>当结点中所有的样本都属于同一个类别时</li>
-<li>当结点中所有样本的特征值比较类似时, 虽然不属于同一类, 但是某些指标还是比较好的</li>
-<li>剪枝策略</li>
-</ol>
-<p>其他关于本话题的链接:</p>
-<blockquote>
-<p>C4.5 : <a href="https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>机器学习,分类,决策树</category>
-      </categories>
-      <tags>
-        <tag>生物大数据,机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>决策树</title>
     <url>/2020/05/29/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
     <content><![CDATA[<h3 id="机器学习-—-1-分类篇"><a href="#机器学习-—-1-分类篇" class="headerlink" title="机器学习 —-1 分类篇"></a>机器学习 —-1 分类篇</h3><h1 id="决策树学习小结"><a href="#决策树学习小结" class="headerlink" title="决策树学习小结"></a>决策树学习小结</h1><ol>
 <li>summary</li>
@@ -130,8 +45,10 @@
 </div>
 <h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>k单个结点的不纯度计算<br>                                                    $GINI(t) = 1 -\sum_[p(j|t)]^2$</p>
 <p>其中 t:表示结点t,GINI(t) 表示该结点t的不纯度的$p(j|t)$表示类别  j  在结点 t 中所占的比例</p>
+<p><img src="决策树/2020-05-29 18-11-04 的屏幕截图.png" alt="2020-05-29 18-11-04 的屏幕截图"></p>
 <p><img src="https://img-blog.csdnimg.cn/20200525191524408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>连续型数值类型</p>
-<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p>计算公式:  </p>
+<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p><img src="决策树/2020-05-29 18-11-15 的屏幕截图.png" alt="2020-05-29 18-11-15 的屏幕截图"></p>
+<h4 id="3-2-3Misclassification-error"><a href="#3-2-3Misclassification-error" class="headerlink" title="3.2.3Misclassification error"></a>3.2.3Misclassification error</h4><p>计算公式:  </p>
 <p>​                    $Error(t) = 1 -max_iP(i|t)$</p>
 <h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>
 <li>当结点中所有的样本都属于同一个类别时</li>
