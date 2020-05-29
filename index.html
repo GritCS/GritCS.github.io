@@ -319,7 +319,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/05/29/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/05/29/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/fig/avater.jpeg">
@@ -333,7 +333,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2020/05/29/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">决策树</a>
         </h2>
 
         <div class="post-meta">
@@ -342,8 +342,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-05-29 09:33:13" itemprop="dateCreated datePublished" datetime="2020-05-29T09:33:13+08:00">2020-05-29</time>
+              <time title="Created: 2020-05-29 17:19:37 / Modified: 18:12:06" itemprop="dateCreated datePublished" datetime="2020-05-29T17:19:37+08:00">2020-05-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%88%86%E7%B1%BB-%E5%86%B3%E7%AD%96%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">机器学习,分类,决策树</span></a>
+                </span>
             </span>
 
           
@@ -357,19 +367,60 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <h3 id="机器学习-—-1-分类篇"><a href="#机器学习-—-1-分类篇" class="headerlink" title="机器学习 —-1 分类篇"></a>机器学习 —-1 分类篇</h3><h1 id="决策树学习小结"><a href="#决策树学习小结" class="headerlink" title="决策树学习小结"></a>决策树学习小结</h1><ol>
+<li>summary</li>
+</ol>
+<hr>
+<ul>
+<li><pre><code>优点:    
+         1.计算复杂度不高
+         2.输出结果易于结束,
+         3.对中间值不敏感,可以处理不相关特征数据
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+缺点:易产生过拟合现象
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+适用数据类型:数值型和标称型
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 主要流程</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">1: 收集数据  </span><br><span class="line">2: 准备数据: 树的构造算法只适用于标称型数据, 因此数值型数据必须离散化  </span><br><span class="line">而且不能处理缺失值, 在执行算法之前必须处理缺失值  </span><br><span class="line">3: 分析数据: 可以适用任何方法, 构造树完成之后, 我们应该检查图形是否符合预期  </span><br><span class="line">4: 训练算法: 构造树的数据结构  </span><br><span class="line">5: 测试算法: 适用经验树计算错误率  </span><br><span class="line">6: 适用算法: 此步骤可以适用于任何监督学习算法, 而使用决策树可以更好的理解数据的内在含义</span><br><span class="line"></span><br><span class="line">3. 核心问题</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">*   如何划分?  </span><br><span class="line">    1. 如何决定测试条件的分配 (划分节点时, 使用什么特征?)  </span><br><span class="line">    2. 如何决定最好的划分?---------------- 贪心策略</span><br><span class="line">*   何时停止划分</span><br><span class="line"></span><br><span class="line">### 3.1 如何决定测试条件的分配</span><br></pre></td></tr></table></figure>
+由特征的类型以及分类的种类(形成2叉树,还是多叉树)有关系
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 3.2 贪心的策略:</span><br></pre></td></tr></table></figure>
+在不同的划分策略中,选择划分结果中,**子节点不纯度最高**(less impurity&amp;&amp;homogeneous class)对应的划分结果
+</code></pre></li>
+</ul>
+<p><strong>如何评价 impurity?</strong></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">评价不纯度的方法</th>
+<th style="text-align:center">使用这种方法相应的算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GINI</td>
+<td style="text-align:center">SLIQ, CART , SLIQ ,SP RINT</td>
+</tr>
+<tr>
+<td style="text-align:center">GAIN</td>
+<td style="text-align:center">ID3  C4.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>k单个结点的不纯度计算<br>                                                    $GINI(t) = 1 -\sum_[p(j|t)]^2$</p>
+<p>其中 t:表示结点t,GINI(t) 表示该结点t的不纯度的$p(j|t)$表示类别  j  在结点 t 中所占的比例</p>
+<p><img src="https://img-blog.csdnimg.cn/20200525191524408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt=""><br>连续型数值类型</p>
+<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p>计算公式:  </p>
+<p>​                    $Error(t) = 1 -max_iP(i|t)$</p>
+<h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>
+<li>当结点中所有的样本都属于同一个类别时</li>
+<li>当结点中所有样本的特征值比较类似时, 虽然不属于同一类, 但是某些指标还是比较好的</li>
+<li>剪枝策略</li>
+</ol>
+<p>其他关于本话题的链接:</p>
+<blockquote>
+<p>C4.5 : <a href="https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html</a></p>
+</blockquote>
 
       
     </div>
@@ -548,6 +599,8 @@
 
 
 
+
+  
 
   
 
