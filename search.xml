@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>决策树</title>
-    <url>/2020/05/29/DecisionTree/DecisionTree/</url>
+    <url>/2020/05/29/DT/</url>
     <content><![CDATA[<h3 id="机器学习-—-1-分类篇"><a href="#机器学习-—-1-分类篇" class="headerlink" title="机器学习 —-1 分类篇"></a>机器学习 —-1 分类篇</h3><h1 id="决策树学习小结"><a href="#决策树学习小结" class="headerlink" title="决策树学习小结"></a>决策树学习小结</h1><ol>
 <li>summary</li>
 </ol>
@@ -34,7 +34,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">GINI</td>
-<td style="text-align:center">SLIQ, CART , SLIQ ,SP RINT</td>
+<td style="text-align:center">SLIQ, CART , SLIQ ,SP RINT1</td>
 </tr>
 <tr>
 <td style="text-align:center">GAIN</td>
@@ -45,8 +45,8 @@
 </div>
 <h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>k单个结点的不纯度计算<br>                                                    $GINI(t) = 1 -\sum_[p(j|t)]^2$</p>
 <p>其中 t:表示结点t,GINI(t) 表示该结点t的不纯度的$p(j|t)$表示类别  j  在结点 t 中所占的比例</p>
-<p><img src="/2020/05/29/DecisionTree/DecisionTree/DecisionTree/1.png" alt><br>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt><br>连续型数值类型</p>
-<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p><img src="/2020/05/29/DecisionTree/DecisionTree/DecisionTree/2.png" alt="2"></p>
+<p><img src="/2020/05/29/DT/DecisionTree/1.png" alt="1"><br>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt><br>连续型数值类型</p>
+<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p><img src="/2020/05/29/DT/DecisionTree/2.png" alt="2"></p>
 <h4 id="3-2-3Misclassification-error"><a href="#3-2-3Misclassification-error" class="headerlink" title="3.2.3Misclassification error"></a>3.2.3Misclassification error</h4><p>计算公式:  </p>
 <p>​                    $Error(t) = 1 -max_iP(i|t)$</p>
 <h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>
