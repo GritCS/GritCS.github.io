@@ -209,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-02 00:13:49" itemprop="dateModified" datetime="2020-06-02T00:13:49+08:00">2020-06-02</time>
+                <time title="Modified: 2020-06-02 00:23:58" itemprop="dateModified" datetime="2020-06-02T00:23:58+08:00">2020-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -293,11 +293,6 @@
 </tbody>
 </table>
 </div>
-<h4 id="3-2-常见的计算cluster距离的方法汇总"><a href="#3-2-常见的计算cluster距离的方法汇总" class="headerlink" title="3.2 常见的计算cluster距离的方法汇总"></a>3.2 常见的计算cluster距离的方法汇总</h4><p><img src="/2020/05/30/cluster/2020-05-31 09-44-43 的屏幕截图.png" alt="2020-05-31 09-44-43 的屏幕截图"></p>
-<p>其中符号说明:</p>
-<p>$K_i,K_j$: 表示cluster i ,j </p>
-<p>$t_{ip},t_{jq}$分别表示 cluster i中的点 p, cluster j的点q                  $(t_{ip}, t_{jq})$表示这两点的距离</p>
-<p>$C_i,C_j$表示i,j的矩点                        $M_i,M_j$表示 i, j样本点中的中位点</p>
 <h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line">2.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					#对于每个质点</span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					#将数据点分类到距离最近的簇 </span><br><span class="line">3.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line">4.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
 <p>目标函数 : 假设<img src="https://www.zhihu.com/equation?tex=x_i%28i%3D1%2C2%2C%E2%80%A6%2Cn%29" alt="[公式]">是数据点，<img src="https://www.zhihu.com/equation?tex=%5Cmu_j%28j%3D1%2C2%2C%E2%80%A6%2Ck%29" alt="[公式]">是初始化的数据中心</p>
 <p>​                                                        $min\sum_{i=1}^n min ||x_i -\mu_j||^2$</p>
