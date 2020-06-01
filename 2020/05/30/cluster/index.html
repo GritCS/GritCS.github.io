@@ -20,36 +20,67 @@
     var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Think World">
-<meta property="og:url" content="https://gritcs.github.io/index.html">
+  <meta name="description" content="机器学习—-聚类篇1.聚类算法的概述:聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) ,  聚类既能作为一个单独过程,用于找寻数据内在的分布结构,也可作为分类等其他学习任务的前驱过程.例如,在一些商业应用中需对新用户的类型进行判别, {且定义”用户类型”对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聚类分析">
+<meta property="og:url" content="https://gritcs.github.io/2020/05/30/cluster/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+<meta property="og:description" content="机器学习—-聚类篇1.聚类算法的概述:聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) ,  聚类既能作为一个单独过程,用于找寻数据内在的分布结构,也可作为分类等其他学习任务的前驱过程.例如,在一些商业应用中需对新用户的类型进行判别, {且定义”用户类型”对">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/7.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/8.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/8.5.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/9.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/2020-05-31%2009-44-43%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=x_i(i%253D1%252C2%252C%E2%80%A6%252Cn)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cmu_j(j%253D1%252C2%252C%E2%80%A6%252Ck)">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/3.jpg">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/2.1.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=O(n%5E3)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=O(n%5E2)+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=n%E2%88%921">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=O(n%5E2)+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=(N%252C+LS%252C+SS)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=N">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=LS">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csum_%7Bi%253D1%7D%5E%7BN%7D%7B%5Cbar%7BX_%7Bi%7D%7D%7D+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=SS">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csum_%7Bi%253D1%7D%5E%7BN%7D%7B%5Cbar%7BX_%7Bi%7D%7D%5E2%7D+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=CF_%7B1%7D%253D(N_%7B1%7D%252C+LS_%7B1%7D%252C+SS_%7B1%7D)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=CF_%7B2%7D%253D(N_%7B2%7D%252C+LS_%7B2%7D%252C+SS_%7B2%7D)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=CF_%7B1%7D%252BCF_%7B2%7D%253D(N_%7B1%7D%252BN_%7B2%7D%252C+LS_%7B1%7D%252BLS_%7B2%7D%252C+SS_%7B1%7D%252BSS_%7B2%7D)">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5BCF_%7Bi%7D%252C+child_%7Bi%7D%5D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=child_%7Bi%7D">
+<meta property="og:image" content="https://pic1.zhimg.com/80/e117c5b3d038b06c3ab4ebd0748c25f4_720w.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=D0%252C+D1%252C+D2%252C+D3%252C+D4">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=L_%7Bt%7D">
+<meta property="og:image" content="https://pic2.zhimg.com/80/f44accd4b4f605ee470e547e53b7c411_720w.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-4f2c545cdc35a92f8c72cfd26f39ad8b_720w.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-d3b5323b80d3f1919739f33135a2954d_720w.jpg">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/3.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/4.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/5.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/05/30/cluster/6.png">
+<meta property="article:published_time" content="2020-05-30T09:19:37.000Z">
+<meta property="article:modified_time" content="2020-06-01T16:13:49.739Z">
 <meta property="article:author" content="Lemon">
-<meta property="article:tag" content="操作系统">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="机器学习">
-<meta property="article:tag" content="生物大数据">
-<meta property="article:tag" content="医疗&amp;AI">
+<meta property="article:tag" content="生物大数据,机器学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gritcs.github.io/2020/05/30/cluster/7.png">
 
-<link rel="canonical" href="https://gritcs.github.io/">
+<link rel="canonical" href="https://gritcs.github.io/2020/05/30/cluster/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>Think World</title>
+  <title>聚类分析 | Think World</title>
   
 
 
@@ -172,9 +203,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
@@ -190,10 +222,9 @@
       <meta itemprop="name" content="Think World">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/30/cluster/" class="post-title-link" itemprop="url">聚类分析</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          聚类分析
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -232,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="机器学习—-聚类篇"><a href="#机器学习—-聚类篇" class="headerlink" title="机器学习—-聚类篇"></a>机器学习—-聚类篇</h2><h3 id="1-聚类算法的概述"><a href="#1-聚类算法的概述" class="headerlink" title="1.聚类算法的概述:"></a>1.聚类算法的概述:</h3><p>聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) , </p>
+        <h2 id="机器学习—-聚类篇"><a href="#机器学习—-聚类篇" class="headerlink" title="机器学习—-聚类篇"></a>机器学习—-聚类篇</h2><h3 id="1-聚类算法的概述"><a href="#1-聚类算法的概述" class="headerlink" title="1.聚类算法的概述:"></a>1.聚类算法的概述:</h3><p>聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) , </p>
 <p>聚类既能作为一个单独过程,用于找寻数据内在的分布结构,也可作为分类等其他学习任务的前驱过程.例如,在一些商业应用中需对新用户的类型进行判别, {且定义”用户类型”对商家来说却可能不太容易,此时往往可先对用户数据进行聚类,根据聚类结果将每个簇定义为一个类,然后再基于这些类训练分类模型,用于判别新用户的类型.</p>
 <p>训练的目标:</p>
 <p>1.簇间的距离较大,簇内的距离较小</p>
@@ -425,150 +456,33 @@
 </ol>
 <h3 id="参考链接🔗"><a href="#参考链接🔗" class="headerlink" title="参考链接🔗"></a>参考链接🔗</h3><p><a href="https://zhuanlan.zhihu.com/p/104355127" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/104355127</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E7%94%9F%E7%89%A9%E5%A4%A7%E6%95%B0%E6%8D%AE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 生物大数据,机器学习</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/05/29/DT/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/29/DT/" class="post-title-link" itemprop="url">决策树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-29 17:19:37" itemprop="dateCreated datePublished" datetime="2020-05-29T17:19:37+08:00">2020-05-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-30 11:09:26" itemprop="dateModified" datetime="2020-05-30T11:09:26+08:00">2020-05-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%88%86%E7%B1%BB-%E5%86%B3%E7%AD%96%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">机器学习,分类,决策树</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="机器学习-—-1-分类篇"><a href="#机器学习-—-1-分类篇" class="headerlink" title="机器学习 —-1 分类篇"></a>机器学习 —-1 分类篇</h3><h1 id="决策树学习小结"><a href="#决策树学习小结" class="headerlink" title="决策树学习小结"></a>决策树学习小结</h1><ol>
-<li>summary</li>
-</ol>
-<hr>
-<ul>
-<li><pre><code>优点:    
-         1.计算复杂度不高
-         2.输出结果易于结束,
-         3.对中间值不敏感,可以处理不相关特征数据
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-缺点:易产生过拟合现象
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*</span><br></pre></td></tr></table></figure>
-适用数据类型:数值型和标称型
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 主要流程</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">1: 收集数据  </span><br><span class="line">2: 准备数据: 树的构造算法只适用于标称型数据, 因此数值型数据必须离散化  </span><br><span class="line">而且不能处理缺失值, 在执行算法之前必须处理缺失值  </span><br><span class="line">3: 分析数据: 可以适用任何方法, 构造树完成之后, 我们应该检查图形是否符合预期  </span><br><span class="line">4: 训练算法: 构造树的数据结构  </span><br><span class="line">5: 测试算法: 适用经验树计算错误率  </span><br><span class="line">6: 适用算法: 此步骤可以适用于任何监督学习算法, 而使用决策树可以更好的理解数据的内在含义</span><br><span class="line"></span><br><span class="line">3. 核心问题</span><br><span class="line"></span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line">*   如何划分?  </span><br><span class="line">    1. 如何决定测试条件的分配 (划分节点时, 使用什么特征?)  </span><br><span class="line">    2. 如何决定最好的划分?---------------- 贪心策略</span><br><span class="line">*   何时停止划分</span><br><span class="line"></span><br><span class="line">### 3.1 如何决定测试条件的分配</span><br></pre></td></tr></table></figure>
-由特征的类型以及分类的种类(形成2叉树,还是多叉树)有关系
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 3.2 贪心的策略:</span><br></pre></td></tr></table></figure>
-在不同的划分策略中,选择划分结果中,**子节点不纯度最高**(less impurity&amp;&amp;homogeneous class)对应的划分结果
-</code></pre></li>
-</ul>
-<p><strong>如何评价 impurity?</strong></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">评价不纯度的方法</th>
-<th style="text-align:center">使用这种方法相应的算法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">GINI</td>
-<td style="text-align:center">SLIQ, CART , SLIQ ,SP RINT1</td>
-</tr>
-<tr>
-<td style="text-align:center">GAIN</td>
-<td style="text-align:center">ID3  C4.5</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>k单个结点的不纯度计算<br>                                                    $GINI(t) = 1 -\sum_[p(j|t)]^2$</p>
-<p>其中 t:表示结点t,GINI(t) 表示该结点t的不纯度的$p(j|t)$表示类别  j  在结点 t 中所占的比例</p>
-<p><img src="/2020/05/29/DT/1.png" alt="1"></p>
-<p>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70" alt><br>连续型数值类型</p>
-<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p><img src="/2020/05/29/DT/2.png" alt="2"></p>
-<h4 id="3-2-3Misclassification-error"><a href="#3-2-3Misclassification-error" class="headerlink" title="3.2.3Misclassification error"></a>3.2.3Misclassification error</h4><p>计算公式:  </p>
-<p>​                    $Error(t) = 1 -max_iP(i|t)$</p>
-<h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>
-<li>当结点中所有的样本都属于同一个类别时</li>
-<li>当结点中所有样本的特征值比较类似时, 虽然不属于同一类, 但是某些指标还是比较好的</li>
-<li>剪枝策略</li>
-</ol>
-<p>其他关于本话题的链接:</p>
-<blockquote>
-<p>C4.5 : <a href="https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/dm-algo-top10/content/c4.5.html</a></p>
-</blockquote>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/29/DT/" rel="prev" title="决策树">
+      <i class="fa fa-chevron-left"></i> 决策树
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -621,6 +535,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习—-聚类篇"><span class="nav-number">1.</span> <span class="nav-text">机器学习—-聚类篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-聚类算法的概述"><span class="nav-number">1.1.</span> <span class="nav-text">1.聚类算法的概述:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-指标和距离公式的选择"><span class="nav-number">1.2.</span> <span class="nav-text">2.指标和距离公式的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-常见聚类算法"><span class="nav-number">1.3.</span> <span class="nav-text">3.常见聚类算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1聚类算法类别"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1聚类算法类别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-常见的计算cluster距离的方法汇总"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 常见的计算cluster距离的方法汇总</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Partition-Algorithm"><span class="nav-number">1.4.</span> <span class="nav-text">4. Partition Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-k-means"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 k-means</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-1算法的基本步骤"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">4.1.1算法的基本步骤:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-2算法的基本评价"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">4.1.2算法的基本评价</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-3对于K-means-算法的改进"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">4.1.3对于K-means 算法的改进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-K-Medoids"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 K-Medoids</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-PAM"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">4.2.1 PAM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-CLARA"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">4.2.2 CLARA</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#CLARA-算法的步骤"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">CLARA 算法的步骤:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#优点"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">优点:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#缺点"><span class="nav-number">1.4.2.2.3.</span> <span class="nav-text">缺点:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-3-CLARANS"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">4.2.3 CLARANS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#focusing-spatial-data-structure"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">focusing+spatial data structure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-层次化聚类方法"><span class="nav-number">1.5.</span> <span class="nav-text">5.层次化聚类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-AGNES（Agglomerative-Nesting"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 AGNES（Agglomerative Nesting)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-DIANA"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 DIANA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-BIRCH"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 BIRCH</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-1-CF-Tree动态建立的过程"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">5.3.1 CF Tree动态建立的过程:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-3算法评价"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">5.3.3算法评价</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-ROCK"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 ROCK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5-CHAMELEON"><span class="nav-number">1.5.5.</span> <span class="nav-text">5.5 CHAMELEON</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-基于密度的聚类算法"><span class="nav-number">1.6.</span> <span class="nav-text">6. 基于密度的聚类算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-DBSCAN"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 DBSCAN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-1算法介绍"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">6.1.1算法介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-2算法的主要流程"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">6.1.2算法的主要流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1-3算法小结"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">6.1.3算法小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-OPTICS"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 OPTICS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-1-定义"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">6.2.1 定义</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-DENCLUE"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 DENCLUE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-CLIQUE"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 CLIQUE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-网格聚类法"><span class="nav-number">1.7.</span> <span class="nav-text">7.网格聚类法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接🔗"><span class="nav-number">1.8.</span> <span class="nav-text">参考链接🔗</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -790,16 +705,6 @@
     
 
   
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://gritcs.github.io/',]
-      });
-      });
-  </script>
 
 </body>
 </html>
