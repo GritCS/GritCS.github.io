@@ -61,10 +61,13 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>机器学习,分类,决策树</category>
+        <category>机器学习</category>
+        <category>分类</category>
+        <category>决策树</category>
       </categories>
       <tags>
-        <tag>生物大数据,机器学习</tag>
+        <tag>生物大数据</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -176,7 +179,7 @@
 <ol>
 <li><p>每次找到距离最近的两个点作为一个簇</p>
 <pre><code>              2. 把同一个簇的所有点看作一个点
-                                 3. 重复上述操作.....直到达到停止条件
+                                     3. 重复上述操作.....直到达到停止条件
 </code></pre></li>
 </ol>
 <h4 id="5-1-AGNES（Agglomerative-Nesting"><a href="#5-1-AGNES（Agglomerative-Nesting" class="headerlink" title="5.1 AGNES（Agglomerative Nesting)"></a>5.1 AGNES（Agglomerative Nesting)</h4><p>sklearn  源码:</p>
@@ -259,10 +262,26 @@
 <h3 id="参考链接🔗"><a href="#参考链接🔗" class="headerlink" title="参考链接🔗"></a>参考链接🔗</h3><p><a href="https://zhuanlan.zhihu.com/p/104355127" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/104355127</a></p>
 ]]></content>
       <categories>
-        <category>机器学习,聚类</category>
+        <category>机器学习</category>
+        <category>聚类</category>
       </categories>
       <tags>
-        <tag>生物大数据,机器学习</tag>
+        <tag>生物大数据</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>article1</title>
+    <url>/2020/06/02/article1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>科研</category>
+        <category>生物医学大数据</category>
+      </categories>
+      <tags>
+        <tag>科研1</tag>
+        <tag>生物医学大数据DNA甲基化</tag>
+        <tag>迁移学习</tag>
       </tags>
   </entry>
 </search>
