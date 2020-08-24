@@ -178,6 +178,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">维度转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 16:42:48 / Modified: 20:33:24" itemprop="dateCreated datePublished" datetime="2020-08-24T16:42:48+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="维度变换"><a href="#维度变换" class="headerlink" title="维度变换"></a>维度变换</h2><p><strong>数据没有被改变，改变的只有数据的理解方式</strong></p>
+<h3 id="1-view-reshape"><a href="#1-view-reshape" class="headerlink" title="1. view / reshape"></a>1. view / reshape</h3><p>1.view reshape ,两个方法的用法完全相同<br>要求转换前后tensor的numel()相同即可，prod(a.size()) ==prod(b.size())</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.randn(<span class="number">4</span>,<span class="number">1</span>,<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line">print(a.shape)</span><br><span class="line"><span class="comment">#把每张照片打成一维数据,这个常做为－卷积网络的输入</span></span><br><span class="line">b = a.view(<span class="number">4</span>,<span class="number">28</span>*<span class="number">28</span>)</span><br><span class="line">print(b.shape)</span><br><span class="line"><span class="comment">#把只是关注照片中每行的特点</span></span><br><span class="line">c = a.view(<span class="number">4</span>*<span class="number">1</span>*<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line">print(c.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment">#不关心像素点是来自哪里，只是关注图片中不同像素点的不同</span></span><br><span class="line">d = a.view(<span class="number">4</span>*<span class="number">1</span>,<span class="number">28</span>,<span class="number">28</span>)</span><br><span class="line">print(d.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据的存储／维度顺序非常重要，但是这里view 和reshape函数在转换时把这一信息丢掉了，无额外记录之前的形状，无法恢复</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 1, 28, 28])</span></span><br><span class="line"><span class="string">torch.Size([4, 784])</span></span><br><span class="line"><span class="string">torch.Size([112, 28])</span></span><br><span class="line"><span class="string">torch.Size([4, 28, 28])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-squeeze-v-s-unsqueeze-维度"><a href="#2-squeeze-v-s-unsqueeze-维度" class="headerlink" title="2.squeeze v.s. unsqueeze-维度"></a>2.squeeze v.s. unsqueeze-维度</h3><h4 id="2-1-unsqueeze"><a href="#2-1-unsqueeze" class="headerlink" title="2.1 unsqueeze()"></a>2.1 unsqueeze()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#unsqueeze( input , dim ) -&gt;Tensor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#####参数说明：</span></span><br><span class="line"><span class="comment">#input (Tensor) – the input tensor.</span></span><br><span class="line"><span class="comment"># dim (int) – the index at which to insert the singleton dimension,dim的取值范围[- input.dim() -1 , input.dim()+1 ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果dim为负数，则　dim = dim + input.dim()+1 将其转换成正数</span></span><br><span class="line"><span class="comment">#如果dim为整数，则　新增的维度添加到　dim的前面</span></span><br><span class="line"><span class="comment">#维度上的元素个数只有一个，所以数据规模没有改变，改变的只是数据的含义</span></span><br></pre></td></tr></table></figure>
+<p><strong>图示</strong></p>
+<p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/1.jpg" alt="1"></p>
+<p>可以看出来维度变换之后，数据的理解方式不同，要好好体会</p>
+<p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_19-08.png" alt="2020-08-24_19-08"></p>
+<p><strong>数据处理的实例应用</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">b = torch.rand(<span class="number">32</span>)</span><br><span class="line">f = torch.rand(<span class="number">4</span>,<span class="number">32</span>,<span class="number">14</span>,<span class="number">14</span>)</span><br><span class="line">b = b.unsqueeze(<span class="number">-1</span>).unsqueeze(<span class="number">-1</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">print(b.shape)</span><br><span class="line"><span class="comment">#方便之后 f+b的计算。b 即bias，相当于给每个channel上的所有像素增加一个偏置</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output : torch.Size([1, 32, 1, 1])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment">##常用的：　就是如果向后面插就使用　unsqueeze(-1)多次插入，就多次写</span></span><br><span class="line"><span class="comment">#向开头插入就，直接调用 unsqueeze(0)</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-squeeze"><a href="#2-2-squeeze" class="headerlink" title="2.2 squeeze"></a>2.2 squeeze</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#torch.squeeze(input , dim =None ,Out = None) -&gt;tensor</span></span><br><span class="line"><span class="comment">#当不传参数时，会将input所有元素只有一个的维度给去掉</span></span><br><span class="line"><span class="comment">#传参数dim，在指定维度上且维度只有一个元素时，将挤压掉该维度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#b.shape = torch.Size([1,32,1,1])</span></span><br><span class="line">print(b.squeeze(<span class="number">-1</span>).shape)</span><br><span class="line">print(b.squeeze(<span class="number">1</span>).shape) <span class="comment">#无效</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">torch.Size([1, 32, 1])</span></span><br><span class="line"><span class="string">torch.Size([1, 32, 1, 1])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-Expand-repeat-行"><a href="#3-Expand-repeat-行" class="headerlink" title="3.Expand /repeat-行"></a>3.Expand /repeat-行</h3><p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_19-29.png" alt="2020-08-24_19-29"></p>
+<h4 id="3-1-expand"><a href="#3-1-expand" class="headerlink" title="3.1 expand"></a>3.1 expand</h4><p>参数是广播的目标tensor的shape</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">4</span>,<span class="number">32</span>,<span class="number">14</span>,<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">b = torch.rand(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">b = b.unsqueeze(<span class="number">-1</span>).unsqueeze(<span class="number">-1</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">b1 = b.expand(<span class="number">4</span>,<span class="number">32</span>,<span class="number">14</span>,<span class="number">14</span>)<span class="comment">#之后b2即可以与a进行运算</span></span><br><span class="line"></span><br><span class="line">print(b1.shape)</span><br><span class="line"><span class="comment"># b2 = b.expand(4,33,14,14) 会报错 The expanded size of the tensor (33) must match the existing size (32) at non-singleton dimension 1</span></span><br><span class="line"></span><br><span class="line">b2 = b.expand(<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">#-1表示不想对该维度进行修改</span></span><br><span class="line"></span><br><span class="line">print(b2.shape)</span><br><span class="line"></span><br><span class="line">print(b.shape)</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-repeat－－不建议使用"><a href="#3-2-repeat－－不建议使用" class="headerlink" title="3.2 repeat－－不建议使用"></a>3.2 repeat－－不建议使用</h4><p>进行repeat之后，可能会开辟新的空间去保存repeat的结果，会降低效率</p>
+<p><em>参数传递是每个维度上要重复的次数，需要自己计算</em></p>
+<p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_19-43.png" alt="2020-08-24_19-43"></p>
+<h3 id="4-转置操作-t（只能适用于2D操作）"><a href="#4-转置操作-t（只能适用于2D操作）" class="headerlink" title="4.转置操作　.t（只能适用于2D操作）"></a>4.转置操作　.t（只能适用于2D操作）</h3><p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_19-44.png" alt="2020-08-24_19-44"></p>
+<h3 id="5-Transpose"><a href="#5-Transpose" class="headerlink" title="5.Transpose()"></a>5.Transpose()</h3><p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_20-18.png" alt="2020-08-24_20-18"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#转换效果图</span></span><br><span class="line"></span><br><span class="line">a = torch.randn(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">print(a)</span><br><span class="line">b = torch.transpose(a,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">c = torch.transpose(a,<span class="number">1</span>,<span class="number">2</span>).contiguous().view(<span class="number">2</span>,<span class="number">2</span>*<span class="number">3</span>).view(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">d = torch.transpose(a,<span class="number">1</span>,<span class="number">2</span>).contiguous().view(<span class="number">2</span>,<span class="number">2</span>*<span class="number">3</span>).view(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>).transpose(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(b)</span><br><span class="line">print(c)</span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([[[-0.2507, -0.4298],</span></span><br><span class="line"><span class="string">         [-2.8421,  0.9166],</span></span><br><span class="line"><span class="string">         [ 3.2584,  1.1366]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 1.8887, -0.5606],</span></span><br><span class="line"><span class="string">         [ 1.3798, -0.5037],</span></span><br><span class="line"><span class="string">         [ 0.9862,  0.8550]]])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([[[-0.2507, -2.8421,  3.2584],</span></span><br><span class="line"><span class="string">         [-0.4298,  0.9166,  1.1366]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 1.8887,  1.3798,  0.9862],</span></span><br><span class="line"><span class="string">         [-0.5606, -0.5037,  0.8550]]])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([[[-0.2507, -2.8421],</span></span><br><span class="line"><span class="string">         [ 3.2584, -0.4298],</span></span><br><span class="line"><span class="string">         [ 0.9166,  1.1366]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 1.8887,  1.3798],</span></span><br><span class="line"><span class="string">         [ 0.9862, -0.5606],</span></span><br><span class="line"><span class="string">         [-0.5037,  0.8550]]])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([[[-0.2507, -0.4298],</span></span><br><span class="line"><span class="string">         [-2.8421,  0.9166],</span></span><br><span class="line"><span class="string">         [ 3.2584,  1.1366]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 1.8887, -0.5606],</span></span><br><span class="line"><span class="string">         [ 1.3798, -0.5037],</span></span><br><span class="line"><span class="string">         [ 0.9862,  0.8550]]])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-permute"><a href="#6-permute" class="headerlink" title="6.permute"></a>6.permute</h3><p>permute也会打乱内存的顺序，需要调用coutigious函数</p>
+<p>permute底层是调用多次transpose()实现的</p>
+<p><img src="/2020/08/24/%E7%BB%B4%E5%BA%A6%E8%BD%AC%E6%8D%A2/2020-08-24_20-24.png" alt="2020-08-24_20-24"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上面遮挡住的命令是</span></span><br><span class="line">b.permute(<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>).shape</span><br><span class="line"><span class="comment">#out : torch.Size([4,28,32,3])</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/24/pytroch%E7%B4%A2%E5%BC%95%E4%B8%8E%E5%88%87%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,7 +298,20 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-24 07:33:55 / Modified: 16:38:37" itemprop="dateCreated datePublished" datetime="2020-08-24T07:33:55+08:00">2020-08-24</time>
+              <time title="Created: 2020-08-24 07:33:55 / Modified: 16:45:12" itemprop="dateCreated datePublished" datetime="2020-08-24T07:33:55+08:00">2020-08-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
             </span>
 
           
@@ -268,9 +376,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-23 15:54:03 / Modified: 15:56:53" itemprop="dateCreated datePublished" datetime="2020-08-23T15:54:03+08:00">2020-08-23</time>
+              <time title="Created: 2020-08-23 15:54:03" itemprop="dateCreated datePublished" datetime="2020-08-23T15:54:03+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-24 16:45:01" itemprop="dateModified" datetime="2020-08-24T16:45:01+08:00">2020-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
             </span>
 
           
@@ -339,9 +466,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-23 15:53:54 / Modified: 16:08:29" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:54+08:00">2020-08-23</time>
+              <time title="Created: 2020-08-23 15:53:54" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:54+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-24 16:46:57" itemprop="dateModified" datetime="2020-08-24T16:46:57+08:00">2020-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
             </span>
 
           
@@ -431,9 +577,28 @@ w = w+ learningRate*\partial b
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-23 15:53:10 / Modified: 16:06:32" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:10+08:00">2020-08-23</time>
+              <time title="Created: 2020-08-23 15:53:10" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:10+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-24 16:46:16" itemprop="dateModified" datetime="2020-08-24T16:46:16+08:00">2020-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
             </span>
 
           
@@ -513,8 +678,21 @@ w = w+ learningRate*\partial b
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-24 00:28:33" itemprop="dateModified" datetime="2020-08-24T00:28:33+08:00">2020-08-24</time>
+                <time title="Modified: 2020-08-24 16:45:26" itemprop="dateModified" datetime="2020-08-24T16:45:26+08:00">2020-08-24</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
 
           
 
@@ -612,17 +790,27 @@ w = w+ learningRate*\partial b
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-23 08:07:42 / Modified: 12:24:03" itemprop="dateCreated datePublished" datetime="2020-08-23T08:07:42+08:00">2020-08-23</time>
+              <time title="Created: 2020-08-23 08:07:42" itemprop="dateCreated datePublished" datetime="2020-08-23T08:07:42+08:00">2020-08-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-24 16:46:08" itemprop="dateModified" datetime="2020-08-24T16:46:08+08:00">2020-08-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">基本操作</span></a>
                 </span>
             </span>
 
@@ -1369,20 +1557,20 @@ w = w+ learningRate*\partial b
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
