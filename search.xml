@@ -617,8 +617,9 @@ w = w+ learningRate*\partial b
         <category>pytorch</category>
       </categories>
       <tags>
+        <tag>深度学习</tag>
         <tag>pytorch</tag>
-        <tag>大创，深度学习</tag>
+        <tag>大创</tag>
       </tags>
   </entry>
   <entry>
@@ -772,8 +773,9 @@ w = w+ learningRate*\partial b
         <category>pytorch</category>
       </categories>
       <tags>
+        <tag>深度学习</tag>
         <tag>pytorch</tag>
-        <tag>大创，深度学习</tag>
+        <tag>大创</tag>
       </tags>
   </entry>
   <entry>
@@ -1017,21 +1019,6 @@ w = w+ learningRate*\partial b
 <li>要训练的参数都有哪些？？　反向传播，参数更新的过程</li>
 </ol>
 ]]></content>
-      <categories>
-        <category>深度学习</category>
-        <category>关键点检测</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>大创</tag>
-        <tag>关键点检测</tag>
-        <tag>论文笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R-CNN</title>
-    <url>/2020/08/27/R-CNN/</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>深度学习</category>
         <category>关键点检测</category>
