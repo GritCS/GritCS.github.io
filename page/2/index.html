@@ -178,112 +178,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">数学运算</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-25 07:33:03 / Modified: 18:17:22" itemprop="dateCreated datePublished" datetime="2020-08-25T07:33:03+08:00">2020-08-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-element-cal"><a href="#1-element-cal" class="headerlink" title="1. element-cal"></a>1. element-cal</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#汇总</span></span><br><span class="line">torch.add ;  +</span><br><span class="line">torch.sub; -</span><br><span class="line">torch.div ; /</span><br><span class="line">torch.mul; *</span><br><span class="line">a.pow(n) ; a**n</span><br><span class="line">a.sqrt()</span><br><span class="line">a.rsqrt()  <span class="comment">#平方根的倒数</span></span><br><span class="line">a.exp()</span><br><span class="line">a.log()</span><br><span class="line">a.log2()</span><br><span class="line">a.log10()</span><br></pre></td></tr></table></figure>
-<p>利用重载后的运算符</p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png" alt="2020-08-25_10-49"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-40.png" alt="2020-08-25_10-40"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-58.png" alt="2020-08-25_17-58"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-06.png" alt="2020-08-25_11-06"></p>
-<h3 id="2-矩阵的乘除"><a href="#2-矩阵的乘除" class="headerlink" title="2.矩阵的乘除"></a>2.矩阵的乘除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.mm()<span class="comment">#只适用于2D</span></span><br><span class="line"><span class="meta">@</span></span><br><span class="line">torch.matmul()</span><br></pre></td></tr></table></figure>
-<h4 id="2-1-２D矩阵的乘除"><a href="#2-1-２D矩阵的乘除" class="headerlink" title="2.1 ２D矩阵的乘除"></a>2.1 ２D矩阵的乘除</h4><p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49_1.png" alt="2020-08-25_10-49_1"></p>
-<h4 id="2-2-多维矩阵的乘除"><a href="#2-2-多维矩阵的乘除" class="headerlink" title="2.2 多维矩阵的乘除"></a>2.2 多维矩阵的乘除</h4><p>实际就是支持多个矩阵对并行相乘[只计算最低的两维数据]</p>
-<p><strong>broadcasting</strong>机制</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在计算过程中，可以使用broadcasting对矩阵进行扩展，</span></span><br><span class="line"><span class="comment">#可以使用matmul的标准：1. 低维（1,2）数据要满足矩阵乘法的行/列数的要求，</span></span><br><span class="line"><span class="comment">#高维数据要完全匹配或者经过broadcasting机制可以匹配</span></span><br><span class="line"><span class="comment">#一维数据，求点积</span></span><br><span class="line"></span><br><span class="line">a = torch.tensor([<span class="number">2</span>])</span><br><span class="line">b= torch.tensor([<span class="number">3</span>])</span><br><span class="line">print(torch.matmul(a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(torch.matmul(a,b).shape) <span class="comment">#计算得到标量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#只计算低维数据，高维数据完全匹配</span></span><br><span class="line">a = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line">c = torch.matmul(a,b)</span><br><span class="line"></span><br><span class="line">print(c.shape)</span><br><span class="line"><span class="comment">#broadcasting 机制</span></span><br><span class="line">b = torch.rand(<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">print(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">1</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">print(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-3其他计算"><a href="#2-3其他计算" class="headerlink" title="2.3其他计算"></a>2.3其他计算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a.floor()</span><br><span class="line"></span><br><span class="line">a.ceil()</span><br><span class="line"></span><br><span class="line">a.round()<span class="comment">#四舍五入</span></span><br><span class="line"></span><br><span class="line">a.trunc()<span class="comment">#取整数部分</span></span><br><span class="line"></span><br><span class="line">a.frac()<span class="comment">#取小数部分</span></span><br><span class="line"></span><br><span class="line">a.clamp(min,max) <span class="comment">#如果a[i]&lt;min ，a[i] =min ； 如果a[i]&gt;max ，a[i]=max</span></span><br></pre></td></tr></table></figure>
-<p>函数相关实例</p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-07.png" alt="2020-08-25_18-07"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)*<span class="number">15</span></span><br><span class="line">print(a)</span><br><span class="line">print(a.clamp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[ 0.1522,  8.6243, 10.4471],</span></span><br><span class="line"><span class="string">        [ 2.0610,  8.4947, 10.7278]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[ 5.0000,  8.6243, 10.0000],</span></span><br><span class="line"><span class="string">        [ 5.0000,  8.4947, 10.0000]])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h2 id="统计属性"><a href="#统计属性" class="headerlink" title="统计属性"></a>统计属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##相关函数计算</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11_12.png" alt="2020-08-25_11_12"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-19.png" alt="2020-08-25_11-19"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-25.png" alt="2020-08-25_11-25"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-26.png" alt="2020-08-25_11-26"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-54.png" alt="2020-08-25_11-54"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-59.png" alt="2020-08-25_11-59"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_12-05.png" alt="2020-08-25_12-05"></p>
-<p>附录：</p>
-<p>1。在某维度上argmax的理解—-感觉自己对抽象几何不是特别理解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a = torch.randn(<span class="number">4</span>,<span class="number">10</span>)a</span><br><span class="line">print(a)</span><br><span class="line">print(a.argmax())</span><br><span class="line">print(a.argmax(dim=<span class="number">0</span>))</span><br><span class="line">print(a.argmax(dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([[ 7.0244e-01, -1.8047e-01, -1.3860e+00, -2.7422e-02,  1.0189e-01,</span></span><br><span class="line"><span class="string">         -4.1896e-01,  2.3863e+00, -2.3053e-01, -1.7369e-02,  1.8899e-01],</span></span><br><span class="line"><span class="string">        [ 1.0445e-01, -5.9622e-01, -8.3666e-01, -7.0087e-01, -2.1692e-01,</span></span><br><span class="line"><span class="string">          1.2431e-01, -2.3204e-01, -5.3630e-01, -1.1655e+00,  4.6021e-01],</span></span><br><span class="line"><span class="string">        [-1.1210e+00, -4.4479e-01,  1.0892e+00, -1.1631e+00,  7.8703e-01,</span></span><br><span class="line"><span class="string">         -3.9018e-01, -6.1701e-01,  8.2018e-01,  1.2167e-01, -1.6905e+00],</span></span><br><span class="line"><span class="string">        [-1.4846e+00,  9.5270e-01,  2.2757e-01,  1.5931e+00,  2.9075e-01,</span></span><br><span class="line"><span class="string">          1.3509e+00,  1.5353e+00, -1.1048e+00,  7.0249e-04, -1.1067e-01]])</span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string">tensor([0, 3, 2, 3, 2, 3, 0, 2, 2, 1])</span></span><br><span class="line"><span class="string">tensor([6, 9, 2, 3])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<p>2.在某维度上范式的计算的理解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = torch.FloatTensor([<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>,<span class="number">4.</span>,<span class="number">5.</span>,<span class="number">6.</span>,<span class="number">7.</span>,<span class="number">8.</span>,<span class="number">9.</span>,<span class="number">10.</span>])</span><br><span class="line">b = a.view(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line">print(b)</span><br><span class="line">print(b.norm(<span class="number">1</span>,dim=<span class="number">0</span>))</span><br><span class="line">print(b.norm(<span class="number">1</span>,dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([[ 1.,  2.,  3.,  4.,  5.],</span></span><br><span class="line"><span class="string">        [ 6.,  7.,  8.,  9., 10.]])</span></span><br><span class="line"><span class="string">tensor([ 7.,  9., 11., 13., 15.])</span></span><br><span class="line"><span class="string">tensor([15., 40.])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h2 id="高阶操作"><a href="#高阶操作" class="headerlink" title="高阶操作"></a>高阶操作</h2><h3 id="where-语句"><a href="#where-语句" class="headerlink" title="where 语句"></a>where 语句</h3><p>代替for循环，可以利用GPU进行加速计算</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">cond = torch.tensor([[<span class="number">0.6769</span>,<span class="number">0.7271</span>],[<span class="number">0.8884</span>,<span class="number">0.4163</span>]])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">0.</span>]])</span><br><span class="line"></span><br><span class="line">b = torch.tensor([[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"></span><br><span class="line">print(torch.where(cond&gt;<span class="number">0.5</span>,a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##同上面等效，可以体会一下语义</span></span><br><span class="line">c =torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span>(cond[i][j]&gt;<span class="number">0.5</span>):</span><br><span class="line">            c[i][j] = a[i][j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c[i][j] = b[i][j]</span><br><span class="line">print(c)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="gather-语句"><a href="#gather-语句" class="headerlink" title="gather 语句"></a>gather 语句</h3><p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-11.png" alt="2020-08-25_18-11"></p>
-<h4 id="提出的背景"><a href="#提出的背景" class="headerlink" title="提出的背景"></a>提出的背景</h4><p>可以自行体会含义</p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-49.png" alt="2020-08-25_17-49"></p>
-<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-10.png" alt="2020-08-25_18-10"></p>
-<p><img src="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-14.png" alt="2020-08-25_18-14"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/25/%E5%90%88%E5%B9%B6%E4%B8%8E%E5%88%86%E5%89%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1256,6 +1150,108 @@ w = w+ learningRate*\partial b
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/06/02/article1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/02/article1/" class="post-title-link" itemprop="url">article1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-02 08:20:26" itemprop="dateCreated datePublished" datetime="2020-06-02T08:20:26+08:00">2020-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-27 15:38:09" itemprop="dateModified" datetime="2020-08-27T15:38:09+08:00">2020-08-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">科研</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%91%E7%A0%94/%E7%94%9F%E7%89%A9%E5%8C%BB%E5%AD%A6%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">生物医学大数据</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="实验背景"><a href="#实验背景" class="headerlink" title="实验背景"></a>实验背景</h2><pre><code>             DNA甲基化（DNAm）是在核苷酸（通常是胞嘧啶）上添加一个甲基，该核苷酸不会改变DNA序列，并且最常见于胞嘧啶-鸟嘌呤二核苷酸（CpG）。DNA的甲基化区域（高甲基化）与浓缩的染色质相关，当存在于基因启动子附近时，会抑制转录。DNA的未甲基化区域（低甲基化）与开放的染色质状态相关，并允许基因转录。DNAM模式与细胞类型特异性基因表达程序相关联，和改变DNAM已经与衰老和环境暴露有关[ [8](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#CR8)，[9](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#CR9)]。此外，众所周知，DNAm的改变有助于癌症的发展和发展。抑癌基因的甲基化过高和癌基因的甲基化过低会导致发病机制和不良预后。抑癌基因的甲基化过高和癌基因的甲基化过低会导致发病机制和不良预后。 基于负担得起的基于阵列的基因组规模测量DNAm的方法已经增强了表观基因组广泛关联研究（EWAS），用于测试DNAm与表型，暴露水平以及人类健康和疾病状态的关联。 因为DNAm模式是特定于细胞类型的，所以EWAS通常使用基于参考或无参考的方法推断生物样品细胞组成变化所引起的潜在混淆，以推断细胞类型的比例
+</code></pre><h2 id="KeyWords"><a href="#KeyWords" class="headerlink" title="KeyWords:"></a>KeyWords:</h2><h2 id="相关统计概念"><a href="#相关统计概念" class="headerlink" title="相关统计概念:"></a>相关统计概念:</h2><p>Shapley value : 基于Shapley值进行利益分配体现了各盟员对联盟总目标的贡献程度,避免了分配的平均主义,比任何一种仅按资源投入价值、资源配置效率及将二者相结合的分配方式都更具合理性和公平性，也体现了各盟员相互博弈的过程。但Shapley值法的利益分配方案尚未考虑联盟成员的风险分担因素，实质上隐含着各盟员风险分担均等的假设，因此，对于联盟成员风险分担不等或风险分担存在较大差异的状况，需要根据风险分担大小对Shapley值法的利益分配方案做出适当的修正</p>
+<p><a href="https://wiki.mbalib.com/wiki/夏普利值" target="_blank" rel="noopener">https://wiki.mbalib.com/wiki/%E5%A4%8F%E6%99%AE%E5%88%A9%E5%80%BC</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Shapley_value" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Shapley_value</a></p>
+<h2 id="相关生物背景知识"><a href="#相关生物背景知识" class="headerlink" title="相关生物背景知识:"></a>相关生物背景知识:</h2><p>CpGs :        <a href="https://en.wikipedia.org/wiki/CpG_site" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/CpG_site</a></p>
+<p>在哺乳动物中，70％至80％的CpG胞嘧啶被甲基化。<a href="https://en.wikipedia.org/wiki/CpG_site#cite_note-Jabbari2004-1" target="_blank" rel="noopener">[1]</a>对基因内的胞嘧啶进行甲基化可以改变其表达</p>
+<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><h3 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h3><h4 id="主要分为3部分"><a href="#主要分为3部分" class="headerlink" title="主要分为3部分"></a>主要分为3部分</h4><p>​    我们的方法使用一些简单的命令，所有这些命令都可以用于任何预测任务。首先，使用变分自动编码器对深度学习预测模型进行预训练，然后使用编码器的层提取生物学上有意义的特征。这些神经网络层用于嵌入数据并提取特征，以便在无监督的情况下进行聚类，生成对原始源具有高保真度的新数据以及进行预测模型预训练。其次，在编码器的下游包括预测层，它们可以端对端地微调模型的预测层和特征提取层，以实现多输出回归和分类的任务。训练预测层可优化神经网络以执行预测任务。第三，进行自主超参数扫描以优化第一和第二任务的模型参数，同时生成丰富的数据可视化。最后，通过Shapley特征归因方法确定CpG对每个预测的不同粒度程度的贡献。</p>
+<p>预训练 Training the feature extractor to embed data</p>
+<p> emded data嵌入数据的程序是通过使用VAE(Variational Autoencoder )来找到无监督潜在的数据的表征(representation)去预训练最后的预测模型</p>
+<p>​    其中VAE主要有两部分:编码器和解码器:</p>
+<p>​            1. 编码器主要用于 压缩数据,然后将此压缩得到的representations,这些压缩数据作为解码器的输入,</p>
+<pre><code>               2. 解码器尝试进行重建原始数据集,同时尝试生成合成样本(synthetic training examples),并且在这两者之间进行权衡.
+                                      1. synthetic training examples: 对于在训练用于预测任务的网络时增加噪声很重要,该组件作为正则化形式的一部分,提高算法的在测试数据上的准确性和泛化能力
+                                      2. 原始数据也很重要,它是真实正确的样本,决定数据的潜在表示如何捕获正确描述基础信息的特征,保证了算法的正确性
+</code></pre><p>  <img src="/2020/06/02/article1/1.jpg" alt="1"></p>
+<h3 id="相关数据集"><a href="#相关数据集" class="headerlink" title="相关数据集"></a>相关数据集</h3><p>数据集1: 用于研究年龄和细胞类型分类,该数据集是是年龄范围广的健康受试者最大的现成的最大DNAm数据集之一（GSE87571为15至95岁的人的血液<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE87571" target="_blank" rel="noopener">DNAm</a> [ <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#CR28" target="_blank" rel="noopener">28</a> ]；补充图<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#MOESM1" target="_blank" rel="noopener">1</a>和补充表 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#MOESM1" target="_blank" rel="noopener">1</a>）</p>
+<p>第二数据集（癌症基因组图谱，TCGA）用于研究癌症亚型和包括表示32个不同的癌症亚型（补充表格8376个样品 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#MOESM1" target="_blank" rel="noopener">1</a>，<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#MOESM1" target="_blank" rel="noopener">2</a>）。</p>
+<p>第三个数据集（Liu数据集）用于比较类风湿性关节炎研究（<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE42861" target="_blank" rel="noopener">GSE42861</a>，子集<em>n</em> = 188 [ <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7076991/#CR29" target="_blank" rel="noopener">29</a> ]）中当前吸烟者和从未吸烟者的血液DNAm 。[整个表观基因组关联数据表明.DNA甲基化是类风湿关节炎遗传风险的中介]</p>
+<p>这三个数据集使用<em>PyMethylProcess</em>进行了预处理，分别产生300 k，200 k和300 k CpG特征，然后分为70％训练，20％测试和10％验证。</p>
+<p>三个额外的数据集（<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40279" target="_blank" rel="noopener">GSE40279</a>，<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84207" target="_blank" rel="noopener">GSE84207</a>和<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75067" target="_blank" rel="noopener">GSE75067</a>）用于外部验证和乳腺肿瘤亚型的初步评估。</p>
+<h3 id="DNAm-encoding的动机"><a href="#DNAm-encoding的动机" class="headerlink" title="DNAm encoding的动机"></a>DNAm encoding的动机</h3><p>建立了甲基化网络作为DNAm编码的一种方法，证明能够再现原始DNAm信号，同时提供优越的聚类性能超过最先进的聚类方法，如递归分区混合建模(RPMM)<a href="参见补充材料，&quot;无监督编码器性能的评估&quot;;补充图2、3和4">30</a>考虑到甲基网络在非监督域的表现以及它对DNAm f进行有意义编码的能力,我们选择进行DNAm encoding</p>
+<p>实验1:</p>
+<h3 id="VAE-variational-Auto-Encoder"><a href="#VAE-variational-Auto-Encoder" class="headerlink" title="VAE :variational Auto-Encoder"></a>VAE :variational Auto-Encoder</h3><p>在MethyNet中的功能是 extract biologically meaningful features and  downstream prediction tasks</p>
+<p>由两部分构成encoder 和 decoder</p>
+<p>迁移学习的介绍:<a href="https://www.jiqizhixin.com/articles/2018-01-04-7" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/2018-01-04-7</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1327,7 +1323,7 @@ w = w+ learningRate*\partial b
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
