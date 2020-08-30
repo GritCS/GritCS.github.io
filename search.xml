@@ -1219,4 +1219,20 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
         <tag>网络结构优化</tag>
       </tags>
   </entry>
+  <entry>
+    <title>FR_DDH</title>
+    <url>/2020/08/30/FR-DDH/</url>
+    <content><![CDATA[<h2 id><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>关键点检测</category>
+        <category>医学影像</category>
+      </categories>
+      <tags>
+        <tag>大创</tag>
+        <tag>关键点检测</tag>
+        <tag>论文笔记</tag>
+        <tag>医学影像</tag>
+      </tags>
+  </entry>
 </search>
