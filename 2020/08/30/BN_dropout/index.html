@@ -23,23 +23,23 @@
   <meta name="description" content="深度学习常用优化方法－BN参考文献： wiki https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guoyaohua&#x2F;p&#x2F;8724433.html 问题背景： 梯度消失与梯度爆炸的问题 一般解决方法汇总 drop_out:这里可以参考吴恩达老师的deep learning课件 要解决的问题内部协变量移位现象(Internal Covariate shift) 机器学习中有一个比较重要的假设：独立同分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="batch_normalize &amp;&amp; Dropout">
-<meta property="og:url" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/index.html">
+<meta property="og:url" content="https://gritcs.github.io/2020/08/30/BN_dropout/index.html">
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="深度学习常用优化方法－BN参考文献： wiki https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guoyaohua&#x2F;p&#x2F;8724433.html 问题背景： 梯度消失与梯度爆炸的问题 一般解决方法汇总 drop_out:这里可以参考吴恩达老师的deep learning课件 要解决的问题内部协变量移位现象(Internal Covariate shift) 机器学习中有一个比较重要的假设：独立同分">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-13.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-04.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-12.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-06.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/08/30/BN_dropout/2020-08-30_18-13.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/08/30/BN_dropout/2020-08-30_18-04.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/08/30/BN_dropout/2020-08-30_18-12.png">
+<meta property="og:image" content="https://gritcs.github.io/2020/08/30/BN_dropout/2020-08-30_18-06.png">
 <meta property="article:published_time" content="2020-08-30T03:38:23.000Z">
-<meta property="article:modified_time" content="2020-08-30T10:16:26.163Z">
+<meta property="article:modified_time" content="2020-08-30T11:30:03.357Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="大创">
 <meta property="article:tag" content="网络结构优化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-13.png">
+<meta name="twitter:image" content="https://gritcs.github.io/2020/08/30/BN_dropout/2020-08-30_18-13.png">
 
-<link rel="canonical" href="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/">
+<link rel="canonical" href="https://gritcs.github.io/2020/08/30/BN_dropout/">
 
 
 <script id="page-configurations">
@@ -182,7 +182,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/batch_normalize%20&&%20Dropout/">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/BN_dropout/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/fig/avater.jpeg">
@@ -206,7 +206,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-30 11:38:23 / Modified: 18:16:26" itemprop="dateCreated datePublished" datetime="2020-08-30T11:38:23+08:00">2020-08-30</time>
+              <time title="Created: 2020-08-30 11:38:23 / Modified: 19:30:03" itemprop="dateCreated datePublished" datetime="2020-08-30T11:38:23+08:00">2020-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,10 +251,10 @@
 <p>​    同时，我们可以发现BN还有其他的用途</p>
 <p>​        1.会使网络使用更高的学习速率而不会出现梯度消失或者梯度爆炸</p>
 <p>​        2.似乎存在正则化效果从而改善了归一化属性，可以不使用drop out　</p>
-<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
-<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
-<p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
-<p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
+<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
+<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
+<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
 <p>①不仅仅极大提升了训练速度，收敛过程大大加快；</p>
 <p>②还能增加分类效果，一种解释是这是类似于 Dropout 的一种防止过拟合的正则化表达方式，所以不用 Dropout 也能达到相当的效果；</p>
 <p>③另外调参过程也简单多了，对于初始化要求没那么高，而且可以使用大的学习率等。</p>
@@ -278,13 +278,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/29/ResNet/" rel="prev" title="ResNet">
-      <i class="fa fa-chevron-left"></i> ResNet
+    <a href="/2020/08/30/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="prev" title="batch_normalize && Dropout">
+      <i class="fa fa-chevron-left"></i> batch_normalize && Dropout
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/30/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="next" title="batch_normalize && Dropout">
-      batch_normalize && Dropout <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

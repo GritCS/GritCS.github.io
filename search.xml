@@ -1128,42 +1128,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
   </entry>
   <entry>
     <title>batch_normalize &amp;&amp; Dropout</title>
-    <url>/2020/08/30/batch_normalize%20&amp;&amp;%20Dropout/</url>
-    <content><![CDATA[<h1 id="深度学习常用优化方法－BN"><a href="#深度学习常用优化方法－BN" class="headerlink" title="深度学习常用优化方法－BN"></a>深度学习常用优化方法－BN</h1><p>参考文献：</p>
-<p><a href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank" rel="noopener">wiki</a></p>
-<p><a href="https://www.cnblogs.com/guoyaohua/p/8724433.html" target="_blank" rel="noopener">https://www.cnblogs.com/guoyaohua/p/8724433.html</a></p>
-<p>问题背景：</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">梯度消失</a>与<a href="https://zhuanlan.zhihu.com/p/32154263" target="_blank" rel="noopener">梯度爆炸</a>的问题</p>
-<p><a href="https://blog.csdn.net/qq_25737169/article/details/78847691" target="_blank" rel="noopener">一般解决方法汇总</a></p>
-<p>drop_out:这里可以参考吴恩达老师的deep learning课件</p>
-<h3 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h3><p>内部协变量移位现象(Internal Covariate shift)</p>
-<p>机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和测试数据是同时满足相同分布；</p>
-<p>​    在网络的训练阶段，由于前几层的参数发生变化，因此当前层的输入分布也会相应变化，因此当前层需要不断调整以适应新的分布。对于较深的网络，此问题尤为严重，因为较浅的隐藏层的细微变化将在它们在网络中传播时被放大，从而导致较深的隐藏层发生显着变化。因此，提出了批量标准化的方法，以减少这些不必要的偏移，以加快训练速度并生成更可靠的模型。</p>
-<p>​    NP的基本思想就是让每个隐层节点的激活输入分布固定下来（一般是放置在激活层之前）;类似于白化操作：对深层神经网络的每个隐层神经元的激活值做简化版本的白化操作.</p>
-<p>​    同时，我们可以发现BN还有其他的用途</p>
-<p>​        1.会使网络使用更高的学习速率而不会出现梯度消失或者梯度爆炸</p>
-<p>​        2.似乎存在正则化效果从而改善了归一化属性，可以不使用drop out　</p>
-<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
-<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
-<p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
-<p><img src="/2020/08/30/batch_normalize%20&&%20Dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
-<p>①不仅仅极大提升了训练速度，收敛过程大大加快；</p>
-<p>②还能增加分类效果，一种解释是这是类似于 Dropout 的一种防止过拟合的正则化表达方式，所以不用 Dropout 也能达到相当的效果；</p>
-<p>③另外调参过程也简单多了，对于初始化要求没那么高，而且可以使用大的学习率等。</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-        <category>经典网络</category>
-        <category>经典设计结构</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>大创</tag>
-        <tag>网络结构优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>batch_normalize &amp;&amp; Dropout</title>
     <url>/2020/08/30/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h1 id="深度学习常用优化方法－BN"><a href="#深度学习常用优化方法－BN" class="headerlink" title="深度学习常用优化方法－BN"></a>深度学习常用优化方法－BN</h1><p>参考文献：</p>
 <p><a href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank" rel="noopener">wiki</a></p>
@@ -1217,6 +1181,42 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
         <tag>深度学习</tag>
         <tag>大创</tag>
         <tag>关键点检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>batch_normalize &amp;&amp; Dropout</title>
+    <url>/2020/08/30/BN_dropout/</url>
+    <content><![CDATA[<h1 id="深度学习常用优化方法－BN"><a href="#深度学习常用优化方法－BN" class="headerlink" title="深度学习常用优化方法－BN"></a>深度学习常用优化方法－BN</h1><p>参考文献：</p>
+<p><a href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank" rel="noopener">wiki</a></p>
+<p><a href="https://www.cnblogs.com/guoyaohua/p/8724433.html" target="_blank" rel="noopener">https://www.cnblogs.com/guoyaohua/p/8724433.html</a></p>
+<p>问题背景：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">梯度消失</a>与<a href="https://zhuanlan.zhihu.com/p/32154263" target="_blank" rel="noopener">梯度爆炸</a>的问题</p>
+<p><a href="https://blog.csdn.net/qq_25737169/article/details/78847691" target="_blank" rel="noopener">一般解决方法汇总</a></p>
+<p>drop_out:这里可以参考吴恩达老师的deep learning课件</p>
+<h3 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h3><p>内部协变量移位现象(Internal Covariate shift)</p>
+<p>机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和测试数据是同时满足相同分布；</p>
+<p>​    在网络的训练阶段，由于前几层的参数发生变化，因此当前层的输入分布也会相应变化，因此当前层需要不断调整以适应新的分布。对于较深的网络，此问题尤为严重，因为较浅的隐藏层的细微变化将在它们在网络中传播时被放大，从而导致较深的隐藏层发生显着变化。因此，提出了批量标准化的方法，以减少这些不必要的偏移，以加快训练速度并生成更可靠的模型。</p>
+<p>​    NP的基本思想就是让每个隐层节点的激活输入分布固定下来（一般是放置在激活层之前）;类似于白化操作：对深层神经网络的每个隐层神经元的激活值做简化版本的白化操作.</p>
+<p>​    同时，我们可以发现BN还有其他的用途</p>
+<p>​        1.会使网络使用更高的学习速率而不会出现梯度消失或者梯度爆炸</p>
+<p>​        2.似乎存在正则化效果从而改善了归一化属性，可以不使用drop out　</p>
+<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
+<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
+<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
+<p>①不仅仅极大提升了训练速度，收敛过程大大加快；</p>
+<p>②还能增加分类效果，一种解释是这是类似于 Dropout 的一种防止过拟合的正则化表达方式，所以不用 Dropout 也能达到相当的效果；</p>
+<p>③另外调参过程也简单多了，对于初始化要求没那么高，而且可以使用大的学习率等。</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>经典网络</category>
+        <category>经典设计结构</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>大创</tag>
+        <tag>网络结构优化</tag>
       </tags>
   </entry>
 </search>
