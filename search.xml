@@ -853,7 +853,8 @@ w = w+ learningRate*\partial b
 <p><a href="https://github.com/vdumoulin/conv_arithmetic" target="_blank" rel="noopener">https://github.com/vdumoulin/conv_arithmetic</a></p>
 ]]></content>
       <categories>
-        <category>深度学习，基础知识</category>
+        <category>深度学习</category>
+        <category>基础知识</category>
       </categories>
       <tags>
         <tag>语义分割，深度学习，大创</tag>
@@ -1222,7 +1223,8 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
   <entry>
     <title>FR_DDH</title>
     <url>/2020/08/30/FR-DDH/</url>
-    <content><![CDATA[<h2 id><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+    <content><![CDATA[<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>本文的主要想法：首先我们提取以landmark为中心的(2N+1)×(2N+1)大小的image patch作为local neighborhood</p>
+]]></content>
       <categories>
         <category>深度学习</category>
         <category>关键点检测</category>
