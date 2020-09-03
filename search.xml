@@ -910,7 +910,7 @@ w = w+ learningRate*\partial b
 <p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png" alt="2020-08-26_16-46"></p>
 <p><strong>pytorch: grad can be implicitly created only for scalar outputs</strong></p>
 <p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png" alt="2020-08-26_16-49"></p>
-<h2 id="感知机的梯度推导"><a href="#感知机的梯度推导" class="headerlink" title="感知机的梯度推导"></a>感知机的梯度推导</h2><h2 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h2><h2 id="优化问题实战"><a href="#优化问题实战" class="headerlink" title="优化问题实战"></a>优化问题实战</h2>]]></content>
+]]></content>
       <categories>
         <category>深度学习</category>
         <category>pytorch</category>
@@ -948,7 +948,7 @@ w = w+ learningRate*\partial b
 <h2 id="网络框架"><a href="#网络框架" class="headerlink" title="网络框架"></a>网络框架</h2><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_16-35.png" alt="2020-08-28_16-35"></p>
 <p>主要分为四部分：</p>
 <ol>
-<li><p>COnv layers:　作为一种CNN网络目标检测方法，使用conv+pooling+relu来提取feature maps，被之后的RNP 和全连接层共享</p>
+<li><p>Conv layers:　作为一种CNN网络目标检测方法，使用conv+pooling+relu来提取feature maps，被之后的RPN 和全连接层共享</p>
 </li>
 <li><p>RPN(region proposal network )</p>
 <p>​    ==用于生成region proposals==，该层主要工作：</p>
@@ -1102,6 +1102,7 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
       <categories>
         <category>深度学习</category>
         <category>经典网络</category>
+        <category>论文笔记</category>
       </categories>
       <tags>
         <tag>深度学习</tag>
@@ -1201,5 +1202,70 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
     <title>CircleNet</title>
     <url>/2020/08/30/CircleNet/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>关键点检测</category>
+        <category>医学影像</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>大创</tag>
+        <tag>关键点检测</tag>
+        <tag>论文笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visdom</title>
+    <url>/2020/09/03/Visdom/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>在GPU上加速</title>
+    <url>/2020/09/03/%E5%9C%A8GPU%E4%B8%8A%E5%8A%A0%E9%80%9F/</url>
+    <content><![CDATA[<h2 id="回顾基本训练过程-MINIST"><a href="#回顾基本训练过程-MINIST" class="headerlink" title="回顾基本训练过程(MINIST)"></a>回顾基本训练过程(MINIST)</h2><h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><h4 id="导包、设计训练参数"><a href="#导包、设计训练参数" class="headerlink" title="导包、设计训练参数"></a>导包、设计训练参数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span>  torch</span><br><span class="line"><span class="keyword">import</span>  torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span>  torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span>  torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span>    torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line"></span><br><span class="line">batch_size=<span class="number">200</span></span><br><span class="line">learning_rate=<span class="number">0.01</span></span><br><span class="line">epochs=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>下载数据</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(<span class="string">'../data'</span>, train=<span class="literal">True</span>, download=<span class="literal">True</span>,</span><br><span class="line">                   transform=transforms.Compose([</span><br><span class="line">                       transforms.ToTensor(),</span><br><span class="line">                       transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))对数据进行正则化</span><br><span class="line">                   ])),</span><br><span class="line">    batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">test_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(<span class="string">'../data'</span>, train=<span class="literal">False</span>, transform=transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))</span><br><span class="line">    ])),</span><br><span class="line">    batch_size=batch_size, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h3><h4 id="参数初始化"><a href="#参数初始化" class="headerlink" title="参数初始化"></a>参数初始化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">w1, b1 = torch.randn(<span class="number">200</span>, <span class="number">784</span>, requires_grad=<span class="literal">True</span>),\</span><br><span class="line">         torch.zeros(<span class="number">200</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">w2, b2 = torch.randn(<span class="number">200</span>, <span class="number">200</span>, requires_grad=<span class="literal">True</span>),\</span><br><span class="line">         torch.zeros(<span class="number">200</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">w3, b3 = torch.randn(<span class="number">10</span>, <span class="number">200</span>, requires_grad=<span class="literal">True</span>),\</span><br><span class="line">         torch.zeros(<span class="number">10</span>, requires_grad=<span class="literal">True</span>)<span class="comment">#class_size = 10，最后分为10类</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#利用何恺明大佬的初始化方法</span></span><br><span class="line">torch.nn.init.kaiming_normal_(w1)</span><br><span class="line">torch.nn.init.kaiming_normal_(w2)</span><br><span class="line">torch.nn.init.kaiming_normal_(w3)</span><br></pre></td></tr></table></figure>
+<h4 id="搭建网络"><a href="#搭建网络" class="headerlink" title="搭建网络"></a>搭建网络</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fforward</span><span class="params">()</span>:</span></span><br><span class="line">    x = x@w1 + b1</span><br><span class="line">    x =F. relu(x)</span><br><span class="line">    x = x@w2 + b2</span><br><span class="line">    x = F.relu(x)</span><br><span class="line">    x = x@w3+ b3</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h4 id="定义加速器和loss函数"><a href="#定义加速器和loss函数" class="headerlink" title="定义加速器和loss函数"></a>定义加速器和loss函数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer = optim.SGD([w1,b1,w2,b2,w3,b3],lr = learning_rate)<span class="comment">#传入需要计算梯度的参数和learning_rate</span></span><br><span class="line">criteon = nn.CrossEntropyLoss()</span><br></pre></td></tr></table></figure>
+<h3 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> len(epochs):</span><br><span class="line">	<span class="keyword">for</span> batch_idx , (data,target) <span class="keyword">in</span> enumerate(train_loader):</span><br><span class="line">        data= data.view(<span class="number">-1</span>,<span class="number">28</span>*<span class="number">28</span>)<span class="comment">#view(-1,28*28)中-1表示不确定/不关心的数，只要求dim=0的size是28×28就行</span></span><br><span class="line">        logits = fforward(data)</span><br><span class="line">        </span><br><span class="line">        loss = criteon(logits,target)</span><br><span class="line">        </span><br><span class="line">        optimizer.zero_grad()<span class="comment">#所有参数上一轮的梯度信息都清除</span></span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()<span class="comment">#用梯度更新参数</span></span><br><span class="line">        <span class="keyword">if</span>( batch_idx %<span class="number">100</span> ==<span class="number">0</span>):</span><br><span class="line">            print(<span class="string">"train epoch :&#123;&#125;, batch:&#123;&#125; ,loss&#123;:.6f&#125;"</span>.format(epoch,batch_idx,loss.item() ))</span><br><span class="line">            <span class="comment">#torch.item() 表示如果多维的torch中只包含一个元素，取出来</span></span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">test_loss &#x3D; 0</span><br><span class="line">correct &#x3D;0</span><br><span class="line">for data,target in test_loader :</span><br><span class="line">	data &#x3D; data.view(-1,28*28)</span><br><span class="line">	logits &#x3D; fforward(data)#得到预测值</span><br><span class="line">	test_loss +&#x3D; criteon(logits,target).item()</span><br><span class="line">	</span><br><span class="line">	pre &#x3D; logits.argmax(dim&#x3D;1)</span><br><span class="line">	correct &#x3D; pred.eq(target.data)</span><br></pre></td></tr></table></figure>
+<h2 id="GPU加速"><a href="#GPU加速" class="headerlink" title="GPU加速"></a>GPU加速</h2><p>比较好的博客：</p>
+<p><a href="http://www.feiguyunai.com/index.php/2019/04/30/python-ml-25-pytorch-gpu/" target="_blank" rel="noopener">http://www.feiguyunai.com/index.php/2019/04/30/python-ml-25-pytorch-gpu/</a></p>
+<p>[自己的实验环境应该是单GPU环境]</p>
+<h3 id="创建一个GPU实例"><a href="#创建一个GPU实例" class="headerlink" title="创建一个GPU实例"></a>创建一个GPU实例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">device = torch.device(<span class="string">'cuda: 0'</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span><span class="string">'cpu'</span>)<span class="comment">#首先要先判断是否有可用的GPU</span></span><br><span class="line"><span class="comment">#'0'表示GPU的编号</span></span><br></pre></td></tr></table></figure>
+<h3 id="把需要计算的量加载到设备上"><a href="#把需要计算的量加载到设备上" class="headerlink" title="把需要计算的量加载到设备上"></a>把需要计算的量加载到设备上</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net = MLP().to(deivce) </span><br><span class="line">optimizer = optim.SGD(net.parameters() , lr = learning_rate)</span><br><span class="line">criteon = nn.CrossEntropyLoss().to(device)<span class="comment">#to(device) ,如果数据类型是model，则返回类型是 cpu上数据的引用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(epochs):</span><br><span class="line">	<span class="keyword">for</span> batch_idx , (data,target) <span class="keyword">in</span> enumerate(train_loader):</span><br><span class="line">		data = data.view(<span class="number">-1</span>,<span class="number">28</span>*<span class="number">28</span>)</span><br><span class="line">		data, target = data.to(device),target.cuda()<span class="comment">#如果数据类型是 tensor，返回类型是cpu上数据的copy()</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>pytorch</category>
+      </categories>
+      <tags>
+        <tag>pytorch</tag>
+        <tag>大创</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>皮肤癌关键技术</title>
+    <url>/2020/08/31/%E7%9A%AE%E8%82%A4%E7%99%8C%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<p>U-Net　还得再补充ｅｍｍ</p>
+<h1 id="Self-Calibrated-Convolutions"><a href="#Self-Calibrated-Convolutions" class="headerlink" title="Self-Calibrated Convolutions"></a>Self-Calibrated Convolutions</h1><p>我们选择自适应的卷积，去替代普通卷积的原因：</p>
+<p>因为自适应卷积在不引入额外的参数和复杂度的前提下，可以适应性地在每个空间位置周围建立远程空间和通道间的依赖性，帮助CNN显式融合更加丰富的信息，生成更多的特征性表达</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Architecture-Design"><a href="#Architecture-Design" class="headerlink" title="Architecture Design"></a>Architecture Design</h3><h3 id="Long-range-Dependency-Modeling"><a href="#Long-range-Dependency-Modeling" class="headerlink" title="Long-range Dependency Modeling"></a>Long-range Dependency Modeling</h3><p>远程依赖建模的几种机制：</p>
+<p>1.引入空间注意机制或者设计高级注意框</p>
+<p>２.设计具有更大卷积核的空间池化和卷积运算，通过捕获多尺度的上下文，来生成更多的特征性表达</p>
+<p>3.而自适应卷是不同于以上所有，是通过更高效地利用卷积层中的卷积滤波器并设计功能强大的特征转换以生成更具表达力的特征表示</p>
+<p>感觉一些原理是借鉴的　<a href="https://blog.csdn.net/Quincuntial/article/details/78605463?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">SENet</a>[找时间看一下原文，理解的更透彻些(为什么这样设计网络就会更好呢?)]，<a href="https://blog.csdn.net/yuzhijiedingzhe/article/details/78124752?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">这篇博客讲的也不错</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>语义分割</category>
+        <category>皮肤癌</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>科研</tag>
+        <tag>语义分割</tag>
+      </tags>
   </entry>
 </search>
