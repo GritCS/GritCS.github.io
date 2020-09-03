@@ -1217,7 +1217,22 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
   <entry>
     <title>Visdom</title>
     <url>/2020/09/03/Visdom/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="visdom"><a href="#visdom" class="headerlink" title="visdom"></a>visdom</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>相比于tensorboard会更高效，而且展示图片时，不需要转换数据类型到<code>.cpu.numpy()</code></p>
+<p><strong>使用 visdom之前，必须先启动 visdom server</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#在终端输入命令</span></span><br><span class="line">python -m visdom.server</span><br></pre></td></tr></table></figure>
+<p>初始化visdom对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> visdom <span class="keyword">import</span> Visdom</span><br><span class="line">viz = Visdom()</span><br></pre></td></tr></table></figure>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>参考博客</p>
+<p><a href="https://www.pytorchtutorial.com/using-visdom-for-visualization-in-pytorch/#i-2" target="_blank" rel="noopener">https://www.pytorchtutorial.com/using-visdom-for-visualization-in-pytorch/#i-2</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>pytorch</category>
+      </categories>
+      <tags>
+        <tag>pytorch</tag>
+        <tag>大创</tag>
+      </tags>
   </entry>
   <entry>
     <title>在GPU上加速</title>
@@ -1266,6 +1281,39 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
         <tag>深度学习</tag>
         <tag>科研</tag>
         <tag>语义分割</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pytorch卷积的简单操作</title>
+    <url>/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><p><strong>本文罗列一些简单的api</strong></p>
+<p><a href="https://pytorch.org/docs/stable/nn.functional.html?highlight=interpolate#" target="_blank" rel="noopener">api官方文档连接</a></p>
+<p>首先先补一个知识点：关于torch.nn.Xxxx 和 torch.nn.functional.xxx的 api的区别和使用建议</p>
+<p>推荐博客： <a href="https://www.zhihu.com/question/66782101/answer/579393790" target="_blank" rel="noopener">https://www.zhihu.com/question/66782101/answer/579393790</a></p>
+<p>结论：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PyTorch官方推荐：具有学习参数的（例如，conv2d, linear, batch_norm)采用nn.Xxx方式，没有学习参数的（例如，maxpool, loss func, activation func）等根据个人选择使用nn.functional.xxx或者nn.Xxx方式。但关于dropout，个人强烈推荐使用nn.Xxx方式，因为一般情况下只有训练阶段才进行dropout，在eval阶段都不会进行dropout。使用nn.Xxx方式定义dropout，在调用model.eval()之后，model中所有的dropout layer都关闭，但以nn.function.dropout方式定义dropout，在调用model.eval()之后并不能关闭dropout。</span><br><span class="line"></span><br><span class="line">作者：有糖吃可好</span><br><span class="line">链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;66782101&#x2F;answer&#x2F;579393790</span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_14-30.png" alt="2020-09-03_14-30"></p>
+<h3 id="api介绍（2维卷积）"><a href="#api介绍（2维卷积）" class="headerlink" title="api介绍（2维卷积）"></a>api介绍（2维卷积）</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.nn.Conv2d(</span><br><span class="line">     in_channels: int,</span><br><span class="line">    out_channels: int,</span><br><span class="line">    kernel_size: Union[T, Tuple[T, T]], </span><br><span class="line">    stride: Union[T, Tuple[T, T]] = <span class="number">1</span>, </span><br><span class="line">    padding: Union[T, Tuple[T, T]] = <span class="number">0</span>,</span><br><span class="line">    dilation: Union[T, Tuple[T, T]] = <span class="number">1</span>,<span class="comment"># atrous算法</span></span><br><span class="line">    groups: int = <span class="number">1</span>,</span><br><span class="line">    bias: bool = <span class="literal">True</span>, </span><br><span class="line">    padding_mode: str = <span class="string">'zeros'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_14-54.png" alt="2020-09-03_14-54"></p>
+<h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="comment">#conv</span></span><br><span class="line"></span><br><span class="line">conv = nn.Conv2d(<span class="number">3</span>,<span class="number">5</span>,kernel_size=<span class="number">3</span>,stride =<span class="number">1</span>,padding=<span class="number">0</span>)<span class="comment">#5个 3×（3×3）size=3,channel=3卷积核</span></span><br><span class="line">x = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">28</span>)<span class="comment">#表示一张尺寸为28×28的rgb图像</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#forward()</span></span><br><span class="line">out = conv.forward(x)</span><br><span class="line">print(out.shape)</span><br><span class="line"><span class="comment">#torch.Size([1, 5, 26, 26]);一张 channels = 5，size=26*26的image</span></span><br><span class="line"><span class="comment"># weigth &amp;&amp; bias</span></span><br><span class="line">print(conv.weight.shape)<span class="comment">#这个就是kernel,卷积核</span></span><br><span class="line">print(conv.bias.shape)</span><br></pre></td></tr></table></figure>
+<h2 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h2><p>使用 <code>F.avg_pool2d</code>，<code>F.max_pool2d</code></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15_1.png" alt="2020-09-03_15-15_1"></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15_2.png" alt="2020-09-03_15-15_2"></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15.png" alt="2020-09-03_15-15"></p>
+<h2 id="upsampling"><a href="#upsampling" class="headerlink" title="upsampling"></a>upsampling</h2><p><code>F.interpolate</code></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-38.png" alt="2020-09-03_15-38"></p>
+<h4 id="实例代码-1"><a href="#实例代码-1" class="headerlink" title="实例代码"></a>实例代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">conv = nn.Conv2d(<span class="number">3</span>,<span class="number">5</span>,kernel_size=<span class="number">3</span>,stride =<span class="number">1</span>,padding=<span class="number">0</span>)<span class="comment">#5个 3×（3×3）size=3,channel=3卷积核</span></span><br><span class="line">x = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">28</span>)<span class="comment">#表示一张尺寸为28×28的rgb图像</span></span><br><span class="line">out_c= conv.forward(x)</span><br><span class="line">print(out_c.shape)</span><br><span class="line"><span class="comment"># layer =</span></span><br><span class="line"><span class="comment"># out_p = F.avg_pool2d(x,5,stride=2)</span></span><br><span class="line">out_p = F.max_pool2d(x,<span class="number">5</span>,stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">print(out_p.shape)</span><br><span class="line"></span><br><span class="line">out_up = F.interpolate(out_p,scale_factor=<span class="number">2</span>,mode=<span class="string">'nearest'</span>)</span><br><span class="line"><span class="comment">#scale_factor指出了上采样的尺寸</span></span><br><span class="line">print(out_up.shape)</span><br><span class="line"></span><br><span class="line">out_final  = torch.sigmoid(out_up)</span><br><span class="line">print(out_final.shape)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 5, 26, 26])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 12, 12])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 24, 24])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 24, 24])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="常见的激活函数等"><a href="#常见的激活函数等" class="headerlink" title="常见的激活函数等"></a>常见的激活函数等</h2><h4 id="torch-nn-functional-softmax-input-dim-None"><a href="#torch-nn-functional-softmax-input-dim-None" class="headerlink" title="torch.nn.functional.softmax( input, dim= None)"></a><strong><code>torch.nn.functional.softmax( input, dim= None)</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-27.png" alt="2020-09-03_15-27"></p>
+<h4 id="torch-nn-functional-relu-input-inplace-False"><a href="#torch-nn-functional-relu-input-inplace-False" class="headerlink" title="torch.nn.functional.relu(input, inplace = False )"></a><strong><code>torch.nn.functional.relu(input, inplace = False )</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-32.png" alt="2020-09-03_15-32"></p>
+<h4 id="torch-nn-functional-sigmoid"><a href="#torch-nn-functional-sigmoid" class="headerlink" title="torch.nn.functional.sigmoid()"></a><strong><code>torch.nn.functional.sigmoid()</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-26.png" alt="2020-09-03_15-26"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+        <category>pytorch</category>
+      </categories>
+      <tags>
+        <tag>pytorch</tag>
+        <tag>大创</tag>
       </tags>
   </entry>
 </search>
