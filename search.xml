@@ -1351,4 +1351,99 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
         <tag>大创</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++中字符串总结</title>
+    <url>/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="c-中string，字符指针，字符数组之间的区别"><a href="#c-中string，字符指针，字符数组之间的区别" class="headerlink" title="c++中string，字符指针，字符数组之间的区别"></a>c++中string，字符指针，字符数组之间的区别</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>c/c++中设置有常量：在程序运行过程中，其值不能改变的量称为常量</p>
+<p>常量分为不同的类型：整型常量(3)，浮点型常量(3.12)，字符型常量(‘a’)，字符串常量(“abc”)</p>
+<p>常量一般有两种表现形式：</p>
+<ul>
+<li>直接常量：直接以值的形式表示的常量称之为直接常量</li>
+<li>符号常量：用标识符命名的常量称为符号常量，也就是在直接常量上再取一个名字，方便程序后续维护．习惯用大写字母和下划线来命名<ul>
+<li>两种定义方式<ul>
+<li>const 类型　符号常量名字＝常量值</li>
+<li><h1 id="define-符号常量名-常量值"><a href="#define-符号常量名-常量值" class="headerlink" title="define 符号常量名　常量值"></a>define 符号常量名　常量值</h1></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符指针和字符数组的区别"><a href="#字符指针和字符数组的区别" class="headerlink" title="字符指针和字符数组的区别"></a>字符指针和字符数组的区别</h3><p>c/c++中<strong>每个字符串都以字符’/0’作为结尾</strong>．为了节省内存，c/c++把常量字符串放到单独的一个内存区域，当几个指针赋值给相同的常量字符串时，它们实际会指向相同的内存地址．但是用常量内存初始化数组时，情况却有所不同．</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> str1[] = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="keyword">char</span> str2[] = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="comment">//str1!=str2</span></span><br><span class="line"><span class="comment">//c++会为str1,str2分配两个长度为12个字节的空间，并把"hello world"的内容分别复制到数组中．</span></span><br><span class="line"><span class="comment">//str1,str2是两个不同的字符数组，所以初始地址不同</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>* str3 = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="keyword">char</span>* str4 = <span class="string">"helo world"</span>;</span><br><span class="line"><span class="comment">//str3==str4</span></span><br></pre></td></tr></table></figure>
+<p>参考资料</p>
+<p>＜剑指offer</p>
+<p>&lt; <a href="http://c.biancheng.net/view/2236.html" target="_blank" rel="noopener">http://c.biancheng.net/view/2236.html</a></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++11分章1</title>
+    <url>/2021/02/06/c-11%E5%88%86%E7%AB%A01/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>landmark1</title>
+    <url>/2020/11/20/landmark1/</url>
+    <content><![CDATA[<p>==本篇主要介绍一些　实验过程中用到的一些基础python知识点==</p>
+<h2 id="python面向对象"><a href="#python面向对象" class="headerlink" title="python面向对象"></a>python面向对象</h2><h3 id="命名前缀及其含义"><a href="#命名前缀及其含义" class="headerlink" title="命名前缀及其含义"></a>命名前缀及其含义</h3><ul>
+<li><strong>前置单下划线</strong><code>_var</code>：命名约定，用来表示该名称仅在内部使用。一般对Python解释器没有特殊含义（通配符导入除外），只能作为对程序员的提示。</li>
+<li><strong>后置单下划线</strong><code>var_</code>：命名约定，用于避免与Python关键字发生命名冲突。</li>
+<li><strong>前置双下划线</strong><code>__var</code>：在类环境中使用时会触发名称改写，对Python解释器有特殊含义。</li>
+<li><strong>前后双下划线</strong><code>__var__</code>：表示由Python语言定义的特殊方法。在自定义的属性中要避免使用这种命名方式。</li>
+<li><strong>单下划线</strong><code>_</code>：有时用作临时或无意义变量的名称（“不关心”）。此外还能表示Python REPL会话中上一个表达式的结果。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习,关键点检测,实验日志</category>
+      </categories>
+      <tags>
+        <tag>深度学习,关键点检测,大创,实验日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关键点检测问题小总结</title>
+    <url>/2020/09/16/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E5%B0%8F%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>剑指offer_01</title>
+    <url>/2021/01/23/%E5%89%91%E6%8C%87offer-01/</url>
+    <content><![CDATA[<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>​    从剑指offer开始，我将有计划地训练自己编程．短期来看是为保研机试做准备，长远来看，我希望自己不再是纸上谈兵．我缺少的是对技术的信仰．</p>
+<p>​    深知如果想实现自己的抱负，只靠计科的知识和技术远远不够，未来还很长远，需要自己去闯，但目前我一心只想这可以提高自己的编程能力．</p>
+<h3 id="面试的注意点"><a href="#面试的注意点" class="headerlink" title="面试的注意点"></a>面试的注意点</h3><ul>
+<li><p>对于初级程序员，会偏向考查算法和数据结构；对于高级程序员，更多是专业技能和项目经验</p>
+</li>
+<li><p>要提前对公司\学校近况有所了解，可以准备一些问题问面试官</p>
+</li>
+<li><p><strong>思考清楚再开始编码</strong>:想清楚解决问题的思路; 算法的时间，空间复杂度各是多少; 是否有需要特殊处理的情况;再动手编写</p>
+</li>
+</ul>
+<h4 id="1-扎实的基本功"><a href="#1-扎实的基本功" class="headerlink" title="1.扎实的基本功"></a>1.扎实的基本功</h4><ul>
+<li><p>熟练掌握一两门编程语言－－</p>
+</li>
+<li><p>数据结构相关操作和使用（链表，二叉树，树，队列，哈希表等）</p>
+</li>
+<li>查找排序算法等基础算法,动态规划和贪心算法</li>
+</ul>
+<h4 id="2-高质量的代码"><a href="#2-高质量的代码" class="headerlink" title="2.高质量的代码"></a>2.高质量的代码</h4><ul>
+<li>解决基本的功能</li>
+<li>边界条件，特殊输入(空指针，空字符串)，错误处理</li>
+</ul>
+<h4 id="3-清晰的思路"><a href="#3-清晰的思路" class="headerlink" title="3.清晰的思路"></a>3.清晰的思路</h4><ul>
+<li><strong>画图</strong>能使抽象问题形象化</li>
+<li><strong>举例</strong>使抽象问题具体化</li>
+<li><strong>分解</strong>使复杂问题简单化</li>
+</ul>
+<p>​        </p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
 </search>
