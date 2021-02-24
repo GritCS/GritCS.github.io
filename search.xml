@@ -1614,4 +1614,172 @@ w = w+ learningRate*\partial b
         <tag>code</tag>
       </tags>
   </entry>
+  <entry>
+    <title>STL-map</title>
+    <url>/2021/02/24/STL-map/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>排序算法总结</title>
+    <url>/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><p><strong>每次将一个待排序的记录按照其关键字的大小插到前面已经排好序的子序列中</strong></p>
+<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><h3 id="源码实现"><a href="#源码实现" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(T A[], <span class="keyword">int</span> length)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;length;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(A[i]&lt;A[i<span class="number">-1</span>])&#123;<span class="comment">//前0-i-1个元素是排好序的元素,</span></span><br><span class="line">            <span class="comment">// 如果A[i]&gt;A[i-1]不移动元素</span></span><br><span class="line">            <span class="keyword">int</span> temp = A[i];</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j=i<span class="number">-1</span>;(temp&lt;A[j])&amp;&amp;(j&gt;=<span class="number">0</span>);--j)&#123;</span><br><span class="line">                A[j+<span class="number">1</span>]=A[j];</span><br><span class="line">            &#125;</span><br><span class="line">            A[j+<span class="number">1</span>]=temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>O(n) //只需要比较，不需要移动</td>
+<td>$O(n^2)$</td>
+<td>$O(n^2)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>稳定性：稳定性的排序方法（数值大小相同的元素排序前后的相对位置不变）</strong></p>
+<p><strong>适用性：适用于顺序存储和链式存储的线性表</strong></p>
+<p>由于当数据基本有序时，时间复杂度趋于线性，更适用于基本有序的排序表和数据量不大的排序表</p>
+<h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><p>利用折半查找优化直接插入排序</p>
+<h3 id="源码实现-1"><a href="#源码实现-1" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">InsertSort2</span>(<span class="title">T</span> <span class="title">A</span>[] ,<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(A[i]&lt;A[i<span class="number">-1</span>])&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = A[i];</span><br><span class="line">            <span class="comment">//利用折半查找，找到要插入的元素;</span></span><br><span class="line">            <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> <span class="built_in">end</span>=i<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(start&lt;<span class="built_in">end</span> )&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = (start+<span class="built_in">end</span>)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(A[mid]&lt;temp)&#123;<span class="comment">//要插入的元素，应该是在右边，找到第一个大于temp的</span></span><br><span class="line">                    start=mid+<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">end</span> = mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="comment">//跳出该循环的条件是，end=start，其中end指向最左侧大于A[i]的下标</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="built_in">end</span>;j--)&#123;</span><br><span class="line">                A[j+<span class="number">1</span>]=A[j];</span><br><span class="line">            &#125;</span><br><span class="line">            A[<span class="built_in">end</span>]=temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h3><p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-22_21-02.png" alt="2021-02-22_21-02"></p>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>由于直接插入排序算法更适用于 基本有序的排序表和数据量不大的排序表。</p>
+<p>希尔排序基于这两点进行改进，缩小增量排序</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">ShellSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> d =len/<span class="number">2l</span>;d&gt;<span class="number">1</span>;d=d/<span class="number">2</span>)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=d+<span class="number">1</span>;i&lt;len;i++)<span class="comment">//起始位置</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">if</span> (A[i] &lt; A[i - d]) &#123;</span><br><span class="line">               <span class="keyword">int</span> temp = A[i];</span><br><span class="line">               <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">for</span> (j = i - d; j &gt; <span class="number">0</span> &amp;&amp; temp &lt; A[j]; j -= d) &#123;</span><br><span class="line">                   A[j + d] = A[j];</span><br><span class="line">               &#125;</span><br><span class="line">               A[j + d] = temp;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><p><strong>交换：跟据序列中两个元素关键点的比较结果来对换这两个记录在序列中的位置</strong></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>从后往前两两比较相邻元素的值，</p>
+<h3 id="源码实现-2"><a href="#源码实现-2" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">BubbleSort</span>(<span class="title">T</span> <span class="title">A</span>[] , <span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">	<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span>(!flag)&#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len<span class="number">-1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(A[i]&gt;A[i+<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="built_in">std</span>::swap(A[i],A[i+<span class="number">1</span>]);</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性能分析-2"><a href="#性能分析-2" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>O(n) //只需要比较，不需要移动</td>
+<td>$O(n^2)$</td>
+<td>$O(n^2)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>稳定的排序方法</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>基于分治的思想</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">Partition</span>(<span class="title">T</span> <span class="title">A</span>[], <span class="title">int</span> <span class="title">start</span>,<span class="title">int</span> <span class="title">end</span>)&#123;</span></span><br><span class="line">    T base = A[start];</span><br><span class="line">    <span class="keyword">int</span> low=start;</span><br><span class="line">    <span class="keyword">int</span> high=<span class="built_in">end</span>;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;high)&#123;<span class="comment">//low指向小于等于元素，high指向大于元素</span></span><br><span class="line">        <span class="keyword">while</span>(A[low]&lt;=base)&#123;<span class="comment">//会自动跳过base</span></span><br><span class="line">            low++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(A[high]&gt;base)&#123;</span><br><span class="line">            high--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">            <span class="built_in">std</span>::swap(A[low],A[high]);<span class="comment">//交换两个</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::swap(A[high],A[start]);<span class="comment">//high指向最右侧的最大元素</span></span><br><span class="line">    <span class="keyword">return</span> high;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">QuickSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">start</span>, <span class="title">int</span> <span class="title">end</span>)&#123;</span></span><br><span class="line">    <span class="comment">//不断分治</span></span><br><span class="line">    <span class="keyword">if</span>(start&lt;<span class="built_in">end</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = Partition(A,start,<span class="built_in">end</span>);</span><br><span class="line">        QuickSort(A,start,mid<span class="number">-1</span>);</span><br><span class="line">        QuickSort(A,mid+<span class="number">1</span>,<span class="built_in">end</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性能分析-3"><a href="#性能分析-3" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>O(log_ n) //只需要比较，不需要移动</td>
+<td>$O(n)$</td>
+<td>$O(log_2 n)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>$O(n *log_2 n)$</td>
+<td>$O(n^2)$</td>
+<td>约等于$O(n*log_2 n)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>最快的内部排序，不稳定的排序方法</strong></p>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><h2 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h2><p>选择排序基本思想：每一趟在后面n-i-1个待排序元素中选取关键字最小的元素;作为有序子序列的第i个元素，直到第n-1趟做完，待排序元素只剩下一个就不用再选了</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-22_23-32.png" alt="2021-02-22_23-32"></p>
+<h3 id="性能分析-4"><a href="#性能分析-4" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>O(n) //只需要比较，不需要移动</td>
+<td>$O(n^2)$</td>
+<td>$O(n^2)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>不稳定的排序方法</p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><h3 id="源码实现-大根堆为例"><a href="#源码实现-大根堆为例" class="headerlink" title="源码实现(大根堆为例)"></a>源码实现(大根堆为例)</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//初始建堆</span></span><br><span class="line">    build();</span><br><span class="line">    <span class="comment">//堆排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        swap(<span class="number">1</span>,hlen);</span><br><span class="line">        hlen--;</span><br><span class="line">        down(<span class="number">1</span>); <span class="comment">//不断删除最大结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">之前总结过堆的相关笔记</a></p>
+<h3 id="性能分析-5"><a href="#性能分析-5" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>$O(n *log_2 n)$</td>
+<td>$O(n *log_2 n)$</td>
+<td>$O(n *log_2 n)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>不稳定的排序方法</strong></p>
+<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><strong>”归并“的含义是将两个或者两个以上的有序表</strong></p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
 </search>
