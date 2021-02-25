@@ -204,6 +204,13 @@
 
               <time title="Created: 2021-02-24 10:14:27" itemprop="dateCreated datePublished" datetime="2021-02-24T10:14:27+08:00">2021-02-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-25 12:08:24" itemprop="dateModified" datetime="2021-02-25T12:08:24+08:00">2021-02-25</time>
+              </span>
 
           
 
@@ -266,7 +273,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-23 22:59:34" itemprop="dateModified" datetime="2021-02-23T22:59:34+08:00">2021-02-23</time>
+                <time title="Modified: 2021-02-24 13:07:16" itemprop="dateModified" datetime="2021-02-24T13:07:16+08:00">2021-02-24</time>
               </span>
 
           
@@ -434,7 +441,46 @@
 </table>
 </div>
 <p><strong>不稳定的排序方法</strong></p>
-<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><strong>”归并“的含义是将两个或者两个以上的有序表</strong></p>
+<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><strong>”归并“的含义是将两个或者两个以上的有序表</strong>组合成一个新的有序表。</p>
+<h3 id="源码实现-3"><a href="#源码实现-3" class="headerlink" title="源码实现"></a>源码实现</h3><p><strong>迭代实现版本</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"> <span class="title">void</span> <span class="title">Merge</span>(<span class="title">T</span> <span class="title">A</span>[], <span class="title">int</span> <span class="title">left</span>,<span class="title">int</span> <span class="title">mid</span>,<span class="title">int</span> <span class="title">right</span>)&#123;</span></span><br><span class="line">     <span class="keyword">int</span> i=left;</span><br><span class="line">     <span class="keyword">int</span> j=mid;</span><br><span class="line">     <span class="keyword">int</span> <span class="built_in">size</span> = right-left;</span><br><span class="line">     T* B= <span class="keyword">new</span> T(<span class="built_in">size</span>);</span><br><span class="line">     <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">     <span class="keyword">while</span>(i&lt;mid&amp;&amp;j&lt;right)&#123;</span><br><span class="line">         <span class="keyword">if</span>(A[i]&lt;A[j])&#123;<span class="comment">//A[i]在前</span></span><br><span class="line">             B[k]=A[i];</span><br><span class="line">             i++;</span><br><span class="line">             k++;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             B[k]=A[j];</span><br><span class="line">             j++;</span><br><span class="line">             k++;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(i&lt;mid)&#123;</span><br><span class="line">         <span class="keyword">while</span>(i&lt;mid)&#123;</span><br><span class="line">             B[k++]=A[i++];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(j&lt;right)&#123;</span><br><span class="line">         <span class="keyword">while</span>(j&lt;right)&#123;</span><br><span class="line">             B[k++]=A[j++];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="built_in">size</span>;k++)&#123;</span><br><span class="line">         A[k+left]=B[k];</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">MergeSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">    T *B=<span class="keyword">new</span> T[len];</span><br><span class="line">   <span class="keyword">int</span> d=<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">int</span> start=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> <span class="built_in">end</span>=len;</span><br><span class="line">   <span class="keyword">while</span>(start+d&lt;=<span class="built_in">end</span>)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=<span class="built_in">end</span>;i+=<span class="number">2</span>*d)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i+<span class="number">2</span>*d&lt;<span class="built_in">end</span>)</span><br><span class="line">           &#123;</span><br><span class="line">               Merge(A,i,i+d,i+<span class="number">2</span>*d);<span class="comment">//左闭右开</span></span><br><span class="line">           &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i+d&lt;<span class="built_in">end</span>)&#123;</span><br><span class="line">               Merge(A,i,i+d,<span class="built_in">end</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//剩余一个数组，不需要排序</span></span><br><span class="line">       &#125;</span><br><span class="line">       d=d&lt;&lt;<span class="number">1</span>;<span class="comment">//乘2</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>最好</th>
+<th>最坏</th>
+<th>平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>$O(n *log_2 n)$</td>
+<td>$O(n *log_2 n)$</td>
+<td>$O(n *log_2 n)$</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>$O(n)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>是一种稳定的排序方式</p>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>不基于比较和移动进行排序，而是基于关键字各位的大小进行排序</p>
+<p>最高次序位法(MSD)：先最高位进行分桶，对桶内记录进行排序，然后按次高位排序，最后按最低位排序。</p>
+<p>最低次序位法(LSD)：首先按最低位排序，然后按下一个次低位排序，..，最后按最高位排序。</p>
+<p><strong>比较适合链表结构，辅助空间：r+1个队头指针和队尾指针，n个link域</strong></p>
+<p>一般如果r&lt;&lt;n,时间复杂度是O(n p)</p>
+<h3 id="源码实现-4"><a href="#源码实现-4" class="headerlink" title="源码实现"></a>源码实现</h3><p>略</p>
+<h1 id="内排序总结"><a href="#内排序总结" class="headerlink" title="内排序总结"></a>内排序总结</h1><p>如果文件的初始状态已经按关键字基本有序，则选用直接插入或者冒泡排序。</p>
+<p><strong>在基于比较的排序方法中，每次比较两个关键字的大小之后，仅仅出现两种可能的转移。任何借助“比较”的排序算法，至少需要$O(nlog^2n)$</strong></p>
+<p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/排序.png" alt="排序"></p>
+<p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-24_13-01.png" alt="2021-02-24_13-01"></p>
 
       
     </div>
