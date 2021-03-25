@@ -1881,4 +1881,68 @@ w = w+ learningRate*\partial b
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>单调栈</title>
+    <url>/2021/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/</url>
+    <content><![CDATA[<h2 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h2><p>主要应用：</p>
+<blockquote>
+<p>​    </p>
+</blockquote>
+<p>从名字上就听的出来，单调栈中存放的数据应该是有序的，所以单调栈也分为<strong>单调递增栈</strong>和<strong>单调递减栈</strong></p>
+<ul>
+<li>单调递增栈：(上面元素是最小元素) 单调递增栈就是从栈底到栈顶数据是从大到小</li>
+<li>单调递减栈：(上面元素是最大元素) 单调递减栈就是从栈底到栈顶数据是从小到大</li>
+</ul>
+<h4 id="应用题目1"><a href="#应用题目1" class="headerlink" title="应用题目1"></a>应用题目1</h4><blockquote>
+<p>​    1.视野总和</p>
+<p>描叙：有n个人站队，所有的人全部向右看，个子高的可以看到个子低的发型，给出每个人的身高，问所有人能看到其他人发现总和是多少。<br> 输入：4 3 7 1<br> 输出：2</p>
+</blockquote>
+<p>==转换：从后向前遍历，计算所有元素与上一个比它大的元素的间隔之和==</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="应用题目2"><a href="#应用题目2" class="headerlink" title="应用题目2"></a>应用题目2</h4><blockquote>
+<p>给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。</p>
+<p>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
+<p>输入: [2,1,5,6,2,3]</p>
+<p>输出: 10</p>
+</blockquote>
+<h6 id="单调栈用法："><a href="#单调栈用法：" class="headerlink" title="单调栈用法："></a><strong>单调栈用法：</strong></h6><p>官方给出的题解是利用单调栈计算出每个点展开左右边界，保存在了left和right中 （我自己写时，也想到这个问题，不过没有采用合适的数据结构vector,而是采用栈—自己之所以采用栈是为了配合单调栈，但其实是每个结点都需要保存他的左右边界)</p>
+<h6 id="如何确定左右边界"><a href="#如何确定左右边界" class="headerlink" title="如何确定左右边界"></a><strong>如何确定左右边界</strong></h6><p>单调栈中保存从左到右遍历  递增序列的index 每个结点的左边界为栈中相邻+靠栈低的元素（从左遍历，最近的且小于该处高度的点） 单调栈保存index</p>
+<p>结点的右边界为 右侧第一个小于当前高度的索引，所以最开始入栈时，是不确定的</p>
+<h6 id="确定某个左右边界的时间："><a href="#确定某个左右边界的时间：" class="headerlink" title="确定某个左右边界的时间："></a><strong>确定某个左右边界的时间</strong>：</h6><ul>
+<li><strong>右边界</strong> 当结点从单调栈中弹出时，计算它的右边界。 按照单调栈的结构，当结点遇到第一个比它高度小的结点，该结点就会被弹出。这就是它的右边界，如果遍历完数组，仍在栈中，默认右边界为n</li>
+<li><strong>左边界</strong>  当结点压入栈中时，计算它的左边界。  左边界为当前栈顶元素，如果栈为空则是-1  再把该节点的index压入栈</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">          <span class="keyword">int</span> n = heights.<span class="built_in">size</span>();</span><br><span class="line">    vector&lt;int&gt; left(n),right(n,n);//用于保存左右边界</span><br><span class="line"></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; index;<span class="comment">///用于增序排列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;heights.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(! index.empty() &amp;&amp; heights[i]&lt;= heights[index.top()])&#123;</span><br><span class="line">            right[index.top()] = i;<span class="comment">//右边界可以确定了</span></span><br><span class="line">            index.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        left[i]= index.empty()?<span class="number">-1</span>:index.top(); <span class="comment">//它的左边界也可以确定了</span></span><br><span class="line">        index.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> temp =heights[i]*(right[i]-left[i]<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(ans&lt;temp)&#123;</span><br><span class="line">            ans = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>​    应用题目3</p>
+<h4 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/" target="_blank" rel="noopener">456. 132 模式</a></h4><p>给你一个整数数组 nums ，数组中共有 n 个整数。132 模式的子序列 由三个整数 nums[i]、nums[j] 和 nums[k] 组成，并同时满足：i &lt; j &lt; k 和 nums[i] &lt; nums[k] &lt; nums[j] 。</p>
+<p>如果 nums 中存在 132 模式的子序列 ，返回 true ；否则，返回 false 。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/132-pattern" target="_blank" rel="noopener">https://leetcode-cn.com/problems/132-pattern</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">find132pattern</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; item;</span><br><span class="line">        item.push(nums[nums.<span class="built_in">size</span>()<span class="number">-1</span>]);</span><br><span class="line">        <span class="keyword">int</span> max_k = INT_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=nums.<span class="built_in">size</span>()<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&lt;max_k)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!item.empty() &amp;&amp; item.top()&lt;nums[i] )&#123;</span><br><span class="line">                max_k = item.top();</span><br><span class="line">                item.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            item.push(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>递减栈(栈顶保存最小的元素）</strong><br>回顾本题解决思路<br>寻找是否有132模式</p>
+<p>从右到左进行遍历</p>
+<p>我们希望确定3之后，2是3右侧小于3的最大的数，方便更好地判断 1是否存在。</p>
+<ul>
+<li>如何确定<code>32</code>结构</li>
+</ul>
+<p>从右到左遍历<br>这里利用递减栈可以 保存当前值 距离 右侧第一个大于它的数 之间，最大的那个元素(保存在max_k中)<br>即维护递减栈过程中，更新当前pop的最大值</p>
+<ul>
+<li>何时确定？<ul>
+<li>确定32结构:<pre><code>遍历栈时，如果有nums[i]&gt;item.top()，更新max_k，保存最新的32结构
+</code></pre></li>
+<li>要一开始就判断是否存在 1<br>如果nums[i] &lt;max_k ,则一定存在132模式</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>特殊的二叉树结构</title>
+    <url>/2021/03/25/%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>
