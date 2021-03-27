@@ -515,7 +515,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-02 20:10:39" itemprop="dateModified" datetime="2021-03-02T20:10:39+08:00">2021-03-02</time>
+                <time title="Modified: 2021-03-25 11:23:42" itemprop="dateModified" datetime="2021-03-25T11:23:42+08:00">2021-03-25</time>
               </span>
 
           
@@ -547,7 +547,7 @@
 <h2 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h2><h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><p>对于无权图而言，可以利用广度优先搜索查找单源最短路径</p>
 <p>对于有权图而言，可以利用Dijkstra算法计算单源最短路径，利用Floyd算法计算顶点之间的最短路</p>
 <h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>保存的数据:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dist[] ;<span class="comment">//记录从源点v0到其他顶点之间的最短路径长度</span></span><br><span class="line"></span><br><span class="line">path[];<span class="comment">//记录从源点到顶点之间最短路径的前驱结点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dist[] ;<span class="comment">//记录从源点v0到其他顶点之间的最短路径长度</span></span><br><span class="line"></span><br><span class="line">path[];<span class="comment">//记录从源点到顶点之间最短路径的前驱结点,不是必要的</span></span><br></pre></td></tr></table></figure>
 <p>算法步骤：(默认源点为v0)</p>
 <ul>
 <li><p>初始化，集合S初始化为{0}，dist[]的初始值为 dist[i] = arcs[0][i],   i=1,2,..n-1</p>
