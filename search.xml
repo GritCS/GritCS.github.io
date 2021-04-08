@@ -1945,4 +1945,71 @@ w = w+ learningRate*\partial b
     <url>/2021/03/25/%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[]]></content>
   </entry>
+  <entry>
+    <title>leetcode线性表总结</title>
+    <url>/2021/03/27/leetcode%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h2 id="经典好题"><a href="#经典好题" class="headerlink" title="经典好题"></a>经典好题</h2><h2 id="常见套路-模板"><a href="#常见套路-模板" class="headerlink" title="常见套路/模板"></a>常见套路/模板</h2><h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><h2 id="其他知识点"><a href="#其他知识点" class="headerlink" title="其他知识点"></a>其他知识点</h2><p>格雷码生成方式</p>
+<p>排列数和组合数的生成算法</p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>leetcode</tag>
+        <tag>机试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>slt中list用法总结</title>
+    <url>/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="list的底层结构"><a href="#list的底层结构" class="headerlink" title="list的底层结构"></a>list的底层结构</h2><p><strong>环形双向链表</strong></p>
+<p><img src="/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/2021-04-01_14-41.png" alt="2021-04-01_14-41"></p>
+<p><img src="/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/2021-04-01_14-49.png" alt="2021-04-01_14-49"></p>
+<p><strong>List的重要性质：</strong></p>
+<ol>
+<li><strong>插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响</strong> ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效</li>
+<li>不支持随机存取，下标操作和at()函数</li>
+</ol>
+<h2 id="list的相关操作"><a href="#list的相关操作" class="headerlink" title="list的相关操作"></a>list的相关操作</h2><h3 id="list的定义和构造函数"><a href="#list的定义和构造函数" class="headerlink" title="list的定义和构造函数"></a>list的定义和构造函数</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;A&gt; listname;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;A&gt; <span class="title">listname</span><span class="params">(<span class="built_in">size</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;A&gt; <span class="title">listname</span><span class="params">(<span class="built_in">size</span>, value)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;A&gt; <span class="title">listname</span><span class="params">(elselist)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;A&gt; <span class="title">listname</span> <span class="params">(first,last)</span></span>;<span class="comment">// </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> iv[<span class="number">5</span>] =&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ilist2</span><span class="params">(iv,iv+<span class="keyword">sizeof</span>(iv)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>))</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="list的插入和删除"><a href="#list的插入和删除" class="headerlink" title="list的插入和删除"></a>list的插入和删除</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_front</span><span class="params">(<span class="keyword">const</span> A&amp; x)</span></span>; <span class="comment">//作为头节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">const</span> A&amp; x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_front</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">(iterator <span class="built_in">position</span>, <span class="keyword">const</span> A&amp; x)</span></span>; <span class="comment">//在迭代器position所指的位置之前 插入结点，内容为x</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">index :  318 1796</span><br><span class="line">index :  318 1796</span><br><span class="line">index :  318 1796</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index :  450 1875</span><br><span class="line">index :  450 1875</span><br><span class="line">index :  450 1875</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index :  576 1750</span><br><span class="line">index :  576 1750</span><br><span class="line">index :  576 1750</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index :  412 1476</span><br><span class="line">index :  412 1476</span><br><span class="line">index :  412 1476</span><br><span class="line"></span><br><span class="line">index :  618 1585</span><br><span class="line">index :  618 1585</span><br><span class="line">index :  618 1585</span><br><span class="line"></span><br><span class="line">index :  618 1585</span><br><span class="line">index :  618 1585</span><br><span class="line"></span><br><span class="line">index :  1040 703</span><br><span class="line">index :  1040 703</span><br><span class="line">index :  1040 703</span><br><span class="line"></span><br><span class="line">index :  1040 703</span><br><span class="line">index :  1040 703</span><br><span class="line">index :  1040 703</span><br><span class="line"></span><br><span class="line">index :  1040 703</span><br><span class="line">index :  1040 703</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index :  703 890</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">10</span><br><span class="line">index :  712 554</span><br><span class="line"></span><br><span class="line">index :  721 343</span><br><span class="line"></span><br><span class="line">index :  520 875</span><br><span class="line"></span><br><span class="line">index :  539 492</span><br><span class="line"></span><br><span class="line">index :  557 242</span><br><span class="line"></span><br><span class="line">5</span><br><span class="line"></span><br><span class="line">index :  351 570</span><br><span class="line"></span><br><span class="line">index :  365 320</span><br><span class="line"></span><br><span class="line">index :  192 1031</span><br><span class="line"></span><br><span class="line">index :  356 937</span><br><span class="line">ndex :  356 937</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index :  159 734</span><br><span class="line">index :  159 734</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[ 444 2098]</span><br><span class="line"> [ 504 1994]</span><br><span class="line"> [ 577 2121]</span><br><span class="line"> [ 585 2132]</span><br><span class="line"> [ 883 2151]</span><br><span class="line"> [ 865 2014]</span><br><span class="line"> [ 561 1973]</span><br><span class="line"> [ 669 2035]</span><br><span class="line"> [ 777 2033]</span><br><span class="line"> [ 650 1898]</span><br><span class="line"> [ 725 1954]</span><br><span class="line"> [ 891 1842]</span><br><span class="line"> [ 959 1899]</span><br><span class="line"> [ 573 1728]</span><br><span class="line"> [ 637 1704]</span><br><span class="line"> [ 743 1713]</span><br><span class="line"> [ 880 1728]</span><br><span class="line"> [1028 1810]</span><br><span class="line"> [1316 1456]</span><br><span class="line"> [1521 1242]</span><br><span class="line"> [1678 1082]</span><br><span class="line"> [1001 1056]</span><br><span class="line"> [1063  663]</span><br><span class="line"> [1080  430]</span><br><span class="line"> [1081  251]</span><br><span class="line"> [ 754 1055]</span><br><span class="line"> [ 756  620]</span><br><span class="line"> [ 743  341]</span><br><span class="line"> [ 716  149]</span><br><span class="line"> [ 549 1135]</span><br><span class="line"> [ 517  707]</span><br><span class="line"> [ 481  438]</span><br><span class="line"> [ 475  240]</span><br><span class="line"> [ 343 1243]</span><br><span class="line"> [ 217  940]</span><br><span class="line"> [ 156  756]</span><br><span class="line"> [ 114  585]]</span><br></pre></td></tr></table></figure>
+<p>5125</p>
+]]></content>
+      <tags>
+        <tag>stl</tag>
+        <tag>list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快慢指针</title>
+    <url>/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<blockquote>
+<p>例题1：题目描述：</p>
+<p>给定一个增序排列数组 nums ，你需要在 原地 删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。<br>示例:</p>
+<p>输入：nums = [1,1,1,2,2,3]<br>输出：5, nums = [1,1,2,2,3]</p>
+<p>解释：函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。你不需要考虑数组中超出新长度后面的元素。</p>
+</blockquote>
+<p>思路分析：</p>
+<p>首先，用变量maxRepeat=2来表示每个元素最多出现两次。<strong>定义指针slow，其初始值为maxRepeat-1=1。**</strong></p>
+<p><strong>规定区间[0,slow]内的元素为最多出现两次的元素。 [0,slow]中的元素保存的是符合出现次数要求的元素集合</strong></p>
+<p><strong>定义变量fast=maxRepeat=2，指向当前考察的元素。</strong></p>
+<ul>
+<li><p>当前考察的元素nums[fast]== nums[slow-maxRepeat-1]，即变量fast所指向的元素1在区间[0,slow]中已出现两次。</p>
+<p>因此继续考察下一个元素，fast向右移动一位。</p>
+</li>
+</ul>
+<ul>
+<li><p>当nums[fast] != nums[slow - maxRepeat + 1]，即指针fast指向的元素2不等于指针slow - maxRepeat + 1所指向的元素1，</p>
+<p>nums[fast]所指的元素在区间[0,slow]内，未出现超过两次，因此需要将慢指针slow向右移动一位来扩大区间。</p>
+<p>故slow++;接着将快指针fast指向的元素值赋予慢指针slow所指向的位置。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">         if(nums.size()&lt;0)&#123;</span><br><span class="line">            return nums.size();</span><br><span class="line">        &#125;</span><br><span class="line">        int index&#x3D;2;</span><br><span class="line">        int n&#x3D; nums.size();</span><br><span class="line">        for(int i&#x3D;2;i&lt;n;i++)&#123;</span><br><span class="line">            if(nums[index-2]!&#x3D;nums[i])&#123;</span><br><span class="line">                nums[index++] &#x3D; nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>作者：hardcore-aryabhata<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/kuai-man-zhi-zhen-80-shan-chu-pai-xu-shu-4rnk/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/kuai-man-zhi-zhen-80-shan-chu-pai-xu-shu-4rnk/</a><br>来源：力扣（LeetCode）</p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>机试</tag>
+      </tags>
+  </entry>
 </search>

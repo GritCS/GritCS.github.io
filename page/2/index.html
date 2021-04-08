@@ -178,6 +178,339 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/20/%E5%A0%86/" class="post-title-link" itemprop="url">堆</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-20 20:23:37" itemprop="dateCreated datePublished" datetime="2021-02-20T20:23:37+08:00">2021-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-25 12:10:39" itemprop="dateModified" datetime="2021-02-25T12:10:39+08:00">2021-02-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="优先级队列："><a href="#优先级队列：" class="headerlink" title="优先级队列："></a><strong>优先级队列：</strong></h1><p>按照事先约定的优先级，可以始终高效查找并访问优先级最高数据项的数据结构</p>
+<p>维护了数据项的一个偏序关系</p>
+<p><strong>操作接口</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">size</span>(); <span class="comment">//报告优先级队列的规模</span></span><br><span class="line"></span><br><span class="line"> insert(); <span class="comment">//将指定词条插入优先级队列</span></span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line"> getMax();</span><br><span class="line">    </span><br><span class="line"> delMax(); <span class="comment">//删除优先级最大的词条</span></span><br></pre></td></tr></table></figure>
+<p>应用实例:Huffman编码树，堆</p>
+<h3 id="Huffman编码树：略"><a href="#Huffman编码树：略" class="headerlink" title="Huffman编码树：略"></a>Huffman编码树：略</h3><h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>​            主要求解问题：O(1)的算法在n个给定的整数中找最大值, 有限偏序集的极值必然存在，堆用来维护一个偏序关系</p>
+<h3 id="性质："><a href="#性质：" class="headerlink" title="性质："></a>性质：</h3><p>​            1.完全二叉树</p>
+<p>​            2.保存有序关系. 小根堆:每个结点的值都小于其子结点的值; </p>
+<p>​                                        大根堆: 每个结点的值都大于其子结点的值;</p>
+<h3 id="物理结构"><a href="#物理结构" class="headerlink" title="物理结构:"></a>物理结构:</h3><p>​        有序列表</p>
+<h3 id="主要操作"><a href="#主要操作" class="headerlink" title="主要操作:"></a>主要操作:</h3><p>​                ==上浮操作== —-当大根堆的元素变大时，该结点可能会==上浮== —-O(log n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123; <span class="comment">//处于index的元素变大</span></span><br><span class="line">    <span class="keyword">int</span> i=index;</span><br><span class="line">    <span class="keyword">while</span>( i&gt;<span class="number">1</span> &amp;&amp; h[i]&gt;h[i/<span class="number">1</span>])&#123;<span class="comment">//对于大根堆来说，如果子结点大于父结点，一定需要交换</span></span><br><span class="line">        swap(h[i],h[i/<span class="number">2</span>]);</span><br><span class="line">        i&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​                ==下沉操作==—-当大根堆的元素变小时，该结点可能会==下沉== ——O(log n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=index;</span><br><span class="line">    <span class="keyword">while</span>( (<span class="number">2</span>*i&lt;= len &amp;&amp;  h[<span class="number">2</span>*i] &gt; h[i]) ||</span><br><span class="line">         (<span class="number">2</span>*i+<span class="number">1</span>&lt;=len &amp;&amp; h[<span class="number">2</span>*i+<span class="number">1</span>] &gt; h[i])  ) &#123;</span><br><span class="line">        	<span class="keyword">int</span> temp = <span class="number">2</span>*i;         <span class="comment">//temp用于保存 较大的元素的下标</span></span><br><span class="line">       		<span class="keyword">if</span>( h[<span class="number">2</span>*i+<span class="number">1</span>] &gt; h[i] )&#123;</span><br><span class="line">            	temp++; <span class="comment">//temp为2*i+1</span></span><br><span class="line">        	&#125;</span><br><span class="line">    	swap(h[index], h[temp]);</span><br><span class="line">        i=temp ;<span class="comment">//判断是否需要继续下沉</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​                 ==插入操作==—O(log n)—在数组最末尾插入元素,再做up操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="comment">//插入x</span></span><br><span class="line">	len++;</span><br><span class="line">	h[len] = x;</span><br><span class="line">	up(len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​                 ==删除操作==—O(log n)—删除第index个元素，为了不破坏堆的性质，把h[len]移动到index处，堆元素个数减一，再判断做up(index) 还是down(index)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(index )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=h[index];</span><br><span class="line">    h[index]=h[len];</span><br><span class="line">    len--;</span><br><span class="line">    <span class="keyword">if</span>( h[index] &gt;t ) </span><br><span class="line">        up(index);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        down(index);</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>过程:   初始建堆</p>
+<p>​            方法1：执行n次insert操作,时间复杂度O(n*log n)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n;i++)</span><br><span class="line">		insert(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​            方法2：执行n/2次down操作    </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">    len = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) h[i]=a[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n/<span class="number">2</span>;i&gt;=<span class="number">1</span>;i--) down(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>初始建堆 O(n),堆排序算法为 O(n log n)</p>
+<p>时间复杂度：最好，最坏，平均情况相同</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//初始建堆</span></span><br><span class="line">    build();</span><br><span class="line">    <span class="comment">//堆排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        swap(<span class="number">1</span>,hlen);</span><br><span class="line">        hlen--;</span><br><span class="line">        down(<span class="number">1</span>); <span class="comment">//不断删除最大结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(小根堆相反)</p>
+<h3 id="STL中堆的使用"><a href="#STL中堆的使用" class="headerlink" title="STL中堆的使用"></a>STL中堆的使用</h3><h4 id="方法1：中的priority-que"><a href="#方法1：中的priority-que" class="headerlink" title="方法1：中的priority_que"></a>方法1：<queue\>中的priority_que</queue\></h4><h6 id="初始化方式"><a href="#初始化方式" class="headerlink" title="初始化方式"></a>初始化方式</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Container=<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;,<span class="keyword">typename</span> Compare=<span class="built_in">std</span>::less&lt;T&gt; &gt;</span><br><span class="line">class priority_queue</span><br></pre></td></tr></table></figure>
+<h6 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a><a href="http://c.biancheng.net/view/480.html" target="_blank" rel="noopener">基本操作</a></h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">push(<span class="keyword">const</span> T&amp; obj);<span class="comment">// 将obj的副本放到容器的适当位置，这通常会包含一个排序操作。</span></span><br><span class="line"></span><br><span class="line">push(T&amp; obj); <span class="comment">//将obj放到容器的适当位置，这通常会包含一个排序操作。</span></span><br><span class="line"></span><br><span class="line">emplace(T constructor a rgs...);</span><br><span class="line"><span class="comment">//通过调用传入参数的构造函数，在序列的适当位置构造一个T对象。为了维持优先顺序，通常需要一个排序操作。</span></span><br><span class="line">top();<span class="comment">//：返回优先级队列中第一个元素的引用。</span></span><br><span class="line">pop();<span class="comment">//：移除第一个元素。</span></span><br><span class="line"><span class="built_in">size</span>();<span class="comment">//：返回队列中元素的个数。</span></span><br><span class="line">empty()<span class="comment">//：如果队列为空的话，返回true。</span></span><br><span class="line">swap(priority_queue&lt;T&gt;&amp; other);<span class="comment">//：和参数的元素进行交换，所包含对象的类型必须相同。</span></span><br></pre></td></tr></table></figure>
+<h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h6><p>1.最基本的使用方法，对于一串数字建堆（默认为大根堆）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; heap;</span><br></pre></td></tr></table></figure>
+<p>2.自定义</p>
+<ul>
+<li>使用std::greater 和 std::less</li>
+<li><a href="https://blog.csdn.net/sandalphon4869/article/details/105419706" target="_blank" rel="noopener">std::greater和std::less原理解析</a></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; qi2;<span class="comment">//最小堆</span></span><br><span class="line"></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt; &gt;qi3; <span class="comment">//最大堆</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用自定义的cmp类，重载operator</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">   Node(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> valin):x(a),y(b),val(valin)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> Node&amp; a, <span class="keyword">const</span> Node&amp; b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.val&lt;b.val;<span class="comment">//大根堆</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">priority_queue&lt;Node,<span class="built_in">vector</span>&lt;Node&gt;, cmp&gt; heap;<span class="comment">//建堆</span></span><br><span class="line">heap.pop();<span class="comment">//出堆</span></span><br><span class="line">heap.push();<span class="comment">//入堆</span></span><br><span class="line">heap.top(); <span class="comment">//获取堆顶元素</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="方法2：利用vector"><a href="#方法2：利用vector" class="headerlink" title="方法2：利用vector"></a>方法2：利用vector</h4><p>这种法法需要<code>#include&lt;algorithm&gt;</code> <code>#include &lt;functional&gt;</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line"><span class="comment">//建堆</span></span><br><span class="line">make_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(), less&lt;<span class="keyword">int</span>&gt;() );<span class="comment">//最大堆</span></span><br><span class="line">make_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(), greater&lt;<span class="keyword">int</span>&gt;() );<span class="comment">//最小堆</span></span><br><span class="line"><span class="comment">//pop</span></span><br><span class="line">pop_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(), less&lt;<span class="keyword">int</span>&gt;() );<span class="comment">//最大值出堆</span></span><br><span class="line">pop_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(), less&lt;<span class="keyword">int</span>&gt;() );<span class="comment">//最小值出堆</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//插入元素</span></span><br><span class="line">push_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(),cmp);</span><br><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"></span><br><span class="line">sort_heap(a.<span class="built_in">begin</span>(),a.<span class="built_in">end</span>(),cmp);</span><br><span class="line"><span class="comment">// push_heap ( begin , end )   将最后一个元素插入堆中（堆自动调整）</span></span><br><span class="line"><span class="comment">// pop_heap ( begin , end )   将第一个元素从堆中删去（堆自动调整），并放到最后</span></span><br><span class="line"><span class="comment">// find ( begin , end , value ) 从begin到end查找value，若找不到，返回end</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/12/stl%E5%B8%B8%E7%94%A8API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/12/stl%E5%B8%B8%E7%94%A8API/" class="post-title-link" itemprop="url">stl常用API</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-12 16:12:49" itemprop="dateCreated datePublished" datetime="2021-02-12T16:12:49+08:00">2021-02-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-16 20:28:40" itemprop="dateModified" datetime="2021-03-16T20:28:40+08:00">2021-03-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="STL-Standard-Template-Library-概念"><a href="#STL-Standard-Template-Library-概念" class="headerlink" title="STL(Standard Template Library)概念"></a><strong>STL(Standard Template Library)</strong>概念</h2><p>​    6大组件： 容器，算法，迭代器，仿函数，适配器，空间配置器</p>
+<p>在C++标准中，STL被组织成13个头文件</p>
+<p>algorithm ,</p>
+<p>deque ,</p>
+<p>functional</p>
+<p>iterator</p>
+<p>vector</p>
+<p>memory</p>
+<p>numeric</p>
+<p>queue</p>
+<p>stack</p>
+<p>set</p>
+<p>utility</p>
+<p>map</p>
+<p>list</p>
+<p>STL的优点：1.不需要额外安装其他软件包</p>
+<p>​                    2.实现了数据结构和算法的分离</p>
+<p>​                    3.程序员可以不用思考STL具体的实现过程，封装易用</p>
+<p>​                    4.高可重用性(模板类，模板函数)</p>
+<p>​                    5.高性能</p>
+<p>​                    6.高移植性</p>
+<p>​                    7.跨平台性</p>
+<p>容器：</p>
+<p>​    序列式容器：容器的元素的位置是由 进入容器的时机和地点来决定</p>
+<p>​    关联式容器：容器已有规则，通常提供键值key作为索引</p>
+<p>​    </p>
+<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><h3 id="动态增长原理"><a href="#动态增长原理" class="headerlink" title="动态增长原理"></a>动态增长原理</h3><p>vector：动态数组,可变数组,单口容器</p>
+<p>动态增长原理：当插入新元素的时候，如果空间不足，vector会重新申请更大的一块内存空间，将源空间数据拷贝到新空间，释放旧空间数据，再把新元素插入新申请空间.<strong>注意：一旦引起空间重新配置，指向原vector的所有迭代器都失效了</strong></p>
+<p><strong>3个迭代器属性：start,finish,end_of_storage</strong></p>
+<p><strong>finish: 指向数组中最后一个元素的下一个位置</strong></p>
+<p><img src="/2021/02/12/stl%E5%B8%B8%E7%94%A8API/2021-02-13_23-09.png" alt="2021-02-13_23-09"></p>
+<h3 id="vector常用API"><a href="#vector常用API" class="headerlink" title="vector常用API"></a>vector常用API</h3><h4 id="vector构造函数"><a href="#vector构造函数" class="headerlink" title="vector构造函数"></a>vector构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;T&gt; V; <span class="comment">//利用模板实现类实现 ，默认构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>() );  <span class="comment">//v为vector&lt;T&gt;</span></span><br><span class="line"><span class="comment">//将v[begin(), end()] 区间中的元素拷贝给本身</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>(n,elem ); <span class="comment">//构造函数将n个elem拷贝给本身</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个赋值函数</span></span><br><span class="line"><span class="keyword">int</span> arr[] =&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">vl</span><span class="params">(arr,arr + <span class="keyword">sizeof</span>(arr)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>) )</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="其他基本操作"><a href="#其他基本操作" class="headerlink" title="其他基本操作"></a>其他基本操作</h4><h5 id="属性获取"><a href="#属性获取" class="headerlink" title="属性获取"></a>属性获取</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 获取数据的开始以及结束位置的指针. 记住这里返回的是迭代器, 也就是vector迭代器就是该类型的指针.</span></span><br><span class="line">    <span class="function">iterator <span class="title">begin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> start; &#125;</span><br><span class="line">    <span class="function">iterator <span class="title">end</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> finish; &#125;</span><br><span class="line">	<span class="comment">// 获取值</span></span><br><span class="line">	<span class="function">reference <span class="title">front</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *<span class="built_in">begin</span>(); &#125;</span><br><span class="line">    <span class="function">reference <span class="title">back</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *(<span class="built_in">end</span>() - <span class="number">1</span>); &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取右值</span></span><br><span class="line">	<span class="function">const_iterator <span class="title">begin</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> start; &#125;</span><br><span class="line">    <span class="function">const_iterator <span class="title">end</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> finish; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">const_reference <span class="title">front</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *<span class="built_in">begin</span>(); &#125; <span class="comment">//首元素</span></span><br><span class="line">	<span class="function">const_reference <span class="title">back</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *(<span class="built_in">end</span>() - <span class="number">1</span>); &#125;<span class="comment">//最后一个元素</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取基本数组信息</span></span><br><span class="line">	<span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> size_type(<span class="built_in">end</span>() - <span class="built_in">begin</span>()); &#125;	 <span class="comment">// 数组元素的个数</span></span><br><span class="line">    <span class="function">size_type <span class="title">max_size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> size_type(<span class="number">-1</span>) / <span class="keyword">sizeof</span>(T); &#125;	<span class="comment">// 最大能存储的元素个数</span></span><br><span class="line">    <span class="function">size_type <span class="title">capacity</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> size_type(end_of_storage - <span class="built_in">begin</span>()); &#125;	<span class="comment">// 数组的实际大小</span></span><br></pre></td></tr></table></figure>
+<h5 id="元素访问方法"><a href="#元素访问方法" class="headerlink" title="元素访问方法"></a>元素访问方法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">typename</span> T&gt; c;</span><br><span class="line"></span><br><span class="line">c.at(index);</span><br><span class="line">c[index]; <span class="comment">//这两种访问方式返回值都是引用，可读可写</span></span><br><span class="line"></span><br><span class="line">c.front();<span class="comment">//返回第一个元素</span></span><br><span class="line">c.back();<span class="comment">//返回最后一个元素</span></span><br></pre></td></tr></table></figure>
+<h5 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h5><ul>
+<li><p><strong>push和pop操作都只是对尾部finish进行操作的</strong></p>
+</li>
+<li><p><code>erase</code>清除是一个<strong>左闭右开的区间</strong>.</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">const</span> T&amp; x)</span></span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;T ,Alloc&gt; ::insert(iterator <span class="built_in">position</span>, size_type n, <span class="keyword">const</span> T&amp; x); <span class="comment">//从position开始，插入n个元素，元素的初值是x</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>; <span class="comment">//将尾端元素拿掉，并调整大小</span></span><br><span class="line"></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator first,iterator last)</span></span>; <span class="comment">//清除[first,last) 中的所有元素,return first</span></span><br><span class="line">  </span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator <span class="built_in">position</span>)</span></span>; <span class="comment">//清除某个位置上的元素 return position</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; erase(<span class="built_in">begin</span>(), <span class="built_in">end</span>()); &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="容器的调整"><a href="#容器的调整" class="headerlink" title="容器的调整"></a>容器的调整</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(size_type n)</span><span class="comment">//修改容器的实际大小</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span> <span class="params">(size_type new_size)</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="vector遍历"><a href="#vector遍历" class="headerlink" title="vector遍历"></a><strong>vector遍历</strong></h5><h6 id="1-使用迭代器"><a href="#1-使用迭代器" class="headerlink" title="1.使用迭代器"></a>1.使用迭代器</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">Iter_for</span>(<span class="title">vector</span>&lt;T&gt;&amp; <span class="title">vt</span>)&#123;</span></span><br><span class="line">	T temp;</span><br><span class="line">	<span class="built_in">vector</span>&lt;T&gt; :: iterator iter;</span><br><span class="line">	<span class="keyword">for</span>(iter=vt.<span class="built_in">begin</span>(); iter!=vt.<span class="built_in">end</span>(); iter++)&#123;</span><br><span class="line">		temp =*iter;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;temp&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="2-for-at"><a href="#2-for-at" class="headerlink" title="2.for_at"></a>2.for_at</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">at_for</span>(<span class="title">vector</span>&lt;T&gt;&amp; <span class="title">vt</span>)&#123;</span></span><br><span class="line">	T temp;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m=vt.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        temp=vt.at(i);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;temp&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="3-STL-for-each"><a href="#3-STL-for-each" class="headerlink" title="3. STL for_each"></a>3. STL for_each</h6><p><strong>for_each原型</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">template</span> &lt; <span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> Function &gt;</span><br><span class="line"><span class="function">Function <span class="title">for_each</span><span class="params">(InputIterator beg, InputIterator <span class="built_in">end</span>, Function f)</span>  </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(beg != <span class="built_in">end</span>) </span><br><span class="line">    f(*beg++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;temp&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">   	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; myvt=<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="keyword">sizeof</span>(nums)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="built_in">std</span>::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),<span class="built_in">print</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="vector高级编程"><a href="#vector高级编程" class="headerlink" title="vector高级编程"></a>vector高级编程</h4><h5 id="元素查找和搜索"><a href="#元素查找和搜索" class="headerlink" title="元素查找和搜索"></a>元素查找和搜索</h5><p>使用STL通用算法find()</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InputIterator</span>,<span class="title">class</span> <span class="title">T</span>&gt; <span class="title">inline</span></span></span><br><span class="line"><span class="class"> <span class="title">InputIterator</span> <span class="title">find</span>(<span class="title">InputIterator</span> <span class="title">first</span>,<span class="title">InputIterator</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">value</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="function">InputIterator <span class="title">find_if</span><span class="params">(InputIterator first,InputIterator last,Predicate predicate)</span></span>;</span><br></pre></td></tr></table></figure>
+<h5 id="元素排序"><a href="#元素排序" class="headerlink" title="元素排序"></a>元素排序</h5><p>使用STL通用算法<strong>sort()</strong></p>
+<p><strong>sort()底层实现是插入排序优化的快排，时间复杂度是 n*log2(n)</strong></p>
+<h6 id="1-跟据元素自身定义的大小关系，进行升序排序"><a href="#1-跟据元素自身定义的大小关系，进行升序排序" class="headerlink" title="1.跟据元素自身定义的大小关系，进行升序排序"></a>1.跟据元素自身定义的大小关系，进行升序排序</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessIterator</span>&gt;</span></span><br><span class="line"><span class="class">   <span class="title">inline</span> <span class="title">void</span> <span class="title">sort</span>(<span class="title">RandomAccessIterator</span> <span class="title">first</span>, <span class="title">RandomAccessIterator</span>);</span></span><br></pre></td></tr></table></figure>
+<p>使用方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt; temp&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">34</span>,<span class="number">1</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">11</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ptr = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="keyword">sizeof</span>(nums)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="comment">//遍历方法</span></span><br><span class="line">    <span class="built_in">std</span>::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),<span class="built_in">print</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//sort两个参数</span></span><br><span class="line">    <span class="built_in">std</span>::sort(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),<span class="built_in">print</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">34,1,89,0,3,5,11</span></span><br><span class="line"><span class="comment">0,1,3,5,11,34,89</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+<h6 id="2-利用cmp函数定义大小关系，bool-cmp"><a href="#2-利用cmp函数定义大小关系，bool-cmp" class="headerlink" title="2.利用cmp函数定义大小关系，bool cmp{};"></a>2.利用cmp函数定义大小关系，bool cmp{};</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt; temp&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a&gt;b);<span class="comment">//升序排列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">34</span>,<span class="number">1</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">11</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ptr = <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="keyword">sizeof</span>(nums)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="comment">//遍历方法</span></span><br><span class="line">    <span class="built_in">std</span>::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),<span class="built_in">print</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//sort三个参数</span></span><br><span class="line">    <span class="built_in">std</span>::sort(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),cmp);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),<span class="built_in">print</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">34 1 89 0 3 5 11 </span></span><br><span class="line"><span class="comment">89 34 11 5 3 1 0 </span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/c-11%E5%88%86%E7%AB%A01/" class="post-title-link" itemprop="url">c++11分章1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-06 20:23:18 / Modified: 21:21:52" itemprop="dateCreated datePublished" datetime="2021-02-06T20:23:18+08:00">2021-02-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主要内容: 引用,指针,数组,动态内存分配</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><p>&lt;类型&gt;&amp;&lt;变量&gt; = &lt;对象或变量&gt;</p>
+</li>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>引用就是变量的另一个别名,对应的变量/对象必须存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span>&amp; rx = x;</span><br><span class="line"><span class="comment">// int x,&amp;rx = x;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>​    1.通过引用所做的读写操作实际上是作用于原变量上的</p>
+<p>​    2.引用必须在声明时,开始初始化</p>
+<p>​    3.引用一旦初始化,引用的名字不能再指定给其他变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a &#123; <span class="number">0</span> &#125;, b &#123; <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>&amp; r &#123; a &#125;;  <span class="comment">// 引用变量 r 在声明的同时就要初始化，r是a的别名</span></span><br><span class="line"> </span><br><span class="line">r = <span class="number">42</span>;  <span class="comment">// 相当于 a = 42</span></span><br><span class="line">r = b;   <span class="comment">// 相当于 a = b; 执行后 a 的值是1</span></span><br><span class="line">         <span class="comment">// 此处不是让r变成b的引用</span></span><br><span class="line">         <span class="comment">// 引用r声明并初始化后，r就不能再改为其它变量的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp; r2 = a;  <span class="comment">// 继续给a起别名</span></span><br><span class="line"><span class="keyword">int</span>&amp; r3 = r;  <span class="comment">// 声明引用变量 r3，用r初始化</span></span><br><span class="line">              <span class="comment">// 这个相当于 int&amp; r3 = a; 因为 r 是 a 的别名</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="指针和引用的差异"><a href="#指针和引用的差异" class="headerlink" title="指针和引用的差异"></a>指针和引用的差异</h3><p><strong>指针和引用的应用场景是函数参数传递</strong></p>
+<p>void f(int<em> pa ,int</em> pb);  void f(int&amp; pa,int&amp; pb);</p>
+<p>从软件设计角度来看，使用引用更好，因为调用方不需要额外传参数时进行取地址运算.</p>
+<ul>
+<li>存取值的方式<ul>
+<li>对指针变量需要使用*来读取相应内存的内容</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>指针没有要求</li>
+</ul>
+</li>
+<li>对象或变量的存在性<ul>
+<li>引用有要求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="const和引用"><a href="#const和引用" class="headerlink" title="const和引用"></a>const和引用</h3><p><strong>const &lt;类型&gt;&amp;</strong>常用于返回值以及参数传递（保证不能修改相应的变量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量的引用</span></span><br><span class="line"><span class="keyword">int</span>    val =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">int</span> &amp; myval1=var;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; myval2 = var;</span><br><span class="line">myval1 = <span class="number">300</span>;<span class="comment">//合法，可以通过myval2对var进行修改，此时myval2,myval3,var同时被修改</span></span><br><span class="line">myval2 = <span class="number">100</span>;<span class="comment">//非法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量的引用</span></span><br><span class="line"> <span class="keyword">int</span> b=<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; aa=b;<span class="comment">//b的引用，可以选择用const的修饰</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; bb=<span class="number">1</span>;<span class="comment">//这里必须用const修饰</span></span><br><span class="line">aa = <span class="number">10</span>；<span class="comment">//非法</span></span><br><span class="line">bb = <span class="number">20</span>;<span class="comment">//非法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="引用在参数传递中的使用"><a href="#引用在参数传递中的使用" class="headerlink" title="引用在参数传递中的使用"></a>引用在参数传递中的使用</h3><p>如果在函数中不修改变量，建议使用 const T&amp;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> cvar  =<span class="number">200</span>;</span><br><span class="line"><span class="comment">/*形参：</span></span><br><span class="line"><span class="comment">void f(int a1,int &amp;a2, const int&amp; a3) </span></span><br><span class="line"><span class="comment">&#123;  &#125;*/</span> </span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//2和a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,var);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,cvar);<span class="comment">//cvar与a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,cvar);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,var);<span class="comment">//cvar和a2 不合法</span></span><br><span class="line">f(var,var,var);</span><br><span class="line">f(cvar,var,cvar);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二维数组的初始化方式"><a href="#二维数组的初始化方式" class="headerlink" title="二维数组的初始化方式"></a>二维数组的初始化方式</h2><h2 id="空指针和动态内存分配"><a href="#空指针和动态内存分配" class="headerlink" title="空指针和动态内存分配"></a>空指针和动态内存分配</h2><p>1.1 0带来的二义性问题</p>
+<ul>
+<li>C语言中，空指针使用(void *)0来表示, 有时候，用“NULL”来表示空指针(由编译器决定实现方式，一种可能的实现方式是#define NULL 0)</li>
+<li>C++03中，空指针使用“0”来表示。0既是一个常量整数，也是一个常量空指针。</li>
+<li><strong>C++11中引入保留字“nullptr”作为空指针</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -729,263 +1062,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/31/%E7%9A%AE%E8%82%A4%E7%99%8C%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/31/%E7%9A%AE%E8%82%A4%E7%99%8C%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">皮肤癌关键技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-31 20:27:42 / Modified: 21:54:06" itemprop="dateCreated datePublished" datetime="2020-08-31T20:27:42+08:00">2020-08-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" itemprop="url" rel="index"><span itemprop="name">语义分割</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/%E7%9A%AE%E8%82%A4%E7%99%8C/" itemprop="url" rel="index"><span itemprop="name">皮肤癌</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>U-Net　还得再补充ｅｍｍ</p>
-<h1 id="Self-Calibrated-Convolutions"><a href="#Self-Calibrated-Convolutions" class="headerlink" title="Self-Calibrated Convolutions"></a>Self-Calibrated Convolutions</h1><p>我们选择自适应的卷积，去替代普通卷积的原因：</p>
-<p>因为自适应卷积在不引入额外的参数和复杂度的前提下，可以适应性地在每个空间位置周围建立远程空间和通道间的依赖性，帮助CNN显式融合更加丰富的信息，生成更多的特征性表达</p>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Architecture-Design"><a href="#Architecture-Design" class="headerlink" title="Architecture Design"></a>Architecture Design</h3><h3 id="Long-range-Dependency-Modeling"><a href="#Long-range-Dependency-Modeling" class="headerlink" title="Long-range Dependency Modeling"></a>Long-range Dependency Modeling</h3><p>远程依赖建模的几种机制：</p>
-<p>1.引入空间注意机制或者设计高级注意框</p>
-<p>２.设计具有更大卷积核的空间池化和卷积运算，通过捕获多尺度的上下文，来生成更多的特征性表达</p>
-<p>3.而自适应卷是不同于以上所有，是通过更高效地利用卷积层中的卷积滤波器并设计功能强大的特征转换以生成更具表达力的特征表示</p>
-<p>感觉一些原理是借鉴的　<a href="https://blog.csdn.net/Quincuntial/article/details/78605463?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">SENet</a>[找时间看一下原文，理解的更透彻些(为什么这样设计网络就会更好呢?)]，<a href="https://blog.csdn.net/yuzhijiedingzhe/article/details/78124752?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">这篇博客讲的也不错</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/CircleNet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/30/CircleNet/" class="post-title-link" itemprop="url">CircleNet</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-30 20:51:16" itemprop="dateCreated datePublished" datetime="2020-08-30T20:51:16+08:00">2020-08-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-31 07:34:33" itemprop="dateModified" datetime="2020-08-31T07:34:33+08:00">2020-08-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">医学影像</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/FR-DDH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/30/FR-DDH/" class="post-title-link" itemprop="url">FR_DDH</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-30 19:31:49 / Modified: 20:26:54" itemprop="dateCreated datePublished" datetime="2020-08-30T19:31:49+08:00">2020-08-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">医学影像</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>本文的主要想法：首先我们提取以landmark为中心的(2N+1)×(2N+1)大小的image patch作为local neighborhood;我们把关键但的检测转换成local neighborhood的检测，目标检测的中心就是我们要检索的landmark。</p>
-<p>所以网络框架是目标检测的框架.　本文论文关于网络具体框架什么的描述的细节比较少，而且没有代码，所以就..写的很简单，感觉可以学的就只是一个思路</p>
-<h2 id="网络框架"><a href="#网络框架" class="headerlink" title="网络框架"></a>网络框架</h2><p><img src="/2020/08/30/FR-DDH/2020-08-30_20-12.png" alt="2020-08-30_20-12"></p>
-<p><img src="/2020/08/30/FR-DDH/2020-08-30_20-12_1.png" alt="2020-08-30_20-12_1"></p>
-<p>网络框架比较简单</p>
-<h2 id="loss函数"><a href="#loss函数" class="headerlink" title="loss函数"></a>loss函数</h2><p>该损失函数和<a href="https://gritcs.github.io/2020/08/27/Faster%20R-CNN/">Faster R-CNN</a>的损失函数相同，这里不再赘述</p>
-<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><p>1.采用均值为０，方差为0.01的 Gaussian distribution随机初始化</p>
-<ol>
-<li>learning rate of 0.001 for 80k mini-batches,  0.0001 for the next 30k mini-batches on the dataset. </li>
-<li>The momentum is set to be 0.9 and the weight decay is set to be 0.0005. </li>
-</ol>
-<p>[论文中描述的比较简单]</p>
-<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><p>感觉这篇论文写的不是特别明确，[等之后再多看点论文，再总结关键点检测的评价标准吧]</p>
-<p><img src="/2020/08/30/FR-DDH/2020-08-30_20-22.png" alt="2020-08-30_20-22"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1053,7 +1133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1066,7 +1146,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
