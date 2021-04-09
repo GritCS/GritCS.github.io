@@ -178,6 +178,277 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" class="post-title-link" itemprop="url">随机梯度下降</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-26 09:41:39" itemprop="dateCreated datePublished" datetime="2020-08-26T09:41:39+08:00">2020-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-03 11:54:58" itemprop="dateModified" datetime="2020-09-03T11:54:58+08:00">2020-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png" alt="2020-08-26_09-57"></p>
+<p>梯度是方向导数最大的地方</p>
+<h3 id="利用SGD深度学习的一般步骤"><a href="#利用SGD深度学习的一般步骤" class="headerlink" title="利用SGD深度学习的一般步骤"></a>利用SGD深度学习的一般步骤</h3><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-05.png" alt="2020-08-26_10-05"></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-21.png" alt="2020-08-26_10-21"></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-22.png" alt="2020-08-26_10-22"></p>
+<h3 id="影响优化器的因素"><a href="#影响优化器的因素" class="headerlink" title="影响优化器的因素"></a>影响优化器的因素</h3><p>每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习</p>
+<h4 id="梯度问题"><a href="#梯度问题" class="headerlink" title="梯度问题"></a>梯度问题</h4><h6 id="局部最小值"><a href="#局部最小值" class="headerlink" title="局部最小值"></a>局部最小值</h6><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-26.png" alt="2020-08-26_10-26"></p>
+<h6 id="鞍点"><a href="#鞍点" class="headerlink" title="鞍点"></a>鞍点</h6><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-31.png" alt="2020-08-26_10-31"></p>
+<h4 id="权重初始值"><a href="#权重初始值" class="headerlink" title="权重初始值"></a>权重初始值</h4><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-34.png" alt="2020-08-26_10-34"></p>
+<p>不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现<strong>梯度消失</strong>或者<strong>梯度爆炸</strong>的问题</p>
+<p>常见的初始化方法：[还没有彻底的理解，先学习一个框架]</p>
+<p><a href="https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/62850258" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/62850258</a></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-35.png" alt="2020-08-26_10-35"></p>
+<h4 id="learning-rate"><a href="#learning-rate" class="headerlink" title="learning rate"></a>learning rate</h4><p>逐步衰减;过大，可能会出现震荡，不会达到局部最优解;过小，优化的速度会很慢</p>
+<h4 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h4><p>动量：用来逃出局部最优解</p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-04.png" alt="2020-08-26_11-04"></p>
+<h2 id="激活函数与loss的梯度计算"><a href="#激活函数与loss的梯度计算" class="headerlink" title="激活函数与loss的梯度计算"></a>激活函数与loss的梯度计算</h2><p>注意！！！：梯度是向量，这是我之前一致都不大注意的点，将它与导数混淆</p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-16.png" alt="2020-08-26_11-16"></p>
+<h3 id="激活函数的概念"><a href="#激活函数的概念" class="headerlink" title="激活函数的概念"></a>激活函数的概念</h3><p>灵感来自 青蛙的神经元的结构—一个阈值函数：神经元并不是各个输入的加权求和而是只有大于某个阈值之后才会输出，输出值是固定的值</p>
+<p>早期的激活函数</p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-22.png" alt="2020-08-26_11-22"></p>
+<p><a href="https://blog.csdn.net/Doris12138lucky/article/details/104375745" target="_blank" rel="noopener">之前自己总结有各种激活函数</a>：</p>
+<p>课程里所提到的几个简单的激活函数，以及对应的导数</p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-14.png" alt="2020-08-26_16-14"></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15.png" alt="2020-08-26_16-15"></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15_1.png" alt="2020-08-26_16-15_1"></p>
+<h4 id="在pytorch相对应的函数"><a href="#在pytorch相对应的函数" class="headerlink" title="在pytorch相对应的函数"></a>在pytorch相对应的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.sigmoid()</span><br><span class="line"></span><br><span class="line">torch.tanh()</span><br><span class="line"></span><br><span class="line">torch.nn.functional.relu()</span><br></pre></td></tr></table></figure>
+<h3 id="常见的loss函数"><a href="#常见的loss函数" class="headerlink" title="常见的loss函数"></a>常见的loss函数</h3><p>mean-square-error</p>
+<p>Cross-Entropy-loss</p>
+<p>Softmax</p>
+<h4 id="相关导数推导"><a href="#相关导数推导" class="headerlink" title="相关导数推导"></a>相关导数推导</h4><h6 id="mse"><a href="#mse" class="headerlink" title="mse"></a>mse</h6><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_2.png" alt="2020-08-26_16-20_2"></p>
+<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20.png" alt="2020-08-26_16-20"></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_1.png" alt="2020-08-26_16-20_1"></p>
+<h3 id="pytorch中的自动求导"><a href="#pytorch中的自动求导" class="headerlink" title="pytorch中的自动求导"></a>pytorch中的自动求导</h3><h4 id="torch-autograd-grad"><a href="#torch-autograd-grad" class="headerlink" title="torch.autograd.grad()"></a><code>torch.autograd.grad()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line">print(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">#方法2：</span></span><br><span class="line"></span><br><span class="line">print(torch.autograd.grad(p[<span class="number">0</span>],[a],retain_graph= <span class="literal">True</span>)) <span class="comment">#单个计算每个损失函数</span></span><br><span class="line"></span><br><span class="line">print(torch.autograd.grad(p[<span class="number">1</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">print(torch.autograd.grad(p[<span class="number">2</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([0.5666, 0.6252, 0.9636], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.2819, 0.2989, 0.4192], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">(tensor([ 0.2024, -0.0842, -0.1182]),)</span></span><br><span class="line"><span class="string">(tensor([-0.0842,  0.2096, -0.1253]),)</span></span><br><span class="line"><span class="string">(tensor([-0.1182, -0.1253,  0.2435]),)</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h4 id="loss-backword"><a href="#loss-backword" class="headerlink" title="loss.backword()"></a><code>loss.backword()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line">print(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">##p.backward() 报错 ，因为此时p为向量，没有办法进行求导</span></span><br><span class="line"><span class="comment"># pytorch: grad can be implicitly created only for scalar outputs</span></span><br><span class="line"><span class="comment">##只能对单个y进行自动求导，</span></span><br><span class="line"><span class="comment">#所以单独列开，同时由于p[0]-p[2]都使用同一个计算图，</span></span><br><span class="line"><span class="comment"># 但是pytorch的计算图如果没有显式声明要保存，计算一次之后会作废，所以要置retain_graph=True</span></span><br><span class="line"><span class="comment"># retain_graph 有效次数是1次，即如果下次还需要用到计算图，还是需要置为True</span></span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">1</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">2</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">print(a.grad) </span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([0.1281, 0.9067, 0.9391], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.1842, 0.4013, 0.4145], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">tensor([1.4901e-08, 4.4703e-08, 1.4901e-08])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.grad(</span><br><span class="line"></span><br><span class="line">outputs: Union[torch.Tensor, Sequence[torch.Tensor]], </span><br><span class="line"></span><br><span class="line">inputs: Union[torch.Tensor, Sequence[torch.Tensor]],</span><br><span class="line"></span><br><span class="line">grad_outputs: Union[torch.Tensor, Sequence[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>,</span><br><span class="line"></span><br><span class="line">retain_graph: Optional[bool] = <span class="literal">None</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    																		<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line">create_graph: bool = <span class="literal">False</span>,</span><br><span class="line"></span><br><span class="line">only_inputs: bool = <span class="literal">True</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    												<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allow_unused: bool = <span class="literal">False</span>) → Tuple[torch.Tensor, ...]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.backward(</span><br><span class="line">			tensors: Union[torch.Tensor, Sequence[torch.Tensor]], </span><br><span class="line">			</span><br><span class="line">			grad_tensors: Union[torch.Tensor, Sequence[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			retain_graph: Optional[bool] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			create_graph: bool = <span class="literal">False</span>, </span><br><span class="line">			</span><br><span class="line">			grad_variables: Union[torch.Tensor, Sequence[torch.Tensor],<span class="literal">None</span>] = <span class="literal">None</span>) → <span class="literal">None</span></span><br><span class="line">			</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#该函数是将所有的梯度计算都累加到需要计算梯度的变量的grad属性中</span></span><br></pre></td></tr></table></figure>
+<p>官方文档建议使用第一种，因为第二种存在内存泄漏问题（也不是很清楚</p>
+<h4 id="遇到的bug和解决问题"><a href="#遇到的bug和解决问题" class="headerlink" title="遇到的bug和解决问题"></a>遇到的bug和解决问题</h4><p>代码背景</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line">print(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line">print(p)</span><br></pre></td></tr></table></figure>
+<p><strong>RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.</strong></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-45.png" alt="2020-08-26_16-45"></p>
+<p>修改方案： retain_graph</p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png" alt="2020-08-26_16-46"></p>
+<p><strong>pytorch: grad can be implicitly created only for scalar outputs</strong></p>
+<p><img src="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png" alt="2020-08-26_16-49"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">语义分割概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-25 23:15:25" itemprop="dateCreated datePublished" datetime="2020-08-25T23:15:25+08:00">2020-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-30 20:09:19" itemprop="dateModified" datetime="2020-08-30T20:09:19+08:00">2020-08-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="语义分割概述"><a href="#语义分割概述" class="headerlink" title="语义分割概述"></a>语义分割概述</h2><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-17.png" alt="2020-08-26_08-17"></p>
+<h3 id="语义分割的任务"><a href="#语义分割的任务" class="headerlink" title="语义分割的任务"></a>语义分割的任务</h3><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-19.png" alt="2020-08-26_08-19"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-19_1.png" alt="2020-08-26_08-19_1"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-22.png" alt="2020-08-26_08-22"></p>
+<h4 id="语义分割的概念"><a href="#语义分割的概念" class="headerlink" title="语义分割的概念"></a>语义分割的概念</h4><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-21.png" alt="2020-08-26_08-21"></p>
+<h4 id="语义分割的应用"><a href="#语义分割的应用" class="headerlink" title="语义分割的应用"></a>语义分割的应用</h4><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-23.png" alt="2020-08-26_08-23"></p>
+<h4 id="提出任务"><a href="#提出任务" class="headerlink" title="提出任务"></a>提出任务</h4><p>目标是 RGB 彩色图像（H*W*3) 或者灰度图像（高×宽×1）作为输入，输出分割图（即用相应的类别来标记图像的每个像素点）</p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_08-29.png" alt="2020-08-26_08-29"></p>
+<p>一般的实现过程：</p>
+<ol>
+<li><p>通过 一个one-hot编码的label来创建目标—为每个可能的类创建一个输出通道</p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_09-17.png" alt="2020-08-26_09-17"></p>
+</li>
+<li><p>通过argmax操作，获得每个深度像素向量的argmax值，可以将一个预测图分解成分割图，将目标叠加在观察目标上</p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_09-34.png" alt="2020-08-26_09-34"></p>
+</li>
+<li><p>同时我们也可以利用掩模技术（某个类别对应的单个通道），发现存在特定类别的图像的区域</p>
+</li>
+<li><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_09-19.png" alt="2020-08-26_09-19"></p>
+</li>
+</ol>
+<h6 id="关于掩模（mask-的理解"><a href="#关于掩模（mask-的理解" class="headerlink" title="关于掩模（mask)的理解"></a>关于<a href="https://blog.csdn.net/guofei_fly/article/details/104505795?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.channel_param#commentBox" target="_blank" rel="noopener">掩模（mask)</a>的理解</h6><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-26_09-25.png" alt="2020-08-26_09-25"></p>
+<h3 id="常用数据库介绍"><a href="#常用数据库介绍" class="headerlink" title="常用数据库介绍"></a>常用数据库介绍</h3><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_15-41.png" alt="2020-08-27_15-41"></p>
+<h2 id="常见的网络结构"><a href="#常见的网络结构" class="headerlink" title="常见的网络结构"></a>常见的网络结构</h2><h3 id="编码器和解码器的网络结构"><a href="#编码器和解码器的网络结构" class="headerlink" title="编码器和解码器的网络结构"></a>编码器和解码器的网络结构</h3><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-33.png" alt="2020-08-27_18-33"></p>
+<p>​     不同于图像分类，我们只关心图像中所包含的内容（不用关心它的位置信息），因此我们可以采用汇聚或者跨越卷积的方式通过周期性地对特征图进行才应来减轻计算负担。 </p>
+<p>​    但是语义分割不仅需要在像素级有分类能力，还需要有把在不同阶段学到的可判别特征映射到像素空间的机制; 所以， 我们需要一个全分辨率的语义预测</p>
+<p>​    编码器的任务：-</p>
+<p>​        通常是一个预训练的分类网络，对输入空间进行下采样开发低分辨率的特征映射，用来进行分类，eg： VGG，ResNet</p>
+<p>​    解码器的任务：—上采样</p>
+<p>​        将编码器学习得到的可判别特征从语义上映射到像素空间（较高分辨率，以获得密集分类。        </p>
+<p>​        不同的架构采用不同的机制（跳远连接、金字塔池化等）作为解码机制的一部分。</p>
+<h3 id="上采样和下采样"><a href="#上采样和下采样" class="headerlink" title="上采样和下采样"></a>上采样和下采样</h3><h4 id="上采样"><a href="#上采样" class="headerlink" title="上采样"></a>上采样</h4><h6 id="Unpooling-去池化"><a href="#Unpooling-去池化" class="headerlink" title="Unpooling(去池化)"></a>Unpooling(去池化)</h6><ol>
+<li><p>最近临方法</p>
+</li>
+<li><p>钉床方法</p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-34.png" alt="2020-08-27_18-34"></p>
+</li>
+<li><p>最大去池化（seg-net)</p>
+</li>
+</ol>
+<p>这些都不需要参数，比较简单</p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-34_1.png" alt="2020-08-27_18-34_1"></p>
+<h6 id="interpolation"><a href="#interpolation" class="headerlink" title="interpolation"></a>interpolation</h6><p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-36.png" alt="2020-08-27_18-36"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-38.png" alt="2020-08-27_18-38"></p>
+<h6 id="transpose-convolutions-U-net"><a href="#transpose-convolutions-U-net" class="headerlink" title="transpose convolutions(U - net )"></a>transpose convolutions(U - net )</h6><p><a href="https://www.cnblogs.com/sandy-t/p/7210895.html" target="_blank" rel="noopener">https://www.cnblogs.com/sandy-t/p/7210895.html</a></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-09.png" alt="2020-08-27_18-09"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-09_1.png" alt="2020-08-27_18-09_1"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-10.png" alt="2020-08-27_18-10"></p>
+<p>可学习的上采样方法</p>
+<p>​    Transpose convolution (转置卷积)又称<br>• Fractionally-strided convolution (分数步长卷积)<br>• Deconvolution (反卷积)</p>
+<p>应该是有很多方法（ 比如是否采用 padding 或者 strides 的方法）</p>
+<p>感觉这里自己学习的很模糊：</p>
+<ol>
+<li><p>不知道各种padding和strides带来什么影响</p>
+</li>
+<li><p>而且卷积计算过程不是很明确—-应该是有多种卷积类型的</p>
+<p>​    而且反卷积和卷积的卷积核之间的关系是？？</p>
+<p>​    个人理解是 反卷积目的就是提高分辨率：一定是将 小-&gt;大（ 可以采用 padding 或者 较大的卷积核&lt;比输出的卷积的尺寸大些&gt;；或者strides&lt;即填充一些0&gt;</p>
+</li>
+</ol>
+<h6 id="Dilated-Convolutions-膨胀卷积-空洞卷积"><a href="#Dilated-Convolutions-膨胀卷积-空洞卷积" class="headerlink" title="Dilated Convolutions(膨胀卷积/空洞卷积)"></a>Dilated Convolutions(膨胀卷积/空洞卷积)</h6><p>[理解的也不是很透彻的样子，主要是具体操作不是很清楚]</p>
+<p>增加网络的感受野，减少特征图像尺寸的损失（没有pooling 层）</p>
+<p><a href="https://www.zhihu.com/question/54149221" target="_blank" rel="noopener">https://www.zhihu.com/question/54149221</a></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-41.png" alt="2020-08-27_18-41"></p>
+<p><img src="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/2020-08-27_18-41_1.png" alt="2020-08-27_18-41_1"></p>
+<p>相关衔接：</p>
+<p><a href="https://developer.aliyun.com/article/596507" target="_blank" rel="noopener">语义分割概述</a></p>
+<p><a href="https://bbs.cvmart.net/topics/752/vote_count?" target="_blank" rel="noopener">一文概览主要语义分割网络</a></p>
+<p><a href="https://developer.aliyun.com/article/596507" target="_blank" rel="noopener">图像的上采样和下采样</a></p>
+<p><a href="https://github.com/vdumoulin/conv_arithmetic" target="_blank" rel="noopener">https://github.com/vdumoulin/conv_arithmetic</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -912,350 +1183,6 @@ w = w+ learningRate*\partial b
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">pytorch基础语法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-23 12:16:28" itemprop="dateCreated datePublished" datetime="2020-08-23T12:16:28+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-25 16:47:30" itemprop="dateModified" datetime="2020-08-25T16:47:30+08:00">2020-08-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1 基本数据类型"></a>1 基本数据类型</h2><h3 id="1-1-python中数据类型与torch中数据类型的对比"><a href="#1-1-python中数据类型与torch中数据类型的对比" class="headerlink" title="1.1 python中数据类型与torch中数据类型的对比"></a>1.1 python中数据类型与torch中数据类型的对比</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-08.png" alt="2020-08-23_18-08"></p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-12.png" alt="2020-08-23_18-12"></p>
-<p>《下图中常用的数据类型使用红色方框表示出来》</p>
-<h3 id="1-2-pytorch中String的表示方法"><a href="#1-2-pytorch中String的表示方法" class="headerlink" title="1.2 pytorch中String的表示方法"></a>1.2 pytorch中String的表示方法</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-10.png" alt="2020-08-23_18-10"></p>
-<h3 id="1-3-pytorch中CPU和GPU数据类型的区别"><a href="#1-3-pytorch中CPU和GPU数据类型的区别" class="headerlink" title="1.3　pytorch中CPU和GPU数据类型的区别"></a>1.3　pytorch中CPU和GPU数据类型的区别</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_17-07.png" alt="2020-08-23_17-07"></p>
-<p>如果在GPU上面，则需要将其数据类型转换:<br>方法：<code>`data=data.cuda()</code>　，调用此函数会返回一个ＧＰＵ上的一个应用</p>
-<h3 id="1-4-torch中数据类型的判断"><a href="#1-4-torch中数据类型的判断" class="headerlink" title="1.4 torch中数据类型的判断"></a>1.4 torch中数据类型的判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># torch中的数据类型</span></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)<span class="comment">#随机初始化一个两行三列的数据</span></span><br><span class="line">print(a.type()) <span class="comment">#查看数据类型</span></span><br><span class="line">print(type(a))</span><br><span class="line">print(isinstance(a,torch.FloatTensor)) <span class="comment">#数据类型合法性检验</span></span><br><span class="line">print(isinstance(a,torch.IntTensor))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string">torch.FloatTensor</span></span><br><span class="line"><span class="string">&lt;class 'torch.Tensor'&gt;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">False</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-5-Tensor的形状"><a href="#1-5-Tensor的形状" class="headerlink" title="1.5 Tensor的形状"></a>1.5 Tensor的形状</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-57.png" alt="2020-08-23_18-57"></p>
-<p><code>data.shape</code>, <code>data.size()</code>,<code>data.dim()</code>,<code>data.numel()</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dim =  size(data.shape) ,表示数据的深度／维度</span></span><br><span class="line"><span class="comment"># size=shape，表示数据的形状，记录每一维度的长度</span></span><br><span class="line"><span class="comment"># numel:表示tensor占用内存的长度</span></span><br><span class="line">d4 = torch.FloatTensor(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">print(d4.size())</span><br><span class="line">print(d4.shape)</span><br><span class="line">print(d4.dim())</span><br><span class="line">print(d4.size(<span class="number">0</span>)) <span class="comment">#可以进行索引，某维度的长度，为了更好地与python进行交互，一般直接将size和shape转换成list</span></span><br><span class="line">print(d4.size(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([2, 3])</span></span><br><span class="line"><span class="string">torch.Size([2, 3])</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-00.png" alt="2020-08-23_19-00"></p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19.png" alt="2020-08-23_19-19"></p>
-<h3 id="1-6-Dim-0的数据"><a href="#1-6-Dim-0的数据" class="headerlink" title="1.6 Dim 0的数据"></a>1.6 Dim 0的数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a=torch.tensor(<span class="number">1.0</span>)</span><br><span class="line">print(a.shape) <span class="comment">#1.0/tensor(1.)是0维的是标量，但是[1.]是１维长度为１的Tensor</span></span><br><span class="line">                			<span class="comment">#标量的应用：计算的loss函数都是标量</span></span><br><span class="line">print(len(a.shape))</span><br><span class="line">print(a.size())</span><br><span class="line">print(torch.tensor(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string">torch.Size([]),这里表示size中的‘list'长度为０</span></span><br><span class="line"><span class="string">0</span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string">tensor(2)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<p>标量的用途：　1.常见是在计算loss函数的结果是用标量表示的</p>
-<h3 id="1-7-Dim-1的数据"><a href="#1-7-Dim-1的数据" class="headerlink" title="1.7 Dim 1的数据"></a>1.7 Dim 1的数据</h3><p>常用于  1. Bias: wx+b 中的 b         2. Linear Input 例如，手写数字识别中的28*28 可以看作长度为784的一维数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##Dim 1/ rank 1</span></span><br><span class="line"><span class="comment">#其实在tensor 0.3 之前没有dim=0的Tensor，实际上维度为１，size=1的数即可表示标量,不过0.4之后把他们区分开了</span></span><br><span class="line"></span><br><span class="line">a1=torch.tensor([<span class="number">1.1</span>])<span class="comment">#dim=1,size=1</span></span><br><span class="line">a2=torch.tensor([<span class="number">1.1</span>,<span class="number">2.2</span>]) <span class="comment"># dim=1,size=2</span></span><br><span class="line"></span><br><span class="line">a3=torch.FloatTensor(<span class="number">1</span>) <span class="comment">#这里的参数指定的是Dim１的长度，随机初始化</span></span><br><span class="line">print(a1.size())</span><br><span class="line">print(a2.size())</span><br><span class="line">print(a3.shape)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">torch.Size([1])</span></span><br><span class="line"><span class="string">torch.Size([2])</span></span><br><span class="line"><span class="string">torch.Size([1])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-8-Dim２的数据"><a href="#1-8-Dim２的数据" class="headerlink" title="1.8 Dim２的数据"></a>1.8 Dim２的数据</h3><p>常用场景：　1. Linear Input batch [ batch_size , features_num]</p>
-<p>a=torch.tensor([4,784])<br>其中4是指数据图片的数目，而784是指每一张图片的特征维度<br>适用于普通的机器学习数据</p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12_1.png" alt="2020-08-23_19-12_1"></p>
-<h3 id="1-9-Dim-3的数据"><a href="#1-9-Dim-3的数据" class="headerlink" title="1.9 Dim 3的数据"></a>1.9 Dim 3的数据</h3><p><strong>RNN Input Batch</strong>　[batch_size, sentence_num, word_one_sentence]</p>
-<p>例如，对于RNN神经网络进行语音识别与处理时[10,20,100]表示:每个单词包含100个特征，一句话一共有10个单词，而每次输20句话</p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12.png" alt="2020-08-23_19-12"></p>
-<h3 id="1-10-Dim-4-的数据"><a href="#1-10-Dim-4-的数据" class="headerlink" title="1.10 Dim 4 的数据"></a>1.10 Dim 4 的数据</h3><p><strong>CNN input Batch</strong> [batch_size, channel_num, height, weight ]　</p>
-<p>通道数，图片的高度，图片的宽度</p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19_1.png" alt="2020-08-23_19-19_1"></p>
-<h2 id="2-创建Tensor"><a href="#2-创建Tensor" class="headerlink" title="2.创建Tensor"></a>2.创建Tensor</h2><h3 id="1-Import-from-numpy"><a href="#1-Import-from-numpy" class="headerlink" title="1. Import from numpy"></a>1. Import from numpy</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([<span class="number">2</span>,<span class="number">3.3</span>]) <span class="comment"># 数据实际是double类型</span></span><br><span class="line">print(torch.from_numpy(a))</span><br><span class="line"></span><br><span class="line">a = np.ones([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">print(torch.from_numpy(a))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([2.0000, 3.3000], dtype=torch.float64)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[1., 1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1., 1.]], dtype=torch.float64)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-Import-from-list"><a href="#2-Import-from-list" class="headerlink" title="2. Import from list"></a>2. Import from list</h3><p><strong>关于参数传递的小问题</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tensor &#x2F; FloatTensor &#x2F;IntTensor　等既可以传递数值型，也可以传递shape相关的类型的数据</span><br><span class="line">tensor只能传递数据list作为参数</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([<span class="number">2.</span>,<span class="number">3.2</span>])</span><br><span class="line">b = torch.tensor([[<span class="number">2.</span>,<span class="number">2.3</span>],[<span class="number">1.</span>,<span class="number">2.34</span>]])</span><br><span class="line">print(a)</span><br><span class="line">print(b)</span><br><span class="line">a2 = torch.FloatTensor([<span class="number">2.</span>,<span class="number">3.2</span>])<span class="comment">##不建议用该方法，tensor可以 代替</span></span><br><span class="line">a3 = torch.FloatTensor(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>) <span class="comment">#建议传递参数为shape参数</span></span><br><span class="line">print(a2)</span><br><span class="line">print(a3)</span><br><span class="line"></span><br><span class="line"><span class="string">'''        </span></span><br><span class="line"><span class="string">tensor([2.0000, 3.2000])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[2.0000, 2.3000],</span></span><br><span class="line"><span class="string">        [1.0000, 2.3400]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([2.0000, 3.2000])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[[ 2.0281e+15,  4.5682e-41,  2.5162e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0260e+15,  4.5682e-41,  2.5162e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0260e+15,  4.5682e-41,  2.5157e-26,  4.5682e-41]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 2.0284e+15,  4.5682e-41,  2.6360e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 3.6957e+15,  4.5682e-41,  2.6361e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0284e+15,  4.5682e-41, -2.9008e+29,  3.0639e-41]]])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-未初始化的数据"><a href="#3-未初始化的数据" class="headerlink" title="3. 未初始化的数据"></a>3. 未初始化的数据</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-25.png" alt="2020-08-23_20-25"></p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-29.png" alt="2020-08-23_20-29"></p>
-<h3 id="4-随机初始化"><a href="#4-随机初始化" class="headerlink" title="4.随机初始化"></a>4.随机初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#相关函数</span><br><span class="line">torch.rand(Tensor.shape)　#生成一个[0,1)之间的随机数</span><br><span class="line">torch.randlike(Tensor tt)</span><br><span class="line"></span><br><span class="line">torch.randint(  int low , int high , [d1,d2....])#均匀采样，只采整数值</span><br><span class="line">torch.randint_like(Tensor tt ,int low, int high)</span><br></pre></td></tr></table></figure>
-<p>代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">a= torch.rand(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># a1 = torch.rand()</span></span><br><span class="line"></span><br><span class="line">b = torch.rand_like(a)<span class="comment">#会生成与ａ尺寸大小相同的随机数的tensor</span></span><br><span class="line">print(b)</span><br><span class="line">c = torch.randint(<span class="number">1</span>,<span class="number">99</span>,[<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line">print(c)</span><br><span class="line">d = torch.randint_like(c,<span class="number">1</span>,<span class="number">10</span>) <span class="comment">#使用randint一定要指出数据范围</span></span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([[0.9843, 0.0908, 0.6296],</span></span><br><span class="line"><span class="string">        [0.5270, 0.4654, 0.3570],</span></span><br><span class="line"><span class="string">        [0.9419, 0.1018, 0.1724]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0.3775, 0.3013, 0.3237],</span></span><br><span class="line"><span class="string">        [0.6003, 0.1313, 0.1082],</span></span><br><span class="line"><span class="string">        [0.7574, 0.4202, 0.0610]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[20, 93, 85],</span></span><br><span class="line"><span class="string">        [20, 81, 95],</span></span><br><span class="line"><span class="string">        [22, 10, 88]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[8, 9, 8],</span></span><br><span class="line"><span class="string">        [2, 7, 4],</span></span><br><span class="line"><span class="string">        [1, 4, 9]])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-生成正态分布"><a href="#5-生成正态分布" class="headerlink" title="5.生成正态分布"></a>5.生成正态分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#相关函数说明</span></span><br><span class="line">tensor.normal(mean,std,*,generator=None,out = None) -&gt;Tensor</span><br><span class="line"><span class="comment">#参数说明:该方法只能生成一维,需要进行形状变换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1. mean, std可以都为tensor，此时可以为每个元素指定分布来源</span></span><br><span class="line"><span class="comment">#2. mean,std可以一个为float/tensor，此时最后生成的Tensor的尺寸mean/std(数据类型为tensor)决定，此时所有数据共享均值或者方差</span></span><br><span class="line"><span class="comment">#3. mean,std都为float时，要求指明参数，此时所有数据都来源一个分布</span></span><br><span class="line"></span><br><span class="line">tensor,randn(*size , out = <span class="literal">None</span>, dtype = <span class="literal">None</span>,....)<span class="comment">#参数列表没有列全</span></span><br><span class="line"><span class="comment">#从平均值为0，方差为1的正态分布中返回一个填充有随机数的张量（也称为标准正态分布</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">a1 = torch.randn(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">#从平均值为0，方差为1的正态分布中返回一个填充有随机数的张量，形状由参数决定（也称为标准正态分布）</span></span><br><span class="line"></span><br><span class="line">print(a1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#关于torch.normal：比较灵活，掌握一种方式就行</span></span><br><span class="line"><span class="comment">#方式１：保证mean和std的尺寸相同</span></span><br><span class="line">a = torch.normal( mean = torch.arange(<span class="number">1.</span>,<span class="number">11.</span>),std = torch.arange(<span class="number">1</span>,<span class="number">0</span>,<span class="number">-0.1</span>))</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment">#方式２：</span></span><br><span class="line">b = torch.normal(mean = torch.full([<span class="number">10</span>],<span class="number">0</span>),std = <span class="number">0.5</span>) <span class="comment">#这种方式也是可以实现所有数据来自一个分布</span></span><br><span class="line">print(b)</span><br><span class="line">c = torch.normal(mean = <span class="number">10</span>, std = torch.arange(<span class="number">5</span>,<span class="number">0</span>,<span class="number">-0.5</span>))</span><br><span class="line">print(c)</span><br><span class="line"><span class="comment">#方式３</span></span><br><span class="line">d = torch.normal(<span class="number">10</span>,<span class="number">0.1</span>,size=(<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">tensor([[-0.6377,  0.0554, -0.7616],</span></span><br><span class="line"><span class="string">        [ 0.1244, -0.1076,  0.2659]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([-1.5609,  0.1449,  2.7791,  3.4830,  4.6098,  5.9147,  7.2475,  8.0593,</span></span><br><span class="line"><span class="string">         9.3134, 10.0676])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([ 0.8977, -0.6111, -0.2214, -0.0326,  0.4336, -0.2131, -0.0297, -0.0359,</span></span><br><span class="line"><span class="string">         0.0294, -0.3355])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([11.8549, 12.7589, 13.7979, 12.9034,  8.1115, 15.1006, 13.7763, 12.9549,10.0838, 10.1662])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[10.0064,  9.8803,  9.9584],</span></span><br><span class="line"><span class="string">        [10.1267, 10.2988,  9.8402]])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-生成元素相同的tensor"><a href="#6-生成元素相同的tensor" class="headerlink" title="6.生成元素相同的tensor"></a>6.生成元素相同的tensor</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-13.png" alt="2020-08-24_00-13"></p>
-<h3 id="7-生成等差数列的tensor"><a href="#7-生成等差数列的tensor" class="headerlink" title="7.生成等差数列的tensor"></a>7.生成等差数列的tensor</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#相关函数说明</span></span><br><span class="line">torch.arange( start ,end , offset )</span><br><span class="line"><span class="comment">#torch.range(start,end, offset) #闭区间</span></span><br><span class="line">torch.linspace(start, end, steps=<span class="number">100</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Return </span></span><br><span class="line"><span class="string">start (float) – the starting value for the set of points</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">end (float) – the ending value for the set of points</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">steps (int) – number of points to sample between start and end. Default: 100.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">torch.logspace(torch.logspace(start, end, steps=<span class="number">100</span>, base=<span class="number">10.0</span>, out=<span class="literal">None</span>, dtype=<span class="literal">None</span>, layout=torch.strided, device=<span class="literal">None</span>, requires_grad=<span class="literal">False</span>) → Tensor</span><br><span class="line">               </span><br><span class="line"> <span class="string">'''  </span></span><br><span class="line"><span class="string">    Returns a one-dimensional tensor of steps points logarithmically spaced with base base between base^&#123;start&#125;  and  base^&#123;end&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-14.png" alt="2020-08-24_00-14"></p>
-<p>???=＝如何设置base==</p>
-<h3 id="8-其他生成函数-Ones-zeros-eye"><a href="#8-其他生成函数-Ones-zeros-eye" class="headerlink" title="8.其他生成函数(Ones, zeros,eye)"></a>8.其他生成函数(Ones, zeros,eye)</h3><p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23.png" alt="2020-08-24_00-23"></p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23_1.png" alt="2020-08-24_00-23_1"></p>
-<h3 id="9-randperm-random-shuffle"><a href="#9-randperm-random-shuffle" class="headerlink" title="9.randperm(random.shuffle)"></a>9.randperm(random.shuffle)</h3><p>??</p>
-<p><img src="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-26.png" alt="2020-08-24_00-26"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/23/git%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/git%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">git命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-23 08:07:42" itemprop="dateCreated datePublished" datetime="2020-08-23T08:07:42+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-24 16:46:08" itemprop="dateModified" datetime="2020-08-24T16:46:08+08:00">2020-08-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="url" rel="index"><span itemprop="name">基本操作</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="git学习和博客搭建的相关资源"><a href="#git学习和博客搭建的相关资源" class="headerlink" title="git学习和博客搭建的相关资源"></a>git学习和博客搭建的相关资源</h2><h3 id="1-hexo搭建博客的相关参考博客"><a href="#1-hexo搭建博客的相关参考博客" class="headerlink" title="1. hexo搭建博客的相关参考博客"></a>1. hexo搭建博客的相关参考博客</h3><p>​    a.如何在本地库增加新的博客</p>
-<p><a href="https://winney07.github.io/2018/08/02/在Hexo博客中发布文章/" target="_blank" rel="noopener">https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/</a></p>
-<p> b.如何搭建博客</p>
-<p>​    <a href="http://www.wzqj.top/2019/02/26/linux下使用-Github-Pages-Hexo-搭建个人博客/" target="_blank" rel="noopener">http://www.wzqj.top/2019/02/26/linux%E4%B8%8B%E4%BD%BF%E7%94%A8-Github-Pages-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></p>
-<p><a href="https://segmentfault.com/a/1190000017986794" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017986794</a></p>
-<p>c.hexo的常见命令</p>
-<p><a href="https://vel.life/Hexo-博文编辑手册/" target="_blank" rel="noopener">https://vel.life/Hexo-%E5%8D%9A%E6%96%87%E7%BC%96%E8%BE%91%E6%89%8B%E5%86%8C/</a></p>
-<p><strong>托管中心</strong><code>维护远程库</code></p>
-<ul>
-<li><strong>内网：可以自己搭建一个GitLab服务器</strong><ul>
-<li><strong>外网：可以使用码云、Github</strong></li>
-</ul>
-</li>
-</ul>
-<p><strong>版本控制工具</strong></p>
-<ul>
-<li><strong>集中式</strong>：CSV ,<strong>SVN</strong>,VSS</li>
-<li><strong>分布式</strong>：<strong>Git</strong>，Darcs,…</li>
-</ul>
-<h2 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h2><h3 id="1-1本地库初始化"><a href="#1-1本地库初始化" class="headerlink" title="1.1本地库初始化"></a>1.1本地库初始化</h3><p><code>进入文件夹</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">注意：生成的 .git 目录中存放的是本地库相关文件，不要删除</span><br></pre></td></tr></table></figure>
-<h3 id="1-2设置签名"><a href="#1-2设置签名" class="headerlink" title="1.2设置签名"></a>1.2设置签名</h3><ul>
-<li><p>项目(仓库)级别<code>仅在当前本地库有效</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name tom  #设置用户名tom</span><br><span class="line">git config user.email liu@qq.com #设置用户邮箱</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>系统用户级别<code>仅在当前登录的操作系统用户有效</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name tom</span><br><span class="line">git config --global user.email liu@qq.com</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>仅仅加了一个 <code>--global</code></p>
-<p>优先级别：<code>项目级别</code>  &gt;  <code>系统级别</code></p>
-<p>信息保存位置：<code>~/.gitconfig 文件</code>   </p>
-</blockquote>
-<h3 id="1-3基本操作"><a href="#1-3基本操作" class="headerlink" title="1.3基本操作"></a>1.3基本操作</h3><h4 id="1-3-1-状态查看"><a href="#1-3-1-状态查看" class="headerlink" title="1.3.1 状态查看"></a>1.3.1 状态查看</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status   #查看工作区、暂存区状态</span><br></pre></td></tr></table></figure>
-<h4 id="1-3-2-添加"><a href="#1-3-2-添加" class="headerlink" title="1.3.2 添加"></a>1.3.2 添加</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add fileName  #指定文件</span><br><span class="line">git add . #所有</span><br><span class="line">说明：将工作区的文件添加到暂存区</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached filename</span><br><span class="line">git rm &#x2F;*</span><br><span class="line">＃将filename对应的文件从缓存区撤回，但是文件仍保留在工作区，相当于是add的一个撤回操作　sudo权限</span><br></pre></td></tr></table></figure>
-<h4 id="1-3-3-提交"><a href="#1-3-3-提交" class="headerlink" title="1.3.3 提交"></a>1.3.3 提交</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &#39;commit message&#39; fileName</span><br><span class="line">说明：将暂存区内容提交到本地库,不需要再通过vim编辑提交的说明信息，没有提交信息，本次提交将无效</span><br><span class="line">git commit *</span><br><span class="line">说明：将暂存区中的所有内容都提交到本地库中</span><br></pre></td></tr></table></figure>
-<p>文件修改之后</p>
-<ol>
-<li>要先git add加到暂存区中，之后再添加到git commit</li>
-<li>或者直接使用 git -a commit filename 这时本次提交不能撤回(git rm /*)</li>
-</ol>
-<h4 id="1-3-4-查看历史记录"><a href="#1-3-4-查看历史记录" class="headerlink" title="1.3.4 查看历史记录"></a>1.3.4 查看历史记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git log #查看提交的日志，包括时间，提交的说明信息</span><br><span class="line">git reflog  #常用</span><br><span class="line">git log --greph #图形显示,更直观</span><br><span class="line">git log --pretty&#x3D;oneline #每行日志</span><br><span class="line">git log --oneline #简洁显示</span><br><span class="line">说明：HEAD@&#123;移动到当前版本需要多少步&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_10-49.png" alt="2020-08-23_10-49"></p>
-<p>哈希值＋指针移动量＋提交的说明信息</p>
-<p>多屏控制的方式：</p>
-<p>１．空格向下翻页　，ｂ向下翻页　，ｑ退出</p>
-<p><img src="/2020/08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_10-59.png" alt="2020-08-23_10-59"></p>
-<h4 id="1-3-5-前进后退"><a href="#1-3-5-前进后退" class="headerlink" title="1.3.5 前进后退"></a>1.3.5 前进后退</h4><ul>
-<li><p>基于索引值<code>推荐</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br><span class="line">例子：git reset --hard a6ace91 #回到这个状态，a6ace91指的是日志的短的索引值</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 <strong>^</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line">例子：git reset --hard HEAD^^</span><br><span class="line">注意：几个 ^ 表示后退几步</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 <strong>~</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br><span class="line">例子：git reset --hard HEAD~3</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="1-3-6-reset的三个参数比较"><a href="#1-3-6-reset的三个参数比较" class="headerlink" title="1.3.6 reset的三个参数比较"></a>1.3.6 reset的三个参数比较</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">soft: </span><br><span class="line">  - 仅本地库移动HEAD 指针</span><br><span class="line">mixed:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区</span><br><span class="line">hard:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区－－及暂存区的文件也回到之前的版本</span><br><span class="line">  - 重置工作区</span><br></pre></td></tr></table></figure>
-<h4 id="1-3-7-删除文件并找回"><a href="#1-3-7-删除文件并找回" class="headerlink" title="1.3.7　删除文件并找回"></a>1.3.7　删除文件并找回</h4><ul>
-<li><strong>相当于建立一个快照，虽然删除了，但只要添加到暂存区，就能找回</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_11-45.png" alt="2020-08-23_11-45"></p>
-<h4 id="1-3-8-文件差异比较"><a href="#1-3-8-文件差异比较" class="headerlink" title="1.3.8 文件差异比较"></a>1.3.8 文件差异比较</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff 文件名 #将工作区中的文件与暂存区中的文件进行比较</span><br><span class="line">git diff 哈希值 文件名  #将工作区中的文件和历史中的一个版本比较</span><br><span class="line">git diff  #不带文件名，则比较多个文件</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-分支管理"><a href="#2-2-分支管理" class="headerlink" title="2.2 分支管理"></a>2.2 分支管理</h3><p><code>hot_fix</code> <code>master</code> <code>feature_x</code> <code>feature_y</code></p>
-<h4 id="2-2-1-什么是分支管理"><a href="#2-2-1-什么是分支管理" class="headerlink" title="2.2.1 什么是分支管理"></a>2.2.1 什么是分支管理</h4><ul>
-<li>在版本控制中，使用推进多个任务</li>
-</ul>
-<h4 id="2-2-2-分支的好处"><a href="#2-2-2-分支的好处" class="headerlink" title="2.2.2 分支的好处"></a>2.2.2 分支的好处</h4><ul>
-<li>同时并行推进多个功能开发，提高开发效率</li>
-<li>某一分支开发失败，不会对其它分支有任何影响</li>
-</ul>
-<h4 id="2-2-3-分支操作"><a href="#2-2-3-分支操作" class="headerlink" title="2.2.3 分支操作"></a>2.2.3 分支操作</h4><ul>
-<li>创建分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
-<ul>
-<li>切换分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br><span class="line">git checkout -b 分支名   #创建分支并直接切换到该分支</span><br></pre></td></tr></table></figure>
-<ul>
-<li>合并分支<code>相当于把修改了的文件拉过来</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git merge xxx</span><br><span class="line">注意：合并分支的时候要明确谁谁合并</span><br><span class="line">	我在a分支里面修改了。要合并到master，就先切换到master，然后合并b</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d 分支名</span><br></pre></td></tr></table></figure>
-<h4 id="2-2-4-解决冲突"><a href="#2-2-4-解决冲突" class="headerlink" title="2.2.4 解决冲突"></a>2.2.4 解决冲突</h4><ul>
-<li>冲突的表现</li>
-<li>冲突的解决<ul>
-<li>第一步：编辑，删除特殊标记<code>&lt;&lt;&lt;</code> <code>===</code></li>
-<li>第二步：修改到满意位置，保存退出</li>
-<li>第三步：添加到缓存区  <code>git  add 文件名</code></li>
-<li>第四步：提交到本地库<code>git commit -m &#39;日志信息&#39;</code>  <code>注意：后面一定不能带文件名</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Git-结合Github"><a href="#Git-结合Github" class="headerlink" title="Git 结合Github"></a>Git 结合Github</h2><p><code>别分手</code>  <code>别名 分支名</code></p>
-<h4 id="1-1-创建远程库地址别名"><a href="#1-1-创建远程库地址别名" class="headerlink" title="1.1 创建远程库地址别名"></a>1.1 创建远程库地址别名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v  #查看远程地址别名</span><br><span class="line">git remote add 别名 远程地址 </span><br><span class="line">例子：git remote add origin https:&#x2F;&#x2F;xx</span><br></pre></td></tr></table></figure>
-<h4 id="1-2-推送"><a href="#1-2-推送" class="headerlink" title="1.2 推送"></a>1.2 推送</h4><p><code>开发修改完把本地库的文件推送到远程仓库</code> <code>前提是提交到了本地库才可以推送</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push 远程库别名 分支名</span><br><span class="line">git push -u 远程库别名 分支名    #-u指定默认主机</span><br><span class="line">例子：git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="1-3-克隆"><a href="#1-3-克隆" class="headerlink" title="1.3 克隆"></a>1.3 克隆</h4><p><code>完整的把远程库克隆到本地</code>  <code>克隆下来后不要在主分支里面做开发</code> <code>clone进行一次，从无到有的过程，更新用pull</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone  远程地址</span><br><span class="line">例子：git clone https:&#x2F;&#x2F;xx</span><br></pre></td></tr></table></figure>
-<h4 id="1-4-拉取"><a href="#1-4-拉取" class="headerlink" title="1.4 拉取"></a>1.4 拉取</h4><p>  <code>本地存在clone下来的文件  就用pull更新</code>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pull &#x3D; fetch + merge</span><br><span class="line">	git fetch 别名 分支名</span><br><span class="line">	git merge 别名 分支名</span><br><span class="line">git pull 别名 分支名</span><br></pre></td></tr></table></figure>
-<h4 id="1-5-解决冲突"><a href="#1-5-解决冲突" class="headerlink" title="1.5 解决冲突"></a>1.5 解决冲突</h4><p><code>注意：解决冲突后的提交是不能带文件名的</code></p>
-<p><code>如果不是基于远程库最新版做的修改不能推送，必须先pull下来安装冲突办法解决</code></p>
-<h4 id="1-6-rebase"><a href="#1-6-rebase" class="headerlink" title="1.6 rebase"></a>1.6 rebase</h4><p><code>提交记录简洁不分叉</code>  <code>没学懂，感觉有点鸡肋</code> <code>混眼熟</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i 索引号</span><br><span class="line">git rebase -i HEAD~3  #合并最近三条记录</span><br><span class="line">说明：在vim编辑里面改成s</span><br></pre></td></tr></table></figure>
-<h4 id="1-7-beyond-compare"><a href="#1-7-beyond-compare" class="headerlink" title="1.7 beyond compare"></a>1.7 beyond compare</h4><p><code>用软件解决冲突</code> </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.安装 ：</span><br><span class="line">	beyond compare </span><br><span class="line">2.配置：</span><br><span class="line">    git config --local merge.tool bc3  #合并名称</span><br><span class="line">    git config --local mergetool.path &#39;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;bcomp&#39; #软件路径</span><br><span class="line">    git config --local mergetool.keepBackup false  #False不用保存备份</span><br><span class="line">3.应用：</span><br><span class="line">	git mergetool</span><br><span class="line">说明：--local指只在当前操作系统有效</span><br></pre></td></tr></table></figure>
-<h4 id="1-8-跨团队合作"><a href="#1-8-跨团队合作" class="headerlink" title="1.8 跨团队合作"></a>1.8 跨团队合作</h4><p><code>代码review之后合并</code></p>
-<ul>
-<li><p><strong>适用于个人</strong></p>
-<p><strong>邀请成员</strong>:<code>Settings</code> —&gt; <code>Collaborators</code> —&gt;<code>填写用户名</code> —&gt;<code>打开链接接受邀请</code></p>
-</li>
-<li><p><strong>企业</strong>   <code>创建一个组织</code> <code>方便管理</code></p>
-</li>
-<li><p><strong>review</strong></p>
-<p><code>组织做review</code>  <code>通过Pull request</code></p>
-</li>
-<li><p><strong>给开源社区共享代码</strong></p>
-<p><code>点击别人仓库的fork 到自己的仓库</code>   — &gt; <code>然后clone下来 修改后推送到远程库</code>  —&gt; <code>点击Pull Request请求</code> —&gt; <code>Create pull request发消息</code></p>
-</li>
-</ul>
-<h4 id="1-9-Tag标签"><a href="#1-9-Tag标签" class="headerlink" title="1.9 Tag标签"></a>1.9 Tag标签</h4><p><code>为了清晰的版本管理，公司一般不会直接使用commit提交</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.0 -m &#39;版本介绍&#39;   #创建本地tag信息</span><br><span class="line">git tag -d v1.0    		#删除tag</span><br><span class="line">git push origin --tags   #将本地tag信息推送到远程库</span><br><span class="line">git pull origin --tags    #拉取到本地</span><br><span class="line"></span><br><span class="line">git checkout v.10    #切换tag</span><br><span class="line">git clone -b v0.1 地址   #指定tag下载代码</span><br></pre></td></tr></table></figure>
-<h4 id="1-10-SSH-免密登录"><a href="#1-10-SSH-免密登录" class="headerlink" title="1.10 SSH 免密登录"></a>1.10 SSH 免密登录</h4><ul>
-<li>输入:<code>ssh-keygen -t rsa -C GitHub邮箱地址</code>  </li>
-<li>进入<code>.ssh</code>目录，复制<code>id_rsa.pub</code>文件内容</li>
-<li>登录GitHub。<code>Settings</code>  —&gt; <code>SSH and GPG keys</code> —&gt; <code>New SSH Key</code></li>
-<li>回到git通过ssh地址创建。<code>git remote add 别名 SSH地址</code></li>
-</ul>
-<h2 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h2><h4 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在项目开发过程中使用Git的方式</span><br></pre></td></tr></table></figure>
-<h4 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h4><h5 id="1-2-1-集中式工作流"><a href="#1-2-1-集中式工作流" class="headerlink" title="1.2.1 集中式工作流"></a>1.2.1 集中式工作流</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像SVN一样，集中式工作流有一个中央仓库，所有的修改都提交到了Master分支上</span><br></pre></td></tr></table></figure>
-<h5 id="1-2-2-GitFlow工作流"><a href="#1-2-2-GitFlow工作流" class="headerlink" title="1.2.2 GitFlow工作流 *"></a>1.2.2 GitFlow工作流 <code>*</code></h5><p>主干分支<code>master</code>  开发分支<code>develop</code>  修复分支<code>hotfix</code>   预发布分支<code>release</code>  功能分支<code>feature</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitFlow 有独立的分支，让发布迭代过程更流畅。</span><br></pre></td></tr></table></figure>
-<h5 id="1-2-3-Forking-工作流"><a href="#1-2-3-Forking-工作流" class="headerlink" title="1.2.3 Forking 工作流"></a>1.2.3 Forking 工作流</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 GitFlow 基础上， 充分利用了 Git 的 Fork 和 pull request 的功能以达到代码审核的目的。 </span><br><span class="line">安全可靠地管理大团队的开发者</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1327,7 +1254,7 @@ w = w+ learningRate*\partial b
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
