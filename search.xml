@@ -2078,6 +2078,29 @@ w = w+ learningRate*\partial b
 </ul>
 <p>9.利用str模拟大数相加</p>
 <p>10.Add Binary</p>
+<h3 id="4-有限自动状态机"><a href="#4-有限自动状态机" class="headerlink" title="4.有限自动状态机"></a>4.有限自动状态机</h3><p>确定有限状态自动机（以下简称「自动机」）是一类计算模型,能够回答某种形式的「对于给定的输入字符串 S，判断其是否满足条件 P」的问题。它包含一系列状态，这些状态中：</p>
+<ul>
+<li>有一个特殊的状态，被称作「初始状态」。</li>
+<li>还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。</li>
+</ul>
+<p>起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」</p>
+<p><strong>注意</strong>：如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」</p>
+<ul>
+<li><p>如何挖掘所有可能的状态，得到一个完备的状态集？</p>
+<ul>
+<li>把字符串跟据要求或者特点分为不同的状态，用<strong>当前处理到字符串的哪个状态</strong>作为自动机的状态</li>
+<li>进一步确定「初始状态」和「接受状态」的集合</li>
+</ul>
+</li>
+<li><p>跟据接受的内容，确定划分接受数据的类型</p>
+</li>
+<li><p>确定状态转移的规则</p>
+<p>在c++中，可以用enum(枚举)存储自动机状态State，定义接受的数据类型(InputType)</p>
+<p>用unordered_map<State , unordered_map<inputtype,state\>&gt;</State></p>
+</li>
+</ul>
+<p>相关例题</p>
+<h4 id="65-有效数字"><a href="#65-有效数字" class="headerlink" title="65. 有效数字"></a><a href="https://leetcode-cn.com/problems/valid-number/" target="_blank" rel="noopener">65. 有效数字</a></h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>机试</tag>
@@ -2104,6 +2127,74 @@ w = w+ learningRate*\partial b
   <entry>
     <title>动态规划专题</title>
     <url>/2021/04/11/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="动态规划解题模板和思路"><a href="#动态规划解题模板和思路" class="headerlink" title="动态规划解题模板和思路"></a>动态规划解题模板和思路</h2><h3 id="动态规划套路"><a href="#动态规划套路" class="headerlink" title="动态规划套路"></a>动态规划套路</h3><blockquote>
+<p>动态规划问题的一般形式是求最值，e.g. 最长递增子序列。</p>
+<p>核心问题：穷举求最值.　不过，动态规划的穷举有点特别，因为这类问题<strong>存在「重叠子问题」</strong>，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程，避免不必要的计算。而且，动态规划问题一定会<strong>具备「最优子结构」</strong>，才能通过子问题的最值得到原问题的最值。</p>
+</blockquote>
+<h4 id="如何判断问题是否可以采用动态规划求解："><a href="#如何判断问题是否可以采用动态规划求解：" class="headerlink" title="如何判断问题是否可以采用动态规划求解："></a>如何判断问题是否可以采用动态规划求解：</h4><p><strong>动态规划三要素</strong>:重叠子问题、最优子结构、状态转移方程, 如果能够列出来<strong>状态转移方程</strong>，算法的框架也就基本确定了，只需要考虑一些细节问题即可。</p>
+<h6 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h6><p>​        可以从子问题的最优结果中推导出更大规模问题的最优结果</p>
+<h6 id="重叠的子问题"><a href="#重叠的子问题" class="headerlink" title="重叠的子问题"></a>重叠的子问题</h6><p>​        可以采用递归调用树，如果递归调用树中存在多个相同的状态结点，则问题具有重叠的子问题</p>
+<h4 id="star-思考状态转移方程的思维框架"><a href="#star-思考状态转移方程的思维框架" class="headerlink" title=":star:思考状态转移方程的思维框架:"></a>:star:思考状态转移方程的<strong>思维框架:</strong></h4><p>​        明确「状态」 -&gt; 定义 dp 数组/函数的含义 -&gt; 明确「选择」-&gt; 明确 base case</p>
+<h6 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h6><p>​    问题中可能会发生变化的变量，我们做选择的条件(划分了不同的子问题)</p>
+<p>e.g. :　在0-1背包中，存在两个状态，「 背包的容量」和 「可选择的物品」</p>
+<h6 id="dp数组"><a href="#dp数组" class="headerlink" title="dp数组"></a>dp数组</h6><p>​    dp概括了原问题和子问题的最优解的目标</p>
+<p>​    e.g. 在0-1背包中，dp[i][j]表示对于前<code>i</code>个物品，当前背包的容量为<code>j</code>时.可以容纳的最大重量</p>
+<h6 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h6><p>​    导致状态转移的操作，在0-1背包中，表示第i个物品是否装入背包</p>
+<h6 id="base-case"><a href="#base-case" class="headerlink" title="base case"></a>base case</h6><p>​    初始化条件</p>
+<h6 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h6><ul>
+<li>如何遍历dp表呢？</li>
+</ul>
+<blockquote>
+<p><strong>1、遍历的过程中，所需的状态必须是已经计算出来的</strong>。</p>
+<p><strong>2、遍历的终点必须是存储结果的那个位置</strong>。</p>
+</blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&amp;mid=2247484832&amp;idx=1&amp;sn=44ad2505ac5c276bf36eea1c503b78c3&amp;chksm=9bd7fba8aca072be32f66e6c39d76ef4e91bdbf4ef993014d4fee82896687ad61da4f4fc4eda&amp;cur_album_id=1318881141113536512&amp;scene=189#rd" target="_blank" rel="noopener">相关文章</a></p>
+<h3 id="动态规划-v-s-回溯"><a href="#动态规划-v-s-回溯" class="headerlink" title="动态规划 v.s. 回溯"></a>动态规划 v.s. 回溯</h3><ul>
+<li>如何理解回溯和动态规划之间的关系？</li>
+</ul>
+<p>​      目前我认为回溯是<strong>自顶向下求解</strong>，可以利用备忘录优化( C++的备忘录，可以采用 vector<int\>mem　存储某个状态下dp的内容,也可以用 unordered_map<string, int\> string是状态下标转换的字符)</string,></int\></p>
+<p>​       <strong>动态规划</strong>是自低向上求解，是利用循环遍历代替暴力递归的一种思路(回溯大多是暴力递归).</p>
+<p>可以参考下面的文章中的例子仔细体会</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&amp;mid=2247484731&amp;idx=1&amp;sn=f1db6dee2c8e70c42240ead9fd224e6&amp;chksm=9bd7fb33aca07225bee0b23a911c30295e0b90f393af75eca377caa4598ffb203549e1768336&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">动态规划详解</a></li>
+</ul>
+<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><p>常见的0-1背包的问题描述：给你一个可装载重量为<code>W</code>的背包和<code>N</code>个物品，每个物品有重量和价值两个属性其中第<code>i</code>个物品的重量为<code>wt[i]</code>，价值为<code>val[i]</code>，现在让你用这个背包装物品，最多能装的价值是多少？</p>
+<h3 id="字符串类"><a href="#字符串类" class="headerlink" title="字符串类"></a>字符串类</h3><p><strong>解决两个字符串的动态规划问题，一般都是用两个指针<code>i,j</code>分别指向两个字符串的最后，然后一步步往前走，缩小问题的规模</strong>。</p>
+<h4 id="10-正则表达式匹配"><a href="#10-正则表达式匹配" class="headerlink" title="10.正则表达式匹配"></a><a href="https://leetcode-cn.com/problems/regular-expression-matching/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-solution/" target="_blank" rel="noopener">10.正则表达式匹配</a></h4><blockquote>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘*’ 的正则表达式匹配。</p>
+<p>   ‘.’ 匹配任意单个字符<br>   ‘*’ 匹配零个或多个前面的那一个元素</p>
+<p>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;输入：s &#x3D; &quot;aa&quot; p &#x3D; &quot;a*&quot;</span><br><span class="line">&gt;输出：true</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="动态规划思路"><a href="#动态规划思路" class="headerlink" title="动态规划思路"></a>动态规划思路</h6><p>按照上面介绍的过程分析一下吧！</p>
+<p>​    明确「状态」 -&gt; 定义 dp 数组/函数的含义 -&gt; 明确「选择」-&gt; 明确 base case</p>
+<p><strong>状态</strong>：在s,p匹配过程中，状态有两个：匹配到s串的位置i, 匹配到p串的位置j</p>
+<p><strong>定义dp含义</strong>：题目要求是判断两个串是否匹配成功,　dp[i][j]表示s[:i] 和 p[:j]两个子串是否匹配,为true　表示匹配成功，否则失败</p>
+<p><strong>最终目标是求得dp[s.size()][p.size()]的值</strong></p>
+<p><strong>选择</strong>：这里的选择感觉指的是　如果当前p串要匹配的字符是<code>*</code>，s串是选择匹配０个／1个／多个</p>
+<p><strong>base case</strong>以及一些细节信息：如果出现空串如何匹配</p>
+<p>为了方便计算，我们定义dp[i+1][j+1]表示s[:i] 和 p[:j]的匹配结果，并且dp[0][0]=true,</p>
+<p>同时考虑到，如果出现s为空串，p为”#*\”类型，e.g. s=””,p=”a*”,</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">s&#x3D;&#39; &#39;+s;</span><br><span class="line">p&#x3D;&#39; &#39;+p;</span><br></pre></td></tr></table></figure>
+<p>如果不设置这个，不会进入状态转移判断方程，直接退出循环，误判为　匹配失败。</p>
+<p>dp转移方程</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">    s=<span class="string">' '</span>+s;</span><br><span class="line">    p=<span class="string">' '</span>+p;</span><br><span class="line">    <span class="keyword">int</span> n=s.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> m =p.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">dp</span> <span class="params">(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(m+<span class="number">1</span>,<span class="literal">false</span>))</span></span>;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]==p[j] || p[j]==<span class="string">'.'</span>)&#123;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>]=dp[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(p[j]==<span class="string">'*'</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> flag = s[i]==p[j<span class="number">-1</span>] || p[j<span class="number">-1</span>]==<span class="string">'.'</span>;</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = (flag &amp;&amp; (dp[i][j+<span class="number">1</span>] || dp[i+<span class="number">1</span>][j]) )||(dp[i+<span class="number">1</span>][j<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n][m];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="待备忘录的暴力搜索"><a href="#待备忘录的暴力搜索" class="headerlink" title="待备忘录的暴力搜索"></a>待备忘录的暴力搜索</h6><p>(不增加备忘录，会出现超时)</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; dp;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">caldp</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="built_in">string</span> s,<span class="built_in">string</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(j==p.<span class="built_in">size</span>())</span><br><span class="line">        <span class="keyword">return</span> i == s.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(dp[i][j]!=<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> dp[i][j];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = i&lt;s.<span class="built_in">size</span>() &amp;&amp; (s[i]==p[j] || p[j]==<span class="string">'.'</span>);</span><br><span class="line">        <span class="keyword">if</span>(j&lt;p.<span class="built_in">size</span>()<span class="number">-1</span> &amp;&amp; p[j+<span class="number">1</span>]==<span class="string">'*'</span>)&#123;</span><br><span class="line">            dp[i][j]= caldp(i,j+<span class="number">2</span>,s,p) || (flag &amp;&amp; caldp(i+<span class="number">1</span>,j,s,p));</span><br><span class="line">            <span class="keyword">return</span> dp[i][j];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            dp[i][j]=flag &amp;&amp; caldp(i+<span class="number">1</span>,j+<span class="number">1</span>,s,p);</span><br><span class="line">            <span class="keyword">return</span> dp[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> slen=s.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> plen = p.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;slen+<span class="number">1</span>;i++)&#123;</span><br><span class="line">        dp.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(plen,<span class="number">-1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> caldp(<span class="number">0</span>,<span class="number">0</span>,s,p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/" target="_blank" rel="noopener">494. 目标和</a></h4><blockquote>
+<p>给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p>
+<p>输入：nums: [1, 1, 1, 1, 1], S: 3<br>输出：5<br>解释：</p>
+<p>-1+1+1+1+1 = 3<br>+1-1+1+1+1 = 3<br>+1+1-1+1+1 = 3<br>+1+1+1-1+1 = 3<br>+1+1+1+1-1 = 3</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>机试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>贪心算法</title>
+    <url>/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>

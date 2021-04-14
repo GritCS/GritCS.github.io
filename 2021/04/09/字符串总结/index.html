@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="字符串常用的库函数和模板经典题型总结1.字符串匹配问题28. 实现 strStr()Sunday 算法 主要思路： 从前往后进行匹配，匹配成功时，模式串和主串索引同时+1，指向下一个 如果匹配失败，关注的是主串中参与匹配的最末位字符的下一位字符  如果该字符没有出现在模式串中，移动位数&#x3D;模式串长度＋１(因为移动位数&lt;模式串长度，都会失败) eg: sudbccsde 模式串为：sde,此时ｂ">
 <meta property="article:published_time" content="2021-04-09T06:30:43.000Z">
-<meta property="article:modified_time" content="2021-04-11T01:57:53.212Z">
+<meta property="article:modified_time" content="2021-04-14T09:30:15.131Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="机试">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-11 09:57:53" itemprop="dateModified" datetime="2021-04-11T09:57:53+08:00">2021-04-11</time>
+                <time title="Modified: 2021-04-14 17:30:15" itemprop="dateModified" datetime="2021-04-14T17:30:15+08:00">2021-04-14</time>
               </span>
 
           
@@ -252,6 +252,29 @@
 </ul>
 <p>9.利用str模拟大数相加</p>
 <p>10.Add Binary</p>
+<h3 id="4-有限自动状态机"><a href="#4-有限自动状态机" class="headerlink" title="4.有限自动状态机"></a>4.有限自动状态机</h3><p>确定有限状态自动机（以下简称「自动机」）是一类计算模型,能够回答某种形式的「对于给定的输入字符串 S，判断其是否满足条件 P」的问题。它包含一系列状态，这些状态中：</p>
+<ul>
+<li>有一个特殊的状态，被称作「初始状态」。</li>
+<li>还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。</li>
+</ul>
+<p>起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」</p>
+<p><strong>注意</strong>：如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」</p>
+<ul>
+<li><p>如何挖掘所有可能的状态，得到一个完备的状态集？</p>
+<ul>
+<li>把字符串跟据要求或者特点分为不同的状态，用<strong>当前处理到字符串的哪个状态</strong>作为自动机的状态</li>
+<li>进一步确定「初始状态」和「接受状态」的集合</li>
+</ul>
+</li>
+<li><p>跟据接受的内容，确定划分接受数据的类型</p>
+</li>
+<li><p>确定状态转移的规则</p>
+<p>在c++中，可以用enum(枚举)存储自动机状态State，定义接受的数据类型(InputType)</p>
+<p>用unordered_map<State , unordered_map<inputtype,state\>&gt;</State></p>
+</li>
+</ul>
+<p>相关例题</p>
+<h4 id="65-有效数字"><a href="#65-有效数字" class="headerlink" title="65. 有效数字"></a><a href="https://leetcode-cn.com/problems/valid-number/" target="_blank" rel="noopener">65. 有效数字</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -335,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常用的库函数和模板"><span class="nav-number">1.</span> <span class="nav-text">字符串常用的库函数和模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典题型总结"><span class="nav-number">2.</span> <span class="nav-text">经典题型总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字符串匹配问题"><span class="nav-number">2.1.</span> <span class="nav-text">1.字符串匹配问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#28-实现-strStr"><span class="nav-number">2.1.1.</span> <span class="nav-text">28. 实现 strStr()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字符串中的动规问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.字符串中的动规问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-最长回文子串"><span class="nav-number">2.2.1.</span> <span class="nav-text">5.最长回文子串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-正则表达式匹配"><span class="nav-number">2.2.2.</span> <span class="nav-text">10. 正则表达式匹配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#３-字符串相关处理"><span class="nav-number">2.3.</span> <span class="nav-text">３.字符串相关处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-字符串转换整数-atoi"><span class="nav-number">2.3.1.</span> <span class="nav-text">8. 字符串转换整数 (atoi)</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常用的库函数和模板"><span class="nav-number">1.</span> <span class="nav-text">字符串常用的库函数和模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典题型总结"><span class="nav-number">2.</span> <span class="nav-text">经典题型总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字符串匹配问题"><span class="nav-number">2.1.</span> <span class="nav-text">1.字符串匹配问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#28-实现-strStr"><span class="nav-number">2.1.1.</span> <span class="nav-text">28. 实现 strStr()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字符串中的动规问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.字符串中的动规问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-最长回文子串"><span class="nav-number">2.2.1.</span> <span class="nav-text">5.最长回文子串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-正则表达式匹配"><span class="nav-number">2.2.2.</span> <span class="nav-text">10. 正则表达式匹配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#３-字符串相关处理"><span class="nav-number">2.3.</span> <span class="nav-text">３.字符串相关处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-字符串转换整数-atoi"><span class="nav-number">2.3.1.</span> <span class="nav-text">8. 字符串转换整数 (atoi)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-有限自动状态机"><span class="nav-number">2.4.</span> <span class="nav-text">4.有限自动状态机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#65-有效数字"><span class="nav-number">2.4.1.</span> <span class="nav-text">65. 有效数字</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -351,7 +374,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
