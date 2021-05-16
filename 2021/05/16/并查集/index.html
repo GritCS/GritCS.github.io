@@ -20,29 +20,20 @@
     var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="初试深度学习1.深度学习框架 &#x3D;&#x3D;pytorch &amp;&amp; tensorflow的本质区别在于动态图优先还是静态图优先&#x3D;&#x3D; 1.动态优先图—pytorch  2.静态图的方式—tensorflow  1.首先先建立一个计算图（框架） 2.向计算图传递参数来运行计算图 在计算图运行过程中，我们不能干预，调试或者动态改变比较麻烦 综合评价 ２.pytorch的生态 ３.pytorch的优势">
+  <meta name="description" content="并查集定义 ​    并查集:一种维护集合的数据结构, 可以支持两种操作 1. union: 合并两个集合  2. find:判断两个元素是否在一个集合中  并查集的操作并查集是由father链接构成的树 1int father[MAX]; &#x2F;&#x2F;每个结点保存自己的father结点的下标 1234567891011121314151617181920212223242526272829&#x2F;&#x2F;void">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初始pytorch">
-<meta property="og:url" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/index.html">
+<meta property="og:title" content="并查集">
+<meta property="og:url" content="https://gritcs.github.io/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="初试深度学习1.深度学习框架 &#x3D;&#x3D;pytorch &amp;&amp; tensorflow的本质区别在于动态图优先还是静态图优先&#x3D;&#x3D; 1.动态优先图—pytorch  2.静态图的方式—tensorflow  1.首先先建立一个计算图（框架） 2.向计算图传递参数来运行计算图 在计算图运行过程中，我们不能干预，调试或者动态改变比较麻烦 综合评价 ２.pytorch的生态 ３.pytorch的优势">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-40.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-53.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-59.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-04.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-10.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-19.png">
-<meta property="og:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-26.png">
-<meta property="article:published_time" content="2020-08-23T07:53:10.000Z">
-<meta property="article:modified_time" content="2020-08-28T14:36:18.681Z">
+<meta property="og:description" content="并查集定义 ​    并查集:一种维护集合的数据结构, 可以支持两种操作 1. union: 合并两个集合  2. find:判断两个元素是否在一个集合中  并查集的操作并查集是由father链接构成的树 1int father[MAX]; &#x2F;&#x2F;每个结点保存自己的father结点的下标 1234567891011121314151617181920212223242526272829&#x2F;&#x2F;void">
+<meta property="article:published_time" content="2021-05-16T12:46:24.000Z">
+<meta property="article:modified_time" content="2021-05-16T13:03:39.834Z">
 <meta property="article:author" content="Lemon">
-<meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="大创">
-<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="机试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-40.png">
 
-<link rel="canonical" href="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/">
+<link rel="canonical" href="https://gritcs.github.io/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
 
 <script id="page-configurations">
@@ -55,7 +46,7 @@
   };
 </script>
 
-  <title>初始pytorch | Think World</title>
+  <title>并查集 | Think World</title>
   
 
 
@@ -185,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/23/%E5%88%9D%E8%AF%86pytorch/">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/fig/avater.jpeg">
@@ -198,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          初始pytorch
+          并查集
         </h1>
 
         <div class="post-meta">
@@ -207,28 +198,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-23 15:53:10" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:10+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-28 22:36:18" itemprop="dateModified" datetime="2020-08-28T22:36:18+08:00">2020-08-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-                </span>
+              <time title="Created: 2021-05-16 20:46:24 / Modified: 21:03:39" itemprop="dateCreated datePublished" datetime="2021-05-16T20:46:24+08:00">2021-05-16</time>
             </span>
 
           
@@ -242,22 +214,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="初试深度学习"><a href="#初试深度学习" class="headerlink" title="初试深度学习"></a>初试深度学习</h2><h3 id="1-深度学习框架"><a href="#1-深度学习框架" class="headerlink" title="1.深度学习框架"></a>1.深度学习框架</h3><p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-40.png" alt="2020-08-21_19-40"></p>
-<p>==pytorch &amp;&amp; tensorflow的本质区别在于动态图优先还是静态图优先==</p>
-<p>1.动态优先图—pytorch</p>
-<p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-53.png" alt="2020-08-21_19-53"></p>
-<p>2.静态图的方式—tensorflow</p>
-<p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_19-59.png" alt="2020-08-21_19-59"></p>
-<p>1.首先先建立一个计算图（框架）</p>
-<p>2.向计算图传递参数来运行计算图</p>
-<p>在计算图运行过程中，我们不能干预，调试或者动态改变比较麻烦</p>
-<h4 id="综合评价"><a href="#综合评价" class="headerlink" title="综合评价"></a>综合评价</h4><p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-04.png" alt="2020-08-21_20-04"></p>
-<h3 id="２-pytorch的生态"><a href="#２-pytorch的生态" class="headerlink" title="２.pytorch的生态"></a>２.pytorch的生态</h3><p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-10.png" alt="2020-08-21_20-10"></p>
-<h3 id="３-pytorch的优势"><a href="#３-pytorch的优势" class="headerlink" title="３.pytorch的优势"></a>３.pytorch的优势</h3><p>１.使用GPU进行加速</p>
-<p>２.自动求导</p>
-<p>３.常用网络层</p>
-<p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-19.png" alt="2020-08-21_20-19"></p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p><img src="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/2020-08-21_20-26.png" alt="2020-08-21_20-26"></p>
+        <h2 id="并查集定义"><a href="#并查集定义" class="headerlink" title="并查集定义"></a>并查集定义</h2><blockquote>
+<p>​    并查集:一种维护集合的数据结构, 可以支持两种操作</p>
+<pre><code>1. union: 合并两个集合
+ 2. find:判断两个元素是否在一个集合中
+</code></pre></blockquote>
+<h2 id="并查集的操作"><a href="#并查集的操作" class="headerlink" title="并查集的操作"></a>并查集的操作</h2><p>并查集是由father链接构成的树</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> father[MAX]; <span class="comment">//每个结点保存自己的father结点的下标</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	father[i]=<span class="number">-1</span>;<span class="comment">//每个人都是自己的父亲,树高为1,负值表示高度</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//带路径的压缩</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="comment">//Find的递归写法 </span></span><br><span class="line">	<span class="keyword">if</span>(Father[x]&lt;<span class="number">0</span> )&#123; <span class="keyword">return</span> x; &#125; <span class="comment">// x为根</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> Father[x] = Find(x); <span class="comment">//采用路径压缩</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123; <span class="comment">//按秩合并</span></span><br><span class="line">	<span class="keyword">int</span> fa = Find(a);</span><br><span class="line">    <span class="keyword">int</span> fb = Find(b);</span><br><span class="line">    <span class="keyword">if</span>( fa!=fb) &#123;</span><br><span class="line">        <span class="keyword">if</span>(Fathe[fa]&lt;Father[fb&#125;])&#123; <span class="comment">//fa的树更高,fb并到fa</span></span><br><span class="line">            Father[fb] = fa;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( Father[fa] == Father[fb])&#123;</span><br><span class="line">            Father[fb] = fa;<span class="comment">//树高+1</span></span><br><span class="line">            Father[fa]--;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Father[fa] =  fb;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目:"></a>相关题目:</h3><p>PAT1114  Family Property</p>
 
     </div>
 
@@ -267,9 +232,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
-              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
-              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E6%9C%BA%E8%AF%95/" rel="tag"># 机试</a>
           </div>
 
         
@@ -278,13 +242,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" rel="prev" title="pytorch基础语法">
-      <i class="fa fa-chevron-left"></i> pytorch基础语法
+    <a href="/2021/05/16/PAT%E8%AE%B0%E5%BD%95/" rel="prev" title="PAT记录">
+      <i class="fa fa-chevron-left"></i> PAT记录
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/" rel="next" title="简单的回归问题">
-      简单的回归问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -343,7 +304,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初试深度学习"><span class="nav-number">1.</span> <span class="nav-text">初试深度学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-深度学习框架"><span class="nav-number">1.1.</span> <span class="nav-text">1.深度学习框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#综合评价"><span class="nav-number">1.1.1.</span> <span class="nav-text">综合评价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#２-pytorch的生态"><span class="nav-number">1.2.</span> <span class="nav-text">２.pytorch的生态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#３-pytorch的优势"><span class="nav-number">1.3.</span> <span class="nav-text">３.pytorch的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并查集定义"><span class="nav-number">1.</span> <span class="nav-text">并查集定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并查集的操作"><span class="nav-number">2.</span> <span class="nav-text">并查集的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关题目"><span class="nav-number">2.1.</span> <span class="nav-text">相关题目:</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

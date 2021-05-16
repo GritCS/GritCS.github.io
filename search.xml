@@ -2363,4 +2363,22 @@ w = w+ learningRate*\partial b
         <tag>PAT</tag>
       </tags>
   </entry>
+  <entry>
+    <title>并查集</title>
+    <url>/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/</url>
+    <content><![CDATA[<h2 id="并查集定义"><a href="#并查集定义" class="headerlink" title="并查集定义"></a>并查集定义</h2><blockquote>
+<p>​    并查集:一种维护集合的数据结构, 可以支持两种操作</p>
+<pre><code>1. union: 合并两个集合
+ 2. find:判断两个元素是否在一个集合中
+</code></pre></blockquote>
+<h2 id="并查集的操作"><a href="#并查集的操作" class="headerlink" title="并查集的操作"></a>并查集的操作</h2><p>并查集是由father链接构成的树</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> father[MAX]; <span class="comment">//每个结点保存自己的father结点的下标</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	father[i]=<span class="number">-1</span>;<span class="comment">//每个人都是自己的父亲,树高为1,负值表示高度</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//带路径的压缩</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="comment">//Find的递归写法 </span></span><br><span class="line">	<span class="keyword">if</span>(Father[x]&lt;<span class="number">0</span> )&#123; <span class="keyword">return</span> x; &#125; <span class="comment">// x为根</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> Father[x] = Find(x); <span class="comment">//采用路径压缩</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123; <span class="comment">//按秩合并</span></span><br><span class="line">	<span class="keyword">int</span> fa = Find(a);</span><br><span class="line">    <span class="keyword">int</span> fb = Find(b);</span><br><span class="line">    <span class="keyword">if</span>( fa!=fb) &#123;</span><br><span class="line">        <span class="keyword">if</span>(Fathe[fa]&lt;Father[fb&#125;])&#123; <span class="comment">//fa的树更高,fb并到fa</span></span><br><span class="line">            Father[fb] = fa;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( Father[fa] == Father[fb])&#123;</span><br><span class="line">            Father[fb] = fa;<span class="comment">//树高+1</span></span><br><span class="line">            Father[fa]--;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Father[fa] =  fb;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目:"></a>相关题目:</h3><p>PAT1114  Family Property</p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>机试</tag>
+      </tags>
+  </entry>
 </search>
