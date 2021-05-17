@@ -178,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/01/slt-list/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/fig/avater.jpeg">
@@ -192,7 +192,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">slt中list用法总结</a>
+            <a href="/2021/04/01/slt-list/" class="post-title-link" itemprop="url">slt-list</a>
         </h2>
 
         <div class="post-meta">
@@ -209,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 14:29:23" itemprop="dateModified" datetime="2021-04-09T14:29:23+08:00">2021-04-09</time>
+                <time title="Modified: 2021-05-17 17:24:51" itemprop="dateModified" datetime="2021-05-17T17:24:51+08:00">2021-05-17</time>
               </span>
 
           
@@ -224,8 +224,8 @@
 
       
           <h2 id="list的底层结构"><a href="#list的底层结构" class="headerlink" title="list的底层结构"></a>list的底层结构</h2><p><strong>环形双向链表</strong></p>
-<p><img src="/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/2021-04-01_14-41.png" alt="2021-04-01_14-41"></p>
-<p><img src="/2021/04/01/slt%E4%B8%ADlist%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/2021-04-01_14-49.png" alt="2021-04-01_14-49"></p>
+<p><img src="/2021/04/01/slt-list/2021-04-01_14-41.png" alt="2021-04-01_14-41"></p>
+<p><img src="/2021/04/01/slt-list/2021-04-01_14-49.png" alt="2021-04-01_14-49"></p>
 <p><strong>List的重要性质：</strong></p>
 <ol>
 <li><strong>插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响</strong> ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效</li>
