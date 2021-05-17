@@ -178,6 +178,79 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/17/STL-set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/17/STL-set/" class="post-title-link" itemprop="url">STL-set</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-17 17:34:15 / Modified: 17:57:57" itemprop="dateCreated datePublished" datetime="2021-05-17T17:34:15+08:00">2021-05-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>内部自动有序并且不包含重复元素的容器</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<set\></set\></h1><h3 id="set的定义和初始化"><a href="#set的定义和初始化" class="headerlink" title="set的定义和初始化"></a>set的定义和初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; name;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; strs;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">char</span>&gt; a[<span class="number">100</span>]; <span class="comment">///set数组</span></span><br></pre></td></tr></table></figure>
+<h3 id="set容器内元素的访问"><a href="#set容器内元素的访问" class="headerlink" title="set容器内元素的访问"></a>set容器内元素的访问</h3><blockquote>
+<p>set只能通过迭代器访问</p>
+<p>set<int\>::iterator it;</int\></p>
+</blockquote>
+<p><strong>除了vector和string之外的STL容器都不支持<code>*(it+1)</code>的访问方式 </strong> 而且迭代器不能比较</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">		st.insert(<span class="number">3</span>);</span><br><span class="line">		st.insert(<span class="number">4</span>);</span><br><span class="line">		st.insert(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it = st.<span class="built_in">begin</span>() ; it != st.<span class="built_in">end</span>() ; it++)&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///output:  1 3 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="set常用函数"><a href="#set常用函数" class="headerlink" title="set常用函数"></a>set常用函数</h3><h4 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h4><p>底层是红黑树,自动递增排序和去重,时间复杂是$O(logN)$ , $N$ 为set内元素个数</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h4><p>find(value)返回set中对应为value的迭代器,找不到返回set.end() , 时间复杂是$O(logN)$ , $N$ 为set内元素个数</p>
+<h4 id="erase"><a href="#erase" class="headerlink" title="erase()"></a>erase()</h4><h5 id="删除单个元素"><a href="#删除单个元素" class="headerlink" title="删除单个元素"></a>删除单个元素</h5><h6 id="方法1"><a href="#方法1" class="headerlink" title="方法1:"></a>方法1:</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(it);  <span class="comment">//it为所需要删除的元素的迭代器,时间复杂度为O(1).</span></span><br></pre></td></tr></table></figure>
+<h6 id="方法2"><a href="#方法2" class="headerlink" title="方法2:"></a>方法2:</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(value); <span class="comment">//value为所要删除的值,时间复杂度是Olog(N) , N为set内元素个数</span></span><br></pre></td></tr></table></figure>
+<h5 id="删除一个区间内的所有元素"><a href="#删除一个区间内的所有元素" class="headerlink" title="删除一个区间内的所有元素"></a>删除一个区间内的所有元素</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(first,last) <span class="comment">//可以删除一个区间内所有的元素,[first,last)</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/05/17/STL-set/2021-05-17_17-51.png" alt="2021-05-17_17-51"></p>
+<h4 id="clear"><a href="#clear" class="headerlink" title="clear()"></a>clear()</h4><h4 id="size"><a href="#size" class="headerlink" title="size()"></a>size()</h4><h3 id="set的常见用途"><a href="#set的常见用途" class="headerlink" title="set的常见用途"></a>set的常见用途</h3><p><img src="/2021/05/17/STL-set/2021-05-17_17-57.png" alt="2021-05-17_17-57"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -935,7 +1008,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/09/stl-string/">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/09/STL-string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/fig/avater.jpeg">
@@ -949,7 +1022,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/04/09/stl-string/" class="post-title-link" itemprop="url">stl-string</a>
+            <a href="/2021/04/09/STL-string/" class="post-title-link" itemprop="url">STL-string</a>
         </h2>
 
         <div class="post-meta">
@@ -958,10 +1031,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-04-09 14:30:32 / Modified: 17:33:08" itemprop="dateCreated datePublished" datetime="2021-04-09T14:30:32+08:00">2021-04-09</time>
+              <time title="Created: 2021-04-09 14:30:32" itemprop="dateCreated datePublished" datetime="2021-04-09T14:30:32+08:00">2021-04-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-17 17:32:08" itemprop="dateModified" datetime="2021-05-17T17:32:08+08:00">2021-05-17</time>
+              </span>
 
           
 
@@ -982,100 +1061,6 @@
 <h2 id="相关库函数"><a href="#相关库函数" class="headerlink" title="相关库函数"></a>相关库函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span>  <span class="title">isalnum</span><span class="params">(<span class="keyword">char</span> c)</span></span>; <span class="comment">//用于检测一个字符是否是字母或者十进制数字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isalpha</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isdigit</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符是否是十进制数</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> str[] = <span class="string">"*ab%c123_ABC-."</span>;</span><br><span class="line">        <span class="keyword">while</span>(str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>( <span class="built_in">isalnum</span>(str[i]) ) n++;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"There are %d characters in str is alphanumeric.\n"</span>, n);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">///There are 9 characters in str is alphanumeric.</span></span><br></pre></td></tr></table></figure>
 <h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><h4 id="大小写字母转换-transform"><a href="#大小写字母转换-transform" class="headerlink" title="大小写字母转换(transform)"></a>大小写字母转换(<a href="https://blog.csdn.net/lihaidong1991/article/details/96098070?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">transform</a>)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//===大小写字母转换===transform</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class InputIterator, class OutputIterator, class UnaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator first1, InputIterator last1,</span></span><br><span class="line"><span class="comment">                            OutputIterator result, UnaryOperation op);</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">template &lt;class InputIterator1, class InputIterator2,</span></span><br><span class="line"><span class="comment">          class OutputIterator, class BinaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator1 first1, InputIterator1 last1,</span></span><br><span class="line"><span class="comment">                            InputIterator2 first2, OutputIterator result,</span></span><br><span class="line"><span class="comment">                            BinaryOperation binary_op);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">strsrc</span><span class="params">(<span class="string">"Hello, World!"</span>)</span></span>;</span><br><span class="line">	transform(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrc.<span class="built_in">begin</span>(), to_upper);	<span class="comment">// 转换为大写</span></span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">strsrc</span><span class="params">(<span class="string">"Hello, World!"</span>)</span></span>;</span><br><span class="line">	transform(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrct.<span class="built_in">begin</span>(), to_lower); <span class="comment">// 转换为小写</span></span><br></pre></td></tr></table></figure>
 <p>版权声明：本文为CSDN博主「ningto.com」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/tujiaw/article/details/6976424" target="_blank" rel="noopener">https://blog.csdn.net/tujiaw/article/details/6976424</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">双指针</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-06 22:51:17" itemprop="dateCreated datePublished" datetime="2021-04-06T22:51:17+08:00">2021-04-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-17 18:00:33" itemprop="dateModified" datetime="2021-04-17T18:00:33+08:00">2021-04-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h2><h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h4 id="80-删除有序数组中的重复项-II"><a href="#80-删除有序数组中的重复项-II" class="headerlink" title="80. 删除有序数组中的重复项 II"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/" target="_blank" rel="noopener">80. 删除有序数组中的重复项 II</a></h4><blockquote>
-<p>给定一个增序排列数组 nums ，你需要在 原地 删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。<br>示例:</p>
-<p>输入：nums = [1,1,1,2,2,3]<br>输出：5, nums = [1,1,2,2,3]</p>
-<p>解释：函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。你不需要考虑数组中超出新长度后面的元素。</p>
-</blockquote>
-<p>思路分析：</p>
-<p>首先，用变量maxRepeat=2来表示每个元素最多出现两次。<strong>定义指针slow，其初始值为maxRepeat-1=1。**</strong></p>
-<p><strong>规定区间[0,slow]内的元素为最多出现两次的元素。 [0,slow]中的元素保存的是符合出现次数要求的元素集合</strong></p>
-<p><strong>定义变量fast=maxRepeat=2，指向当前考察的元素。</strong></p>
-<ul>
-<li><p>当前考察的元素nums[fast]== nums[slow-maxRepeat-1]，即变量fast所指向的元素1在区间[0,slow]中已出现两次。</p>
-<p>因此继续考察下一个元素，fast向右移动一位。</p>
-</li>
-</ul>
-<ul>
-<li><p>当nums[fast] != nums[slow - maxRepeat + 1]，即指针fast指向的元素2不等于指针slow - maxRepeat + 1所指向的元素1，</p>
-<p>nums[fast]所指的元素在区间[0,slow]内，未出现超过两次，因此需要将慢指针slow向右移动一位来扩大区间。</p>
-<p>故slow++;接着将快指针fast指向的元素值赋予慢指针slow所指向的位置。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">         if(nums.size()&lt;0)&#123;</span><br><span class="line">            return nums.size();</span><br><span class="line">        &#125;</span><br><span class="line">        int index&#x3D;2;</span><br><span class="line">        int n&#x3D; nums.size();</span><br><span class="line">        for(int i&#x3D;2;i&lt;n;i++)&#123;</span><br><span class="line">            if(nums[index-2]!&#x3D;nums[i])&#123;</span><br><span class="line">                nums[index++] &#x3D; nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>作者：hardcore-aryabhata<br>链接：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/kuai-man-zhi-zhen-80-shan-chu-pai-xu-shu-4rnk/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/kuai-man-zhi-zhen-80-shan-chu-pai-xu-shu-4rnk/</a><br>来源：力扣（LeetCode）</p>
-<h4 id="75-颜色分类"><a href="#75-颜色分类" class="headerlink" title="75. 颜色分类"></a><a href="https://leetcode-cn.com/problems/sort-colors/" target="_blank" rel="noopener">75. 颜色分类</a></h4><blockquote>
-<p>给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。</p>
-<p>此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。</p>
-</blockquote>
-<p>自己的思路：使用两个指针pv,lv;　遍历时，保证pv之前保存的都是0，保证　lv之后保存的都是２;</p>
-<p><strong>注意：cv计数器：遍历的范围是(0,lv] ,否则会重新调换回来;当cv所指内容是２时，cv所指元素与—lv所指元素调换之后，cv不能直接指向下一个元素; 而和++pv调换之后，cv需要直接指向下一个(因为++pv所指内容只能是1)</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[<span class="number">0</span>]&gt;nums[<span class="number">1</span>])&#123;</span><br><span class="line">                swap(nums[<span class="number">0</span>],nums[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> lv = n;</span><br><span class="line">        <span class="keyword">int</span> pv = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> cv=<span class="number">0</span>;cv&lt;lv;)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[cv]==<span class="number">0</span>)&#123;</span><br><span class="line">                swap(nums[++pv],nums[cv]);<span class="comment">//[0,pv]－－０</span></span><br><span class="line">                cv++;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[cv] == <span class="number">2</span>)&#123;</span><br><span class="line">                swap(nums[--lv],nums[cv]);<span class="comment">//[lv,n)－－２</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cv++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1162,7 +1147,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
