@@ -2308,7 +2308,7 @@ w = w+ learningRate*\partial b
       </tags>
   </entry>
   <entry>
-    <title>STL-vector</title>
+    <title>vector</title>
     <url>/2021/02/12/STL-vector/</url>
     <content><![CDATA[<h2 id="STL-Standard-Template-Library-概念"><a href="#STL-Standard-Template-Library-概念" class="headerlink" title="STL(Standard Template Library)概念"></a><strong>STL(Standard Template Library)</strong>概念</h2><p>​    6大组件： 容器，算法，迭代器，仿函数，适配器，空间配置器</p>
 <p>在C++标准中，STL被组织成13个头文件</p>
@@ -2426,6 +2426,15 @@ w = w+ learningRate*\partial b
 ]]></content>
       <tags>
         <tag>stl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机试注意事项</title>
+    <url>/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h2 id="1-c-中类型可以表示的范围"><a href="#1-c-中类型可以表示的范围" class="headerlink" title="1. c++中类型可以表示的范围"></a>1. c++中类型可以表示的范围</h2><p><img src="/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/2021-05-17_18-16.png" alt="2021-05-17_18-16"></p>
+]]></content>
+      <tags>
+        <tag>机试</tag>
       </tags>
   </entry>
 </search>

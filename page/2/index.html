@@ -178,6 +178,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/09/STL-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/09/STL-string/" class="post-title-link" itemprop="url">STL-string</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-09 14:30:32" itemprop="dateCreated datePublished" datetime="2021-04-09T14:30:32+08:00">2021-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-17 17:32:08" itemprop="dateModified" datetime="2021-05-17T17:32:08+08:00">2021-05-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用时，需要<code>#include&lt;string&gt;</code></p>
+<h2 id="string定义和初始化"><a href="#string定义和初始化" class="headerlink" title="string定义和初始化"></a>string定义和初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str;</span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"abcd"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="string中内容的访问"><a href="#string中内容的访问" class="headerlink" title="string中内容的访问"></a>string中内容的访问</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.直接通过下标访问</span></span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"abcd"</span>;</span><br><span class="line">str[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.通过迭代器访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> str =<span class="string">"sadas"</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">string</span>::iterator it = str.<span class="built_in">begin</span>();it!=str.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//和vector一样，string的迭代器支持加减整数操作</span></span><br></pre></td></tr></table></figure>
+<h2 id="string常用的函数"><a href="#string常用的函数" class="headerlink" title="string常用的函数"></a>string常用的函数</h2><h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//operator+=，支持两个string直接拼接</span></span><br><span class="line"><span class="built_in">string</span> str1 = <span class="string">"abc"</span>,str2 = <span class="string">"xsf"</span>,str3;</span><br><span class="line">str3 = str1+str2; <span class="comment">// str3 = "abcxsf";</span></span><br><span class="line">str1 += str2; <span class="comment">//str1="abcxsf"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//compare operator == ，!= ,&lt; , &lt;= ,&gt;,&gt;= 比较大小,比较规则是字典序</span></span><br><span class="line"><span class="built_in">string</span> str1 = <span class="string">"aa"</span> , str2 = <span class="string">"aaa"</span> ,str3 = <span class="string">"abc"</span> ,str4 = <span class="string">"xyz"</span>;</span><br><span class="line"><span class="keyword">bool</span> b1 = str1&lt;str2; <span class="comment">//true</span></span><br><span class="line"><span class="keyword">bool</span> b2 = str3&gt;str2;<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">length()/<span class="built_in">size</span>() <span class="comment">//返回字符串长度</span></span><br><span class="line"> str.substr(<span class="keyword">int</span> pos , <span class="keyword">int</span> len); <span class="comment">//返回从pos下标开始，长度为len的子串，时间复杂度为O(len)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//==========增===========</span></span><br><span class="line">insert(<span class="keyword">int</span> pos,<span class="built_in">string</span>); <span class="comment">//在pos号下，插入字符串string</span></span><br><span class="line">insert(iterator it , iterator str , iterator <span class="built_in">end</span>);<span class="comment">//将[str,end)之间的字符串 插入到it所指的位置之前</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"safs"</span> , str2=<span class="string">"134"</span>;</span><br><span class="line">str.insert(<span class="number">3</span>,str2); <span class="comment">//str = "saf123s"</span></span><br><span class="line"><span class="built_in">string</span> str3 = <span class="string">"abc"</span>;</span><br><span class="line">str2.insert(str2.<span class="built_in">begin</span>()+<span class="number">1</span>,str3.<span class="built_in">begin</span>(),str3.<span class="built_in">end</span>());<span class="comment">//str2 = "1abc34";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//===========删=O(N)==================</span></span><br><span class="line">str.erase(iterator it); <span class="comment">//用于删除单个元素</span></span><br><span class="line">str.erase(iterator first, iterator last); <span class="comment">//用于删除[first,last)区间</span></span><br><span class="line">str.erase(<span class="keyword">int</span> pos , length);<span class="comment">//</span></span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"dasdfas</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string"> str.clear();//清空字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//=======find=======</span></span><br><span class="line"><span class="string">str.find(str2); //当str2是str的子串时，返回其在str中第一次出现的位置，如果str2不是str子串，返回-1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//===替换</span></span><br><span class="line"><span class="string">str.replace(int pos, int len , str2);//把str从pos下标开始的，长度为len的子串替换为str2(str2的长度可以超过len,)</span></span><br><span class="line"><span class="string">str.replace(iterator it1, iterator it2,str2);</span></span><br></pre></td></tr></table></figure>
+<h2 id="相关库函数"><a href="#相关库函数" class="headerlink" title="相关库函数"></a>相关库函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span>  <span class="title">isalnum</span><span class="params">(<span class="keyword">char</span> c)</span></span>; <span class="comment">//用于检测一个字符是否是字母或者十进制数字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isalpha</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isdigit</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符是否是十进制数</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> str[] = <span class="string">"*ab%c123_ABC-."</span>;</span><br><span class="line">        <span class="keyword">while</span>(str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>( <span class="built_in">isalnum</span>(str[i]) ) n++;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"There are %d characters in str is alphanumeric.\n"</span>, n);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">///There are 9 characters in str is alphanumeric.</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><h4 id="大小写字母转换-transform"><a href="#大小写字母转换-transform" class="headerlink" title="大小写字母转换(transform)"></a>大小写字母转换(<a href="https://blog.csdn.net/lihaidong1991/article/details/96098070?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">transform</a>)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//===大小写字母转换===transform</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class InputIterator, class OutputIterator, class UnaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator first1, InputIterator last1,</span></span><br><span class="line"><span class="comment">                            OutputIterator result, UnaryOperation op);</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">template &lt;class InputIterator1, class InputIterator2,</span></span><br><span class="line"><span class="comment">          class OutputIterator, class BinaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator1 first1, InputIterator1 last1,</span></span><br><span class="line"><span class="comment">                            InputIterator2 first2, OutputIterator result,</span></span><br><span class="line"><span class="comment">                            BinaryOperation binary_op);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">strsrc</span><span class="params">(<span class="string">"Hello, World!"</span>)</span></span>;</span><br><span class="line">	transform(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrc.<span class="built_in">begin</span>(), to_upper);	<span class="comment">// 转换为大写</span></span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">strsrc</span><span class="params">(<span class="string">"Hello, World!"</span>)</span></span>;</span><br><span class="line">	transform(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrct.<span class="built_in">begin</span>(), to_lower); <span class="comment">// 转换为小写</span></span><br></pre></td></tr></table></figure>
+<p>版权声明：本文为CSDN博主「ningto.com」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/tujiaw/article/details/6976424" target="_blank" rel="noopener">https://blog.csdn.net/tujiaw/article/details/6976424</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -934,264 +1006,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">排序算法总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-02-22 13:47:29" itemprop="dateCreated datePublished" datetime="2021-02-22T13:47:29+08:00">2021-02-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-24 13:07:16" itemprop="dateModified" datetime="2021-02-24T13:07:16+08:00">2021-02-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h1><h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><p><strong>每次将一个待排序的记录按照其关键字的大小插到前面已经排好序的子序列中</strong></p>
-<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><h3 id="源码实现"><a href="#源码实现" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(T A[], <span class="keyword">int</span> length)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;length;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(A[i]&lt;A[i<span class="number">-1</span>])&#123;<span class="comment">//前0-i-1个元素是排好序的元素,</span></span><br><span class="line">            <span class="comment">// 如果A[i]&gt;A[i-1]不移动元素</span></span><br><span class="line">            <span class="keyword">int</span> temp = A[i];</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j=i<span class="number">-1</span>;(temp&lt;A[j])&amp;&amp;(j&gt;=<span class="number">0</span>);--j)&#123;</span><br><span class="line">                A[j+<span class="number">1</span>]=A[j];</span><br><span class="line">            &#125;</span><br><span class="line">            A[j+<span class="number">1</span>]=temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>O(n) //只需要比较，不需要移动</td>
-<td>$O(n^2)$</td>
-<td>$O(n^2)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>O(1)</td>
-<td>O(1)</td>
-<td>$O(1)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>稳定性：稳定性的排序方法（数值大小相同的元素排序前后的相对位置不变）</strong></p>
-<p><strong>适用性：适用于顺序存储和链式存储的线性表</strong></p>
-<p>由于当数据基本有序时，时间复杂度趋于线性，更适用于基本有序的排序表和数据量不大的排序表</p>
-<h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><p>利用折半查找优化直接插入排序</p>
-<h3 id="源码实现-1"><a href="#源码实现-1" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">InsertSort2</span>(<span class="title">T</span> <span class="title">A</span>[] ,<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(A[i]&lt;A[i<span class="number">-1</span>])&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = A[i];</span><br><span class="line">            <span class="comment">//利用折半查找，找到要插入的元素;</span></span><br><span class="line">            <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> <span class="built_in">end</span>=i<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(start&lt;<span class="built_in">end</span> )&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = (start+<span class="built_in">end</span>)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(A[mid]&lt;temp)&#123;<span class="comment">//要插入的元素，应该是在右边，找到第一个大于temp的</span></span><br><span class="line">                    start=mid+<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">end</span> = mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="comment">//跳出该循环的条件是，end=start，其中end指向最左侧大于A[i]的下标</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="built_in">end</span>;j--)&#123;</span><br><span class="line">                A[j+<span class="number">1</span>]=A[j];</span><br><span class="line">            &#125;</span><br><span class="line">            A[<span class="built_in">end</span>]=temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析-1"><a href="#性能分析-1" class="headerlink" title="性能分析"></a>性能分析</h3><p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-22_21-02.png" alt="2021-02-22_21-02"></p>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>由于直接插入排序算法更适用于 基本有序的排序表和数据量不大的排序表。</p>
-<p>希尔排序基于这两点进行改进，缩小增量排序</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">ShellSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> d =len/<span class="number">2l</span>;d&gt;<span class="number">1</span>;d=d/<span class="number">2</span>)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=d+<span class="number">1</span>;i&lt;len;i++)<span class="comment">//起始位置</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">if</span> (A[i] &lt; A[i - d]) &#123;</span><br><span class="line">               <span class="keyword">int</span> temp = A[i];</span><br><span class="line">               <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">for</span> (j = i - d; j &gt; <span class="number">0</span> &amp;&amp; temp &lt; A[j]; j -= d) &#123;</span><br><span class="line">                   A[j + d] = A[j];</span><br><span class="line">               &#125;</span><br><span class="line">               A[j + d] = temp;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><p><strong>交换：跟据序列中两个元素关键点的比较结果来对换这两个记录在序列中的位置</strong></p>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>从后往前两两比较相邻元素的值，</p>
-<h3 id="源码实现-2"><a href="#源码实现-2" class="headerlink" title="源码实现"></a>源码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">BubbleSort</span>(<span class="title">T</span> <span class="title">A</span>[] , <span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">	<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span>(!flag)&#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len<span class="number">-1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(A[i]&gt;A[i+<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="built_in">std</span>::swap(A[i],A[i+<span class="number">1</span>]);</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析-2"><a href="#性能分析-2" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>O(n) //只需要比较，不需要移动</td>
-<td>$O(n^2)$</td>
-<td>$O(n^2)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>O(1)</td>
-<td>O(1)</td>
-<td>$O(1)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>稳定的排序方法</p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>基于分治的思想</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">int</span> <span class="title">Partition</span>(<span class="title">T</span> <span class="title">A</span>[], <span class="title">int</span> <span class="title">start</span>,<span class="title">int</span> <span class="title">end</span>)&#123;</span></span><br><span class="line">    T base = A[start];</span><br><span class="line">    <span class="keyword">int</span> low=start;</span><br><span class="line">    <span class="keyword">int</span> high=<span class="built_in">end</span>;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;high)&#123;<span class="comment">//low指向小于等于元素，high指向大于元素</span></span><br><span class="line">        <span class="keyword">while</span>(A[low]&lt;=base)&#123;<span class="comment">//会自动跳过base</span></span><br><span class="line">            low++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(A[high]&gt;base)&#123;</span><br><span class="line">            high--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">            <span class="built_in">std</span>::swap(A[low],A[high]);<span class="comment">//交换两个</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::swap(A[high],A[start]);<span class="comment">//high指向最右侧的最大元素</span></span><br><span class="line">    <span class="keyword">return</span> high;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">QuickSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">start</span>, <span class="title">int</span> <span class="title">end</span>)&#123;</span></span><br><span class="line">    <span class="comment">//不断分治</span></span><br><span class="line">    <span class="keyword">if</span>(start&lt;<span class="built_in">end</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = Partition(A,start,<span class="built_in">end</span>);</span><br><span class="line">        QuickSort(A,start,mid<span class="number">-1</span>);</span><br><span class="line">        QuickSort(A,mid+<span class="number">1</span>,<span class="built_in">end</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="性能分析-3"><a href="#性能分析-3" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>O(log_ n) //只需要比较，不需要移动</td>
-<td>$O(n)$</td>
-<td>$O(log_2 n)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>$O(n *log_2 n)$</td>
-<td>$O(n^2)$</td>
-<td>约等于$O(n*log_2 n)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>最快的内部排序，不稳定的排序方法</strong></p>
-<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><h2 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h2><p>选择排序基本思想：每一趟在后面n-i-1个待排序元素中选取关键字最小的元素;作为有序子序列的第i个元素，直到第n-1趟做完，待排序元素只剩下一个就不用再选了</p>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-22_23-32.png" alt="2021-02-22_23-32"></p>
-<h3 id="性能分析-4"><a href="#性能分析-4" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>O(n) //只需要比较，不需要移动</td>
-<td>$O(n^2)$</td>
-<td>$O(n^2)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>O(1)</td>
-<td>O(1)</td>
-<td>$O(1)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>不稳定的排序方法</p>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><h3 id="源码实现-大根堆为例"><a href="#源码实现-大根堆为例" class="headerlink" title="源码实现(大根堆为例)"></a>源码实现(大根堆为例)</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//初始建堆</span></span><br><span class="line">    build();</span><br><span class="line">    <span class="comment">//堆排序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        swap(<span class="number">1</span>,hlen);</span><br><span class="line">        hlen--;</span><br><span class="line">        down(<span class="number">1</span>); <span class="comment">//不断删除最大结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">之前总结过堆的相关笔记</a></p>
-<h3 id="性能分析-5"><a href="#性能分析-5" class="headerlink" title="性能分析"></a>性能分析</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>$O(n *log_2 n)$</td>
-<td>$O(n *log_2 n)$</td>
-<td>$O(n *log_2 n)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>O(1)</td>
-<td>O(1)</td>
-<td>$O(1)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>不稳定的排序方法</strong></p>
-<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><strong>”归并“的含义是将两个或者两个以上的有序表</strong>组合成一个新的有序表。</p>
-<h3 id="源码实现-3"><a href="#源码实现-3" class="headerlink" title="源码实现"></a>源码实现</h3><p><strong>迭代实现版本</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"> <span class="title">void</span> <span class="title">Merge</span>(<span class="title">T</span> <span class="title">A</span>[], <span class="title">int</span> <span class="title">left</span>,<span class="title">int</span> <span class="title">mid</span>,<span class="title">int</span> <span class="title">right</span>)&#123;</span></span><br><span class="line">     <span class="keyword">int</span> i=left;</span><br><span class="line">     <span class="keyword">int</span> j=mid;</span><br><span class="line">     <span class="keyword">int</span> <span class="built_in">size</span> = right-left;</span><br><span class="line">     T* B= <span class="keyword">new</span> T(<span class="built_in">size</span>);</span><br><span class="line">     <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">     <span class="keyword">while</span>(i&lt;mid&amp;&amp;j&lt;right)&#123;</span><br><span class="line">         <span class="keyword">if</span>(A[i]&lt;A[j])&#123;<span class="comment">//A[i]在前</span></span><br><span class="line">             B[k]=A[i];</span><br><span class="line">             i++;</span><br><span class="line">             k++;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             B[k]=A[j];</span><br><span class="line">             j++;</span><br><span class="line">             k++;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(i&lt;mid)&#123;</span><br><span class="line">         <span class="keyword">while</span>(i&lt;mid)&#123;</span><br><span class="line">             B[k++]=A[i++];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(j&lt;right)&#123;</span><br><span class="line">         <span class="keyword">while</span>(j&lt;right)&#123;</span><br><span class="line">             B[k++]=A[j++];</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="built_in">size</span>;k++)&#123;</span><br><span class="line">         A[k+left]=B[k];</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">MergeSort</span>(<span class="title">T</span> <span class="title">A</span>[],<span class="title">int</span> <span class="title">len</span>)&#123;</span></span><br><span class="line">    T *B=<span class="keyword">new</span> T[len];</span><br><span class="line">   <span class="keyword">int</span> d=<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">int</span> start=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> <span class="built_in">end</span>=len;</span><br><span class="line">   <span class="keyword">while</span>(start+d&lt;=<span class="built_in">end</span>)&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=<span class="built_in">end</span>;i+=<span class="number">2</span>*d)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i+<span class="number">2</span>*d&lt;<span class="built_in">end</span>)</span><br><span class="line">           &#123;</span><br><span class="line">               Merge(A,i,i+d,i+<span class="number">2</span>*d);<span class="comment">//左闭右开</span></span><br><span class="line">           &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i+d&lt;<span class="built_in">end</span>)&#123;</span><br><span class="line">               Merge(A,i,i+d,<span class="built_in">end</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//剩余一个数组，不需要排序</span></span><br><span class="line">       &#125;</span><br><span class="line">       d=d&lt;&lt;<span class="number">1</span>;<span class="comment">//乘2</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>最好</th>
-<th>最坏</th>
-<th>平均</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>$O(n *log_2 n)$</td>
-<td>$O(n *log_2 n)$</td>
-<td>$O(n *log_2 n)$</td>
-</tr>
-<tr>
-<td>空间</td>
-<td>O(n)</td>
-<td>O(n)</td>
-<td>$O(n)$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>是一种稳定的排序方式</p>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>不基于比较和移动进行排序，而是基于关键字各位的大小进行排序</p>
-<p>最高次序位法(MSD)：先最高位进行分桶，对桶内记录进行排序，然后按次高位排序，最后按最低位排序。</p>
-<p>最低次序位法(LSD)：首先按最低位排序，然后按下一个次低位排序，..，最后按最高位排序。</p>
-<p><strong>比较适合链表结构，辅助空间：r+1个队头指针和队尾指针，n个link域</strong></p>
-<p>一般如果r&lt;&lt;n,时间复杂度是O(n p)</p>
-<h3 id="源码实现-4"><a href="#源码实现-4" class="headerlink" title="源码实现"></a>源码实现</h3><p>略</p>
-<h1 id="内排序总结"><a href="#内排序总结" class="headerlink" title="内排序总结"></a>内排序总结</h1><p>如果文件的初始状态已经按关键字基本有序，则选用直接插入或者冒泡排序。</p>
-<p><strong>在基于比较的排序方法中，每次比较两个关键字的大小之后，仅仅出现两种可能的转移。任何借助“比较”的排序算法，至少需要$O(nlog^2n)$</strong></p>
-<p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/排序.png" alt="排序"></p>
-<p><img src="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/2021-02-24_13-01.png" alt="2021-02-24_13-01"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1263,7 +1077,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
