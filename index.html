@@ -178,6 +178,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/19/LCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/19/LCA/" class="post-title-link" itemprop="url">LCA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-19 09:24:26 / Modified: 14:45:02" itemprop="dateCreated datePublished" datetime="2021-05-19T09:24:26+08:00">2021-05-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><ol>
+<li>LCA的定义:</li>
+</ol>
+<ol>
+<li><p>方法1: 递归算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//root是树的根结点,二叉树使用</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">LCA</span><span class="params">(Node* root, <span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;val == u || root-&gt;val == v)&#123;<span class="comment">//root是其中一个根</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    Node* left = LCA(root-&gt;left,u,v);</span><br><span class="line">    Node* right = LCA(root-&gt;right,u,v);</span><br><span class="line">    <span class="keyword">if</span>(left!=<span class="literal">nullptr</span> &amp;&amp; right!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(left!=<span class="literal">nullptr</span>)&#123; <span class="comment">//出现在左子树上</span></span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(right!=<span class="literal">nullptr</span>)&#123;<span class="comment">//出现在右子树上</span></span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>倍增寻找(ST算法)</li>
+</ol>
+<blockquote>
+<p>​    算法执行之前,我们需要统计每个结点v的深度depth(v).</p>
+<p>​     LCA的特点: 如果结点w是结点u和结点v的最近公共祖先的话:</p>
+<p>​            让u往上走(depth(w) - depth(u) )步, 让v往上走(depth(v) - depth(w) )步,u,v都将走到结点w</p>
+</blockquote>
+<p><strong>寻找结点u和结点v LCA的 倍增算法的基本思路:</strong>    </p>
+<blockquote>
+<p>​    结点w未知,我们首先让u和v中较深的点往上走|depth(u)-depth(v)|步,再一起往上走.</p>
+<p>   并且利用二分搜索求出可到达的最近公共祖先的最小步数.</p>
+</blockquote>
+<p>不过其中要维护一个father数组 , 并且<code>father[i][j]</code> 表示 结点i 往上走j-1 步得到的祖先结点,father[]</p>
+<p>[源码]</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by doriswang on 2021/5/19.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> father[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> depth[MAX];</span><br><span class="line"><span class="keyword">int</span> N ;<span class="comment">//结点的个数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tree[MAX] ;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  利用dfs,初始化father数组</span></span><br><span class="line"><span class="comment"> * @param cur:当前结点</span></span><br><span class="line"><span class="comment"> * @param pre: 当前结点</span></span><br><span class="line"><span class="comment"> * @param d</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    father[cur][<span class="number">0</span>] = pre;</span><br><span class="line">    depth[cur] = d;</span><br><span class="line">    <span class="keyword">if</span>(tree[cur].empty())&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> = tree[cur].<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch =tree[cur][i];</span><br><span class="line">        <span class="keyword">if</span>(ch!=pre)&#123; <span class="comment">//防止出现回路</span></span><br><span class="line">            dfs(ch,cur,d+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123; <span class="comment">////i的2^j祖先就是i的（2^(j-1))祖先的2^(j-1)祖先</span></span><br><span class="line">    dfs(root,<span class="number">-1</span>,<span class="number">0</span>);<span class="comment">//root为根结点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;(<span class="number">1</span>&lt;&lt;(j+<span class="number">1</span>))&lt;N;j++)&#123; <span class="comment">// 1&lt;&lt;(j+1)表示 2^(j+1),j表示高度</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(father[i][j]&lt;<span class="number">0</span>) father[i][j+<span class="number">1</span>] = <span class="number">-1</span>; <span class="comment">//到达根结点</span></span><br><span class="line">            <span class="keyword">else</span> father[i][j+<span class="number">1</span>] = father[father[i][j]][j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(depth[u]&gt;depth[v])&#123;</span><br><span class="line">        swap(u,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> temp = depth[v] - depth[u];</span><br><span class="line">    <span class="comment">//原来是这么写的,我觉得有点难记忆</span></span><br><span class="line"><span class="comment">//    for(int i=0;(1&lt;&lt;i)&lt;=temp;i++)&#123; //使u,v再同一高度,i表示树高</span></span><br><span class="line"><span class="comment">//        //(1&lt;&lt;i)&amp;f找到f化为2进制后1的位置，移动到相应的位置</span></span><br><span class="line"><span class="comment">//        if((1&lt;&lt;i)&amp; temp)&#123;   //比如f=5，二进制就是101,所以首先移动2^0祖先，然后再移动2^2祖先</span></span><br><span class="line"><span class="comment">//            v= father[v][i];</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    v = father[v][temp<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">if</span>(v==u)&#123;</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//father[u][i] 是找到u的往上第i-1个祖先,这里利用了二分的思想,所以 u=father[u][i], i是不断减小的</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i=(<span class="keyword">int</span>)log2(N*<span class="number">1.0</span>);i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(father[u][i]!= father[v][i])&#123;</span><br><span class="line">            u = father[u][i];</span><br><span class="line">            v = father[v][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[u][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    N =<span class="number">8</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;temp;</span><br><span class="line">            tree[i].push_back(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    init(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;LCA(<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 7 6</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 3 8</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">1 1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">8 //应该输出5</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -402,10 +484,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-05-16 20:16:04 / Modified: 23:48:05" itemprop="dateCreated datePublished" datetime="2021-05-16T20:16:04+08:00">2021-05-16</time>
+              <time title="Created: 2021-05-16 20:16:04" itemprop="dateCreated datePublished" datetime="2021-05-16T20:16:04+08:00">2021-05-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-18 08:43:25" itemprop="dateModified" datetime="2021-05-18T08:43:25+08:00">2021-05-18</time>
+              </span>
 
           
 
@@ -419,7 +507,7 @@
 
       
           <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这里用来记录PAT解题的一些考点,注意事项,源代码请到这里[link]去找. 按照题号写的, “XX_w2.cpp”是参考的大神的代码</p>
-<h2 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020.5.16"></a>2020.5.16</h2><h3 id="star-1106-Lowest-Price-in-Supply-Chain"><a href="#star-1106-Lowest-Price-in-Supply-Chain" class="headerlink" title=":star:1106 Lowest Price in Supply Chain"></a>:star:1106 <a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805362341822464" target="_blank" rel="noopener"><strong>Lowest Price in Supply Chain</strong></a></h3><p>同类题目:</p>
+<h2 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020.5.16"></a>2020.5.16</h2><h3 id="1106-Lowest-Price-in-Supply-Chain"><a href="#1106-Lowest-Price-in-Supply-Chain" class="headerlink" title="1106 Lowest Price in Supply Chain"></a>1106 <a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805362341822464" target="_blank" rel="noopener"><strong>Lowest Price in Supply Chain</strong></a></h3><p>同类题目:</p>
 <ul>
 <li>求叶子结点的最小层</li>
 <li>有向无权图的单元最短路的条数</li>
@@ -437,7 +525,7 @@
 <li>bfs,我经常容易忘记结点出队/=\,害</li>
 </ol>
 </blockquote>
-<h3 id="star-1115-Counting-Nodes-in-a-BST"><a href="#star-1115-Counting-Nodes-in-a-BST" class="headerlink" title=":star:1115 Counting Nodes in a BST"></a>:star:<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805355987451904" target="_blank" rel="noopener">1115 <strong>Counting Nodes in a BST</strong></a></h3><ul>
+<h3 id="1115-Counting-Nodes-in-a-BST"><a href="#1115-Counting-Nodes-in-a-BST" class="headerlink" title="1115 Counting Nodes in a BST"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805355987451904" target="_blank" rel="noopener">1115 <strong>Counting Nodes in a BST</strong></a></h3><ul>
 <li>计算BST中最低层和次低层的结点的个数</li>
 </ul>
 <p>相关考点:</p>
@@ -449,7 +537,7 @@
 <blockquote>
 <p>​    这次还是边界设置错啦,—int depth=-1; //只有一个结点的时候,出错</p>
 </blockquote>
-<h3 id="star-star-1114-Family-Property"><a href="#star-star-1114-Family-Property" class="headerlink" title=":star::star:1114 Family Property"></a>:star::star:<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805356599820288" target="_blank" rel="noopener">1114 Family Property</a></h3><ul>
+<h3 id="1114-Family-Property"><a href="#1114-Family-Property" class="headerlink" title="1114 Family Property"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805356599820288" target="_blank" rel="noopener">1114 Family Property</a></h3><ul>
 <li>统计求集合的并集,并集合中的信息</li>
 </ul>
 <p>相关考点:</p>
@@ -472,6 +560,33 @@
 <li><p>这道题数据处理的过程,可以多学习一些,自定义了两个struct,一个用来处理输入(输入一个结点,进行一次union操作,int father[]用来保存并查集结构) ；另外一个用来处理输出,(保存每个集合的统计信息)</p>
 </li>
 </ol>
+</blockquote>
+<h3 id="1126-Eulerian-Path"><a href="#1126-Eulerian-Path" class="headerlink" title="1126 Eulerian Path"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805349851185152" target="_blank" rel="noopener">1126 Eulerian Path</a></h3><ul>
+<li><p>判断图是否是欧拉图,半欧拉图,非欧拉图</p>
+<ul>
+<li><p>欧拉图的定义</p>
+<blockquote>
+<pre><code>欧拉回路：图G中经过每条边一次并且仅一次的回路称作欧拉回路
+</code></pre><p>欧拉通路：图G中经过每条边一次并且仅一次的路径称作欧拉通路。<br>欧拉图(Eulerian graph)指的就是存在欧拉回路的图。<br>半欧拉图(semi-Eulerian graph)指的是存在欧拉通路但不存在欧拉回路的图。</p>
+<p>1.无向图中：</p>
+<pre><code>无向图G为欧拉图，当且仅当G为连通图且所有顶点的度为偶数。
+</code></pre><p>　无向图G为半欧拉图，当且仅当G为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。</p>
+<p>2.有向图中：<br>　　有向图G为欧拉图，当且仅当G为连通图，且所有顶点的入度等于出度。<br>　　有向图G为半欧拉图，当且仅当G为连通图，且存在顶点u的入度比出度大1，v的入度比出度小1，其它所有顶点的入度等于出度。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>基本思路:</p>
+<ol>
+<li>统计所有顶点的度,计算度为奇数的结点的个数</li>
+<li>判断该图是否是连通图</li>
+</ol>
+<p><strong>考点</strong></p>
+<p>​    <strong>如何判断是否是连通图?</strong></p>
+<blockquote>
+<p>​    1.利用并查集(在接收输入时,构建并查集) ,时间复杂度</p>
+<p>​    2. 一次深搜DFS ,时间复杂度:  </p>
 </blockquote>
 
       
@@ -937,132 +1052,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">字符串总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-09 14:30:43" itemprop="dateCreated datePublished" datetime="2021-04-09T14:30:43+08:00">2021-04-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-20 18:28:59" itemprop="dateModified" datetime="2021-04-20T18:28:59+08:00">2021-04-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="字符串常用的库函数和模板"><a href="#字符串常用的库函数和模板" class="headerlink" title="字符串常用的库函数和模板"></a>字符串常用的库函数和模板</h2><h2 id="经典题型总结"><a href="#经典题型总结" class="headerlink" title="经典题型总结"></a>经典题型总结</h2><h3 id="1-字符串匹配问题"><a href="#1-字符串匹配问题" class="headerlink" title="1.字符串匹配问题"></a>1.字符串匹配问题</h3><h4 id="28-实现-strStr"><a href="#28-实现-strStr" class="headerlink" title="28. 实现 strStr()"></a><a href="https://leetcode-cn.com/problems/implement-strstr/" target="_blank" rel="noopener">28. 实现 strStr()</a></h4><p><strong>Sunday 算法</strong></p>
-<p>主要思路：</p>
-<p>从前往后进行匹配，匹配成功时，模式串和主串索引同时+1，指向下一个</p>
-<p>如果匹配失败，关注的是主串中参与匹配的最末位字符的下一位字符</p>
-<ul>
-<li><p>如果该字符没有出现在模式串中，移动位数=模式串长度＋１(因为移动位数&lt;模式串长度，都会失败)</p>
-<p>eg: sud<font color="#0099ff" face="黑体">b</font>ccsde 模式串为：sde,此时ｂ没有出现在模式串中，可以直接略过它，主串从b的下一个位置，与模式串从头匹配</p>
-</li>
-<li><p>如果该字符出现在该模式串中，移动位数 = 模式串长度 - 该字符最右出现的位置(以0开始) = 模式串中该字符最右出现的位置到尾部的距离 + 1，主串移动到该位置　和模式串从头开始匹配</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Sunday</span><span class="params">( <span class="built_in">string</span> mstr,<span class="built_in">string</span> des)</span></span>&#123;<span class="comment">//mstr为主串,des为模式串,返回模式串在主串中第一次出现的位置，如果不存在返回-1</span></span><br><span class="line">	<span class="keyword">int</span> dlen  = des.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">int</span> mlen = mstr.<span class="built_in">size</span>();</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt; <span class="keyword">char</span> ,<span class="keyword">int</span>&gt;  shift;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;dlen;i++) shift[des[i]]=dlen-i;<span class="comment">//如果des中有字符重复，最后存储的是最右侧对应的shift</span></span><br><span class="line">	<span class="keyword">int</span> n=mlen-dlen;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=n)&#123;<span class="comment">//i参与匹配的子串的</span></span><br><span class="line">		<span class="keyword">if</span>( mstr.substr(i,dlen)== des) <span class="keyword">return</span> i; <span class="comment">//如果已经找到</span></span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(shift.<span class="built_in">find</span>(mstr[i+dlen])!=shift.<span class="built_in">end</span>())&#123;</span><br><span class="line">                    i+= shift[mstr[i+dlen]];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    i += dlen+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-字符串中的动规问题"><a href="#2-字符串中的动规问题" class="headerlink" title="2.字符串中的动规问题"></a>2.字符串中的动规问题</h3><h4 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5.最长回文子串"></a><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5.最长回文子串</a></h4><blockquote>
-<p>​    思路：定义状态，设计状态转移方程</p>
-<p>bool dp[i][j]表示str.substr(i,j-i+1)是否是回文字</p>
-<p>动态转移方程: dp[i][j] = dp[i+1][j-1] &amp;&amp; (str[i]==str[j]) </p>
-<p>记录使 dp[i][j]为true的j-i+1的最大值。</p>
-<p>时间复杂度: O(n*n)</p>
-<p>空间复杂度: O(n*n)</p>
-</blockquote>
-<h4 id="10-正则表达式匹配"><a href="#10-正则表达式匹配" class="headerlink" title="10. 正则表达式匹配"></a><a href="https://leetcode-cn.com/problems/regular-expression-matching/" target="_blank" rel="noopener">10. 正则表达式匹配</a></h4><blockquote>
-<p>​    思路：定义状态，设计状态转移方程</p>
-<p>目标串　s ,模式串p</p>
-<p>bool dp[i][j]表示s[0:i]和p[0:j]之间匹配的结果</p>
-</blockquote>
-<h3 id="３-字符串相关处理"><a href="#３-字符串相关处理" class="headerlink" title="３.字符串相关处理"></a>３.字符串相关处理</h3><h4 id="71-简化路径"><a href="#71-简化路径" class="headerlink" title="71. 简化路径"></a><a href="https://leetcode-cn.com/problems/simplify-path/" target="_blank" rel="noopener">71. 简化路径</a></h4><blockquote>
-<p>利用堆栈的思路解决</p>
-<p>如果遇到字符串，压入堆栈中，如果遇到<code>.</code>不变</p>
-</blockquote>
-<p><strong>巧用栈</strong>，但是由于</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">simplifyPath</span><span class="params">(<span class="built_in">string</span> path)</span> </span>&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; dirs;</span><br><span class="line">            <span class="keyword">int</span> index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> ptr = path.<span class="built_in">begin</span>();ptr!=path.<span class="built_in">end</span>(); )&#123;</span><br><span class="line">            ++ptr;<span class="comment">//把跟目录跳过去</span></span><br><span class="line">            <span class="keyword">auto</span> _split = <span class="built_in">find</span>(ptr, path.<span class="built_in">end</span>(),<span class="string">'/'</span>);</span><br><span class="line">            <span class="built_in">string</span> substr = <span class="built_in">string</span>(ptr,_split);</span><br><span class="line">           <span class="keyword">if</span>(substr==<span class="string">".."</span> )&#123;</span><br><span class="line">               <span class="keyword">if</span>(index&gt;=<span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    index--;</span><br><span class="line">                    dirs.erase(dirs.<span class="built_in">end</span>()<span class="number">-1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(substr!=<span class="string">"."</span>  &amp;&amp;  substr!=<span class="string">""</span>)&#123;</span><br><span class="line">               dirs.push_back(substr);   </span><br><span class="line">                index++;</span><br><span class="line">            &#125;</span><br><span class="line">            ptr=_split;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> ans =<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;dirs.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            ans+=<span class="string">"/"</span>;</span><br><span class="line">            ans+=dirs[i]; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ans==<span class="string">""</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"/"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/" target="_blank" rel="noopener">8. 字符串转换整数 (atoi)</a></h4><p>细节题。注意测试样例</p>
-<ul>
-<li>不规则输入，但是有效 “-3924dfa”,”+413”</li>
-<li>无效格式 “++1”,”++c”</li>
-<li>溢出数据 </li>
-</ul>
-<p>9.利用str模拟大数相加</p>
-<p>10.Add Binary</p>
-<h3 id="4-有限自动状态机"><a href="#4-有限自动状态机" class="headerlink" title="4.有限自动状态机"></a>4.有限自动状态机</h3><p>确定有限状态自动机（以下简称「自动机」）是一类计算模型,能够回答某种形式的「对于给定的输入字符串 S，判断其是否满足条件 P」的问题。它包含一系列状态，这些状态中：</p>
-<ul>
-<li>有一个特殊的状态，被称作「初始状态」。</li>
-<li>还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。</li>
-</ul>
-<p>起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」</p>
-<p><strong>注意</strong>：如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」</p>
-<ul>
-<li><p>如何挖掘所有可能的状态，得到一个完备的状态集？</p>
-<ul>
-<li>把字符串跟据要求或者特点分为不同的状态，用<strong>当前处理到字符串的哪个状态</strong>作为自动机的状态</li>
-<li>进一步确定「初始状态」和「接受状态」的集合</li>
-</ul>
-</li>
-<li><p>跟据接受的内容，确定划分接受数据的类型</p>
-</li>
-<li><p>确定状态转移的规则</p>
-<p>在c++中，可以用enum(枚举)存储自动机状态State，定义接受的数据类型(InputType)</p>
-<p>用unordered_map<State , unordered_map<inputtype,state\>&gt;</State></p>
-</li>
-</ul>
-<p>相关例题</p>
-<h4 id="65-有效数字"><a href="#65-有效数字" class="headerlink" title="65. 有效数字"></a><a href="https://leetcode-cn.com/problems/valid-number/" target="_blank" rel="noopener">65. 有效数字</a></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">enum</span> status&#123;</span><br><span class="line">        start,</span><br><span class="line">        int_sign,</span><br><span class="line">        integer,<span class="comment">//</span></span><br><span class="line">        left_point,<span class="comment">//</span></span><br><span class="line">        without_left_point,</span><br><span class="line">        <span class="built_in">exp</span>,</span><br><span class="line">        exp_sign,</span><br><span class="line">        exp_part,<span class="comment">//</span></span><br><span class="line">        fraction<span class="comment">//</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">enum</span> input&#123;</span><br><span class="line">        digit,</span><br><span class="line">        <span class="built_in">point</span>,</span><br><span class="line">        sign,</span><br><span class="line">        eE,</span><br><span class="line">        invaild</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;status,<span class="built_in">unordered_map</span>&lt;input,status&gt; &gt; shift&#123;   </span><br><span class="line">        &#123;start, &#123; &#123;digit,integer&#125;,</span><br><span class="line">                &#123;<span class="built_in">point</span>,without_left_point&#125;,</span><br><span class="line">                &#123;sign,int_sign&#125;,</span><br><span class="line">                &#125;&#125;,</span><br><span class="line">        &#123;int_sign,&#123;&#123;digit,integer&#125;,</span><br><span class="line">                  &#123;<span class="built_in">point</span>,without_left_point&#125;</span><br><span class="line">                    &#125;&#125;,</span><br><span class="line">        &#123;integer,&#123;&#123;digit,integer&#125;,</span><br><span class="line">                &#123;<span class="built_in">point</span>,left_point&#125;,</span><br><span class="line">                &#123;eE,<span class="built_in">exp</span>&#125;,<span class="comment">//指数</span></span><br><span class="line">                &#125;&#125;,</span><br><span class="line">        &#123;left_point,&#123;&#123;digit,fraction&#125;,</span><br><span class="line">                    &#123;eE,<span class="built_in">exp</span>&#125;&#125;&#125;,</span><br><span class="line">        &#123;without_left_point,&#123;&#123;digit,fraction&#125;&#125;&#125;,</span><br><span class="line">        &#123;<span class="built_in">exp</span>,&#123;&#123;digit,exp_part&#125;,</span><br><span class="line">            &#123;sign,exp_sign&#125;&#125;&#125;,</span><br><span class="line">        &#123;exp_sign,&#123;&#123;digit,exp_part&#125;&#125;&#125;,</span><br><span class="line"></span><br><span class="line">        &#123;exp_part,&#123;&#123;digit,exp_part&#125;&#125;&#125;,</span><br><span class="line">        &#123;fraction,&#123;&#123;digit,fraction&#125;,</span><br><span class="line">                &#123;eE,<span class="built_in">exp</span>&#125;&#125;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function">input <span class="title">inputtype</span><span class="params">(<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">        input ans = invaild;</span><br><span class="line">        <span class="keyword">if</span>(ch&gt;=<span class="string">'0'</span> &amp;&amp; ch&lt;=<span class="string">'9'</span>)&#123;</span><br><span class="line">            ans = digit;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( ch ==<span class="string">'e'</span> || ch==<span class="string">'E'</span>)&#123;</span><br><span class="line">            ans = eE;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">'+'</span> || ch==<span class="string">'-'</span>)&#123;</span><br><span class="line">            ans = sign;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">'.'</span>)&#123;</span><br><span class="line">            ans = <span class="built_in">point</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        status ss = start;</span><br><span class="line">        <span class="keyword">int</span> n= s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            input chtype = inputtype(s[i]);</span><br><span class="line">            <span class="keyword">if</span>(chtype==invaild)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(shift[ss].<span class="built_in">find</span>(chtype)==shift[ss].<span class="built_in">end</span>())&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ss = shift[ss][chtype];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ss==integer|| ss==left_point || ss==exp_part || ss==fraction)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1134,7 +1123,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

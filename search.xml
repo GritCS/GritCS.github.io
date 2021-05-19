@@ -2209,7 +2209,7 @@ w = w+ learningRate*\partial b
     <title>PAT记录</title>
     <url>/2021/05/16/PAT%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这里用来记录PAT解题的一些考点,注意事项,源代码请到这里[link]去找. 按照题号写的, “XX_w2.cpp”是参考的大神的代码</p>
-<h2 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020.5.16"></a>2020.5.16</h2><h3 id="star-1106-Lowest-Price-in-Supply-Chain"><a href="#star-1106-Lowest-Price-in-Supply-Chain" class="headerlink" title=":star:1106 Lowest Price in Supply Chain"></a>:star:1106 <a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805362341822464" target="_blank" rel="noopener"><strong>Lowest Price in Supply Chain</strong></a></h3><p>同类题目:</p>
+<h2 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020.5.16"></a>2020.5.16</h2><h3 id="1106-Lowest-Price-in-Supply-Chain"><a href="#1106-Lowest-Price-in-Supply-Chain" class="headerlink" title="1106 Lowest Price in Supply Chain"></a>1106 <a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805362341822464" target="_blank" rel="noopener"><strong>Lowest Price in Supply Chain</strong></a></h3><p>同类题目:</p>
 <ul>
 <li>求叶子结点的最小层</li>
 <li>有向无权图的单元最短路的条数</li>
@@ -2227,7 +2227,7 @@ w = w+ learningRate*\partial b
 <li>bfs,我经常容易忘记结点出队/=\,害</li>
 </ol>
 </blockquote>
-<h3 id="star-1115-Counting-Nodes-in-a-BST"><a href="#star-1115-Counting-Nodes-in-a-BST" class="headerlink" title=":star:1115 Counting Nodes in a BST"></a>:star:<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805355987451904" target="_blank" rel="noopener">1115 <strong>Counting Nodes in a BST</strong></a></h3><ul>
+<h3 id="1115-Counting-Nodes-in-a-BST"><a href="#1115-Counting-Nodes-in-a-BST" class="headerlink" title="1115 Counting Nodes in a BST"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805355987451904" target="_blank" rel="noopener">1115 <strong>Counting Nodes in a BST</strong></a></h3><ul>
 <li>计算BST中最低层和次低层的结点的个数</li>
 </ul>
 <p>相关考点:</p>
@@ -2239,7 +2239,7 @@ w = w+ learningRate*\partial b
 <blockquote>
 <p>​    这次还是边界设置错啦,—int depth=-1; //只有一个结点的时候,出错</p>
 </blockquote>
-<h3 id="star-star-1114-Family-Property"><a href="#star-star-1114-Family-Property" class="headerlink" title=":star::star:1114 Family Property"></a>:star::star:<a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805356599820288" target="_blank" rel="noopener">1114 Family Property</a></h3><ul>
+<h3 id="1114-Family-Property"><a href="#1114-Family-Property" class="headerlink" title="1114 Family Property"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805356599820288" target="_blank" rel="noopener">1114 Family Property</a></h3><ul>
 <li>统计求集合的并集,并集合中的信息</li>
 </ul>
 <p>相关考点:</p>
@@ -2262,6 +2262,33 @@ w = w+ learningRate*\partial b
 <li><p>这道题数据处理的过程,可以多学习一些,自定义了两个struct,一个用来处理输入(输入一个结点,进行一次union操作,int father[]用来保存并查集结构) ；另外一个用来处理输出,(保存每个集合的统计信息)</p>
 </li>
 </ol>
+</blockquote>
+<h3 id="1126-Eulerian-Path"><a href="#1126-Eulerian-Path" class="headerlink" title="1126 Eulerian Path"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805349851185152" target="_blank" rel="noopener">1126 Eulerian Path</a></h3><ul>
+<li><p>判断图是否是欧拉图,半欧拉图,非欧拉图</p>
+<ul>
+<li><p>欧拉图的定义</p>
+<blockquote>
+<pre><code>欧拉回路：图G中经过每条边一次并且仅一次的回路称作欧拉回路
+</code></pre><p>欧拉通路：图G中经过每条边一次并且仅一次的路径称作欧拉通路。<br>欧拉图(Eulerian graph)指的就是存在欧拉回路的图。<br>半欧拉图(semi-Eulerian graph)指的是存在欧拉通路但不存在欧拉回路的图。</p>
+<p>1.无向图中：</p>
+<pre><code>无向图G为欧拉图，当且仅当G为连通图且所有顶点的度为偶数。
+</code></pre><p>　无向图G为半欧拉图，当且仅当G为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。</p>
+<p>2.有向图中：<br>　　有向图G为欧拉图，当且仅当G为连通图，且所有顶点的入度等于出度。<br>　　有向图G为半欧拉图，当且仅当G为连通图，且存在顶点u的入度比出度大1，v的入度比出度小1，其它所有顶点的入度等于出度。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>基本思路:</p>
+<ol>
+<li>统计所有顶点的度,计算度为奇数的结点的个数</li>
+<li>判断该图是否是连通图</li>
+</ol>
+<p><strong>考点</strong></p>
+<p>​    <strong>如何判断是否是连通图?</strong></p>
+<blockquote>
+<p>​    1.利用并查集(在接收输入时,构建并查集) ,时间复杂度</p>
+<p>​    2. 一次深搜DFS ,时间复杂度:  </p>
 </blockquote>
 ]]></content>
       <tags>
@@ -2435,6 +2462,39 @@ w = w+ learningRate*\partial b
 ]]></content>
       <tags>
         <tag>机试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LCA</title>
+    <url>/2021/05/19/LCA/</url>
+    <content><![CDATA[<h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><ol>
+<li>LCA的定义:</li>
+</ol>
+<ol>
+<li><p>方法1: 递归算法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//root是树的根结点,二叉树使用</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">LCA</span><span class="params">(Node* root, <span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;val == u || root-&gt;val == v)&#123;<span class="comment">//root是其中一个根</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    Node* left = LCA(root-&gt;left,u,v);</span><br><span class="line">    Node* right = LCA(root-&gt;right,u,v);</span><br><span class="line">    <span class="keyword">if</span>(left!=<span class="literal">nullptr</span> &amp;&amp; right!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(left!=<span class="literal">nullptr</span>)&#123; <span class="comment">//出现在左子树上</span></span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(right!=<span class="literal">nullptr</span>)&#123;<span class="comment">//出现在右子树上</span></span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>倍增寻找(ST算法)</li>
+</ol>
+<blockquote>
+<p>​    算法执行之前,我们需要统计每个结点v的深度depth(v).</p>
+<p>​     LCA的特点: 如果结点w是结点u和结点v的最近公共祖先的话:</p>
+<p>​            让u往上走(depth(w) - depth(u) )步, 让v往上走(depth(v) - depth(w) )步,u,v都将走到结点w</p>
+</blockquote>
+<p><strong>寻找结点u和结点v LCA的 倍增算法的基本思路:</strong>    </p>
+<blockquote>
+<p>​    结点w未知,我们首先让u和v中较深的点往上走|depth(u)-depth(v)|步,再一起往上走.</p>
+<p>   并且利用二分搜索求出可到达的最近公共祖先的最小步数.</p>
+</blockquote>
+<p>不过其中要维护一个father数组 , 并且<code>father[i][j]</code> 表示 结点i 往上走j-1 步得到的祖先结点,father[]</p>
+<p>[源码]</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by doriswang on 2021/5/19.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> father[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> depth[MAX];</span><br><span class="line"><span class="keyword">int</span> N ;<span class="comment">//结点的个数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tree[MAX] ;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  利用dfs,初始化father数组</span></span><br><span class="line"><span class="comment"> * @param cur:当前结点</span></span><br><span class="line"><span class="comment"> * @param pre: 当前结点</span></span><br><span class="line"><span class="comment"> * @param d</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    father[cur][<span class="number">0</span>] = pre;</span><br><span class="line">    depth[cur] = d;</span><br><span class="line">    <span class="keyword">if</span>(tree[cur].empty())&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> = tree[cur].<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch =tree[cur][i];</span><br><span class="line">        <span class="keyword">if</span>(ch!=pre)&#123; <span class="comment">//防止出现回路</span></span><br><span class="line">            dfs(ch,cur,d+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123; <span class="comment">////i的2^j祖先就是i的（2^(j-1))祖先的2^(j-1)祖先</span></span><br><span class="line">    dfs(root,<span class="number">-1</span>,<span class="number">0</span>);<span class="comment">//root为根结点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;(<span class="number">1</span>&lt;&lt;(j+<span class="number">1</span>))&lt;N;j++)&#123; <span class="comment">// 1&lt;&lt;(j+1)表示 2^(j+1),j表示高度</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(father[i][j]&lt;<span class="number">0</span>) father[i][j+<span class="number">1</span>] = <span class="number">-1</span>; <span class="comment">//到达根结点</span></span><br><span class="line">            <span class="keyword">else</span> father[i][j+<span class="number">1</span>] = father[father[i][j]][j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(depth[u]&gt;depth[v])&#123;</span><br><span class="line">        swap(u,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> temp = depth[v] - depth[u];</span><br><span class="line">    <span class="comment">//原来是这么写的,我觉得有点难记忆</span></span><br><span class="line"><span class="comment">//    for(int i=0;(1&lt;&lt;i)&lt;=temp;i++)&#123; //使u,v再同一高度,i表示树高</span></span><br><span class="line"><span class="comment">//        //(1&lt;&lt;i)&amp;f找到f化为2进制后1的位置，移动到相应的位置</span></span><br><span class="line"><span class="comment">//        if((1&lt;&lt;i)&amp; temp)&#123;   //比如f=5，二进制就是101,所以首先移动2^0祖先，然后再移动2^2祖先</span></span><br><span class="line"><span class="comment">//            v= father[v][i];</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    v = father[v][temp<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">if</span>(v==u)&#123;</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//father[u][i] 是找到u的往上第i-1个祖先,这里利用了二分的思想,所以 u=father[u][i], i是不断减小的</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i=(<span class="keyword">int</span>)log2(N*<span class="number">1.0</span>);i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(father[u][i]!= father[v][i])&#123;</span><br><span class="line">            u = father[u][i];</span><br><span class="line">            v = father[v][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[u][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    N =<span class="number">8</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;temp;</span><br><span class="line">            tree[i].push_back(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    init(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;LCA(<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 7 6</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 3 8</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">1 1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">8 //应该输出5</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>PAT</tag>
       </tags>
   </entry>
 </search>
