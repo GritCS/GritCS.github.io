@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="最短路问题    算法 算法思路 备注     Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环\ v\ -1次,因为最短路最多包含n-">
+  <meta name="description" content="最短路问题    算法 算法思路 备注     Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构复习_图论1">
 <meta property="og:url" content="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="最短路问题    算法 算法思路 备注     Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环\ v\ -1次,因为最短路最多包含n-">
+<meta property="og:description" content="最短路问题    算法 算法思路 备注     Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可">
 <meta property="og:image" content="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png">
 <meta property="article:published_time" content="2021-05-31T02:06:28.000Z">
-<meta property="article:modified_time" content="2021-05-31T09:33:55.071Z">
+<meta property="article:modified_time" content="2021-05-31T10:16:14.598Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="面试">
@@ -205,7 +205,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-31 10:06:28 / Modified: 17:33:55" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
+              <time title="Created: 2021-05-31 10:06:28 / Modified: 18:16:14" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
             </span>
 
           
@@ -236,21 +236,13 @@
 </tr>
 <tr>
 <td>Bellman-Ford算法</td>
-<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环\</td>
-<td>v\</td>
-<td>-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第\</td>
-<td>v\</td>
-<td>次时，仍进行松弛操作</td>
+<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第v次时，仍进行松弛操作</td>
 <td>时间复杂度是O(V *E)​，空间复杂度O(E)​</td>
 </tr>
 <tr>
 <td>BFS</td>
 <td>求解非权图的单源最短路径<br></td>
-<td>时间复杂度:O(n^2)—邻接矩阵，O(\</td>
-<td>E\</td>
-<td>*\</td>
-<td>V\</td>
-<td>)​-邻接链表</td>
+<td>时间复杂度:O(n^2)—邻接矩阵，O(E*V)​-邻接链表</td>
 </tr>
 <tr>
 <td>mark优化的Bellman-Ford算法</td>
@@ -265,9 +257,7 @@
 <tr>
 <td>Floyd算法</td>
 <td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
-<td>多源最短路，时间复杂度O(\</td>
-<td>V\</td>
-<td>^３)​</td>
+<td>多源最短路，时间复杂度O(V^３)​</td>
 </tr>
 </tbody>
 </table>
@@ -297,13 +287,7 @@
 <tr>
 <td>Kruskal</td>
 <td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a href="https://zhuanlan.zhihu.com/p/34922624" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34922624</a></td>
-<td>时间复杂度O(\</td>
-<td>E\</td>
-<td>log\</td>
-<td>V\</td>
-<td>),采用并查集判环－一次find() : log\</td>
-<td>V\</td>
-<td>​</td>
+<td>时间复杂度O(ElogV ),采用并查集判环－一次find() : logV</td>
 </tr>
 </tbody>
 </table>

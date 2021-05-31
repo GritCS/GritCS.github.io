@@ -2517,21 +2517,13 @@ w = w+ learningRate*\partial b
 </tr>
 <tr>
 <td>Bellman-Ford算法</td>
-<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环\</td>
-<td>v\</td>
-<td>-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第\</td>
-<td>v\</td>
-<td>次时，仍进行松弛操作</td>
+<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第v次时，仍进行松弛操作</td>
 <td>时间复杂度是O(V *E)​，空间复杂度O(E)​</td>
 </tr>
 <tr>
 <td>BFS</td>
 <td>求解非权图的单源最短路径<br></td>
-<td>时间复杂度:O(n^2)—邻接矩阵，O(\</td>
-<td>E\</td>
-<td>*\</td>
-<td>V\</td>
-<td>)​-邻接链表</td>
+<td>时间复杂度:O(n^2)—邻接矩阵，O(E*V)​-邻接链表</td>
 </tr>
 <tr>
 <td>mark优化的Bellman-Ford算法</td>
@@ -2546,9 +2538,7 @@ w = w+ learningRate*\partial b
 <tr>
 <td>Floyd算法</td>
 <td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
-<td>多源最短路，时间复杂度O(\</td>
-<td>V\</td>
-<td>^３)​</td>
+<td>多源最短路，时间复杂度O(V^３)​</td>
 </tr>
 </tbody>
 </table>
@@ -2578,13 +2568,7 @@ w = w+ learningRate*\partial b
 <tr>
 <td>Kruskal</td>
 <td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a href="https://zhuanlan.zhihu.com/p/34922624" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34922624</a></td>
-<td>时间复杂度O(\</td>
-<td>E\</td>
-<td>log\</td>
-<td>V\</td>
-<td>),采用并查集判环－一次find() : log\</td>
-<td>V\</td>
-<td>​</td>
+<td>时间复杂度O(ElogV ),采用并查集判环－一次find() : logV</td>
 </tr>
 </tbody>
 </table>
@@ -2638,5 +2622,9 @@ w = w+ learningRate*\partial b
     <title>数据结构-查找</title>
     <url>/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>面试</tag>
+      </tags>
   </entry>
 </search>
