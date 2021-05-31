@@ -2497,4 +2497,144 @@ w = w+ learningRate*\partial b
         <tag>PAT</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数据结构复习_图论1</title>
+    <url>/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/</url>
+    <content><![CDATA[<h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>算法思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dijkstra</td>
+<td>求解权图的单源最短路径<br>按照非递减次序依次得到各顶点的最小路径长度。<br>适用条件:不存在负权边</td>
+<td>时间复杂度是$O(n^2+e)$,与边数无关;空间复杂度$O(</td>
+<td>E</td>
+<td>)$</td>
+</tr>
+<tr>
+<td>Bellman-Ford算法</td>
+<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环\</td>
+<td>v\</td>
+<td>-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第\</td>
+<td>v\</td>
+<td>次时，仍进行松弛操作</td>
+<td>时间复杂度是$O(</td>
+<td>V</td>
+<td>*</td>
+<td>E</td>
+<td>)$，空间复杂度$O(</td>
+<td>E</td>
+<td>)$</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>求解非权图的单源最短路径<br></td>
+<td>时间复杂度:$O(n^2)$—邻接矩阵，$O(</td>
+<td>E</td>
+<td>*</td>
+<td>V</td>
+<td>)$-邻接链表</td>
+</tr>
+<tr>
+<td>mark优化的Bellman-Ford算法</td>
+<td>增加一个mark标记，如果在一次循环中，bellman-Ford没有进行松弛操作，则退出循环</td>
+<td></td>
+</tr>
+<tr>
+<td>SPFA</td>
+<td><a href="https://blog.csdn.net/qq_35644234/article/details/61614581" target="_blank" rel="noopener">https://blog.csdn.net/qq_35644234/article/details/61614581</a><br><a href="https://www.cnblogs.com/shadowland/p/5870640.html" target="_blank" rel="noopener">https://www.cnblogs.com/shadowland/p/5870640.html</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Floyd算法</td>
+<td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
+<td>多源最短路，时间复杂度$O(</td>
+<td>V</td>
+<td>^３)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" alt="2021-05-31_15-59"></p>
+<blockquote>
+<p>最长路径的计算    </p>
+<p>次短路计算</p>
+<p>关于多条最短路径的计算，参考PAT相关题目（我记得有道PAT用的dijkstra计算的负权最短路径</p>
+</blockquote>
+<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><p>问题：寻找包含全部顶点的连通子图，且代价最小</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prim</td>
+<td>类似于Dijkstra思路，求$V_0$的单源最短路径，构成最小生成树<br>求边稠密网<br>用pre存储树结构,</td>
+<td>时间复杂度为$O(n^2)$ (使用堆优化，可以达到$O(e*logn)$)</td>
+</tr>
+<tr>
+<td>Kruskal</td>
+<td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a href="https://zhuanlan.zhihu.com/p/34922624" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34922624</a></td>
+<td>时间复杂度$O(</td>
+<td>E</td>
+<td>log</td>
+<td>V</td>
+<td>)$,采用并查集判环－一次find() : $log</td>
+<td>V</td>
+<td>$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png" alt="2021-05-31_15-57"></p>
+<p>闭圈法/破圈法</p>
+<p>最大生成树</p>
+<p>相关例题：POJ 3255:</p>
+</blockquote>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><strong>AOV网</strong>：用顶点表示活动，用有向边表示活动之间的前后关系，称这样的有向图表示AOV网。</p>
+<p>拓扑排序：在图论中，由一个有向无环图的顶点组成的序列，当且仅当满足一下条件时，称为该图的一个拓扑排序</p>
+<ul>
+<li>每个顶点出现且只出现一次</li>
+<li>如果顶点Ａ在序列中排在Ｂ的前面，则图中不存在从顶点B到顶点A之间的路径。</li>
+</ul>
+<p>每个AOV网都有一个或者多个拓扑排序。</p>
+<p>拓扑排序的方法：（可以采用深搜－<a href="https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note时间复杂度是$O(V+E)$）" target="_blank" rel="noopener">https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note时间复杂度是$O(V+E)$）</a></p>
+<blockquote>
+<ol>
+<li>从AOV网中选择一个没有前驱(入度为0)的顶点并输出。</li>
+<li>从网中删除该顶点和所有以它为起点的有向边。</li>
+<li>重复1和２,直到AOV图为空或者剩余结点都不为空（后者表示存在回路）。</li>
+</ol>
+</blockquote>
+<h2 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h2><p><strong>AOE</strong>网:　边表示活动，边的权值表示活动的持续时间，顶点表示入边的活动已经完成，出边的活动可以开始的状态，称为事件</p>
+<p>源点：表示整个工程的开始(入度为０)</p>
+<p>汇点：表示整个工程的结束(出度为０)</p>
+<p>关键路径：在<strong>AOE</strong>中，具有最大长度的路径。关键路径上的活动都是关键活动。</p>
+<p>关键活动:不能延期的活动。不按期完成就会影响整个工期的活动。</p>
+<p><strong>求关键路径的算法</strong></p>
+<blockquote>
+<p>vn表示汇点，v0表示源点<br>关于事件的量<br>① 事件vj的最早发生时间 ve(j):<br>    从源点v0到vj的最长路径长度。<br>② 事件vj的最迟发生时间 vl(j):<br>    保证汇点的最早发生时间不推迟的前提下，事件vj允许的最迟开始时间，等于ve(n)减去从vj到vn最长路径长度</p>
+<p>  关于活动的量<br>③ 活动ai的最早开始时间e(i):<br> 设活动ai为有向边<vj ,vk>，则 e(i) = ve(j)。<br>  ve(j)是从源点v0到vj的最长路径长度，决定了所有从vj开始的活动的最早开始时间。<br>④ 活动ai的最迟开始时间 l(i):<br>  l(i) 是在不会引起工期延误的前提下，该活动允许的最迟开始时间。设活动ai为有向边<vj ,vk>, 则 l(i) = vl(k)-weight(<j, k>)。</j,></vj></vj></p>
+<p>   关键活动： l(i)＝ e(i) 表示活动ak 是没有时间余量的关键活动</p>
+</blockquote>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2.png" alt="2" style="zoom: 33%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png" alt="1"></p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
 </search>
