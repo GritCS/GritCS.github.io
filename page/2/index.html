@@ -178,6 +178,161 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/11/BFS-DFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/11/BFS-DFS/" class="post-title-link" itemprop="url">BFS_DFS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-11 09:05:46" itemprop="dateCreated datePublished" datetime="2021-05-11T09:05:46+08:00">2021-05-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-13 07:19:58" itemprop="dateModified" datetime="2021-05-13T07:19:58+08:00">2021-05-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="广度优先搜索-BFS"><a href="#广度优先搜索-BFS" class="headerlink" title="广度优先搜索(BFS)"></a>广度优先搜索(BFS)</h1><blockquote>
+<p>​    BFS:搜索过程中，遇到分叉口时，总是先依次访问从该分叉口能直接到达的所有结点，然后再按照这些结点被访问的顺序去依次访问他们能直接到达的所有结点。以此类推，直到所有结点都被访问为止。</p>
+</blockquote>
+<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><ul>
+<li>状态：需要确定所求解问题的状态，通过状态的拓展，遍历所有状态</li>
+<li>状态拓展的方式：用队列去存储状态，每次去队列头部进行拓展(FIFO)</li>
+<li>有效状态：利用题目要求，对BFS搜索树进行剪枝。注意有效状态数的上限，是否符合复杂度要求</li>
+<li>应用场景：<ul>
+<li>解决最短路径(最优问题)</li>
+</ul>
+</li>
+</ul>
+<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h3 id="计算矩阵中块的个数"><a href="#计算矩阵中块的个数" class="headerlink" title="计算矩阵中块的个数"></a>计算矩阵中块的个数</h3><p><img src="/2021/05/11/BFS-DFS/2021-05-13_07-13.png" alt="2021-05-13_07-13"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="走出迷宫的最小步数"><a href="#走出迷宫的最小步数" class="headerlink" title="走出迷宫的最小步数"></a>走出迷宫的最小步数</h3><h3 id="玛雅人的密码"><a href="#玛雅人的密码" class="headerlink" title="玛雅人的密码"></a><a href="https://www.nowcoder.com/practice/761fc1e2f03742c2aa929c19ba96dbb0?tpId=60&amp;tqId=29484&amp;tPage=1&amp;ru=%2Fkaoyan%2Fretest%2F1001&amp;qru=%2Fta%2Ftsing-kaoyan%2Fquestion-ranking&amp;tab=answerKey" target="_blank" rel="noopener">玛雅人的密码</a></h3><blockquote>
+<p>​    题解思路:</p>
+<p>​    首先要先确定解题的状态(构造一个结构体,保存当前字符串,移位的次数)</p>
+<p>​     合适拓展状态:<br>​         出队时,把当前字符串从0-k-1,都与右侧的元素交换, 移位次数加一(另外要有一个vis保存已经遍历过的字符串,已经判断过的字符串不再入队)</p>
+<p>​    结束状态:</p>
+<p>​        找到符合要求的字符串,返回移位次数</p>
+<p>​        队列为空,返回.    </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">status</span>&#123;</span></span><br><span class="line">    <span class="built_in">string</span> cur_str;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    status(<span class="built_in">string</span> cur , <span class="keyword">int</span> n) : cur_str(cur),n(n)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; vis;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(<span class="built_in">queue</span>&lt;status&gt; sset,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!sset.empty())&#123;</span><br><span class="line">        status current = sset.front();</span><br><span class="line">        sset.pop();</span><br><span class="line">        <span class="built_in">string</span> cur = current.cur_str;</span><br><span class="line">        <span class="keyword">int</span> n = current.n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            swap(cur[i],cur[i+<span class="number">1</span>]);<span class="comment">//交换</span></span><br><span class="line">            <span class="keyword">if</span>(cur.<span class="built_in">find</span>(<span class="string">"2012"</span>)!=<span class="number">-1</span> )&#123;</span><br><span class="line">                <span class="keyword">return</span> n+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(vis.<span class="built_in">find</span>(cur)==vis.<span class="built_in">end</span>())&#123;</span><br><span class="line">                    vis.insert(cur);</span><br><span class="line">                    <span class="function">status <span class="title">next</span><span class="params">(cur,n+<span class="number">1</span>)</span></span>;</span><br><span class="line">                    sset.push(next);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(cur[i],cur[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> str;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;<span class="built_in">size</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;str;</span><br><span class="line">    <span class="keyword">if</span>(str.<span class="built_in">find</span>(<span class="string">"2012"</span>)!=<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">        <span class="built_in">queue</span>&lt;status&gt; sset;</span><br><span class="line">        <span class="function">status <span class="title">init</span><span class="params">(str,<span class="number">0</span>)</span></span>;</span><br><span class="line">        sset.push(init);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;bfs(sset,<span class="built_in">size</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">贪心算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-14 19:32:35" itemprop="dateCreated datePublished" datetime="2021-04-14T19:32:35+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-17 17:51:11" itemprop="dateModified" datetime="2021-04-17T17:51:11+08:00">2021-04-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h1><h2 id="贪心算法模板题"><a href="#贪心算法模板题" class="headerlink" title="贪心算法模板题"></a>贪心算法模板题</h2><h3 id="无重叠的子区间"><a href="#无重叠的子区间" class="headerlink" title="无重叠的子区间"></a>无重叠的子区间</h3><h4 id="435-无重叠区间"><a href="#435-无重叠区间" class="headerlink" title="435. 无重叠区间"></a><a href="https://leetcode-cn.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">435. 无重叠区间</a></h4><blockquote>
+<p>​    分析</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">1</span>]&lt;b[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">eraseOverlapIntervals</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(intervals.<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = intervals.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        sort(intervals.<span class="built_in">begin</span>(),intervals.<span class="built_in">end</span>(),cmp);<span class="comment">//选择前面的</span></span><br><span class="line">        <span class="keyword">int</span> slow=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(intervals[slow][<span class="number">1</span>]&gt;intervals[i][<span class="number">0</span>])&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                slow=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="452-用最少数量的箭引爆气球"><a href="#452-用最少数量的箭引爆气球" class="headerlink" title="452. 用最少数量的箭引爆气球"></a><a href="https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/" target="_blank" rel="noopener">452. 用最少数量的箭引爆气球</a></h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/11/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,140 +1083,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/03/16/%E6%9C%BA%E8%AF%95%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/16/%E6%9C%BA%E8%AF%95%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">机试模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-16 20:27:24" itemprop="dateCreated datePublished" datetime="2021-03-16T20:27:24+08:00">2021-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-22 10:05:52" itemprop="dateModified" datetime="2021-03-22T10:05:52+08:00">2021-03-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><p>总结写在前：</p>
-<p>线性表</p>
-<p>​    二分，归并</p>
-<h2 id="题目1："><a href="#题目1：" class="headerlink" title="题目1："></a>题目1：</h2><blockquote>
-<p>​    给定两个已经排序好的数组，找到两者所有元素中第k大的元素</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/03/16/STL%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/16/STL%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">STL函数模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-16 20:26:45 / Modified: 20:29:10" itemprop="dateCreated datePublished" datetime="2021-03-16T20:26:45+08:00">2021-03-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="STL常见函数模板"><a href="#STL常见函数模板" class="headerlink" title="STL常见函数模板"></a>STL常见函数模板</h1><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p><strong>利用二分查找的方法在一个排好序的数组中进行查找</strong></p>
-<h3 id="‘upper-bound’-amp-amp-‘lower-bound’"><a href="#‘upper-bound’-amp-amp-‘lower-bound’" class="headerlink" title="‘upper_bound’ &amp;&amp; ‘lower_bound’"></a>‘upper_bound’ &amp;&amp; ‘lower_bound’</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">upper_bound(<span class="built_in">begin</span>,<span class="built_in">end</span>,num);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">对于从小到大的排序数组，upper_bound()从数组的begin位置到end-1位置二分查找第一个大于num的数字，如果找到，则返回该数组的迭代器;反之，返回end迭代器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">对于从大到小的排序数组，upper_bound()从数组的begin位置到end-1位置二分查找第一个小于num的数字，如果找到，则返回该数组的迭代器;反之，返回end迭代器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">lower_bound(<span class="built_in">begin</span>,<span class="built_in">end</span>,num);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">对于从小到大的排序数组，upper_bound()从数组的begin位置到end-1位置二分查找第一个大于等于num的数字，如果找到，则返回该数组的迭代器;反之，返回end迭代器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">对于从大到小的排序数组，upper_bound()从数组的begin位置到end-1位置二分查找第一个小于等于num的数字，如果找到，则返回该数组的迭代器;反之，返回end迭代器</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>应用：</p>
-<p>leetcode: Remove Duplicates from Sorted Array</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><h3 id="‘unique-’"><a href="#‘unique-’" class="headerlink" title="‘unique()’"></a>‘unique()’</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unique(); <span class="comment">//用于去除相邻的重复元素（只保留一个），使用前需要对数组进行排序.</span></span><br><span class="line"><span class="comment">//实际上只是把重复元素放到数组的后方</span></span><br><span class="line"><span class="comment">//返回，去重后最后一个元素的地址</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1133,7 +1154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

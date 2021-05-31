@@ -2513,9 +2513,9 @@ w = w+ learningRate*\partial b
 <tr>
 <td>Dijkstra</td>
 <td>求解权图的单源最短路径<br>按照非递减次序依次得到各顶点的最小路径长度。<br>适用条件:不存在负权边</td>
-<td>时间复杂度是$O(n^2+e)$,与边数无关;空间复杂度$O(</td>
-<td>E</td>
-<td>)$</td>
+<td>时间复杂度是O(n^2+e),与边数无关;空间复杂度O(\</td>
+<td>E\</td>
+<td>)​</td>
 </tr>
 <tr>
 <td>Bellman-Ford算法</td>
@@ -2524,22 +2524,22 @@ w = w+ learningRate*\partial b
 <td>-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第\</td>
 <td>v\</td>
 <td>次时，仍进行松弛操作</td>
-<td>时间复杂度是$O(</td>
-<td>V</td>
-<td>*</td>
-<td>E</td>
-<td>)$，空间复杂度$O(</td>
-<td>E</td>
-<td>)$</td>
+<td>时间复杂度是O(\</td>
+<td>V\</td>
+<td>*\</td>
+<td>E\</td>
+<td>)​，空间复杂度O(\</td>
+<td>E\</td>
+<td>)​</td>
 </tr>
 <tr>
 <td>BFS</td>
 <td>求解非权图的单源最短路径<br></td>
-<td>时间复杂度:$O(n^2)$—邻接矩阵，$O(</td>
-<td>E</td>
-<td>*</td>
-<td>V</td>
-<td>)$-邻接链表</td>
+<td>时间复杂度:O(n^2)—邻接矩阵，O(\</td>
+<td>E\</td>
+<td>*\</td>
+<td>V\</td>
+<td>)​-邻接链表</td>
 </tr>
 <tr>
 <td>mark优化的Bellman-Ford算法</td>
@@ -2554,9 +2554,9 @@ w = w+ learningRate*\partial b
 <tr>
 <td>Floyd算法</td>
 <td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
-<td>多源最短路，时间复杂度$O(</td>
-<td>V</td>
-<td>^３)$</td>
+<td>多源最短路，时间复杂度O(\</td>
+<td>V\</td>
+<td>^３)​</td>
 </tr>
 </tbody>
 </table>
@@ -2581,18 +2581,18 @@ w = w+ learningRate*\partial b
 <tr>
 <td>Prim</td>
 <td>类似于Dijkstra思路，求$V_0$的单源最短路径，构成最小生成树<br>求边稠密网<br>用pre存储树结构,</td>
-<td>时间复杂度为$O(n^2)$ (使用堆优化，可以达到$O(e*logn)$)</td>
+<td>时间复杂度为O(n^2) 使用堆优化，可以达到O(e*logn)​</td>
 </tr>
 <tr>
 <td>Kruskal</td>
 <td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a href="https://zhuanlan.zhihu.com/p/34922624" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34922624</a></td>
-<td>时间复杂度$O(</td>
-<td>E</td>
-<td>log</td>
-<td>V</td>
-<td>)$,采用并查集判环－一次find() : $log</td>
-<td>V</td>
-<td>$</td>
+<td>时间复杂度O(\</td>
+<td>E\</td>
+<td>log\</td>
+<td>V\</td>
+<td>),采用并查集判环－一次find() : log\</td>
+<td>V\</td>
+<td>​</td>
 </tr>
 </tbody>
 </table>
@@ -2636,5 +2636,15 @@ w = w+ learningRate*\partial b
         <tag>数据结构</tag>
         <tag>面试</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>算法复习-相关概念</title>
+    <url>/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>数据结构-查找</title>
+    <url>/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

@@ -178,6 +178,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/09/16/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/16/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">关键点检测问题小总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-16 15:05:17" itemprop="dateCreated datePublished" datetime="2020-09-16T15:05:17+08:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/09/03/pytorch%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/03/pytorch%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">pytorch中的网络结构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-03 17:32:45 / Modified: 20:01:18" itemprop="dateCreated datePublished" datetime="2020-09-03T17:32:45+08:00">2020-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>==<strong>首先先给出一些python面向对象的一些基础知识</strong>==</p>
+<p><a href="https://blog.csdn.net/brucewong0516/article/details/79121179" target="_blank" rel="noopener">子类中初始化父类</a>的相关问题</p>
+<p><a href="https://zhuanlan.zhihu.com/p/53927068" target="_blank" rel="noopener">pytorch中网络构造的深入理解</a></p>
+<p><a href="https://pytorch-cn.readthedocs.io/zh/latest/package_references/torch-nn/" target="_blank" rel="noopener">官方中文文档</a></p>
+<h1 id="pytorch-nn-module"><a href="#pytorch-nn-module" class="headerlink" title="pytorch.nn.module"></a>pytorch.nn.module</h1><h2 id="current-layer"><a href="#current-layer" class="headerlink" title="current layer"></a>current layer</h2><p><a href="https://pytorch.org/docs/stable/nn.html" target="_blank" rel="noopener">api:</a></p>
+<h2 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h2><h3 id="torch-nn-Sequential"><a href="#torch-nn-Sequential" class="headerlink" title="torch.nn.Sequential"></a><a href="https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential" target="_blank" rel="noopener">torch.nn.Sequential</a></h3><p>A sequential container.</p>
+<p>Modules will be added to it in the order they are passed in the constructor. Alternatively, an ordered dict of modules can also be passed in.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of using Sequential</span></span><br><span class="line">model = nn.Sequential(</span><br><span class="line">          nn.Conv2d(<span class="number">1</span>,<span class="number">20</span>,<span class="number">5</span>),</span><br><span class="line">          nn.ReLU(),</span><br><span class="line">          nn.Conv2d(<span class="number">20</span>,<span class="number">64</span>,<span class="number">5</span>),</span><br><span class="line">          nn.ReLU()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<h3 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h3><p>module 保存所有需要计算的参数</p>
+<p><strong>自己在设计网络时，要通过<code>nn.Parameter()</code>加入module的优化器管理</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLiner</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__int__</span><span class="params">(self, inp, outp)</span>:</span></span><br><span class="line">        super(MyLinear , self).__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        self.w = nn.Parameter(torch.randn(outp,inp))<span class="comment">#这时生成参数不需要 requires_grad =True</span></span><br><span class="line">        self.b = nn.Parameter(torch.randn(outp))</span><br><span class="line">        </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,x )</span>:</span></span><br><span class="line">        x = x@self.w.t() +self.b</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h3 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">modules</span><br><span class="line"></span><br><span class="line">children</span><br></pre></td></tr></table></figure>
+<h3 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">device &#x3D; torch.device(&#39;cuda&#39;)</span><br><span class="line">net &#x3D; Net()</span><br><span class="line">net.to(device)</span><br></pre></td></tr></table></figure>
+<h3 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h3><h4 id="save"><a href="#save" class="headerlink" title="save"></a>save</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cn &#x3D; MyNet()</span><br><span class="line">......</span><br><span class="line">torch.save(cn.state_dict(), &quot;your_model_path.pth&quot;)</span><br></pre></td></tr></table></figure>
+<h4 id="load"><a href="#load" class="headerlink" title="load"></a>load</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cn = MyNet()</span><br><span class="line"></span><br><span class="line">state_dict = torch.load(<span class="string">"your_model_path.pth"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载训练好的参数</span></span><br><span class="line">cn.load_state_dict(state_dict)</span><br></pre></td></tr></table></figure>
+<h3 id="train-test"><a href="#train-test" class="headerlink" title="train/test"></a>train/test</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cn = cn.eval()<span class="comment">#转换成测试状态</span></span><br><span class="line">cn = cn.train()<span class="comment">#转换成 训练状态</span></span><br></pre></td></tr></table></figure>
+<p>了解基本知识之后，以下从构建自己网络的思路开始讲述</p>
+<h1 id="mynet"><a href="#mynet" class="headerlink" title="mynet"></a>mynet</h1><p><a href="https://blog.csdn.net/qq_27825451/article/details/90550890" target="_blank" rel="noopener">https://blog.csdn.net/qq_27825451/article/details/90550890</a></p>
+<p><a href="https://blog.csdn.net/qq_27825451/article/details/90705328" target="_blank" rel="noopener">https://blog.csdn.net/qq_27825451/article/details/90705328</a></p>
+<p><strong>貌似是需要自己实验forward过程</strong></p>
+<h1 id="常用的网络模块"><a href="#常用的网络模块" class="headerlink" title="常用的网络模块"></a>常用的网络模块</h1><h2 id="Flatten"><a href="#Flatten" class="headerlink" title="Flatten"></a>Flatten</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flatten</span><span class="params">(nn.Module )</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        	super(Flatten, self ).__init__()</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, input)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> input.view(input.size(<span class="number">0</span>),<span class="number">-1</span>) <span class="comment">#将数据打平作为卷积层和全连接层之间的过渡</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,257 +1067,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/27/Faster%20R-CNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/27/Faster%20R-CNN/" class="post-title-link" itemprop="url">Faster R-CNN 论文笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-27 23:23:29" itemprop="dateCreated datePublished" datetime="2020-08-27T23:23:29+08:00">2020-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-02 08:28:02" itemprop="dateModified" datetime="2020-09-02T08:28:02+08:00">2020-09-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h1><p>主要<a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">参考博文</a></p>
-<p><a href="http://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pdf" target="_blank" rel="noopener">原文地址</a></p>
-<p>在原论文的摘要中提出：</p>
-<p>在之前SPP-Net 和Fast R-CNN提出依靠region proposal algorithms去预测物体的位置会减少很多计算量，但是这也暴露了区域提议计算的瓶颈</p>
-<p>本文关键提出了RPN(region proposal network)，使用卷积层，减少参数的数量，有较快的速度和较高的准确率</p>
-<p>RPN ==shares full-image convolutional features== with the detection network, thus enabling nearly ==cost-free== region proposals. </p>
-<p>​    An RPN is a fully-convolutional network that simultaneously ==predicts object bounds and objectness scores== at each position. RPNs are trained end-to-end to generate highquality region proposals, which are used by Fast R-CNN for detection.     </p>
-<p>softmax交叉熵损失函数：<a href="https://blog.csdn.net/chaipp0607/article/details/73392175" target="_blank" rel="noopener">https://blog.csdn.net/chaipp0607/article/details/73392175</a></p>
-<h2 id="网络框架"><a href="#网络框架" class="headerlink" title="网络框架"></a>网络框架</h2><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_16-35.png" alt="2020-08-28_16-35"></p>
-<p>主要分为四部分：</p>
-<ol>
-<li><p>Conv layers:　作为一种CNN网络目标检测方法，使用conv+pooling+relu来提取feature maps，被之后的RPN 和全连接层共享</p>
-</li>
-<li><p>RPN(region proposal network )</p>
-<p>​    ==用于生成region proposals==，该层主要工作：</p>
-<p>​        a. 通过softmax判断anchors属于positive , negative，</p>
-<p>​        b. 再利用bounding box regression 修正anchors获得较为准确的            proposals</p>
-</li>
-<li><p>roi pooling</p>
-<p>​    该层收集输入的feature maps和proposals，综合这些信息提区proposal feature maps，</p>
-</li>
-<li><p>classification </p>
-<p>​    利用 proposal feature maps 计算 proposal 的类别，同时再次 bounding box regression 获得检测框最终的精确位置</p>
-</li>
-</ol>
-<p>下图为python的VGG16模型中的faster_rcnn_test.pt网络结构</p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_16-34.png" alt="2020-08-28_16-34"></p>
-<h3 id="Conv-layers"><a href="#Conv-layers" class="headerlink" title="Conv layers"></a>Conv layers</h3><p>在Conv layers中</p>
-<ol>
-<li>所有的conv层都是　kernel_size = 3, pad =1 ,stride =1</li>
-<li>所有的pooling层都是　kernel_size =2, pad =0, stride =2</li>
-</ol>
-<p>导致　Conv layers中conv层不改变输入输出矩阵的大小，只有在pooling层中M×N的矩阵变成(M/2)×(N/2)的大小。所以从Conv layers输出的矩阵的尺寸为M×N</p>
-<p>目的是为了在ROI Pooling的输入层中proposal（M×N)与 feature maps尺寸一致</p>
-<h3 id="Region-Proposal-Network"><a href="#Region-Proposal-Network" class="headerlink" title="Region Proposal Network"></a>Region Proposal Network</h3><p>这一层的主要任务： 获取有效的proposals，完成目标定位</p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_17-42.png" alt="2020-08-28_17-42"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_18-50.png" alt="2020-08-28_18-50"></p>
-<p><strong>主要流程：生成 anchors -&gt; softmax 分类器提取 positvie anchors -&gt; bbox reg 回归 positive anchors -&gt; Proposal Layer 生成 proposals</strong></p>
-<p><strong>这是主要的原理就是：利用3×３的卷积核的中心作为anchor的中心，在每个点设置9个anchor作为候选区，之后再有cnn来判断anchor是negitive or positive anchor</strong>，目前这里只是二分类,而且后面还有 2 次 bounding box regression 可以修正检测框位置</p>
-<h4 id="1-生成anchors"><a href="#1-生成anchors" class="headerlink" title="1.生成anchors"></a>1.生成anchors</h4><p>略(思路是比较简单的,可以参考<a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">博客)</a></p>
-<h4 id="2-softmax分类器提取positive-anchors"><a href="#2-softmax分类器提取positive-anchors" class="headerlink" title="2.softmax分类器提取positive anchors"></a>2.softmax分类器提取positive anchors</h4><p>输入：anchors，输出:rpn_cls_score</p>
-<h4 id="3-bbox-回归"><a href="#3-bbox-回归" class="headerlink" title="3.bbox 回归"></a>3.bbox 回归</h4><h6 id="bounding-box-regression原理"><a href="#bounding-box-regression原理" class="headerlink" title="bounding box regression原理"></a>bounding box regression原理</h6><p>大致思想：我们目标是像通过　bounding box regression，对anchors进行调整，让他接近GT(但是我们anchor的选取按照固定的方法，没有结合GT的位置信息)；所以我们学习的是anchors和GT之间变换(每张图片的GT是固定的，而且anchors的选取也是固定的)</p>
-<p>​    所以本文学习的是预测的窗口(anchor)=&gt;GT窗口之间的一种变换（先平移后进行缩放）(如果相差比较小，即positive可以看作是线性回归模型)</p>
-<p>​    并设计相应的loss函数对其进行约束</p>
-<p><strong>原理</strong></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_18-29.png" alt="2020-08-28_18-29"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_18-35.png" alt="2020-08-28_18-35"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_18-36.png" alt="2020-08-28_18-36"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_21-22.png" alt="2020-08-28_21-22"></p>
-<p>而在原论文中是这样子记录的</p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_21-21.png" alt></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-51.png" alt="2020-08-28_20-51"></p>
-<p>==<strong>在bbox-regression 中要训练的参数就是，我们需要预测的box(x,y,w,h)</strong>==</p>
-<h4 id="的4-proposal-layer-生成-proposals"><a href="#的4-proposal-layer-生成-proposals" class="headerlink" title="的4. proposal layer 生成 proposals"></a>的4. proposal layer 生成 proposals</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">根据bbox回归得到的[dx(A), dy(A), dw(A) ,dh(A)]对所有的anchors进行修正和微调</span><br><span class="line">按照输入的positive softmax scores　由大到小排序anchors，提取前pre_nms_topN，即选择较好的修正后的　positive anchors</span><br><span class="line">限定超出图像边界的 positive anchors 为图像边界，防止后续 roi pooling 时 proposal 超出图像边界</span><br><span class="line">剔除尺寸非常小的 positive anchors</span><br><span class="line">对剩余的 positive anchors 进行 NMS（nonmaximum suppression）</span><br></pre></td></tr></table></figure>
-<p>注意由于第三步生成的proposal要和原图像进行对比，所以它的尺寸是M*N</p>
-<h6 id="NMS：非极大值抑制"><a href="#NMS：非极大值抑制" class="headerlink" title="NMS：非极大值抑制"></a><a href="https://zhuanlan.zhihu.com/p/37489043" target="_blank" rel="noopener">NMS：非极大值抑制</a></h6><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_19-07.png" alt="2020-08-28_19-07"></p>
-<p>消除冗余的边界框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">根据置信度得分进行排序</span><br><span class="line">选择置信度最高的比边界框添加到最终输出列表中，将其从边界框列表中删除</span><br><span class="line">计算所有边界框的面积</span><br><span class="line">计算置信度最高的边界框与其它候选框的IoU。</span><br><span class="line">删除IoU大于阈值的边界框</span><br><span class="line">重复上述过程，直至边界框列表为空</span><br></pre></td></tr></table></figure>
-<p>​    </p>
-<h3 id="RoI-Pooling"><a href="#RoI-Pooling" class="headerlink" title="RoI Pooling"></a>RoI Pooling</h3><p>是一个简单的SPP-Net, 属于卷积层和连接层之间的过渡层，将大小不一的proposals变成固定大小(之后classifier　模块是利用全连接层进行分类，所以需要固定大小)</p>
-<p>存在其他方法：crop，warp,但是他们会破坏图像原有信息</p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_21-44.png" alt="2020-08-28_21-44"></p>
-<h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_19-14.png" alt="2020-08-28_19-14"></p>
-<h2 id="loss函数"><a href="#loss函数" class="headerlink" title="loss函数"></a>loss函数</h2><p>在训练过程和bbox回归中都有涉及</p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-51.png" alt="2020-08-28_20-51"></p>
-<h2 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h2><h3 id="交替训练过程"><a href="#交替训练过程" class="headerlink" title="交替训练过程"></a>交替训练过程</h3><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_19-38.png" alt="2020-08-28_19-38"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_19-40.png" alt="2020-08-28_19-40"></p>
-<p><strong>公共卷积层的不是已经训练好了么？？</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">参数说明：</span><br><span class="line">rpn_cls_prob_reshape:　positive vs negative anchors 分类器结果 </span><br><span class="line"></span><br><span class="line"> rpn_bbox_pred:　对应的 bbox reg 的  变换量[dx(A,dy(A),dw(A),dh(A))]</span><br><span class="line"> </span><br><span class="line">im_info:  对于一副任意大小 PxQ 图像，传入 Faster RCNN 前首先 reshape 到固定 MxN，im_info&#x3D;[M, N, scale_factor] 则保存了此次缩放的所有信息。这样做的是为了方便之后训练网络[历史遗留问题]</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-08.png" alt="2020-08-28_20-08"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-26.png" alt="2020-08-28_20-26"></p>
-<h4 id="rpn-train1"><a href="#rpn-train1" class="headerlink" title="rpn-train1"></a>rpn-train1</h4><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-25.png" alt="2020-08-28_20-25"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-29.png" alt="2020-08-28_20-29"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-02.png" alt="2020-08-28_20-02"></p>
-<h4 id="RPN-test"><a href="#RPN-test" class="headerlink" title="RPN-test"></a>RPN-test</h4><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-11.png" alt="2020-08-28_20-11"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-02_1.png" alt="2020-08-28_20-02_1"></p>
-<h4 id="faster-rcnn"><a href="#faster-rcnn" class="headerlink" title="faster rcnn"></a>faster rcnn</h4><p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-10.png" alt="2020-08-28_20-10"></p>
-<p><img src="/2020/08/27/Faster%20R-CNN/2020-08-28_20-15.png" alt="2020-08-28_20-15"></p>
-<p>第二轮训练方式与第一轮大同小异。</p>
-<h3 id="端到端方式"><a href="#端到端方式" class="headerlink" title="端到端方式"></a>端到端方式</h3><h2 id="仍然存在的问题"><a href="#仍然存在的问题" class="headerlink" title="仍然存在的问题"></a>仍然存在的问题</h2><p>１。读不懂代码，意味不知道网络需要什么样子的输入以及标注,而且看论文只能看个大概，不是特别清楚得了解每层网络之间的尺寸，维度等等的变换</p>
-<p>２.不是特别明白训练的过程</p>
-<p>３.不是特别明白　这里关于faster-rcnn　和　rpn　之间的参数共享的问题</p>
-<ol>
-<li>要训练的参数都有哪些？？　反向传播，参数更新的过程</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/" class="post-title-link" itemprop="url">目标检测综述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-27 23:23:17" itemprop="dateCreated datePublished" datetime="2020-08-27T23:23:17+08:00">2020-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-30 19:26:10" itemprop="dateModified" datetime="2020-08-30T19:26:10+08:00">2020-08-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">目标检测</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="目标检测summary"><a href="#目标检测summary" class="headerlink" title="目标检测summary"></a>目标检测summary</h2><p>本文在 其他优秀博主的基础上进行 修改和总结，主要描述目标检测的问题以及解决方法</p>
-<p><img src="/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/20180502184712966.jpg" alt="20180502184712966"></p>
-<p>目标检测的任务本质只有两个问题：图像识别，定位</p>
-<p>这里着重介绍一下目标检测的评价方式</p>
-<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><p><img src="/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/2020-08-30_19-20.png" alt="2020-08-30_19-20"></p>
-<p><img src="/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/2020-08-30_19-20_1.png" alt="2020-08-30_19-20_1"></p>
-<p><img src="/2020/08/27/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/2020-08-30_19-20_2.png" alt="2020-08-30_19-20_2"></p>
-<p><strong>数据集不平衡时， precision和recall等指标就不具备参考性</strong>，所以引出了AP<br>，它的<a href="https://zhuanlan.zhihu.com/p/56961620" target="_blank" rel="noopener">相关介绍用例子介绍比较合适</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1240,7 +1138,7 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
