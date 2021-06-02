@@ -2697,4 +2697,108 @@ w = w+ learningRate*\partial b
         <tag>面试</tag>
       </tags>
   </entry>
+  <entry>
+    <title>os-文件系统</title>
+    <url>/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="unix文件系统的结构"><a href="#unix文件系统的结构" class="headerlink" title="unix文件系统的结构"></a>unix文件系统的结构</h2><p>unix为了优化内存空间的使用，把用户打开文件表整合到一起，整个系统共用一张用户打开文件表 ( u_file ).　当进程打开文件多时，可以多占用一些表目，打开文件少时，相应的空闲空间可以被其他进程使用。对于同一个文件，在用户打开文件表中可能对应多个表项。</p>
+]]></content>
+      <tags>
+        <tag>面试</tag>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面经问题汇总</title>
+    <url>/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>[6.2 浙大吴健老师]</p>
+<ol>
+<li><p>解释一下SVＤ，以及它的应用场景</p>
+<p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
+<p>奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。</p>
+<ul>
+<li><p>首先回顾一下特征值和特征向量　$Ax = \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的特征向量。</p>
+<ul>
+<li><p>利用特征值和特征向量可以将矩阵Ａ进行分解，其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵</p>
+<script type="math/tex; mode=display">
+A = W \sum W^{-1}</script></li>
+<li><p>其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵。</p>
+</li>
+<li><p>Ｗ经过标准化之后，得到标准正交基。</p>
+</li>
+</ul>
+</li>
+<li><p>SVD是对非矩阵进行特征分解</p>
+<ul>
+<li><script type="math/tex; mode=display">
+A_{m\times n} = U_{m\times m} \sum_{m \times n} V^{T}_{n \times n} \approx　U_{m\times k} \sum_{k \times k} V^{T}_{k\times n}</script></li>
+<li><p><img src="https://www.zhihu.com/equation?tex=U" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+m" alt="[公式]"> 的矩阵， <img src="https://www.zhihu.com/equation?tex=%5CSigma" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+n" alt="[公式]"> 的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值</p>
+</li>
+<li><p><img src="https://www.zhihu.com/equation?tex=A%5E%7BT%7DA" alt="[公式]"> 的特征向量组成的就是我们SVD中的V矩阵，而<img src="https://www.zhihu.com/equation?tex=AA%5E%7BT%7D" alt="[公式]"> 的特征向量组成的就是我们SVD中的U矩阵</p>
+</li>
+</ul>
+</li>
+<li><p>图示</p>
+</li>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
+</li>
+<li><p>SVD的性质</p>
+<ul>
+<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
+<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
+<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先验概率和后验概率之间的区别</p>
+<p><a href="https://blog.csdn.net/genghaihua/article/details/92194362" target="_blank" rel="noopener">[l1]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82" target="_blank" rel="noopener">[l2]</a></p>
+<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：</p>
+<script type="math/tex; mode=display">
+P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
+<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
+<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
+</li>
+</ol>
+<ol>
+<li><p>中值定理</p>
+<p><a href="https://zhuanlan.zhihu.com/p/47436090" target="_blank" rel="noopener">[link1]</a></p>
+<p>[link2]</p>
+<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
+<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
+</li>
+<li><p>简单介绍一下　中心极限定理</p>
+</li>
+</ol>
+<ol>
+<li><p>SVM大致的内容</p>
+<p><a href="https://zhuanlan.zhihu.com/p/31886934" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31886934</a></p>
+<p>也可以参考西瓜书的内容，讲的很详细</p>
+</li>
+<li><p>LDA(线性判别分析算法)</p>
+<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
+</li>
+<li><p>经典机器学习算法</p>
+<ul>
+<li>线性回归</li>
+<li>logistic回归</li>
+<li>LDA，仅限于二分类</li>
+<li>决策树</li>
+<li>朴素bayes</li>
+<li>KNN　(K最近邻算法)</li>
+<li>学习向量量化  (LVQ)</li>
+<li>SVM</li>
+<li>袋装法//随机森林</li>
+<li>Boosting 和 AdaBoost</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
 </search>

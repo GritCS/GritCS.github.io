@@ -178,6 +178,221 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">面经问题汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-01 09:36:08" itemprop="dateCreated datePublished" datetime="2021-06-01T09:36:08+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-02 17:03:50" itemprop="dateModified" datetime="2021-06-02T17:03:50+08:00">2021-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>[6.2 浙大吴健老师]</p>
+<ol>
+<li><p>解释一下SVＤ，以及它的应用场景</p>
+<p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
+<p>奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。</p>
+<ul>
+<li><p>首先回顾一下特征值和特征向量　$Ax = \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的特征向量。</p>
+<ul>
+<li><p>利用特征值和特征向量可以将矩阵Ａ进行分解，其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵</p>
+<script type="math/tex; mode=display">
+A = W \sum W^{-1}</script></li>
+<li><p>其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵。</p>
+</li>
+<li><p>Ｗ经过标准化之后，得到标准正交基。</p>
+</li>
+</ul>
+</li>
+<li><p>SVD是对非矩阵进行特征分解</p>
+<ul>
+<li><script type="math/tex; mode=display">
+A_{m\times n} = U_{m\times m} \sum_{m \times n} V^{T}_{n \times n} \approx　U_{m\times k} \sum_{k \times k} V^{T}_{k\times n}</script></li>
+<li><p><img src="https://www.zhihu.com/equation?tex=U" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+m" alt="[公式]"> 的矩阵， <img src="https://www.zhihu.com/equation?tex=%5CSigma" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+n" alt="[公式]"> 的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值</p>
+</li>
+<li><p><img src="https://www.zhihu.com/equation?tex=A%5E%7BT%7DA" alt="[公式]"> 的特征向量组成的就是我们SVD中的V矩阵，而<img src="https://www.zhihu.com/equation?tex=AA%5E%7BT%7D" alt="[公式]"> 的特征向量组成的就是我们SVD中的U矩阵</p>
+</li>
+</ul>
+</li>
+<li><p>图示</p>
+</li>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
+</li>
+<li><p>SVD的性质</p>
+<ul>
+<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
+<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
+<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先验概率和后验概率之间的区别</p>
+<p><a href="https://blog.csdn.net/genghaihua/article/details/92194362" target="_blank" rel="noopener">[l1]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82" target="_blank" rel="noopener">[l2]</a></p>
+<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：</p>
+<script type="math/tex; mode=display">
+P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
+<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
+<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
+</li>
+</ol>
+<ol>
+<li><p>中值定理</p>
+<p><a href="https://zhuanlan.zhihu.com/p/47436090" target="_blank" rel="noopener">[link1]</a></p>
+<p>[link2]</p>
+<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
+<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
+</li>
+<li><p>简单介绍一下　中心极限定理</p>
+</li>
+</ol>
+<ol>
+<li><p>SVM大致的内容</p>
+<p><a href="https://zhuanlan.zhihu.com/p/31886934" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31886934</a></p>
+<p>也可以参考西瓜书的内容，讲的很详细</p>
+</li>
+<li><p>LDA(线性判别分析算法)</p>
+<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
+</li>
+<li><p>经典机器学习算法</p>
+<ul>
+<li>线性回归</li>
+<li>logistic回归</li>
+<li>LDA，仅限于二分类</li>
+<li>决策树</li>
+<li>朴素bayes</li>
+<li>KNN　(K最近邻算法)</li>
+<li>学习向量量化  (LVQ)</li>
+<li>SVM</li>
+<li>袋装法//随机森林</li>
+<li>Boosting 和 AdaBoost</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">os-文件系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-01 09:35:28" itemprop="dateCreated datePublished" datetime="2021-06-01T09:35:28+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-02 17:02:37" itemprop="dateModified" datetime="2021-06-02T17:02:37+08:00">2021-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="unix文件系统的结构"><a href="#unix文件系统的结构" class="headerlink" title="unix文件系统的结构"></a>unix文件系统的结构</h2><p>unix为了优化内存空间的使用，把用户打开文件表整合到一起，整个系统共用一张用户打开文件表 ( u_file ).　当进程打开文件多时，可以多占用一些表目，打开文件少时，相应的空闲空间可以被其他进程使用。对于同一个文件，在用户打开文件表中可能对应多个表项。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -959,183 +1174,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/14/AVL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/14/AVL/" class="post-title-link" itemprop="url">AVL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-14 20:35:56" itemprop="dateCreated datePublished" datetime="2021-05-14T20:35:56+08:00">2021-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-15 09:31:19" itemprop="dateModified" datetime="2021-05-15T09:31:19+08:00">2021-05-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">height</span>;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),<span class="built_in">height</span>(<span class="number">1</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">find</span><span class="params">(Node* root ,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val == val)&#123;</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (root-&gt;val&gt;val)&#123;</span><br><span class="line">        </span><br><span class="line">		<span class="built_in">find</span>(root-&gt;left , val);</span><br><span class="line">        </span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">find</span>(root-&gt;right,val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><h4 id="左旋操作"><a href="#左旋操作" class="headerlink" title="左旋操作"></a>左旋操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">L</span><span class="params">(Node*&amp; root)</span></span>&#123;</span><br><span class="line">    Node* temp = root-&gt;right;</span><br><span class="line">    root-&gt;right = temp-&gt;left;</span><br><span class="line">    temp-&gt;left = root;</span><br><span class="line">    updateHeight(root);</span><br><span class="line">    updateHeight(temp);</span><br><span class="line">    root = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="右旋操作"><a href="#右旋操作" class="headerlink" title="右旋操作"></a>右旋操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">R</span><span class="params">(Node* &amp; root)</span></span>&#123;<span class="comment">//指针引用型</span></span><br><span class="line">    Node* temp = root-&gt;left;</span><br><span class="line">    root -&gt;left = temp-&gt;right;</span><br><span class="line">    temp-&gt;right = root;</span><br><span class="line">    updateHeight(root);</span><br><span class="line">    updateHeight(temp);</span><br><span class="line">    root = temp;<span class="comment">//根结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 左右子树高度的差值称为该结点的平衡因子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getBalanceFactor</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getHeight(root-&gt;left) - getHeight(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateHeight</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    root-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>(getHeight(root-&gt;left),getHeight(root-&gt;right))+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node*&amp; root, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        root = <span class="keyword">new</span> Node(v);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val&gt;v)&#123;<span class="comment">//向左子树插</span></span><br><span class="line">            insert(root-&gt;left,v);<span class="comment">//</span></span><br><span class="line">            <span class="keyword">if</span>(getBalanceFactor(root)==<span class="number">2</span>)&#123;<span class="comment">//如果不平衡,向左插,只会增加1</span></span><br><span class="line">                <span class="keyword">if</span>(getBalanceFactor(root-&gt;left)==<span class="number">1</span>)&#123;<span class="comment">//LL型</span></span><br><span class="line">                    R(root);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(getBalanceFactor(root-&gt;left)==<span class="number">-1</span>)&#123;</span><br><span class="line">                    L(root-&gt;left);</span><br><span class="line">                    R(root);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            insert(root-&gt;right,v);</span><br><span class="line">            <span class="keyword">if</span>(getBalanceFactor(root)==<span class="number">-2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(getBalanceFactor(root-&gt;right)==<span class="number">-1</span>)&#123;<span class="comment">//RR</span></span><br><span class="line">                    L(root);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(getBalanceFactor(root-&gt;right)==<span class="number">1</span>)&#123;<span class="comment">//RL</span></span><br><span class="line">                    R(root-&gt;right);</span><br><span class="line">                    L(root);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">       updateHeight(root);<span class="comment">//插入之后记得update一下高度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>之前就是插入之后,忘记updateHeight(),出错了</strong></p>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>&lt;==================较为复杂,之后再填坑======&gt;</p>
-<h3 id="建立AVL"><a href="#建立AVL" class="headerlink" title="建立AVL"></a>建立AVL</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">CreatAVL</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nodes)</span></span>&#123;</span><br><span class="line">    Node* root = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> = nodes.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        insert(root,nodes[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/14/pat1043/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/14/pat1043/" class="post-title-link" itemprop="url">pat1043</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-05-14 17:59:37 / Modified: 20:32:54" itemprop="dateCreated datePublished" datetime="2021-05-14T17:59:37+08:00">2021-05-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="题目"><a href="#题目" class="headerlink" title="[题目]"></a>[题目]</h3><blockquote>
-<p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805440976633856" target="_blank" rel="noopener">[link]</a>大致意思是判断一个插入序列是否是合法的BST/镜像BST先根序列,如果是的话,求它的后根</p>
-</blockquote>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="[基本思路]"></a>[基本思路]</h3><ol>
-<li>首先利用递归判断是否是合法的BST或者镜像BST的先根遍历</li>
-</ol>
-<p>​    原理: root是第一个元素, 比root小的 // 比root大的 聚集在一起</p>
-<p>方法2:也可以把它作为插入序列,跟据他构建一个BST树,再求这个新建的BST的先根序列,如果一致,则之前那个插入序列就是先根序列.</p>
-<ol>
-<li>判断出如果是合法的BST前缀,按照此作为插入序列,构造BST</li>
-</ol>
-<p>​        如果是合法的镜像BST前缀,按照次作为插入序列,构造镜像BST</p>
-<ol>
-<li>跟据构造好的BST/镜像BST 求其后根遍历</li>
-</ol>
-<p>[代码]</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///还是只能过部分测试样例,==,害,好难嗷</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 之后有修改好了,最初的那部分问题--出现在如果 出现和根结点值相同的结点,</span></span><br><span class="line"><span class="comment"> *  应该是放在右子树的一个结点, 而不是右子树(/=\),</span></span><br><span class="line"><span class="comment"> *  因为插入顺序是先根遍历顺序,如果把和根结点相同的点归为右子树,它将会作为右子树的根(它会向出现)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1010</span>;</span><br><span class="line"><span class="keyword">int</span> pre[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是合法的先根序列</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span>  <span class="title">isBST</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(right&lt;=left)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> root = pre[left];</span><br><span class="line">    <span class="keyword">int</span> mid = right;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=left+<span class="number">1</span>;i&lt;right;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre[i] &gt;root)&#123;</span><br><span class="line">            mid = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=mid ; i&lt;right;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre[i]&lt;root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isBST(left+<span class="number">1</span>,mid) &amp;&amp; isBST(mid,right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMIBST</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(right&lt;=left)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> root = pre[left];</span><br><span class="line">    <span class="keyword">int</span> mid = right;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=left+<span class="number">1</span>;i&lt;right;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre[i]&lt;=root)&#123;<span class="comment">//左子树</span></span><br><span class="line">            mid=i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=mid;i&lt;right;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre[i]&gt;root)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isMIBST(left+<span class="number">1</span>,mid) &amp;&amp; isMIBST(mid,right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node*&amp; root,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        root = <span class="keyword">new</span> Node(val);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(val&gt;=root-&gt;val)&#123;</span><br><span class="line">            insert(root-&gt;right,val);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            insert(root-&gt;left,val);<span class="comment">//相等数值的判断情况</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertMI</span><span class="params">(Node*&amp; root,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        root = <span class="keyword">new</span> Node(val);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(val&gt;=root-&gt;val)&#123;</span><br><span class="line">            insertMI(root-&gt;left,val);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            insertMI(root-&gt;right,val);<span class="comment">//相等数值的判断情况</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">creatBST</span><span class="params">(<span class="keyword">int</span> nodes[],<span class="keyword">int</span> <span class="built_in">size</span>)</span></span>&#123;</span><br><span class="line">    Node* root = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        insert(root,nodes[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">creatMIBST</span><span class="params">(<span class="keyword">int</span> nodes[],<span class="keyword">int</span> <span class="built_in">size</span>)</span></span>&#123;</span><br><span class="line">    Node* root = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        insertMI(root,nodes[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postO</span><span class="params">(Node* root,Node* <span class="keyword">final</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        postO(root-&gt;left,<span class="keyword">final</span>);</span><br><span class="line">        postO(root-&gt;right,<span class="keyword">final</span>);</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">final</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;root-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;root-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;count;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;pre[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(pre[<span class="number">1</span>]&lt;pre[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">if</span>(isBST(<span class="number">0</span>,count))&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            Node* root = creatBST(pre,count);</span><br><span class="line">            postO(root,root);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isMIBST(<span class="number">0</span>,count))&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            Node* root = creatMIBST(pre,count);<span class="comment">//跟据MIBST构造一个数</span></span><br><span class="line">            postO(root,root);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="涉及的数据结构知识点"><a href="#涉及的数据结构知识点" class="headerlink" title="涉及的数据结构知识点:"></a><strong>涉及的数据结构知识点:</strong></h3><h4 id="BST"><a href="#BST" class="headerlink" title="BST"></a>BST</h4><ol>
-<li><p><strong>如何跟据插入序列构建一个BST树</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node*&amp;  root,<span class="keyword">int</span> val)</span></span>&#123;<span class="comment">//注意这里是引用</span></span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        root = <span class="keyword">new</span> Node(val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(val&lt;root-&gt;val)&#123;</span><br><span class="line">            insert(root-&gt;left, val);<span class="comment">//插入左子树</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            insert(root-&gt;right,val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">creatBST</span><span class="params">(<span class="keyword">int</span> nodes[],<span class="keyword">int</span> <span class="built_in">size</span>)</span></span>&#123;</span><br><span class="line">    Node* root = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        insert(root,nodes[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li>(构建一个镜像BST树的方法是相同的,在镜像BST中,右子树都小于根, 左子树都大于等于根)</li>
-<li>可以把BST的先根遍历做为插入序列构造BST,得到的BST的先根遍历序列和之前的一样</li>
-</ol>
-<ol>
-<li><p>BST的中根遍历序列是递增的</p>
-</li>
-<li><p>BST的删除操作</p>
-<p>//核心思想:如果N为要删除的结点, 用结点N的前驱Pre 或者 后继 next 来替换N</p>
-<p>//前驱为BST树中左子树最右的结点</p>
-<p>//后继为BST树中右子树最左的结点</p>
-<blockquote>
-<p>删除值为X的结点</p>
-<p>1.当前root为空,说明不存在值为x的结点,直接返回</p>
-<p>2.如果当前root的权值恰好为给定的权值x,root即为我们要删除的结点</p>
-<p>​    1)如果root不存在左右孩子(叶子),则直接删除.</p>
-<p>​    2)如果root只存在左子树,则用它的前驱pre覆盖root,在左子树中删除结点pre</p>
-<p>​    3)如果root存在左右子树,则在右子树中寻找后继next,然后让next覆盖root,接着在左子树中删除pre</p>
-<p>3.如果当前root的值大于给定的权值x,从root的左子树中寻找要删除的结点</p>
-<p>4.如果当前root的值小于给定的权值x,从root的右子树寻找</p>
-</blockquote>
-</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">findMax</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(root-&gt;right != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">        root = root-&gt;right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">findMin</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(root-&gt;left != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">        root = root-&gt;left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(Node* &amp; root, <span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//注意这里是引用</span></span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"fail to find x"</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (root-&gt; val == x)&#123;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;right== <span class="literal">nullptr</span> &amp;&amp; root-&gt;left == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="comment">//删除结点,没有释放空间</span></span><br><span class="line">            root=<span class="literal">nullptr</span>;<span class="comment">//把root设置为null,父结点就找不到了</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;right == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            Node* pre  = findMax(root-&gt;left); <span class="comment">//这里只是得到pre的地址,并不能得到pre的父结点的左右子树指针</span></span><br><span class="line">            root-&gt;val = pre-&gt;val;</span><br><span class="line">           	deleteNode(root-&gt;left,pre-&gt;left);<span class="comment">//在左子树中删除结点pre</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">             Node* next  = findMin(root-&gt;right); <span class="comment">//这里只是得到pre的地址,并不能得到pre的父结点的左右子树指针</span></span><br><span class="line">            root-&gt;val = next-&gt;val;</span><br><span class="line">           	deleteNode(root-&gt;right,next-&gt;val);<span class="comment">//在左子树中删除结点pre</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;val&gt;x)&#123;</span><br><span class="line">        deleteNode(root-&gt;right,x);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        deleteNode(root-&gt;left,x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1207,7 +1245,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1220,7 +1258,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
