@@ -209,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-02 17:03:50" itemprop="dateModified" datetime="2021-06-02T17:03:50+08:00">2021-06-02</time>
+                <time title="Modified: 2021-06-02 17:20:09" itemprop="dateModified" datetime="2021-06-02T17:20:09+08:00">2021-06-02</time>
               </span>
 
           
@@ -228,28 +228,8 @@
 <li><p>解释一下SVＤ，以及它的应用场景</p>
 <p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
-<p>奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。</p>
 <ul>
-<li><p>首先回顾一下特征值和特征向量　$Ax = \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的特征向量。</p>
-<ul>
-<li><p>利用特征值和特征向量可以将矩阵Ａ进行分解，其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵</p>
-<script type="math/tex; mode=display">
-A = W \sum W^{-1}</script></li>
-<li><p>其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵。</p>
-</li>
-<li><p>Ｗ经过标准化之后，得到标准正交基。</p>
-</li>
-</ul>
-</li>
-<li><p>SVD是对非矩阵进行特征分解</p>
-<ul>
-<li><script type="math/tex; mode=display">
-A_{m\times n} = U_{m\times m} \sum_{m \times n} V^{T}_{n \times n} \approx　U_{m\times k} \sum_{k \times k} V^{T}_{k\times n}</script></li>
-<li><p><img src="https://www.zhihu.com/equation?tex=U" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+m" alt="[公式]"> 的矩阵， <img src="https://www.zhihu.com/equation?tex=%5CSigma" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+n" alt="[公式]"> 的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值</p>
-</li>
-<li><p><img src="https://www.zhihu.com/equation?tex=A%5E%7BT%7DA" alt="[公式]"> 的特征向量组成的就是我们SVD中的V矩阵，而<img src="https://www.zhihu.com/equation?tex=AA%5E%7BT%7D" alt="[公式]"> 的特征向量组成的就是我们SVD中的U矩阵</p>
-</li>
-</ul>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
 </li>
 <li><p>图示</p>
 </li>

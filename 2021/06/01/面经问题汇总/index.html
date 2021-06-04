@@ -20,27 +20,22 @@
     var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link] 奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。  首先回顾一下特征值和特征向量　$Ax &#x3D; \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的">
+  <meta name="description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面经问题汇总">
 <meta property="og:url" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link] 奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。  首先回顾一下特征值和特征向量　$Ax &#x3D; \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=U">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=m%5Ctimes+m">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5CSigma">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=m%5Ctimes+n">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=A%5E%7BT%7DA">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=AA%5E%7BT%7D">
+<meta property="og:description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
+<meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png">
 <meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png">
 <meta property="article:published_time" content="2021-06-01T01:36:08.000Z">
-<meta property="article:modified_time" content="2021-06-02T09:03:50.270Z">
+<meta property="article:modified_time" content="2021-06-02T09:20:09.639Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.zhihu.com/equation?tex=U">
+<meta name="twitter:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
 
 <link rel="canonical" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
 
@@ -215,7 +210,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-02 17:03:50" itemprop="dateModified" datetime="2021-06-02T17:03:50+08:00">2021-06-02</time>
+                <time title="Modified: 2021-06-02 17:20:09" itemprop="dateModified" datetime="2021-06-02T17:20:09+08:00">2021-06-02</time>
               </span>
 
           
@@ -234,28 +229,8 @@
 <li><p>解释一下SVＤ，以及它的应用场景</p>
 <p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
-<p>奇异值分解是在机器学习领域广泛应用的算法，可以用于降维算法中的特征分解，还可以用于推荐系统，自然语言处理等领域。</p>
 <ul>
-<li><p>首先回顾一下特征值和特征向量　$Ax = \lambda x$ ,其中Ａ是$n \times n$的矩阵，ｘ是ｎ维向量，$\lambda$是矩阵Ａ的一个特征值，ｘ是特征值$\lambda$对应的特征向量。</p>
-<ul>
-<li><p>利用特征值和特征向量可以将矩阵Ａ进行分解，其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵</p>
-<script type="math/tex; mode=display">
-A = W \sum W^{-1}</script></li>
-<li><p>其中Ｗ就是ｎ个特征向量所张成的n*n维矩阵，Σ为这n个特征值为主对角线的n×n维矩阵。</p>
-</li>
-<li><p>Ｗ经过标准化之后，得到标准正交基。</p>
-</li>
-</ul>
-</li>
-<li><p>SVD是对非矩阵进行特征分解</p>
-<ul>
-<li><script type="math/tex; mode=display">
-A_{m\times n} = U_{m\times m} \sum_{m \times n} V^{T}_{n \times n} \approx　U_{m\times k} \sum_{k \times k} V^{T}_{k\times n}</script></li>
-<li><p><img src="https://www.zhihu.com/equation?tex=U" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+m" alt="[公式]"> 的矩阵， <img src="https://www.zhihu.com/equation?tex=%5CSigma" alt="[公式]"> 是一个 <img src="https://www.zhihu.com/equation?tex=m%5Ctimes+n" alt="[公式]"> 的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值</p>
-</li>
-<li><p><img src="https://www.zhihu.com/equation?tex=A%5E%7BT%7DA" alt="[公式]"> 的特征向量组成的就是我们SVD中的V矩阵，而<img src="https://www.zhihu.com/equation?tex=AA%5E%7BT%7D" alt="[公式]"> 的特征向量组成的就是我们SVD中的U矩阵</p>
-</li>
-</ul>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
 </li>
 <li><p>图示</p>
 </li>
