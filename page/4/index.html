@@ -178,6 +178,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/c-11%E5%88%86%E7%AB%A01/" class="post-title-link" itemprop="url">c++11分章1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-06 20:23:18 / Modified: 21:21:52" itemprop="dateCreated datePublished" datetime="2021-02-06T20:23:18+08:00">2021-02-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主要内容: 引用,指针,数组,动态内存分配</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><p>&lt;类型&gt;&amp;&lt;变量&gt; = &lt;对象或变量&gt;</p>
+</li>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>引用就是变量的另一个别名,对应的变量/对象必须存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span>&amp; rx = x;</span><br><span class="line"><span class="comment">// int x,&amp;rx = x;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>​    1.通过引用所做的读写操作实际上是作用于原变量上的</p>
+<p>​    2.引用必须在声明时,开始初始化</p>
+<p>​    3.引用一旦初始化,引用的名字不能再指定给其他变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a &#123; <span class="number">0</span> &#125;, b &#123; <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>&amp; r &#123; a &#125;;  <span class="comment">// 引用变量 r 在声明的同时就要初始化，r是a的别名</span></span><br><span class="line"> </span><br><span class="line">r = <span class="number">42</span>;  <span class="comment">// 相当于 a = 42</span></span><br><span class="line">r = b;   <span class="comment">// 相当于 a = b; 执行后 a 的值是1</span></span><br><span class="line">         <span class="comment">// 此处不是让r变成b的引用</span></span><br><span class="line">         <span class="comment">// 引用r声明并初始化后，r就不能再改为其它变量的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp; r2 = a;  <span class="comment">// 继续给a起别名</span></span><br><span class="line"><span class="keyword">int</span>&amp; r3 = r;  <span class="comment">// 声明引用变量 r3，用r初始化</span></span><br><span class="line">              <span class="comment">// 这个相当于 int&amp; r3 = a; 因为 r 是 a 的别名</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="指针和引用的差异"><a href="#指针和引用的差异" class="headerlink" title="指针和引用的差异"></a>指针和引用的差异</h3><p><strong>指针和引用的应用场景是函数参数传递</strong></p>
+<p>void f(int<em> pa ,int</em> pb);  void f(int&amp; pa,int&amp; pb);</p>
+<p>从软件设计角度来看，使用引用更好，因为调用方不需要额外传参数时进行取地址运算.</p>
+<ul>
+<li>存取值的方式<ul>
+<li>对指针变量需要使用*来读取相应内存的内容</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>指针没有要求</li>
+</ul>
+</li>
+<li>对象或变量的存在性<ul>
+<li>引用有要求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="const和引用"><a href="#const和引用" class="headerlink" title="const和引用"></a>const和引用</h3><p><strong>const &lt;类型&gt;&amp;</strong>常用于返回值以及参数传递（保证不能修改相应的变量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量的引用</span></span><br><span class="line"><span class="keyword">int</span>    val =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">int</span> &amp; myval1=var;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; myval2 = var;</span><br><span class="line">myval1 = <span class="number">300</span>;<span class="comment">//合法，可以通过myval2对var进行修改，此时myval2,myval3,var同时被修改</span></span><br><span class="line">myval2 = <span class="number">100</span>;<span class="comment">//非法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量的引用</span></span><br><span class="line"> <span class="keyword">int</span> b=<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; aa=b;<span class="comment">//b的引用，可以选择用const的修饰</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; bb=<span class="number">1</span>;<span class="comment">//这里必须用const修饰</span></span><br><span class="line">aa = <span class="number">10</span>；<span class="comment">//非法</span></span><br><span class="line">bb = <span class="number">20</span>;<span class="comment">//非法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="引用在参数传递中的使用"><a href="#引用在参数传递中的使用" class="headerlink" title="引用在参数传递中的使用"></a>引用在参数传递中的使用</h3><p>如果在函数中不修改变量，建议使用 const T&amp;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> cvar  =<span class="number">200</span>;</span><br><span class="line"><span class="comment">/*形参：</span></span><br><span class="line"><span class="comment">void f(int a1,int &amp;a2, const int&amp; a3) </span></span><br><span class="line"><span class="comment">&#123;  &#125;*/</span> </span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//2和a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,var);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,cvar);<span class="comment">//cvar与a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,cvar);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,var);<span class="comment">//cvar和a2 不合法</span></span><br><span class="line">f(var,var,var);</span><br><span class="line">f(cvar,var,cvar);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二维数组的初始化方式"><a href="#二维数组的初始化方式" class="headerlink" title="二维数组的初始化方式"></a>二维数组的初始化方式</h2><h2 id="空指针和动态内存分配"><a href="#空指针和动态内存分配" class="headerlink" title="空指针和动态内存分配"></a>空指针和动态内存分配</h2><p>1.1 0带来的二义性问题</p>
+<ul>
+<li>C语言中，空指针使用(void *)0来表示, 有时候，用“NULL”来表示空指针(由编译器决定实现方式，一种可能的实现方式是#define NULL 0)</li>
+<li>C++03中，空指针使用“0”来表示。0既是一个常量整数，也是一个常量空指针。</li>
+<li><strong>C++11中引入保留字“nullptr”作为空指针</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -893,99 +998,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/FR-DDH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/30/FR-DDH/" class="post-title-link" itemprop="url">FR_DDH</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-30 19:31:49 / Modified: 20:26:54" itemprop="dateCreated datePublished" datetime="2020-08-30T19:31:49+08:00">2020-08-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">医学影像</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>本文的主要想法：首先我们提取以landmark为中心的(2N+1)×(2N+1)大小的image patch作为local neighborhood;我们把关键但的检测转换成local neighborhood的检测，目标检测的中心就是我们要检索的landmark。</p>
-<p>所以网络框架是目标检测的框架.　本文论文关于网络具体框架什么的描述的细节比较少，而且没有代码，所以就..写的很简单，感觉可以学的就只是一个思路</p>
-<h2 id="网络框架"><a href="#网络框架" class="headerlink" title="网络框架"></a>网络框架</h2><p><img src="/2020/08/30/FR-DDH/2020-08-30_20-12.png" alt="2020-08-30_20-12"></p>
-<p><img src="/2020/08/30/FR-DDH/2020-08-30_20-12_1.png" alt="2020-08-30_20-12_1"></p>
-<p>网络框架比较简单</p>
-<h2 id="loss函数"><a href="#loss函数" class="headerlink" title="loss函数"></a>loss函数</h2><p>该损失函数和<a href="https://gritcs.github.io/2020/08/27/Faster%20R-CNN/">Faster R-CNN</a>的损失函数相同，这里不再赘述</p>
-<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><p>1.采用均值为０，方差为0.01的 Gaussian distribution随机初始化</p>
-<ol>
-<li>learning rate of 0.001 for 80k mini-batches,  0.0001 for the next 30k mini-batches on the dataset. </li>
-<li>The momentum is set to be 0.9 and the weight decay is set to be 0.0005. </li>
-</ol>
-<p>[论文中描述的比较简单]</p>
-<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><p>感觉这篇论文写的不是特别明确，[等之后再多看点论文，再总结关键点检测的评价标准吧]</p>
-<p><img src="/2020/08/30/FR-DDH/2020-08-30_20-22.png" alt="2020-08-30_20-22"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1053,7 +1069,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
