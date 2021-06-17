@@ -201,10 +201,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-16 23:10:16 / Modified: 23:19:31" itemprop="dateCreated datePublished" datetime="2021-06-16T23:10:16+08:00">2021-06-16</time>
+              <time title="Created: 2021-06-16 23:10:16" itemprop="dateCreated datePublished" datetime="2021-06-16T23:10:16+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-17 22:02:25" itemprop="dateModified" datetime="2021-06-17T22:02:25+08:00">2021-06-17</time>
+              </span>
 
           
 
@@ -219,7 +225,17 @@
       
           <h3 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h3><p>梯度下降是一种迭代算法，选择初值x0，然后不断迭代更新x，进行目标函数的最小化，直到收敛，由于负梯度方向是使得函数值下降最快的方向。    </p>
 <h3 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h3><p><a href="https://zhuanlan.zhihu.com/p/240077462" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/240077462</a></p>
-<h3 id="介绍下梯度下降法和牛顿迭代法寻找极值的过程"><a href="#介绍下梯度下降法和牛顿迭代法寻找极值的过程" class="headerlink" title="介绍下梯度下降法和牛顿迭代法寻找极值的过程"></a>介绍下梯度下降法和牛顿迭代法寻找极值的过程</h3><h3 id="机器学习和深度学习之间的联系和差别"><a href="#机器学习和深度学习之间的联系和差别" class="headerlink" title="机器学习和深度学习之间的联系和差别"></a>机器学习和深度学习之间的联系和差别</h3><blockquote>
+<h3 id="介绍下梯度下降法和牛顿迭代法寻找极值的过程"><a href="#介绍下梯度下降法和牛顿迭代法寻找极值的过程" class="headerlink" title="介绍下梯度下降法和牛顿迭代法寻找极值的过程"></a>介绍下梯度下降法和牛顿迭代法寻找极值的过程</h3><h3 id="极大似然估计-MLE-，极大后验估计-MAP-，贝叶斯估计-BE-之间联系和不同"><a href="#极大似然估计-MLE-，极大后验估计-MAP-，贝叶斯估计-BE-之间联系和不同" class="headerlink" title="极大似然估计(MLE)，极大后验估计(MAP)，贝叶斯估计(BE)之间联系和不同"></a>极大似然估计(MLE)，极大后验估计(MAP)，贝叶斯估计(BE)之间联系和不同</h3><p><a href="https://blog.csdn.net/vividonly/article/details/50722042?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-4.withoutpai&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-4.withoutpai" target="_blank" rel="noopener">[link1]</a>  , <a href="https://blog.csdn.net/bitcarmanlee/article/details/81417151?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EOPENSEARCH%7Edefault-6.withoutpai&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EOPENSEARCH%7Edefault-6.withoutpai" target="_blank" rel="noopener">[link2]</a>, <a href="https://blog.csdn.net/sinat_36118365/article/details/102644479" target="_blank" rel="noopener">[link3]</a></p>
+<h4 id="频率学派VS贝叶斯学派"><a href="#频率学派VS贝叶斯学派" class="headerlink" title="频率学派VS贝叶斯学派"></a>频率学派VS贝叶斯学派</h4><blockquote>
+<p>对于θ的本质不同认识，可以分为两个大派别。</p>
+<p>1、频率学派：认为θ是确定的，有一个真实值，目标是找出或者逼近这个真实值。</p>
+<p>2、贝叶斯学派：认为θ是不确定的，不存在唯一的真实值，而是服从某一个概率分布</p>
+</blockquote>
+<h4 id="MLE-频率学派"><a href="#MLE-频率学派" class="headerlink" title="MLE:(频率学派)"></a>MLE:(频率学派)</h4><h4 id="MAP-bayes学派"><a href="#MAP-bayes学派" class="headerlink" title="MAP:(bayes学派)"></a>MAP:(bayes学派)</h4><p>​    相比于MLE，它引入了一些先验概率，目的是让最优的参数应该是让后验概率最大。</p>
+<p>　MAP + 高斯先验 = MLE + L2正则</p>
+<h4 id="BE-（bayes学派"><a href="#BE-（bayes学派" class="headerlink" title="BE:（bayes学派)"></a>BE:（bayes学派)</h4><p>​    BE是在MAP上做了进一步的拓展，不直接估计参数的值，而是允许参数服从一定的概率分布。</p>
+<p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%80%BB%E7%BB%93/2021-06-17_21-56.png" alt="2021-06-17_21-56"></p>
+<h3 id="机器学习和深度学习之间的联系和差别"><a href="#机器学习和深度学习之间的联系和差别" class="headerlink" title="机器学习和深度学习之间的联系和差别"></a>机器学习和深度学习之间的联系和差别</h3><blockquote>
 <p>   <strong>人工智能包括专家系统、机器学习、进化计算、模糊逻辑和计算机视觉、自然语言处理、推荐系统等。</strong></p>
 <p>   <strong>现在仍然是弱人工智能，前者让机器具备观察和感知的能力，可以做到一定程度的理解和推理，而强人工智能让机器获得自适应能力，解决一些之前没有遇到过的问题。</strong></p>
 <p>   机器学习：<strong>是实现人工智能的方法</strong>，使用算法来解析数据、从中学习、然后对现实世界进行预测。机器学习是用大量的数据来训练，通过各种算法从数据中学习如何完成任务。</p>
@@ -485,10 +501,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-16 15:05:39 / Modified: 23:21:48" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:39+08:00">2021-06-16</time>
+              <time title="Created: 2021-06-16 15:05:39" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:39+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-17 23:02:00" itemprop="dateModified" datetime="2021-06-17T23:02:00+08:00">2021-06-17</time>
+              </span>
 
           
 
@@ -501,7 +523,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="1-矩阵运算下-AX-b什么条件下x有解"><a href="#1-矩阵运算下-AX-b什么条件下x有解" class="headerlink" title="1.矩阵运算下　AX=b什么条件下x有解"></a>1.矩阵运算下　AX=b什么条件下x有解</h2><p><a href="https://zhuanlan.zhihu.com/p/44114447#:~:text=%E5%BE%88%E6%98%BE%E7%84%B6%EF%BC%8C%E5%A6%82%E6%9E%9Cb%E5%AD%98%E5%9C%A8%E4%BA%8E%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5A%E7%9A%84%E5%88%97%E6%89%80%E6%9E%84%E6%88%90%E7%9A%84%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%88%E5%8D%B3%E5%88%97%E7%A9%BA%E9%97%B4C%20%28A%29%EF%BC%89%EF%BC%8C%E9%82%A3%E4%B9%88%E6%96%B9%E7%A8%8B%E7%BB%84%E6%9C%89%E8%A7%A3%E3%80%82.%20%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8BAx%3Db%20%E6%9C%89%E8%A7%A3%E7%9A%84%E6%9D%A1%E4%BB%B6%3A%20%E8%A1%8C%E7%9A%84%E8%A7%92%E5%BA%A6%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%96%B9%E7%A8%8B%E7%BB%84%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5A%E7%9A%84%E8%A1%8C%E5%90%91%E9%87%8F%E7%9A%84%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E5%8F%AF%E4%BB%A5%E7%94%9F%E6%88%90%20%240%24%20%E5%90%91%E9%87%8F%EF%BC%8C%E9%82%A3%E4%B9%88%E7%9B%B8%E5%90%8C%E7%9A%84%E7%BB%84%E5%90%88%E4%BD%9C%E7%94%A8%E5%9C%A8b%E7%9A%84%E5%88%86%E9%87%8F%E4%B8%8A%EF%BC%8C%E4%B9%9F%E5%BF%85%E9%A1%BB%E5%BE%97%E5%88%B0%20%240%24%E3%80%82.,%E5%BF%85%E9%A1%BB%E6%98%AF%20A%20%E5%90%84%E5%88%97%E5%90%91%E9%87%8F%E7%9A%84%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E3%80%82.%20%E5%88%97%E7%A9%BA%E9%97%B4%E8%A7%92%E5%BA%A6%EF%BC%9A%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%20b%20%E5%B1%9E%E4%BA%8E%20A%20%E7%9A%84%E5%88%97%E7%A9%BA%E9%97%B4%E6%97%B6%E6%88%90%E7%AB%8B%E3%80%82." target="_blank" rel="noopener">[link: MIT 线性代数]</a></p>
+          <h1 id="高等数学"><a href="#高等数学" class="headerlink" title="高等数学"></a>高等数学</h1><h2 id="梯度-方向导数-梯度下降"><a href="#梯度-方向导数-梯度下降" class="headerlink" title="梯度, 方向导数, 梯度下降"></a>梯度, 方向导数, 梯度下降</h2><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/AC927095BD9F45B8B165B835E7E67FC3.jpg" alt="AC927095BD9F45B8B165B835E7E67FC3"></p>
+<h3 id="二元函数求极值？"><a href="#二元函数求极值？" class="headerlink" title="二元函数求极值？"></a>二元函数求极值？</h3><h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="矩阵运算下-AX-b什么条件下x有解"><a href="#矩阵运算下-AX-b什么条件下x有解" class="headerlink" title="矩阵运算下　AX=b什么条件下x有解"></a>矩阵运算下　AX=b什么条件下x有解</h2><p><a href="https://zhuanlan.zhihu.com/p/44114447#:~:text=%E5%BE%88%E6%98%BE%E7%84%B6%EF%BC%8C%E5%A6%82%E6%9E%9Cb%E5%AD%98%E5%9C%A8%E4%BA%8E%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5A%E7%9A%84%E5%88%97%E6%89%80%E6%9E%84%E6%88%90%E7%9A%84%E7%A9%BA%E9%97%B4%E4%B8%AD%EF%BC%88%E5%8D%B3%E5%88%97%E7%A9%BA%E9%97%B4C%20%28A%29%EF%BC%89%EF%BC%8C%E9%82%A3%E4%B9%88%E6%96%B9%E7%A8%8B%E7%BB%84%E6%9C%89%E8%A7%A3%E3%80%82.%20%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8BAx%3Db%20%E6%9C%89%E8%A7%A3%E7%9A%84%E6%9D%A1%E4%BB%B6%3A%20%E8%A1%8C%E7%9A%84%E8%A7%92%E5%BA%A6%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%96%B9%E7%A8%8B%E7%BB%84%E7%B3%BB%E6%95%B0%E7%9F%A9%E9%98%B5A%E7%9A%84%E8%A1%8C%E5%90%91%E9%87%8F%E7%9A%84%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E5%8F%AF%E4%BB%A5%E7%94%9F%E6%88%90%20%240%24%20%E5%90%91%E9%87%8F%EF%BC%8C%E9%82%A3%E4%B9%88%E7%9B%B8%E5%90%8C%E7%9A%84%E7%BB%84%E5%90%88%E4%BD%9C%E7%94%A8%E5%9C%A8b%E7%9A%84%E5%88%86%E9%87%8F%E4%B8%8A%EF%BC%8C%E4%B9%9F%E5%BF%85%E9%A1%BB%E5%BE%97%E5%88%B0%20%240%24%E3%80%82.,%E5%BF%85%E9%A1%BB%E6%98%AF%20A%20%E5%90%84%E5%88%97%E5%90%91%E9%87%8F%E7%9A%84%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E3%80%82.%20%E5%88%97%E7%A9%BA%E9%97%B4%E8%A7%92%E5%BA%A6%EF%BC%9A%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%20b%20%E5%B1%9E%E4%BA%8E%20A%20%E7%9A%84%E5%88%97%E7%A9%BA%E9%97%B4%E6%97%B6%E6%88%90%E7%AB%8B%E3%80%82." target="_blank" rel="noopener">[link: MIT 线性代数]</a></p>
 <blockquote>
 <ol>
 <li><p>行的角度:　如果方程组系数矩阵A的行向量的线性组合可以生成0向量，那么相同的组合作用在b分量上，也必须得到０向量。</p>
@@ -511,17 +534,52 @@
 <li>列空间角度：当且仅当b属于A的列空间时成立</li>
 </ol>
 </blockquote>
-<h2 id="2-矩阵的范数"><a href="#2-矩阵的范数" class="headerlink" title="2.矩阵的范数"></a>2.矩阵的范数</h2><h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1><h2 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h2><h1 id="离散数学"><a href="#离散数学" class="headerlink" title="离散数学"></a>离散数学</h1><h2 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h2><p>集合X上的偏序是一个自反，反对称，传递的关系。严格的偏序关系是一个反自反，反对称且传递的关系</p>
+<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><h2 id="矩阵特征值和特征向量"><a href="#矩阵特征值和特征向量" class="headerlink" title="矩阵特征值和特征向量"></a>矩阵特征值和特征向量</h2><h2 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h2><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-17_22-55.png" alt="2021-06-17_22-55"></p>
+<p>相似矩阵的秩相同，特征值也相同。</p>
+<h2 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h2><p>正交矩阵（Orthogonal Matrix）是指其转置等于其逆的矩阵。</p>
+<p>正交变换不改变向量的内积，不改变向量的模，夹角和距离，所以保持两点的欧式距离不变的线性变换</p>
+<p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-17_23-01.png" alt="2021-06-17_23-01"></p>
+<h2 id="线性相关和线性无关"><a href="#线性相关和线性无关" class="headerlink" title="线性相关和线性无关"></a>线性相关和线性无关</h2><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-17_22-52.png" alt="2021-06-17_22-52"></p>
+<h2 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h2><ul>
+<li>矩阵中所有行向量中<strong>极大线性无关组</strong>的元素个数</li>
+<li>与向量空间的关系   <ul>
+<li>任何矩阵的行空间的维数等于矩阵的列空间的维数等于矩阵的秩</li>
+</ul>
+</li>
+</ul>
+<h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1><h2 id="概率论和数理统计的区别"><a href="#概率论和数理统计的区别" class="headerlink" title="概率论和数理统计的区别"></a>概率论和数理统计的区别</h2><blockquote>
+<p>​    他们是方法论上的不同，概率论是推理，数理统计是归纳。</p>
+<p>　　概率论在给定数据生成过程下观测，研究数据的性质。而数理统计是跟据观测的数据，反向思考数据生成过程。</p>
+<p>　　预测、分类、聚类、估计等，都是统计推断的特殊形式。</p>
+</blockquote>
+<p>备注：</p>
+<p>概率论是由概率分布推断样本性质，如大数定律、中心极限定理。(这些保证了统计推理的合理性)<br>统计是由样本信息反推概率分布，如概率分布参数的点估计、区间估计，以及线性回归。在估计之前都要对概率模型进行假设。</p>
+<p>　　　</p>
+<h2 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h2><script type="math/tex; mode=display">
+ p(X,Y) = p(X|Y)p(Y) =p(Y|X)P(X)</script><h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>　　常用的概率估计的一种方法。最大似然估计的核心思想是:认为当前发生的事情是概率最大的事件。就给定的数据集，使得该数据集发生的概率最大来计算模型中的参数。似然函数如下:</p>
+<script type="math/tex; mode=display">
+p(X| \theta) = \prod_{x1}^{x_n} p(x_i | \theta)</script><p>为了便于计算，我们对似然函数两边取对数，生成新的对数似然函数（因为对数函数是单调增函数，因此求似然函数最大化就可以转换成对数似然函数最大化):</p>
+<script type="math/tex; mode=display">
+p(X| \theta) = \sum_{x1}^{x_n} log [p(x_i | \theta)]</script><p>​    求对数似然函数最大化，可以采用SGD和Newton</p>
+<ul>
+<li>remark： 只关注当前的样本，也就是只关注当前发生的事情，不考虑事情的先验情况。由于计算简单，而且不需要关注先验知识，因此在机器学习中的应用非常广，<strong>最常见的就是逻辑回归的求解就是用的极大似然估计</strong></li>
+</ul>
+<h2 id="bayes"><a href="#bayes" class="headerlink" title="bayes"></a>bayes</h2><script type="math/tex; mode=display">
+p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(X)}</script><p><strong>posterior：通过样本X得到参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 的概率，也就是后验概率。</strong></p>
+<p><strong>likehood：通过参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 到样本X的概率，似然函数，通常就是我们的数据集的表现。</strong></p>
+<p><strong>prior：参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 的先验概率，一般是根据人的先验知识来得出的。</strong></p>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="离散数学"><a href="#离散数学" class="headerlink" title="离散数学"></a>离散数学</h1><h3 id="离散数学的主要内容"><a href="#离散数学的主要内容" class="headerlink" title="离散数学的主要内容"></a>离散数学的主要内容</h3><p>数理逻辑，二元关系，群与环，数论什么的，是一门比较抽象的学科，主要作用是建立相关的数学模型，把实际问题抽象成为计算机能够理解的逻辑结构，并且用计算机的思维去解决实际问题，往往实际用的不多，主要是训练思维.</p>
+<h3 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h3><p>集合X上的偏序是一个自反，反对称，传递的关系。严格的偏序关系是一个反自反，反对称且传递的关系</p>
 <p><strong>覆盖</strong>　,<strong>哈斯图</strong>　<a href="https://zhuanlan.zhihu.com/p/365442689" target="_blank" rel="noopener">[link]</a></p>
-<h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><p>对于集合X，如果Ｘ上的关系R自反，对称且传递，则Ｒ是一个等价关系</p>
-<p>不难发现，集合 $X$上的等价关系相当于将  $X$划分成若干个非空的等价类，每个等价类中任意两个元素均等价。而对于任意将$X$ 划分成若干非空集合的划分，一定存在 $X$ 上的等价关系与之对应。</p>
-<h2 id="欧拉回路"><a href="#欧拉回路" class="headerlink" title="欧拉回路"></a>欧拉回路</h2><p>经过图中每一条边且仅一次，并且遍历图中的每个顶点回路，称为欧拉回路</p>
+<h3 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h3><p>对于集合X，如果Ｘ上的关系R自反，对称且传递，则Ｒ是一个等价关系</p>
+<p>不难发现，集合 $X$上的等价关系相当于将  $X$划分成若干个非空的等价类，每个等价类中任意两个元素均等价。而对于任意将$X$ 划分成若干非空集合的划分，一定存在 $X$ 上的等价关系与之对应</p>
+<h3 id="欧拉回路"><a href="#欧拉回路" class="headerlink" title="欧拉回路"></a>欧拉回路</h3><p>经过图中每一条边且仅一次，并且遍历图中的每个顶点回路，称为欧拉回路</p>
 <ul>
 <li>无向图 G 有欧拉回路，当且仅当 G是连通图且无奇度顶点；</li>
 <li>无向图 G 有欧拉通路，当且仅当 G连通图且恰好有两个奇度顶点。这两个奇度顶点是欧拉通路的端点。</li>
 </ul>
-<h2 id="哈密顿回路"><a href="#哈密顿回路" class="headerlink" title="哈密顿回路"></a>哈密顿回路</h2><p>经过图中<strong>每个顶点一次且仅一次</strong>的回路（通路）称为<strong>哈密顿回路（通路）</strong>。存在哈密顿回路的图称为哈密顿图</p>
-
+<h3 id="哈密顿回路"><a href="#哈密顿回路" class="headerlink" title="哈密顿回路"></a>哈密顿回路</h3><p>经过图中<strong>每个顶点一次且仅一次</strong>的回路（通路）称为<strong>哈密顿回路（通路）</strong>。存在哈密顿回路的图称为哈密顿图</p>
+<h3 id="群"><a href="#群" class="headerlink" title="群"></a>群</h3>
       
     </div>
 
