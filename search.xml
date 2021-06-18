@@ -1013,11 +1013,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
       </tags>
   </entry>
   <entry>
-    <title>关键点检测问题小总结</title>
-    <url>/2020/09/16/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E5%B0%8F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>分类问题的引入</title>
     <url>/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/</url>
     <content><![CDATA[<h2 id="手写数字识别"><a href="#手写数字识别" class="headerlink" title="手写数字识别"></a>手写数字识别</h2><p><strong>MNIST　数据集</strong></p>
@@ -3059,7 +3054,8 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
     <title>面试数据结构总结</title>
     <url>/2021/06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="判断一个无向图是否是一棵树"><a href="#判断一个无向图是否是一棵树" class="headerlink" title="判断一个无向图是否是一棵树"></a>判断一个无向图是否是一棵树</h2><p>树的定义是连通的有向无环图，所以需要判断图是否是连通而且没有环，一次dfs或者bfs即可，遍历时需要加访问标记,时间复杂度是O(V) //每条边都遍历了一次.</p>
-<h2 id="各种排序算法的稳定性，复杂度的对比，简单思路"><a href="#各种排序算法的稳定性，复杂度的对比，简单思路" class="headerlink" title="各种排序算法的稳定性，复杂度的对比，简单思路"></a>各种排序算法的稳定性，复杂度的对比，简单思路</h2><h2 id="高度k的树最少节点数"><a href="#高度k的树最少节点数" class="headerlink" title="高度k的树最少节点数"></a>高度k的树最少节点数</h2><p>感觉不是很严谨，如果没有规定，树可以退化成链表,最少是k个点。</p>
+<h2 id="各种排序算法的稳定性，复杂度的对比，简单思路"><a href="#各种排序算法的稳定性，复杂度的对比，简单思路" class="headerlink" title="各种排序算法的稳定性，复杂度的对比，简单思路"></a>各种排序算法的稳定性，复杂度的对比，简单思路</h2><p><a href="https://gritcs.github.io/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">[link]</a></p>
+<h2 id="高度k的树最少节点数"><a href="#高度k的树最少节点数" class="headerlink" title="高度k的树最少节点数"></a>高度k的树最少节点数</h2><p>感觉不是很严谨，如果没有规定，树可以退化成链表,最少是k个点。</p>
 <p>对于完全二叉树而言，高度为h的二叉树 2^h个结点，至少有 2^h 个结点</p>
 <p>对于高度为h的m叉树至多包含   (m^h-1)/(m-1) 个结点。[等比数列]</p>
 <h2 id="哈夫曼编码-huffman-code"><a href="#哈夫曼编码-huffman-code" class="headerlink" title="哈夫曼编码(huffman code)"></a>哈夫曼编码(huffman code)</h2><p>在含有n个带权叶结点的二叉树中,其中带权路径长度(WPL)最小的二叉树被称为哈夫曼树。</p>
@@ -3089,9 +3085,11 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
 </li>
 </ul>
 <p>  所以每次partition可以利用随机算法选择基准元素。</p>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p><a href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">[link]</a></p>
+<h2 id="堆及其应用"><a href="#堆及其应用" class="headerlink" title="堆及其应用"></a>堆及其应用</h2><p><a href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">[link]</a></p>
 <p>堆维护一个偏序关系，能够支持的操作是</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> index)</span></span>; <span class="comment">//尝试将index元素上浮</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> index)</span></span>;　<span class="comment">//尝试将index处元素下沉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inser</span><span class="params">(<span class="keyword">int</span> val)</span></span>;<span class="comment">//直接在堆的最末尾插入值为val的结点，之后为并使用up(len)操作，维护堆的有序性</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//删除index处的元素，实现是先将index处元素和堆最后的元素交换，删除最后的元素，并采用up//down维护堆的操作</span></span><br></pre></td></tr></table></figure>
+<p>1.优先级队列 </p>
+<p>2.堆排序</p>
 ]]></content>
       <tags>
         <tag>面试</tag>
