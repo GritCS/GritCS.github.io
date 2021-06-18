@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-18 11:06:40 / Modified: 11:33:54" itemprop="dateCreated datePublished" datetime="2021-06-18T11:06:40+08:00">2021-06-18</time>
+              <time title="Created: 2021-06-18 11:06:40 / Modified: 15:14:32" itemprop="dateCreated datePublished" datetime="2021-06-18T11:06:40+08:00">2021-06-18</time>
             </span>
 
           
@@ -223,10 +223,34 @@
 <p>对于高度为h的m叉树至多包含   (m^h-1)/(m-1) 个结点。[等比数列]</p>
 <h2 id="哈夫曼编码-huffman-code"><a href="#哈夫曼编码-huffman-code" class="headerlink" title="哈夫曼编码(huffman code)"></a>哈夫曼编码(huffman code)</h2><p>在含有n个带权叶结点的二叉树中,其中带权路径长度(WPL)最小的二叉树被称为哈夫曼树。</p>
 <p>含有n个叶子结点的huffman树，一共有2n-1个结点，huffman中只包含叶子结点和度为2的点.</p>
-<p><strong>可以用堆来构造。</strong>，时间复杂度是O(logn)</p>
+<p><strong>可以用堆来构造。</strong>，时间复杂度是O(nlogn)</p>
 <p>构建过程</p>
-<p>huffman编码：</p>
-<p>​    可变长编码，把字符出现的频率看作是结点的权重</p>
+<p><img src="/2021/06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_14-30.png" alt="2021-06-18_14-30"></p>
+<h2 id="huffman编码："><a href="#huffman编码：" class="headerlink" title="huffman编码："></a>huffman编码：</h2><p>​    可变长编码，把字符出现的频率看作是结点的权重</p>
+<h2 id="后缀表达式"><a href="#后缀表达式" class="headerlink" title="后缀表达式"></a>后缀表达式</h2><p>运算符紧跟在操作数的表达式，没有括号，运算符之间不存在优先级的差别，计算过程完全按照运算符出现的先后顺序进行。</p>
+<h3 id="中缀转后缀"><a href="#中缀转后缀" class="headerlink" title="中缀转后缀"></a>中缀转后缀</h3><p><a href="https://www.cnblogs.com/menglong1108/p/11619896.html#:~:text=%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%E6%88%91%E4%BB%AC%E4%BA%BA%E7%B1%BB%E8%83%BD%E8%AF%86%E5%88%AB%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BF%9B%E8%A1%8C%E8%BF%90%E7%AE%97%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E5%8D%B3%E6%88%91%E4%BB%AC%E4%B8%8A%E8%BF%B0%E7%9A%84%E8%BF%87%E7%A8%8B%29%E3%80%82,%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99%201%EF%BC%89%E6%88%91%E4%BB%AC%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAstack%E6%A0%88%E7%BB%93%E6%9E%84%E5%AD%98%E5%82%A8%E6%93%8D%E4%BD%9C%E7%AC%A6%EF%BC%8C%E7%94%A8%E4%B8%80%E4%B8%AAList%E7%BB%93%E6%9E%84%E5%AD%98%E5%82%A8%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BB%93%E6%9E%9C%202%EF%BC%89%E9%A6%96%E5%85%88%E8%AF%BB%E5%8F%96%E5%88%B0%E6%95%B0%E5%AD%97%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%85%A5list%E4%B8%AD" target="_blank" rel="noopener">link</a></p>
+<h3 id="后缀表达式计算"><a href="#后缀表达式计算" class="headerlink" title="后缀表达式计算"></a>后缀表达式计算</h3><ul>
+<li>从左依次读取后缀表达式的一个符号<ul>
+<li>如果是操作数，则压栈</li>
+<li>如果是运算符，则从栈中连续弹出两个元素，进行相应的运算，并将结果压入栈</li>
+</ul>
+</li>
+<li>如果读入的是结束符，则栈顶就是计算结。</li>
+</ul>
+<h2 id="快速排序的时间和空间复杂度"><a href="#快速排序的时间和空间复杂度" class="headerlink" title="快速排序的时间和空间复杂度"></a>快速排序的时间和空间复杂度</h2><p>快速排序的核心思想是　partition操作（分治策略）</p>
+<ul>
+<li><p>选取一个基准元素（pivot）</p>
+</li>
+<li><p>比pivot小的放到pivot左边，比pivot大的放到pivot右边</p>
+</li>
+<li><p>对pivot左边的序列和右边的序列分别递归的执行步骤1和步骤2</p>
+<p>一次partition的时间复杂度是O(n). 当每次S(n)划分后，左右两个序列变成S(1)和S(n-1)，快排退化成冒泡，时间复杂度变成O(n*n)</p>
+</li>
+</ul>
+<p>  所以每次partition可以利用随机算法选择基准元素。</p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p><a href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">[link]</a></p>
+<p>堆维护一个偏序关系，能够支持的操作是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> index)</span></span>; <span class="comment">//尝试将index元素上浮</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> index)</span></span>;　<span class="comment">//尝试将index处元素下沉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inser</span><span class="params">(<span class="keyword">int</span> val)</span></span>;<span class="comment">//直接在堆的最末尾插入值为val的结点，之后为并使用up(len)操作，维护堆的有序性</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//删除index处的元素，实现是先将index处元素和堆最后的元素交换，删除最后的元素，并采用up//down维护堆的操作</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -355,10 +379,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-16 15:06:49 / Modified: 22:34:21" itemprop="dateCreated datePublished" datetime="2021-06-16T15:06:49+08:00">2021-06-16</time>
+              <time title="Created: 2021-06-16 15:06:49" itemprop="dateCreated datePublished" datetime="2021-06-16T15:06:49+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-18 14:20:58" itemprop="dateModified" datetime="2021-06-18T14:20:58+08:00">2021-06-18</time>
+              </span>
 
           
 
@@ -376,7 +406,8 @@
 <p>出现次数超过一半的数字也就是中位数，第k/2大的数</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A , <span class="keyword">int</span> start , <span class="keyword">int</span> <span class="built_in">end</span>)</span></span>&#123;<span class="comment">//闭区间</span></span><br><span class="line">	<span class="keyword">int</span> base = A[start];<span class="comment">//base可以随意选择</span></span><br><span class="line">    <span class="keyword">int</span> low = start;</span><br><span class="line">    <span class="keyword">int</span> high = <span class="built_in">end</span>;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">         <span class="keyword">while</span>(A[low]&lt;=base)&#123;</span><br><span class="line">             low++;</span><br><span class="line">         &#125;</span><br><span class="line">        <span class="keyword">while</span>(A[high]&gt;base)&#123;</span><br><span class="line">            high--;</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">		        <span class="built_in">std</span>::swap(A[low],A[high]) ;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::swap(A[high],A[start]);</span><br><span class="line">    <span class="keyword">return</span> high;<span class="comment">//high之前的数都小于A[high],即A[high]是第high大的数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> A[]=&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    vetcor&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">    nums.assign(A,A+<span class="keyword">sizeof</span>(A)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = Partition(nums,left,right);</span><br><span class="line">    <span class="keyword">int</span> rankk=nums.<span class="built_in">size</span>/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span>(k!=rankk)&#123;</span><br><span class="line">        <span class="keyword">if</span>(k&lt;rankk)&#123;</span><br><span class="line">            left = k;</span><br><span class="line">            k = Partition(nums,left,right);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(k&gt;rankk)&#123;</span><br><span class="line">            right = k;</span><br><span class="line">            k = Partition(nums,left,right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"the result is "</span> &lt;&lt; nums[k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h2>
+<h2 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h2><p>这里为了更好地区分操作数和运算符，我们使用string来表示每个操作符</p>
+
       
     </div>
 
