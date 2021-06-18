@@ -178,6 +178,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">pytorch卷积的简单操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-03 14:19:39 / Modified: 16:41:13" itemprop="dateCreated datePublished" datetime="2020-09-03T14:19:39+08:00">2020-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><p><strong>本文罗列一些简单的api</strong></p>
+<p><a href="https://pytorch.org/docs/stable/nn.functional.html?highlight=interpolate#" target="_blank" rel="noopener">api官方文档连接</a></p>
+<p>首先先补一个知识点：关于torch.nn.Xxxx 和 torch.nn.functional.xxx的 api的区别和使用建议</p>
+<p>推荐博客： <a href="https://www.zhihu.com/question/66782101/answer/579393790" target="_blank" rel="noopener">https://www.zhihu.com/question/66782101/answer/579393790</a></p>
+<p>结论：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PyTorch官方推荐：具有学习参数的（例如，conv2d, linear, batch_norm)采用nn.Xxx方式，没有学习参数的（例如，maxpool, loss func, activation func）等根据个人选择使用nn.functional.xxx或者nn.Xxx方式。但关于dropout，个人强烈推荐使用nn.Xxx方式，因为一般情况下只有训练阶段才进行dropout，在eval阶段都不会进行dropout。使用nn.Xxx方式定义dropout，在调用model.eval()之后，model中所有的dropout layer都关闭，但以nn.function.dropout方式定义dropout，在调用model.eval()之后并不能关闭dropout。</span><br><span class="line"></span><br><span class="line">作者：有糖吃可好</span><br><span class="line">链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;66782101&#x2F;answer&#x2F;579393790</span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_14-30.png" alt="2020-09-03_14-30"></p>
+<h3 id="api介绍（2维卷积）"><a href="#api介绍（2维卷积）" class="headerlink" title="api介绍（2维卷积）"></a>api介绍（2维卷积）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.Conv2d(</span><br><span class="line">     in_channels: int,</span><br><span class="line">    out_channels: int,</span><br><span class="line">    kernel_size: Union[T, Tuple[T, T]], </span><br><span class="line">    stride: Union[T, Tuple[T, T]] = <span class="number">1</span>, </span><br><span class="line">    padding: Union[T, Tuple[T, T]] = <span class="number">0</span>,</span><br><span class="line">    dilation: Union[T, Tuple[T, T]] = <span class="number">1</span>,<span class="comment"># atrous算法</span></span><br><span class="line">    groups: int = <span class="number">1</span>,</span><br><span class="line">    bias: bool = <span class="literal">True</span>, </span><br><span class="line">    padding_mode: str = <span class="string">'zeros'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_14-54.png" alt="2020-09-03_14-54"></p>
+<h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="comment">#conv</span></span><br><span class="line"></span><br><span class="line">conv = nn.Conv2d(<span class="number">3</span>,<span class="number">5</span>,kernel_size=<span class="number">3</span>,stride =<span class="number">1</span>,padding=<span class="number">0</span>)<span class="comment">#5个 3×（3×3）size=3,channel=3卷积核</span></span><br><span class="line">x = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">28</span>)<span class="comment">#表示一张尺寸为28×28的rgb图像</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#forward()</span></span><br><span class="line">out = conv.forward(x)</span><br><span class="line">print(out.shape)</span><br><span class="line"><span class="comment">#torch.Size([1, 5, 26, 26]);一张 channels = 5，size=26*26的image</span></span><br><span class="line"><span class="comment"># weigth &amp;&amp; bias</span></span><br><span class="line">print(conv.weight.shape)<span class="comment">#这个就是kernel,卷积核</span></span><br><span class="line">print(conv.bias.shape)</span><br></pre></td></tr></table></figure>
+<h2 id="pooling"><a href="#pooling" class="headerlink" title="pooling"></a>pooling</h2><p>使用 <code>F.avg_pool2d</code>，<code>F.max_pool2d</code></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15_1.png" alt="2020-09-03_15-15_1"></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15_2.png" alt="2020-09-03_15-15_2"></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-15.png" alt="2020-09-03_15-15"></p>
+<h2 id="upsampling"><a href="#upsampling" class="headerlink" title="upsampling"></a>upsampling</h2><p><code>F.interpolate</code></p>
+<p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-38.png" alt="2020-09-03_15-38"></p>
+<h4 id="实例代码-1"><a href="#实例代码-1" class="headerlink" title="实例代码"></a>实例代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">conv = nn.Conv2d(<span class="number">3</span>,<span class="number">5</span>,kernel_size=<span class="number">3</span>,stride =<span class="number">1</span>,padding=<span class="number">0</span>)<span class="comment">#5个 3×（3×3）size=3,channel=3卷积核</span></span><br><span class="line">x = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">28</span>)<span class="comment">#表示一张尺寸为28×28的rgb图像</span></span><br><span class="line">out_c= conv.forward(x)</span><br><span class="line">print(out_c.shape)</span><br><span class="line"><span class="comment"># layer =</span></span><br><span class="line"><span class="comment"># out_p = F.avg_pool2d(x,5,stride=2)</span></span><br><span class="line">out_p = F.max_pool2d(x,<span class="number">5</span>,stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">print(out_p.shape)</span><br><span class="line"></span><br><span class="line">out_up = F.interpolate(out_p,scale_factor=<span class="number">2</span>,mode=<span class="string">'nearest'</span>)</span><br><span class="line"><span class="comment">#scale_factor指出了上采样的尺寸</span></span><br><span class="line">print(out_up.shape)</span><br><span class="line"></span><br><span class="line">out_final  = torch.sigmoid(out_up)</span><br><span class="line">print(out_final.shape)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 5, 26, 26])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 12, 12])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 24, 24])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 24, 24])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="BatchNorm操作"><a href="#BatchNorm操作" class="headerlink" title="BatchNorm操作"></a>BatchNorm操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x = torch.rand(<span class="number">100</span>,<span class="number">16</span>,<span class="number">28</span>,<span class="number">28</span>)<span class="comment">#表示一张尺寸为28×28的rgb图像</span></span><br><span class="line">x = x.view(<span class="number">100</span>,<span class="number">16</span>,<span class="number">28</span>*<span class="number">28</span>)</span><br><span class="line">print(x.shape)</span><br><span class="line"><span class="comment">#batch_norminize是针对每个通道进行计算的, input [batch_size ,channel, W*H] ,计算出每个channel上的均值和方差</span></span><br><span class="line">layer = nn.BatchNorm1d(<span class="number">16</span>) <span class="comment">#指出channel size</span></span><br><span class="line">out = layer(x) <span class="comment">#进行norm操作</span></span><br><span class="line"><span class="comment">###可以查看参数</span></span><br><span class="line">print(layer.running_mean.shape)<span class="comment">#计算得到的每个channel上的均值</span></span><br><span class="line">print(layer.running_var.shape)<span class="comment">#计算得到每个channel上的方差</span></span><br><span class="line">print(layer.weight)<span class="comment">#在单个channel上线性变换的w,在baclkword过程中需要训练的参数</span></span><br><span class="line">print(layer.bias)<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">torch.Size([100, 16, 784])</span></span><br><span class="line"><span class="string">torch.Size([16])</span></span><br><span class="line"><span class="string">torch.Size([16])</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="常见的激活函数等"><a href="#常见的激活函数等" class="headerlink" title="常见的激活函数等"></a>常见的激活函数等</h2><h4 id="torch-nn-functional-softmax-input-dim-None"><a href="#torch-nn-functional-softmax-input-dim-None" class="headerlink" title="torch.nn.functional.softmax( input, dim= None)"></a><strong><code>torch.nn.functional.softmax( input, dim= None)</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-27.png" alt="2020-09-03_15-27"></p>
+<h4 id="torch-nn-functional-relu-input-inplace-False"><a href="#torch-nn-functional-relu-input-inplace-False" class="headerlink" title="torch.nn.functional.relu(input, inplace = False )"></a><strong><code>torch.nn.functional.relu(input, inplace = False )</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-32.png" alt="2020-09-03_15-32"></p>
+<h4 id="torch-nn-functional-sigmoid"><a href="#torch-nn-functional-sigmoid" class="headerlink" title="torch.nn.functional.sigmoid()"></a><strong><code>torch.nn.functional.sigmoid()</code></strong></h4><p><img src="/2020/09/03/pytorch%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/2020-09-03_15-26.png" alt="2020-09-03_15-26"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/09/03/Visdom/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1077,77 +1169,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/27/%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/27/%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">最大流问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-27 12:36:16 / Modified: 12:42:25" itemprop="dateCreated datePublished" datetime="2020-08-27T12:36:16+08:00">2020-08-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">经典问题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-最大流问题"><a href="#1-最大流问题" class="headerlink" title="1. 最大流问题"></a>1. 最大流问题</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1219,7 +1240,7 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -3053,4 +3053,22 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
         <tag>面试</tag>
       </tags>
   </entry>
+  <entry>
+    <title>面试数据结构总结</title>
+    <url>/2021/06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="判断一个无向图是否是一棵树"><a href="#判断一个无向图是否是一棵树" class="headerlink" title="判断一个无向图是否是一棵树"></a>判断一个无向图是否是一棵树</h2><p>树的定义是连通的有向无环图，所以需要判断图是否是连通而且没有环，一次dfs或者bfs即可，遍历时需要加访问标记,时间复杂度是O(V) //每条边都遍历了一次.</p>
+<h2 id="各种排序算法的稳定性，复杂度的对比，简单思路"><a href="#各种排序算法的稳定性，复杂度的对比，简单思路" class="headerlink" title="各种排序算法的稳定性，复杂度的对比，简单思路"></a>各种排序算法的稳定性，复杂度的对比，简单思路</h2><h2 id="高度k的树最少节点数"><a href="#高度k的树最少节点数" class="headerlink" title="高度k的树最少节点数"></a>高度k的树最少节点数</h2><p>感觉不是很严谨，如果没有规定，树可以退化成链表,最少是k个点。</p>
+<p>对于完全二叉树而言，高度为h的二叉树 2^h个结点，至少有 2^h 个结点</p>
+<p>对于高度为h的m叉树至多包含   (m^h-1)/(m-1) 个结点。[等比数列]</p>
+<h2 id="哈夫曼编码-huffman-code"><a href="#哈夫曼编码-huffman-code" class="headerlink" title="哈夫曼编码(huffman code)"></a>哈夫曼编码(huffman code)</h2><p>在含有n个带权叶结点的二叉树中,其中带权路径长度(WPL)最小的二叉树被称为哈夫曼树。</p>
+<p>含有n个叶子结点的huffman树，一共有2n-1个结点，huffman中只包含叶子结点和度为2的点.</p>
+<p><strong>可以用堆来构造。</strong>，时间复杂度是O(logn)</p>
+<p>构建过程</p>
+<p>huffman编码：</p>
+<p>​    可变长编码，把字符出现的频率看作是结点的权重</p>
+]]></content>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
 </search>
