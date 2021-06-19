@@ -178,6 +178,197 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/" class="post-title-link" itemprop="url">数据结构-查找</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-31 17:16:10" itemprop="dateCreated datePublished" datetime="2021-05-31T17:16:10+08:00">2021-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-01 07:30:17" itemprop="dateModified" datetime="2021-06-01T07:30:17+08:00">2021-06-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>推荐博客:<a href="https://blog.csdn.net/sayhello_world/article/details/77200009#t1" target="_blank" rel="noopener">[link1]</a></p>
+<h2 id="知识框架"><a href="#知识框架" class="headerlink" title="知识框架"></a>知识框架</h2><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-15.png" alt="2021-05-31_19-15" style="zoom: 80%;"></p>
+<p>查找表：用于查找的数据集合</p>
+<p>静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表</p>
+<p>​                静态查找方法：顺序查找，折半查找，散列查找。</p>
+<p>动态查找：可以动态地插入或者删除的查找表</p>
+<p>​                　动态查找的方法：平衡二叉树和B树</p>
+<h2 id="算法比较"><a href="#算法比较" class="headerlink" title="算法比较"></a>算法比较</h2><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png" alt="2021-05-31_19-38"></p>
+<h3 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h3><p>随着斐波那契数列的递增，前后两个数的比值会越来越接近0.618，为了防止查找树退化，是二分查找的一种提升算法，通过运用黄金比例的概念在数列中选择查找点进行查找，提高查找效率。</p>
+<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><p>按照数值的分布信息，我们可以将查找的点改进为如下：</p>
+<p>　　mid=low+(key-a[low])/(a[high]-a[low])*(high-low)，</p>
+<p>相比于二分查找，将上述的比例参数1/2改进为自适应的，根据关键字在整个有序表中所处的位置，让mid值的变化更靠近关键字key，这样也就间接地减少了比较次数。</p>
+<p><strong>基本思想：</strong>基于二分查找算法，将查找点的选择改进为自适应选择，可以提高查找效率。当然，差值查找也属于有序查找。</p>
+<p>注：<strong>对于表长较大，而关键字分布又比较均匀的查找表来说，插值查找算法的平均性能比折半查找要好的多。反之，数组中如果分布非常不均匀，那么插值查找未必是很合适的选择。</strong></p>
+<h3 id="二分查找和二叉查找树的区别"><a href="#二分查找和二叉查找树的区别" class="headerlink" title="二分查找和二叉查找树的区别"></a>二分查找和二叉查找树的区别</h3><p>二分查找适用于有序的线性表结构，</p>
+<p>二叉查找树是动态查找。先对待查找的数据进行生成树，确保树的左分支的值小于右分支的值，然后在就行和每个节点的父节点比较大小，查找最适合的范围。 这个算法的查找效率很高，但是如果使用这种查找方法要首先创建树。不同的插入顺序会导致不同结构的二叉查找树，出现退化现象(变成链表)。</p>
+<p><strong>二叉查找树性质</strong>：<strong>对二叉查找树进行中序遍历，即可得到有序的数列。</strong></p>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>散列方法是按照关键字编址的一项技术:以关键字K为自变量，通过函数h(K)计算地址.散列表建立了关键点和存储地址之间的一种直接映射关系</p>
+<p>散列算法的核心是　散列函数h(x) 和　冲突消解的方法</p>
+<p>常见的散列函数：</p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_21-49.png" alt="2021-05-31_21-49" style="zoom:80%;"></p>
+<p><a href="https://www.cnblogs.com/higerMan/p/11907117.html" target="_blank" rel="noopener"><strong>冲突消解的方法</strong></a>：拉链法(拉链　和　合并拉链法)，线性探查方法(线性探查，二次探查，随机探查)，再哈希法，建立公共溢出区</p>
+<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>1.AVL树的创建</p>
+<p>2.查找</p>
+<p>3.插入操作[涉及旋转]</p>
+<h2 id="2-3树"><a href="#2-3树" class="headerlink" title="2-3树"></a><a href="https://zhuanlan.zhihu.com/p/104031183" target="_blank" rel="noopener">2-3树</a></h2><p>特点：绝对平衡的树，任意结点到它的所有叶子结点的深度都是相等的.保证了插入和删除的复杂度都控制在 O(logN)</p>
+<p>定义：</p>
+<blockquote>
+<p>一颗2-3树或为一颗空树，或有以下节点组成：</p>
+<p>2-节点，含有一个元素和两个子树（左右子树），左子树所有元素的值均小于它父节点，右子树所有元素的值均大于它父节点；</p>
+<p>3-节点，还有两个元素和三个子树（左中右子树），左子树所有元素的值均小于它父节点，中子树所有元素的值都位于父节点两个元素之间，右子树所有元素的值均大于它父节点；</p>
+<p>子树也是空树、2-节点或者3-节点；</p>
+<p>没有元素相等的节点。</p>
+</blockquote>
+<p>插入分为４种情况</p>
+<blockquote>
+<p>1.向2-节点中插入元素；</p>
+<p>2.向一颗只含有一个3-节点的树中插入元素；</p>
+<p>3.向一个父节点为2-节点的3-节点中插入元素；</p>
+<p>4.向一个父节点为3-节点的3-节点中插入元素。</p>
+</blockquote>
+<p>删除</p>
+<p>参考算法4中的解读</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>黑色结点绝对平衡的二叉树</p>
+<p><a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">https://www.jianshu.com/p/e136ec79235c</a></p>
+<blockquote>
+<p>​    红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面性质：</p>
+<ul>
+<li>性质1：每个节点要么是黑色，要么是红色。</li>
+<li>性质2：根节点是黑色。</li>
+<li>性质3：每个叶子节点（NIL）是黑色。</li>
+<li>性质4：每个红色结点的两个子结点一定都是黑色。</li>
+<li><strong>性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。</strong></li>
+</ul>
+</blockquote>
+<p>插入4种情况</p>
+<p>删除3种情况</p>
+<h2 id="B-B-树"><a href="#B-B-树" class="headerlink" title="B/B+树"></a>B/B+树</h2><blockquote>
+<p>定义:参考ppt</p>
+<p>在插入或者删除操作中，如何维护B/B+树？</p>
+</blockquote>
+<p><a href="https://segmentfault.com/a/1190000020416577" target="_blank" rel="noopener">https://segmentfault.com/a/1190000020416577</a></p>
+<p>B/B+树之间的不同</p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/4.jpg" alt="4" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/3.png" alt="3" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2.png" alt="2" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/1.png" alt="1" style="zoom: 80%;"></p>
+<h3 id="理解B-B-树的应用背景"><a href="#理解B-B-树的应用背景" class="headerlink" title="理解B/B+树的应用背景"></a>理解B/B+树的应用背景</h3><h4 id="为什么B树适合在磁盘中查找？"><a href="#为什么B树适合在磁盘中查找？" class="headerlink" title="为什么B树适合在磁盘中查找？"></a>为什么B树适合在磁盘中查找？</h4><p>B树，概括来说是一个节点可以拥有多于2个子节点的二叉查找树。与自平衡二叉查找树不同，B树为系统最优化<strong>大块数据的读和写操作</strong>。B-tree算法减少定位记录时所经历的中间过程，也就是减少了磁盘的IO操作。</p>
+<h4 id="为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？"><a href="#为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？" class="headerlink" title="为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？"></a>为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？</h4><p>​        因为B树不管叶子节点还是非叶子节点，都会保存数据，这样导致在非叶子节点中能保存的指针数量变少（有些资料也称为扇出）</p>
+<p>指针少的情况下要保存大量数据，只能增加树的高度，导致IO操作变多，查询性能变低；</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">算法复习-相关概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-31 17:15:03" itemprop="dateCreated datePublished" datetime="2021-05-31T17:15:03+08:00">2021-05-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,10 +392,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-05-31 10:06:28 / Modified: 18:16:14" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
+              <time title="Created: 2021-05-31 10:06:28" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-19 19:11:24" itemprop="dateModified" datetime="2021-06-19T19:11:24+08:00">2021-06-19</time>
+              </span>
 
           
 
@@ -261,7 +458,10 @@
 </table>
 </div>
 <p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" alt="2021-05-31_15-59"></p>
-<blockquote>
+<h3 id="相关算法的伪代码"><a href="#相关算法的伪代码" class="headerlink" title="相关算法的伪代码"></a>相关算法的伪代码</h3><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png" alt="2021-06-19_19-09"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png" alt="2021-06-19_19-09_1"></p>
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png" alt="2021-06-19_19-08"></p>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><blockquote>
 <p>最长路径的计算    </p>
 <p>次短路计算</p>
 <p>关于多条最短路径的计算，参考PAT相关题目（我记得有道PAT用的dijkstra计算的负权最短路径</p>
@@ -945,161 +1145,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/11/BFS-DFS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/11/BFS-DFS/" class="post-title-link" itemprop="url">BFS_DFS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-11 09:05:46" itemprop="dateCreated datePublished" datetime="2021-05-11T09:05:46+08:00">2021-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-13 07:19:58" itemprop="dateModified" datetime="2021-05-13T07:19:58+08:00">2021-05-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="广度优先搜索-BFS"><a href="#广度优先搜索-BFS" class="headerlink" title="广度优先搜索(BFS)"></a>广度优先搜索(BFS)</h1><blockquote>
-<p>​    BFS:搜索过程中，遇到分叉口时，总是先依次访问从该分叉口能直接到达的所有结点，然后再按照这些结点被访问的顺序去依次访问他们能直接到达的所有结点。以此类推，直到所有结点都被访问为止。</p>
-</blockquote>
-<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><ul>
-<li>状态：需要确定所求解问题的状态，通过状态的拓展，遍历所有状态</li>
-<li>状态拓展的方式：用队列去存储状态，每次去队列头部进行拓展(FIFO)</li>
-<li>有效状态：利用题目要求，对BFS搜索树进行剪枝。注意有效状态数的上限，是否符合复杂度要求</li>
-<li>应用场景：<ul>
-<li>解决最短路径(最优问题)</li>
-</ul>
-</li>
-</ul>
-<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h3 id="计算矩阵中块的个数"><a href="#计算矩阵中块的个数" class="headerlink" title="计算矩阵中块的个数"></a>计算矩阵中块的个数</h3><p><img src="/2021/05/11/BFS-DFS/2021-05-13_07-13.png" alt="2021-05-13_07-13"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="走出迷宫的最小步数"><a href="#走出迷宫的最小步数" class="headerlink" title="走出迷宫的最小步数"></a>走出迷宫的最小步数</h3><h3 id="玛雅人的密码"><a href="#玛雅人的密码" class="headerlink" title="玛雅人的密码"></a><a href="https://www.nowcoder.com/practice/761fc1e2f03742c2aa929c19ba96dbb0?tpId=60&amp;tqId=29484&amp;tPage=1&amp;ru=%2Fkaoyan%2Fretest%2F1001&amp;qru=%2Fta%2Ftsing-kaoyan%2Fquestion-ranking&amp;tab=answerKey" target="_blank" rel="noopener">玛雅人的密码</a></h3><blockquote>
-<p>​    题解思路:</p>
-<p>​    首先要先确定解题的状态(构造一个结构体,保存当前字符串,移位的次数)</p>
-<p>​     合适拓展状态:<br>​         出队时,把当前字符串从0-k-1,都与右侧的元素交换, 移位次数加一(另外要有一个vis保存已经遍历过的字符串,已经判断过的字符串不再入队)</p>
-<p>​    结束状态:</p>
-<p>​        找到符合要求的字符串,返回移位次数</p>
-<p>​        队列为空,返回.    </p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">status</span>&#123;</span></span><br><span class="line">    <span class="built_in">string</span> cur_str;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    status(<span class="built_in">string</span> cur , <span class="keyword">int</span> n) : cur_str(cur),n(n)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; vis;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(<span class="built_in">queue</span>&lt;status&gt; sset,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!sset.empty())&#123;</span><br><span class="line">        status current = sset.front();</span><br><span class="line">        sset.pop();</span><br><span class="line">        <span class="built_in">string</span> cur = current.cur_str;</span><br><span class="line">        <span class="keyword">int</span> n = current.n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            swap(cur[i],cur[i+<span class="number">1</span>]);<span class="comment">//交换</span></span><br><span class="line">            <span class="keyword">if</span>(cur.<span class="built_in">find</span>(<span class="string">"2012"</span>)!=<span class="number">-1</span> )&#123;</span><br><span class="line">                <span class="keyword">return</span> n+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(vis.<span class="built_in">find</span>(cur)==vis.<span class="built_in">end</span>())&#123;</span><br><span class="line">                    vis.insert(cur);</span><br><span class="line">                    <span class="function">status <span class="title">next</span><span class="params">(cur,n+<span class="number">1</span>)</span></span>;</span><br><span class="line">                    sset.push(next);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(cur[i],cur[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> str;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;<span class="built_in">size</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;str;</span><br><span class="line">    <span class="keyword">if</span>(str.<span class="built_in">find</span>(<span class="string">"2012"</span>)!=<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">        <span class="built_in">queue</span>&lt;status&gt; sset;</span><br><span class="line">        <span class="function">status <span class="title">init</span><span class="params">(str,<span class="number">0</span>)</span></span>;</span><br><span class="line">        sset.push(init);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;bfs(sset,<span class="built_in">size</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">贪心算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-14 19:32:35" itemprop="dateCreated datePublished" datetime="2021-04-14T19:32:35+08:00">2021-04-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-17 17:51:11" itemprop="dateModified" datetime="2021-04-17T17:51:11+08:00">2021-04-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h1><h2 id="贪心算法模板题"><a href="#贪心算法模板题" class="headerlink" title="贪心算法模板题"></a>贪心算法模板题</h2><h3 id="无重叠的子区间"><a href="#无重叠的子区间" class="headerlink" title="无重叠的子区间"></a>无重叠的子区间</h3><h4 id="435-无重叠区间"><a href="#435-无重叠区间" class="headerlink" title="435. 无重叠区间"></a><a href="https://leetcode-cn.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener">435. 无重叠区间</a></h4><blockquote>
-<p>​    分析</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">1</span>]&lt;b[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">eraseOverlapIntervals</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(intervals.<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = intervals.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        sort(intervals.<span class="built_in">begin</span>(),intervals.<span class="built_in">end</span>(),cmp);<span class="comment">//选择前面的</span></span><br><span class="line">        <span class="keyword">int</span> slow=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(intervals[slow][<span class="number">1</span>]&gt;intervals[i][<span class="number">0</span>])&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                slow=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="452-用最少数量的箭引爆气球"><a href="#452-用最少数量的箭引爆气球" class="headerlink" title="452. 用最少数量的箭引爆气球"></a><a href="https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/" target="_blank" rel="noopener">452. 用最少数量的箭引爆气球</a></h4>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1171,7 +1216,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
