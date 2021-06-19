@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="操作系统进程通讯的几种方式计组1.虚拟内存虚拟内存是计算机内存管理的一种技术。它使得应用程序认为它拥有连续可用的内存（一个连续完整的地址空间），而实际上，它通常是被分隔成多个物理内存碎片，还有部分暂时存储在外部磁盘存储器上，在需要时进行数据交换。 2. DMAdirect memory access:直接存储器访问 DMA传输将数据从一个地址空间复制到另外一个地址空间，提供在外设和存储器之间或者存">
 <meta property="article:published_time" content="2021-06-16T07:05:56.000Z">
-<meta property="article:modified_time" content="2021-06-16T15:19:33.500Z">
+<meta property="article:modified_time" content="2021-06-18T09:04:38.494Z">
 <meta property="article:author" content="Lemon">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -197,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-16 15:05:56 / Modified: 23:19:33" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:56+08:00">2021-06-16</time>
+              <time title="Created: 2021-06-16 15:05:56" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:56+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-18 17:04:38" itemprop="dateModified" datetime="2021-06-18T17:04:38+08:00">2021-06-18</time>
+              </span>
 
           
 
@@ -304,7 +310,17 @@
 </tbody>
 </table>
 </div>
-<h2 id="一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"><a href="#一个主机将两个端口接到网络上是否会提升吞吐量？为什么？" class="headerlink" title="一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"></a>一个主机将两个端口接到网络上是否会提升吞吐量？为什么？</h2><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>电脑的开机过程</p>
+<h2 id="一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"><a href="#一个主机将两个端口接到网络上是否会提升吞吐量？为什么？" class="headerlink" title="一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"></a>一个主机将两个端口接到网络上是否会提升吞吐量？为什么？</h2><h2 id="3次握手-4次握手"><a href="#3次握手-4次握手" class="headerlink" title="3次握手//4次握手"></a>3次握手//4次握手</h2><p>TCP连接的建立:３次握手</p>
+<blockquote>
+<pre><code> 1.　客户机的TCP向服务器的TCP发送一个连接请求报文段，
+ 2.　服务器的TCP收到连接请求报文后，如果同意连接，就向客户机发回确认，并为该TCP连接分配TCP缓存和变量
+ 3.　当客户机收到确认段报文后，还要向服务器给出确认，并且也要给该连接分配缓存和变量．
+</code></pre></blockquote>
+<p>TCP连接的释放:４次握手</p>
+<blockquote>
+<p>​    </p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>电脑的开机过程</p>
 <p>软件工程和计算机科学技术两个专业的关系</p>
 
     </div>
@@ -389,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程通讯的几种方式"><span class="nav-number">1.1.</span> <span class="nav-text">进程通讯的几种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计组"><span class="nav-number">2.</span> <span class="nav-text">计组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-虚拟内存"><span class="nav-number">2.1.</span> <span class="nav-text">1.虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DMA"><span class="nav-number">2.2.</span> <span class="nav-text">2. DMA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-５级流水CPU的各阶段"><span class="nav-number">2.3.</span> <span class="nav-text">3.５级流水CPU的各阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number">3.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-OSI-7层模型"><span class="nav-number">3.1.</span> <span class="nav-text">1.　OSI-7层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TCP和UDP之间的区别"><span class="nav-number">3.2.</span> <span class="nav-text">2.TCP和UDP之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"><span class="nav-number">3.3.</span> <span class="nav-text">一个主机将两个端口接到网络上是否会提升吞吐量？为什么？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程通讯的几种方式"><span class="nav-number">1.1.</span> <span class="nav-text">进程通讯的几种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计组"><span class="nav-number">2.</span> <span class="nav-text">计组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-虚拟内存"><span class="nav-number">2.1.</span> <span class="nav-text">1.虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DMA"><span class="nav-number">2.2.</span> <span class="nav-text">2. DMA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-５级流水CPU的各阶段"><span class="nav-number">2.3.</span> <span class="nav-text">3.５级流水CPU的各阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number">3.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-OSI-7层模型"><span class="nav-number">3.1.</span> <span class="nav-text">1.　OSI-7层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TCP和UDP之间的区别"><span class="nav-number">3.2.</span> <span class="nav-text">2.TCP和UDP之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个主机将两个端口接到网络上是否会提升吞吐量？为什么？"><span class="nav-number">3.3.</span> <span class="nav-text">一个主机将两个端口接到网络上是否会提升吞吐量？为什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3次握手-4次握手"><span class="nav-number">3.4.</span> <span class="nav-text">3次握手&#x2F;&#x2F;4次握手</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
