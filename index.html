@@ -178,6 +178,204 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/28/%E6%AF%8F%E6%97%A5%E6%9C%BA%E8%AF%9520210628/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/28/%E6%AF%8F%E6%97%A5%E6%9C%BA%E8%AF%9520210628/" class="post-title-link" itemprop="url">每日机试20210628</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-06-28 16:11:05 / Modified: 17:21:01" itemprop="dateCreated datePublished" datetime="2021-06-28T16:11:05+08:00">2021-06-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>==感觉时间真的是不够了，呜呜呜，裂开都不够的</p>
+<p>尽管在等通知的同时，自己很焦急（头都快炸了），还是要把该做的做好</p>
+<p>今天没刷几道题目，感觉就是练练手，重新捡起来之前断掉的机试训练。</p>
+<p>aa，还需要提醒的是，哈工深好像有笔试题目，自己要把简单的专业课给过一遍，计算之类的，能学多少是多少吧</p>
+<p>/=\  感觉机器学习数据挖掘之类的学习起来好有意思！！gg</p>
+<p><strong>在这里列一下我之后机试的计划</strong></p>
+<ul>
+<li>[ ] 贪心算法(背包问题==我想起来之前参加pat时候遇到的问题)</li>
+<li>[ ] 动态规划</li>
+<li>[ ] KMP</li>
+<li>[ ] 大整数运算（一般作为签到题）</li>
+<li>[ ] 二分算法</li>
+<li>[ ] 之后就是针对院校进行机试<ul>
+<li>[ ] <a href="https://github.com/youngyangyang04/leetcode-master" target="_blank" rel="noopener">https://github.com/youngyangyang04/leetcode-master</a></li>
+<li>[ ] <a href="http://www.noobdream.com/DreamJudge/Issue/page/0/?page=1&amp;problem_id_name=&amp;problem_source=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%AD%A6&amp;algorithm_type=All" target="_blank" rel="noopener">N诺</a></li>
+<li>[ ] pat(按照前计划，柳神的代码可以学到好多)</li>
+</ul>
+</li>
+</ul>
+<p>加油！今天的收获</p>
+<ol>
+<li><p>万能头文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>关于memset和fill的用法</p>
+<p><a href="https://blog.csdn.net/liuchuo/article/details/52296646" target="_blank" rel="noopener">-&gt; 柳神的blog</a></p>
+<p>数组</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关于二维数组的初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">1000</span>][<span class="number">1000</span>];</span><br><span class="line"><span class="comment">//memset(str_ptr, val , len ); //好像只能初始化为0或者1</span></span><br><span class="line">    <span class="built_in">memset</span>(dp[<span class="number">0</span>],<span class="number">0</span>,<span class="keyword">sizeof</span>(dp)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>)); <span class="comment">//只能初始化为0 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//fill(str_ptr,end_ptr, val)</span></span><br><span class="line"><span class="built_in">fill</span>(dp[<span class="number">0</span>],dp[<span class="number">0</span>]+<span class="number">1000</span>*<span class="number">1000</span>,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//一维数组</span></span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">1000</span>];</span><br><span class="line">    <span class="built_in">fill</span>(dp,dp+<span class="number">1000</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p>​    vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fill</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), 要填入的内容);</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">fill</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>C/C++关于字符串的读取</li>
+</ol>
+<p>题目：<a href="http://www.noobdream.com/DreamJudge/Issue/page/1290/" target="_blank" rel="noopener">[日期差值]</a></p>
+<p>这里需要判断闰年： 年份能够被100整除，同时被400整除； 能被4整除，但是不能被100整除</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isRui</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> y1)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>((y1%<span class="number">400</span>==<span class="number">0</span> &amp;&amp;y1%<span class="number">100</span>==<span class="number">0</span>) || (y1%<span class="number">4</span>==<span class="number">0</span> &amp;&amp; y1%<span class="number">100</span>!=<span class="number">0</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用char数组</span></span><br><span class="line">    <span class="keyword">char</span> date1[<span class="number">20</span>],date2[<span class="number">20</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, date1);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, date2); <span class="comment">//按照空格换行符作为分隔符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//c++ string类，好象是不需要括头文件的，不知道为什么我之前写的是一直出错了 gg</span></span><br><span class="line">    <span class="built_in">string</span> s1,s2;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;s1&gt;&gt;s2;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;s1&lt;&lt;<span class="string">" "</span>&lt;&lt;s2;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>动态规划经典题型的复习</p>
+<p>==自己最开始忘记设置dp数组的边界，调试了好久</p>
+<p>最大连续子序列和</p>
+<p>LIS最长不下降子序列</p>
+<p>LCS最长公共子序列</p>
+<p>最长回文子串**可以多刷</p>
+</li>
+<li><p>分块思想</p>
+<p>如何维护一个栈，可以在线取出其中第K大的元素</p>
+</li>
+<li><p>开坑线段树</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/21/vue%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/21/vue%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">vue基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-21 07:44:46" itemprop="dateCreated datePublished" datetime="2021-06-21T07:44:46+08:00">2021-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-06-28 17:21:41" itemprop="dateModified" datetime="2021-06-28T17:21:41+08:00">2021-06-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="methods-弹窗"><a href="#methods-弹窗" class="headerlink" title="methods_弹窗"></a>methods_弹窗</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!---生成一个按钮--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"sayHi"</span>&gt;</span> click me <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//model: 数据模型，泛指后端进行的各种业务逻辑和数据操控，mvvm</span></span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                message:<span class="string">"this'a a blog"</span></span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="actionscript">            <span class="comment">//事件</span></span></span><br><span class="line"><span class="actionscript">            methods: &#123; <span class="comment">//方法必须定义在Vue的Method对象中,为了达到监听的效果，必须传递event参数</span></span></span><br><span class="line"><span class="actionscript">                sayHi: <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    alert(<span class="keyword">this</span>.message);</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h3><blockquote>
+<p>view　通过 <input `v-model`="item">将用户的输入绑定到名外item的数据上</p>
+<p>​            通过,绑定显示后台名为item的数据</p>
+<p>​    </p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watch-example"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">            Ask a yes/no question:</span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"question"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><br><span class="line">            &#123;&#123; answer &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> watchExampleVM = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#watch-example'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">        question: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">        answer: <span class="string">'I cannot give you an answer until you ask a question!'</span></span></span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">// 如果 `question` 发生改变，这个函数就会运行</span></span></span><br><span class="line"><span class="actionscript">        question: <span class="function"><span class="keyword">function</span> <span class="params">(newQuestion, oldQuestion)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.answer = <span class="string">'Waiting for you to stop typing...'</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.debouncedGetAnswer()</span></span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    created: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// `_.debounce` 是一个通过 Lodash 限制操作频率的函数。</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// AJAX 请求直到用户输入完毕才会发出。想要了解更多关于</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 请参考：https://lodash.com/docs#debounce</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.debouncedGetAnswer = _.debounce(<span class="keyword">this</span>.getAnswer, <span class="number">500</span>)</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="actionscript">        getAnswer: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (<span class="keyword">this</span>.question.indexOf(<span class="string">'?'</span>) === <span class="number">-1</span>) &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.answer = <span class="string">'Questions usually contain a question mark-"?" . ;)'</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span></span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.answer = <span class="string">'Thinking...'</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> vm = <span class="keyword">this</span></span></span><br><span class="line"><span class="actionscript">        axios.get(<span class="string">'https://yesno.wtf/api'</span>)</span></span><br><span class="line"><span class="actionscript">            .then(<span class="function"><span class="keyword">function</span> <span class="params">(response)</span> </span>&#123;</span></span><br><span class="line">            vm.answer = _.capitalize(response.data.answer)</span><br><span class="line">            &#125;)</span><br><span class="line"><span class="actionscript">            .catch(<span class="function"><span class="keyword">function</span> <span class="params">(error)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            vm.answer = <span class="string">'Error! Could not reach the API. '</span> + error</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="vue组件"><a href="#vue组件" class="headerlink" title="vue组件"></a>vue组件</h3><p>用户自定义的结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--ｖ-bind后面不能加空格 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--v-bind:a=b,将实参b与形参a绑定，类似于函数调用，这里item是v-for遍历的结果--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">qinjiang</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">v-bind:qin</span>=<span class="string">"item"</span>&gt;</span> <span class="tag">&lt;/<span class="name">qinjiang</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript">       <span class="comment">//定义一个vue组件</span></span></span><br><span class="line"><span class="actionscript">        Vue.component(<span class="string">'qinjiang'</span>,&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="comment">//props:定一个形参，　template：利用&#123;&#123;&#125;&#125;，取形参中的值来显示一些内容</span></span></span><br><span class="line"><span class="actionscript">                props: [<span class="string">'qin'</span>],  </span></span><br><span class="line"><span class="handlebars"><span class="xml">                template: '<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123;qin&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span>'</span></span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">"#app"</span>,</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//model: 数据模型，泛指后端进行的各种业务逻辑和数据操控，mvvm</span></span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                items: [<span class="string">"java"</span>,<span class="string">"linux"</span>,<span class="string">"前端"</span>]</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Axios异步通信"><a href="#Axios异步通信" class="headerlink" title="Axios异步通信"></a>Axios异步通信</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vue"</span>&gt;</span></span><br><span class="line">        点我</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            &#123;&#123;info.name&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            &#123;&#123;info.address.street&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span> </span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#vue'</span>,</span></span><br><span class="line">            data()&#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="comment">//请求的返回参数格式必须和json串一样,return的只是一个函数，data()方法会自己捕获</span></span></span><br><span class="line">                    info:&#123;</span><br><span class="line"><span class="actionscript">                        name : <span class="literal">null</span></span></span><br><span class="line">                        address:&#123;</span><br><span class="line"><span class="actionscript">                               street: <span class="literal">null</span>,</span></span><br><span class="line"><span class="actionscript">                                city: <span class="literal">null</span>,</span></span><br><span class="line"><span class="actionscript">                                country: <span class="literal">null</span></span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="actionscript">            <span class="comment">//</span></span></span><br><span class="line"><span class="actionscript">            mounted()&#123;<span class="comment">//钩子函数</span></span></span><br><span class="line"><span class="javascript">                axios.get(<span class="string">'data.json'</span>).then(<span class="function"><span class="params">response</span>=&gt;</span>(<span class="keyword">this</span>.info=response.data));</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对应的json文件<code>data.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"狂神说java"</span>,</span><br><span class="line">  <span class="attr">"url"</span> : <span class="string">"htp://baidu.com"</span>,</span><br><span class="line">  <span class="attr">"page"</span> : <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"isNonProfit"</span> : <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"address"</span> : &#123;</span><br><span class="line">    <span class="attr">"street"</span>: <span class="string">"含光门"</span>,</span><br><span class="line">    <span class="attr">"city"</span> : <span class="string">"陕西西安"</span>,</span><br><span class="line">    <span class="attr">"country"</span>: <span class="string">"中国"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"links"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span> : <span class="string">"B站"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://www.bilibili.com/"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"4399"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://www.4399.com/"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"百度"</span>,</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://www.baidu.com/"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性的重点突出在属性两个字上，首先它是一个属性，其次它有计算的能力，这里<code>计算</code>就是一个函数；它能够将计算结果缓存起来．</p>
+<p>​    内存中执行，虚拟Dao</p>
+<p>计算属性的主要特征就是为了将不经常变化的计算结果进行缓存，以节约我们的系统开销．</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://unpkg.com/axios/dist/axios.min.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vue"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span> &#123;&#123;currentTime1()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span> &#123;&#123;currentTime2&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span> </span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#vue'</span>,</span></span><br><span class="line">            data:&#123;</span><br><span class="line"><span class="actionscript">                message: <span class="string">"hello!!"</span></span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="actionscript">            methods:&#123; <span class="comment">//函数,调用时需要带括号</span></span></span><br><span class="line"><span class="actionscript">                currentTime1: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="built_in">Date</span>.now();</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line"><span class="actionscript">            <span class="comment">//method中的方法名和computed中的属性名不建议一致，methods优先级更好</span></span></span><br><span class="line">            computed:　&#123;</span><br><span class="line"><span class="actionscript">                currentTime2: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="built_in">Date</span>.now(); <span class="comment">//计算属性，只有第一次被调用时，进行计算，之后直接在内存中查找结果</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="VUE插槽-slot-内容分发"><a href="#VUE插槽-slot-内容分发" class="headerlink" title="VUE插槽(slot)//内容分发"></a>VUE插槽(slot)//内容分发</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://unpkg.com/axios/dist/axios.min.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vue"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">todo</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-title</span> <span class="attr">slot</span>=<span class="string">"todo-title"</span> <span class="attr">:title</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-title</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-items</span> <span class="attr">slot</span>=<span class="string">"todo-items"</span> <span class="attr">v-for</span>=<span class="string">"item in todoItems"</span> <span class="attr">:item</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-items</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">todo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span> </span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo"</span>,&#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">            template: '<span class="tag">&lt;<span class="name">div</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"todo-title"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;<span class="name">ul</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                                <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"todo-items"</span>&gt;</span> <span class="tag">&lt;/<span class="name">slot</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span></span><br><span class="line">       &#125;);</span><br><span class="line"><span class="actionscript">       <span class="comment">//通过指定solt的name来绑定组件</span></span></span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo-title"</span>,&#123;</span></span><br><span class="line"><span class="actionscript">           props:[<span class="string">'title'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">           template:'<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span></span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo-items"</span>,&#123;</span></span><br><span class="line"><span class="actionscript">            props:[<span class="string">'item'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">            template: '<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span>'</span></span></span><br><span class="line">       &#125;);</span><br><span class="line">        </span><br><span class="line"><span class="actionscript">       <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el:<span class="string">"#vue"</span>,</span></span><br><span class="line">            data:&#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">"what do you like?"</span>,</span></span><br><span class="line"><span class="actionscript">                todoItems: [<span class="string">"happiness"</span>,<span class="string">"movie"</span>,<span class="string">"runnig"</span>,<span class="string">"reading"</span>]</span></span><br><span class="line">            &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><p> 通过以上代码不难发现，数据项在Vue的实例中，但删除操作要在组件中完成，那么组件如何才能删除Vue实例中的数据呢?此时就涉及到参数传递与事件分发了，Vue为我们提供了自定义事件的功能很好的帮助我们解决了这个问题;</p>
+<p> 使用<code>this.$emit (‘自定义事件名’,参数)</code></p>
+<p><img src="/2021/06/21/vue%E5%9F%BA%E7%A1%80/../vue/vue基础/vue1.png" alt="vue1"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script src="https://unpkg.com/axios/dist/axios.min.js"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vue"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">todo</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-title</span> <span class="attr">slot</span>=<span class="string">"todo-title"</span> <span class="attr">:title</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-title</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-items</span> <span class="attr">slot</span>=<span class="string">"todo-items"</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in todoItems"</span> </span></span><br><span class="line"><span class="tag">                <span class="attr">:item</span>=<span class="string">"item"</span> <span class="attr">v-bind:index</span>=<span class="string">"index"</span> <span class="attr">v-on:remove</span>=<span class="string">"removeItems(index)"</span> &gt;</span><span class="tag">&lt;/<span class="name">todo-items</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">todo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--：是v-bind的简写，通过v-on将vue中的函数和组件中的自定义方法进行绑定，key是绑定remove中用到的参数--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span> </span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo"</span>,&#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">            template: '<span class="tag">&lt;<span class="name">div</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"todo-title"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;<span class="name">ul</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                                <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"todo-items"</span>&gt;</span> <span class="tag">&lt;/<span class="name">slot</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>\</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span></span><br><span class="line">       &#125;);</span><br><span class="line"><span class="actionscript">       <span class="comment">//通过指定solt的name来绑定组件</span></span></span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo-title"</span>,&#123;</span></span><br><span class="line"><span class="actionscript">           props:[<span class="string">'title'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">           template:'<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><span class="template-variable">&#123;&#123;title&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span></span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line"><span class="actionscript">       Vue.component(<span class="string">"todo-items"</span>,&#123;</span></span><br><span class="line"><span class="actionscript">            props:[<span class="string">'item'</span>,<span class="string">'index'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">            template: '<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"remove"</span>&gt;</span> delete <span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>' ,</span></span></span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="actionscript">                remove: <span class="function"><span class="keyword">function</span> <span class="params">(index)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'remove'</span>,index) <span class="comment">//这里的remove的名称就是自定义的函数名</span></span></span><br><span class="line"><span class="actionscript">                    <span class="comment">// alert("111");</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line"><span class="actionscript">       <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el:<span class="string">"#vue"</span>,</span></span><br><span class="line">            data:&#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">"what do you like?"</span>,</span></span><br><span class="line"><span class="actionscript">                todoItems: [<span class="string">"happiness"</span>,<span class="string">"movie"</span>,<span class="string">"runnig"</span>,<span class="string">"reading"</span>]</span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods:&#123;</span><br><span class="line"><span class="actionscript">                removeItems: <span class="function"><span class="keyword">function</span><span class="params">(index)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.todoItems.splice(index,<span class="number">1</span>);<span class="comment">//利用javascript中的语法</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">       &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/19/%E6%9C%BA%E8%AF%95list/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -514,7 +712,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-17 22:02:25" itemprop="dateModified" datetime="2021-06-17T22:02:25+08:00">2021-06-17</time>
+                <time title="Modified: 2021-06-22 16:19:11" itemprop="dateModified" datetime="2021-06-22T16:19:11+08:00">2021-06-22</time>
               </span>
 
           
@@ -546,8 +744,12 @@
 <p>   机器学习：<strong>是实现人工智能的方法</strong>，使用算法来解析数据、从中学习、然后对现实世界进行预测。机器学习是用大量的数据来训练，通过各种算法从数据中学习如何完成任务。</p>
 <p>   深度学习：是一种实现机器学习的技术。深度学习本来并不是一种独立的学习方法，其本身也会用到有监督和无监督的学习方法来训练深度神经网络。但由于近几年该领域发展迅猛，一些特有的学习手段相继被提出（如残差网络），因此越来越多的人将其单独看作一种学习的方法。最初的深度学习是利用深度神经网络来解决特征表达的一种学习过程。深度神经网络本身并不是一个全新的概念，可大致理解为包含多个隐含层的神经网络结构。为了提高深层神经网络的训练效果，人们对神经元的连接方法和激活函数等方面做出相应的调整。其实有不少想法早年间也曾有过，但由于当时训练数据量不足、计算能力落后，因此最终的效果不尽如人意。</p>
 </blockquote>
-<h3 id="决策树的算法过程和剪枝方式，并介绍下其适用情景和优劣。说一下选择分支节点的几种参数（信息增益、增益率、基尼指数）"><a href="#决策树的算法过程和剪枝方式，并介绍下其适用情景和优劣。说一下选择分支节点的几种参数（信息增益、增益率、基尼指数）" class="headerlink" title="决策树的算法过程和剪枝方式，并介绍下其适用情景和优劣。说一下选择分支节点的几种参数（信息增益、增益率、基尼指数）"></a>决策树的算法过程和剪枝方式，并介绍下其适用情景和优劣。说一下选择分支节点的几种参数（信息增益、增益率、基尼指数）</h3><h3 id="随机森林算法"><a href="#随机森林算法" class="headerlink" title="随机森林算法"></a>随机森林算法</h3><h3 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h3><p>算法是无监督算法，是基于样本集合划分的聚类算法，它将样本集合划分成k个子集，k个类，将这n个集合归于k个类中，每个样本到其类的中心距离最小。是硬聚类。</p>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p><a href="https://easyai.tech/ai-definition/decision-tree/" target="_blank" rel="noopener">https://easyai.tech/ai-definition/decision-tree/</a></p>
+<h3 id="随机森林算法"><a href="#随机森林算法" class="headerlink" title="随机森林算法"></a>随机森林算法</h3><p><a href="https://easyai.tech/ai-definition/random-forest/" target="_blank" rel="noopener">https://easyai.tech/ai-definition/random-forest/</a></p>
+<h3 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h3><p><a href="https://easyai.tech/ai-definition/k-means-clustering/#baidu" target="_blank" rel="noopener">https://easyai.tech/ai-definition/k-means-clustering/#baidu</a></p>
+<p>算法是无监督算法，是基于样本集合划分的聚类算法，它将样本集合划分成k个子集，k个类，将这n个集合归于k个类中，每个样本到其类的中心距离最小。是硬聚类。</p>
 <h3 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h3><p>KNN是K近邻算法，比较简单直观，给定一个训练集，对于输入的实例，在训练集数据中找到与之最近的k个实例，这k个实例多数属于某个类别，就把输入实例归于这个类。</p>
+<h2 id="特征选择方法"><a href="#特征选择方法" class="headerlink" title="特征选择方法"></a>特征选择方法</h2><p><a href="https://blog.csdn.net/heda3/article/details/95931174" target="_blank" rel="noopener">t-test</a></p>
 <p>相关参考文献：</p>
 <p><a href="https://zhuanlan.zhihu.com/p/354144381" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/354144381</a></p>
 
@@ -891,7 +1093,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-19 20:25:03" itemprop="dateModified" datetime="2021-06-19T20:25:03+08:00">2021-06-19</time>
+                <time title="Modified: 2021-06-22 15:01:11" itemprop="dateModified" datetime="2021-06-22T15:01:11+08:00">2021-06-22</time>
               </span>
 
           
@@ -916,13 +1118,15 @@
 <li>列空间角度：当且仅当b属于A的列空间时成立</li>
 </ol>
 </blockquote>
-<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-18_10-55.png" alt="2021-06-18_10-55"></p>
+<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p>范数:</p>
+<p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-18_10-55.png" alt="2021-06-18_10-55"></p>
 <p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-18_10-55_1.png" alt="2021-06-18_10-55_1"></p>
 <h2 id="矩阵特征值和特征向量"><a href="#矩阵特征值和特征向量" class="headerlink" title="矩阵特征值和特征向量"></a>矩阵特征值和特征向量</h2><p><a href="https://blog.csdn.net/hjq376247328/article/details/80640544?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.withoutpai&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.withoutpai" target="_blank" rel="noopener">[link1]</a>:矩阵的特征值和特征矩阵的应用：它与PCA之间的关系。</p>
+<p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-22_13-33.png" alt="2021-06-22_13-33"></p>
 <p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-18_10-49.png" alt="2021-06-18_10-49"></p>
 <h2 id="正定矩阵"><a href="#正定矩阵" class="headerlink" title="正定矩阵"></a>正定矩阵</h2><ul>
-<li>前提：矩阵是对称的</li>
-<li>所有特征值大于零</li>
+<li>所有特征值都是整数的矩阵称为正定.</li>
+<li>所有特征值都是非负数的矩阵称为半正定矩阵.</li>
 <li>各阶主子式大于零</li>
 </ul>
 <h2 id="相似矩阵"><a href="#相似矩阵" class="headerlink" title="相似矩阵"></a>相似矩阵</h2><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-17_22-55.png" alt="2021-06-17_22-55"></p>
@@ -943,7 +1147,15 @@
 </ul>
 </li>
 </ul>
-<h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1><h2 id="概率论和数理统计的区别"><a href="#概率论和数理统计的区别" class="headerlink" title="概率论和数理统计的区别"></a>概率论和数理统计的区别</h2><blockquote>
+<h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1><h2 id="期望-方差-协方差"><a href="#期望-方差-协方差" class="headerlink" title="期望,方差,协方差"></a>期望,方差,协方差</h2><h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><p>计算函数f(x)关于某分布P(X)的期望: 当x由P(x)产生时.f(X)的平均值</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{x~P[f(x)]} = \sum_{x}P(X)f(x) = \int p(x)f(x) dx</script><h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p>衡量当我们对x依据它的概率分布进行采样时,随机变量x的函数值会呈现什么样的差异</p>
+<script type="math/tex; mode=display">
+Var(f(x) )=\mathbb{E}[(f(x) - \mathbb{E}[f(x)])^2]</script><h3 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h3><p>给出了两个变量相性相关性的强度以及变量的尺度</p>
+<script type="math/tex; mode=display">
+Cov(f(x),g(y))= \mathbb{E}[(f(x) - \mathbb{E}[f(x)])(g(y) - \mathbb{E}[g(y)] )]</script><p>两个变量相互独立,其协方差为0;如果协方差为0 ,只能说明他们没有线性关系,不代表相互独立(可能存在独立性)</p>
+<p>如果协方差为正,两个变量线性正相关;协方差为负,两个变量线性负相关.</p>
+<h2 id="概率论和数理统计的区别"><a href="#概率论和数理统计的区别" class="headerlink" title="概率论和数理统计的区别"></a>概率论和数理统计的区别</h2><blockquote>
 <p>​    他们是方法论上的不同，概率论是推理，数理统计是归纳。</p>
 <p>　　概率论在给定数据生成过程下观测，研究数据的性质。而数理统计是跟据观测的数据，反向思考数据生成过程。</p>
 <p>　　预测、分类、聚类、估计等，都是统计推断的特殊形式。</p>
@@ -956,7 +1168,21 @@
 
 大数定理
 　大数定律证明了在大样本条件下,样本平均值可以看作是总体平均值(数学期望)，所以在统计推断中，一般都会使用样本平均数估计总体平均数的值。
-</code></pre><h2 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h2><script type="math/tex; mode=display">
+</code></pre><h2 id="常见离散概率分布"><a href="#常见离散概率分布" class="headerlink" title="常见离散概率分布"></a>常见离散概率分布</h2><p><a href="https://blog.csdn.net/pipisorry/article/details/39076957" target="_blank" rel="noopener">[link]</a></p>
+<p>正态分布</p>
+<script type="math/tex; mode=display">
+N(X,\mu,\sigma^2) = \sqrt{\frac{1}{2\pi \sigma^2}} exp(\frac{-(x-\mu)^2}{2\sigma^2})</script><p>当我们缺乏对某个实数分布的先验知识时,我们默认选择正态分布.</p>
+<p>原因:</p>
+<blockquote>
+<pre><code>1. 中心极限定理说明很多独立随机变量的和 近似独立正态分布/很多复杂的系统都可以被成功地建模为正态分布的噪音
+ 2. 在具有相同方差的所有可能的概率分布中,正态分布在实数上具有最大的不确定性.即它是对模型要求先验知识最小的分布.
+</code></pre></blockquote>
+<p>指数分布:可以得到一个在x=0处取得边界点的分布</p>
+<p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-22_09-41.png" alt="2021-06-22_09-41"></p>
+<p>Laplace分布:它允许我们在任意一点\mu设置概率质量的峰值</p>
+<script type="math/tex; mode=display">
+Laplace(x; \mu,\gamma) = \frac{1}{2\gamma}exp(-\frac{|x-\mu|}{\gamma})</script><p><img src="/2021/06/16/%E9%9D%A2%E8%AF%95%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-22_09-40.png" alt="2021-06-22_09-40"></p>
+<h2 id="全概率公式"><a href="#全概率公式" class="headerlink" title="全概率公式"></a>全概率公式</h2><script type="math/tex; mode=display">
  p(X,Y) = p(X|Y)p(Y) =p(Y|X)P(X)</script><h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>　　常用的概率估计的一种方法。最大似然估计的核心思想是:认为当前发生的事情是概率最大的事件。就给定的数据集，使得该数据集发生的概率最大来计算模型中的参数。似然函数如下:</p>
 <script type="math/tex; mode=display">
 p(X| \theta) = \prod_{x1}^{x_n} p(x_i | \theta)</script><p>为了便于计算，我们对似然函数两边取对数，生成新的对数似然函数（因为对数函数是单调增函数，因此求似然函数最大化就可以转换成对数似然函数最大化):</p>
@@ -969,7 +1195,7 @@ p(X| \theta) = \sum_{x1}^{x_n} log [p(x_i | \theta)]</script><p>​    求对数
 p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(X)}</script><p><strong>posterior：通过样本X得到参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 的概率，也就是后验概率。</strong></p>
 <p><strong>likehood：通过参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 到样本X的概率，似然函数，通常就是我们的数据集的表现。</strong></p>
 <p><strong>prior：参数 <img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 的先验概率，一般是根据人的先验知识来得出的。</strong></p>
-<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h1 id="离散数学"><a href="#离散数学" class="headerlink" title="离散数学"></a>离散数学</h1><h3 id="离散数学的主要内容"><a href="#离散数学的主要内容" class="headerlink" title="离散数学的主要内容"></a>离散数学的主要内容</h3><p>数理逻辑，二元关系，群与环，数论什么的，是一门比较抽象的学科，主要作用是建立相关的数学模型，把实际问题抽象成为计算机能够理解的逻辑结构，并且用计算机的思维去解决实际问题，往往实际用的不多，主要是训练思维.</p>
+<h1 id="离散数学"><a href="#离散数学" class="headerlink" title="离散数学"></a>离散数学</h1><h3 id="离散数学的主要内容"><a href="#离散数学的主要内容" class="headerlink" title="离散数学的主要内容"></a>离散数学的主要内容</h3><p>数理逻辑，二元关系，群与环，数论什么的，是一门比较抽象的学科，主要作用是建立相关的数学模型，把实际问题抽象成为计算机能够理解的逻辑结构，并且用计算机的思维去解决实际问题，往往实际用的不多，主要是训练思维.</p>
 <h3 id="偏序关系"><a href="#偏序关系" class="headerlink" title="偏序关系"></a>偏序关系</h3><p>集合X上的偏序是一个自反，反对称，传递的关系。严格的偏序关系是一个反自反，反对称且传递的关系</p>
 <p><strong>覆盖</strong>　,<strong>哈斯图</strong>　<a href="https://zhuanlan.zhihu.com/p/365442689" target="_blank" rel="noopener">[link]</a></p>
 <h3 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h3><p>对于集合X，如果Ｘ上的关系R自反，对称且传递，则Ｒ是一个等价关系</p>
@@ -1095,201 +1321,6 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">面经问题汇总</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-01 09:36:08" itemprop="dateCreated datePublished" datetime="2021-06-01T09:36:08+08:00">2021-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-02 17:20:09" itemprop="dateModified" datetime="2021-06-02T17:20:09+08:00">2021-06-02</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>[6.2 浙大吴健老师]</p>
-<ol>
-<li><p>解释一下SVＤ，以及它的应用场景</p>
-<p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
-<ul>
-<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
-</li>
-<li><p>图示</p>
-</li>
-<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
-<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
-</li>
-<li><p>SVD的性质</p>
-<ul>
-<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
-<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
-<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>先验概率和后验概率之间的区别</p>
-<p><a href="https://blog.csdn.net/genghaihua/article/details/92194362" target="_blank" rel="noopener">[l1]</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82" target="_blank" rel="noopener">[l2]</a></p>
-<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：</p>
-<script type="math/tex; mode=display">
-P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
-<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
-<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
-</li>
-</ol>
-<ol>
-<li><p>中值定理</p>
-<p><a href="https://zhuanlan.zhihu.com/p/47436090" target="_blank" rel="noopener">[link1]</a></p>
-<p>[link2]</p>
-<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
-<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
-<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
-</li>
-<li><p>简单介绍一下　中心极限定理</p>
-</li>
-</ol>
-<ol>
-<li><p>SVM大致的内容</p>
-<p><a href="https://zhuanlan.zhihu.com/p/31886934" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31886934</a></p>
-<p>也可以参考西瓜书的内容，讲的很详细</p>
-</li>
-<li><p>LDA(线性判别分析算法)</p>
-<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
-</li>
-<li><p>经典机器学习算法</p>
-<ul>
-<li>线性回归</li>
-<li>logistic回归</li>
-<li>LDA，仅限于二分类</li>
-<li>决策树</li>
-<li>朴素bayes</li>
-<li>KNN　(K最近邻算法)</li>
-<li>学习向量量化  (LVQ)</li>
-<li>SVM</li>
-<li>袋装法//随机森林</li>
-<li>Boosting 和 AdaBoost</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">os-文件系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-01 09:35:28" itemprop="dateCreated datePublished" datetime="2021-06-01T09:35:28+08:00">2021-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-02 17:02:37" itemprop="dateModified" datetime="2021-06-02T17:02:37+08:00">2021-06-02</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="unix文件系统的结构"><a href="#unix文件系统的结构" class="headerlink" title="unix文件系统的结构"></a>unix文件系统的结构</h2><p>unix为了优化内存空间的使用，把用户打开文件表整合到一起，整个系统共用一张用户打开文件表 ( u_file ).　当进程打开文件多时，可以多占用一些表目，打开文件少时，相应的空闲空间可以被其他进程使用。对于同一个文件，在用户打开文件表中可能对应多个表项。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1361,7 +1392,7 @@ P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1374,7 +1405,7 @@ P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
