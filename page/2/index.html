@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Think World">
+<meta property="og:url" content="https://gritcs.github.io/page/2/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+<meta property="article:author" content="Lemon">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="生物大数据">
+<meta property="article:tag" content="医疗&amp;AI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gritcs.github.io/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Think World</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5dc40ea807961ee1d73f07103e4dfa7c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Think World</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Sunny</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/user/" rel="section"><i class="user fa-fw"></i>Über</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Schlagwörter</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Kategorien</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">面经问题汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2021-06-01 09:36:08" itemprop="dateCreated datePublished" datetime="2021-06-01T09:36:08+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2021-06-02 09:20:08" itemprop="dateModified" datetime="2021-06-02T09:20:08+08:00">2021-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>[6.2 浙大吴健老师]</p>
+<ol>
+<li><p>解释一下SVＤ，以及它的应用场景</p>
+<p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
+<ul>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
+</li>
+<li><p>图示</p>
+</li>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
+</li>
+<li><p>SVD的性质</p>
+<ul>
+<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
+<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
+<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先验概率和后验概率之间的区别</p>
+<p><a href="https://blog.csdn.net/genghaihua/article/details/92194362" target="_blank" rel="noopener">[l1]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82" target="_blank" rel="noopener">[l2]</a></p>
+<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：</p>
+<script type="math/tex; mode=display">
+P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
+<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
+<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
+</li>
+</ol>
+<ol>
+<li><p>中值定理</p>
+<p><a href="https://zhuanlan.zhihu.com/p/47436090" target="_blank" rel="noopener">[link1]</a></p>
+<p>[link2]</p>
+<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
+<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
+</li>
+<li><p>简单介绍一下　中心极限定理</p>
+</li>
+</ol>
+<ol>
+<li><p>SVM大致的内容</p>
+<p><a href="https://zhuanlan.zhihu.com/p/31886934" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31886934</a></p>
+<p>也可以参考西瓜书的内容，讲的很详细</p>
+</li>
+<li><p>LDA(线性判别分析算法)</p>
+<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
+</li>
+<li><p>经典机器学习算法</p>
+<ul>
+<li>线性回归</li>
+<li>logistic回归</li>
+<li>LDA，仅限于二分类</li>
+<li>决策树</li>
+<li>朴素bayes</li>
+<li>KNN　(K最近邻算法)</li>
+<li>学习向量量化  (LVQ)</li>
+<li>SVM</li>
+<li>袋装法//随机森林</li>
+<li>Boosting 和 AdaBoost</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">os-文件系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2021-06-01 09:35:28" itemprop="dateCreated datePublished" datetime="2021-06-01T09:35:28+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2021-06-02 09:02:36" itemprop="dateModified" datetime="2021-06-02T09:02:36+08:00">2021-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="unix文件系统的结构"><a href="#unix文件系统的结构" class="headerlink" title="unix文件系统的结构"></a>unix文件系统的结构</h2><p>unix为了优化内存空间的使用，把用户打开文件表整合到一起，整个系统共用一张用户打开文件表 ( u_file ).　当进程打开文件多时，可以多占用一些表目，打开文件少时，相应的空闲空间可以被其他进程使用。对于同一个文件，在用户打开文件表中可能对应多个表项。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/" class="post-title-link" itemprop="url">数据结构-查找</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-31 17:16:10 / Geändert am: 23:30:16" itemprop="dateCreated datePublished" datetime="2021-05-31T17:16:10+08:00">2021-05-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>推荐博客:<a href="https://blog.csdn.net/sayhello_world/article/details/77200009#t1" target="_blank" rel="noopener">[link1]</a></p>
+<h2 id="知识框架"><a href="#知识框架" class="headerlink" title="知识框架"></a>知识框架</h2><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-15.png" alt="2021-05-31_19-15" style="zoom: 80%;"></p>
+<p>查找表：用于查找的数据集合</p>
+<p>静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表</p>
+<p>​                静态查找方法：顺序查找，折半查找，散列查找。</p>
+<p>动态查找：可以动态地插入或者删除的查找表</p>
+<p>​                　动态查找的方法：平衡二叉树和B树</p>
+<h2 id="算法比较"><a href="#算法比较" class="headerlink" title="算法比较"></a>算法比较</h2><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png" alt="2021-05-31_19-38"></p>
+<h3 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h3><p>随着斐波那契数列的递增，前后两个数的比值会越来越接近0.618，为了防止查找树退化，是二分查找的一种提升算法，通过运用黄金比例的概念在数列中选择查找点进行查找，提高查找效率。</p>
+<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><p>按照数值的分布信息，我们可以将查找的点改进为如下：</p>
+<p>　　mid=low+(key-a[low])/(a[high]-a[low])*(high-low)，</p>
+<p>相比于二分查找，将上述的比例参数1/2改进为自适应的，根据关键字在整个有序表中所处的位置，让mid值的变化更靠近关键字key，这样也就间接地减少了比较次数。</p>
+<p><strong>基本思想：</strong>基于二分查找算法，将查找点的选择改进为自适应选择，可以提高查找效率。当然，差值查找也属于有序查找。</p>
+<p>注：<strong>对于表长较大，而关键字分布又比较均匀的查找表来说，插值查找算法的平均性能比折半查找要好的多。反之，数组中如果分布非常不均匀，那么插值查找未必是很合适的选择。</strong></p>
+<h3 id="二分查找和二叉查找树的区别"><a href="#二分查找和二叉查找树的区别" class="headerlink" title="二分查找和二叉查找树的区别"></a>二分查找和二叉查找树的区别</h3><p>二分查找适用于有序的线性表结构，</p>
+<p>二叉查找树是动态查找。先对待查找的数据进行生成树，确保树的左分支的值小于右分支的值，然后在就行和每个节点的父节点比较大小，查找最适合的范围。 这个算法的查找效率很高，但是如果使用这种查找方法要首先创建树。不同的插入顺序会导致不同结构的二叉查找树，出现退化现象(变成链表)。</p>
+<p><strong>二叉查找树性质</strong>：<strong>对二叉查找树进行中序遍历，即可得到有序的数列。</strong></p>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>散列方法是按照关键字编址的一项技术:以关键字K为自变量，通过函数h(K)计算地址.散列表建立了关键点和存储地址之间的一种直接映射关系</p>
+<p>散列算法的核心是　散列函数h(x) 和　冲突消解的方法</p>
+<p>常见的散列函数：</p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_21-49.png" alt="2021-05-31_21-49" style="zoom:80%;"></p>
+<p><a href="https://www.cnblogs.com/higerMan/p/11907117.html" target="_blank" rel="noopener"><strong>冲突消解的方法</strong></a>：拉链法(拉链　和　合并拉链法)，线性探查方法(线性探查，二次探查，随机探查)，再哈希法，建立公共溢出区</p>
+<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>1.AVL树的创建</p>
+<p>2.查找</p>
+<p>3.插入操作[涉及旋转]</p>
+<h2 id="2-3树"><a href="#2-3树" class="headerlink" title="2-3树"></a><a href="https://zhuanlan.zhihu.com/p/104031183" target="_blank" rel="noopener">2-3树</a></h2><p>特点：绝对平衡的树，任意结点到它的所有叶子结点的深度都是相等的.保证了插入和删除的复杂度都控制在 O(logN)</p>
+<p>定义：</p>
+<blockquote>
+<p>一颗2-3树或为一颗空树，或有以下节点组成：</p>
+<p>2-节点，含有一个元素和两个子树（左右子树），左子树所有元素的值均小于它父节点，右子树所有元素的值均大于它父节点；</p>
+<p>3-节点，还有两个元素和三个子树（左中右子树），左子树所有元素的值均小于它父节点，中子树所有元素的值都位于父节点两个元素之间，右子树所有元素的值均大于它父节点；</p>
+<p>子树也是空树、2-节点或者3-节点；</p>
+<p>没有元素相等的节点。</p>
+</blockquote>
+<p>插入分为４种情况</p>
+<blockquote>
+<p>1.向2-节点中插入元素；</p>
+<p>2.向一颗只含有一个3-节点的树中插入元素；</p>
+<p>3.向一个父节点为2-节点的3-节点中插入元素；</p>
+<p>4.向一个父节点为3-节点的3-节点中插入元素。</p>
+</blockquote>
+<p>删除</p>
+<p>参考算法4中的解读</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>黑色结点绝对平衡的二叉树</p>
+<p><a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">https://www.jianshu.com/p/e136ec79235c</a></p>
+<blockquote>
+<p>​    红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面性质：</p>
+<ul>
+<li>性质1：每个节点要么是黑色，要么是红色。</li>
+<li>性质2：根节点是黑色。</li>
+<li>性质3：每个叶子节点（NIL）是黑色。</li>
+<li>性质4：每个红色结点的两个子结点一定都是黑色。</li>
+<li><strong>性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。</strong></li>
+</ul>
+</blockquote>
+<p>插入4种情况</p>
+<p>删除3种情况</p>
+<h2 id="B-B-树"><a href="#B-B-树" class="headerlink" title="B/B+树"></a>B/B+树</h2><blockquote>
+<p>定义:参考ppt</p>
+<p>在插入或者删除操作中，如何维护B/B+树？</p>
+</blockquote>
+<p><a href="https://segmentfault.com/a/1190000020416577" target="_blank" rel="noopener">https://segmentfault.com/a/1190000020416577</a></p>
+<p>B/B+树之间的不同</p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/4.jpg" alt="4" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/3.png" alt="3" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2.png" alt="2" style="zoom:80%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/1.png" alt="1" style="zoom: 80%;"></p>
+<h3 id="理解B-B-树的应用背景"><a href="#理解B-B-树的应用背景" class="headerlink" title="理解B/B+树的应用背景"></a>理解B/B+树的应用背景</h3><h4 id="为什么B树适合在磁盘中查找？"><a href="#为什么B树适合在磁盘中查找？" class="headerlink" title="为什么B树适合在磁盘中查找？"></a>为什么B树适合在磁盘中查找？</h4><p>B树，概括来说是一个节点可以拥有多于2个子节点的二叉查找树。与自平衡二叉查找树不同，B树为系统最优化<strong>大块数据的读和写操作</strong>。B-tree算法减少定位记录时所经历的中间过程，也就是减少了磁盘的IO操作。</p>
+<h4 id="为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？"><a href="#为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？" class="headerlink" title="为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？"></a>为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？</h4><p>​        因为B树不管叶子节点还是非叶子节点，都会保存数据，这样导致在非叶子节点中能保存的指针数量变少（有些资料也称为扇出）</p>
+<p>指针少的情况下要保存大量数据，只能增加树的高度，导致IO操作变多，查询性能变低；</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">算法复习-相关概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-31 17:15:03 / Geändert am: 09:15:02" itemprop="dateCreated datePublished" datetime="2021-05-31T17:15:03+08:00">2021-05-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/" class="post-title-link" itemprop="url">数据结构复习_图论1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2021-05-31 10:06:28" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2021-06-19 11:11:24" itemprop="dateModified" datetime="2021-06-19T11:11:24+08:00">2021-06-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>算法思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dijkstra</td>
+<td>求解权图的单源最短路径<br>按照非递减次序依次得到各顶点的最小路径长度。<br>适用条件:不存在负权边</td>
+<td>时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​</td>
+</tr>
+<tr>
+<td>Bellman-Ford算法</td>
+<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第v次时，仍进行松弛操作</td>
+<td>时间复杂度是O(V *E)​，空间复杂度O(E)​</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>求解非权图的单源最短路径<br></td>
+<td>时间复杂度:O(n^2)—邻接矩阵，O(E*V)​-邻接链表</td>
+</tr>
+<tr>
+<td>mark优化的Bellman-Ford算法</td>
+<td>增加一个mark标记，如果在一次循环中，bellman-Ford没有进行松弛操作，则退出循环</td>
+<td></td>
+</tr>
+<tr>
+<td>SPFA</td>
+<td><a href="https://blog.csdn.net/qq_35644234/article/details/61614581" target="_blank" rel="noopener">https://blog.csdn.net/qq_35644234/article/details/61614581</a><br><a href="https://www.cnblogs.com/shadowland/p/5870640.html" target="_blank" rel="noopener">https://www.cnblogs.com/shadowland/p/5870640.html</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Floyd算法</td>
+<td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
+<td>多源最短路，时间复杂度O(V^３)​</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" alt="2021-05-31_15-59"></p>
+<h3 id="相关算法的伪代码"><a href="#相关算法的伪代码" class="headerlink" title="相关算法的伪代码"></a>相关算法的伪代码</h3><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png" alt="2021-06-19_19-09"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png" alt="2021-06-19_19-09_1"></p>
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png" alt="2021-06-19_19-08"></p>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><blockquote>
+<p>最长路径的计算    </p>
+<p>次短路计算</p>
+<p>关于多条最短路径的计算，参考PAT相关题目（我记得有道PAT用的dijkstra计算的负权最短路径</p>
+</blockquote>
+<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><p>问题：寻找包含全部顶点的连通子图，且代价最小</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prim</td>
+<td>类似于Dijkstra思路，求$V_0$的单源最短路径，构成最小生成树<br>求边稠密网<br>用pre存储树结构,</td>
+<td>时间复杂度为O(n^2) 使用堆优化，可以达到O(e*logn)​</td>
+</tr>
+<tr>
+<td>Kruskal</td>
+<td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a href="https://zhuanlan.zhihu.com/p/34922624" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34922624</a></td>
+<td>时间复杂度O(ElogV ),采用并查集判环－一次find() : logV</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png" alt="2021-05-31_15-57"></p>
+<p>闭圈法/破圈法</p>
+<p>最大生成树</p>
+<p>相关例题：POJ 3255:</p>
+</blockquote>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><strong>AOV网</strong>：用顶点表示活动，用有向边表示活动之间的前后关系，称这样的有向图表示AOV网。</p>
+<p>拓扑排序：在图论中，由一个有向无环图的顶点组成的序列，当且仅当满足一下条件时，称为该图的一个拓扑排序</p>
+<ul>
+<li>每个顶点出现且只出现一次</li>
+<li>如果顶点Ａ在序列中排在Ｂ的前面，则图中不存在从顶点B到顶点A之间的路径。</li>
+</ul>
+<p>每个AOV网都有一个或者多个拓扑排序。</p>
+<p>拓扑排序的方法：（可以采用深搜－<a href="https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note时间复杂度是$O(V+E)$）" target="_blank" rel="noopener">https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note时间复杂度是$O(V+E)$）</a></p>
+<blockquote>
+<ol>
+<li>从AOV网中选择一个没有前驱(入度为0)的顶点并输出。</li>
+<li>从网中删除该顶点和所有以它为起点的有向边。</li>
+<li>重复1和２,直到AOV图为空或者剩余结点都不为空（后者表示存在回路）。</li>
+</ol>
+</blockquote>
+<h2 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h2><p><strong>AOE</strong>网:　边表示活动，边的权值表示活动的持续时间，顶点表示入边的活动已经完成，出边的活动可以开始的状态，称为事件</p>
+<p>源点：表示整个工程的开始(入度为０)</p>
+<p>汇点：表示整个工程的结束(出度为０)</p>
+<p>关键路径：在<strong>AOE</strong>中，具有最大长度的路径。关键路径上的活动都是关键活动。</p>
+<p>关键活动:不能延期的活动。不按期完成就会影响整个工期的活动。</p>
+<p><strong>求关键路径的算法</strong></p>
+<blockquote>
+<p>vn表示汇点，v0表示源点<br>关于事件的量<br>① 事件vj的最早发生时间 ve(j):<br>    从源点v0到vj的最长路径长度。<br>② 事件vj的最迟发生时间 vl(j):<br>    保证汇点的最早发生时间不推迟的前提下，事件vj允许的最迟开始时间，等于ve(n)减去从vj到vn最长路径长度</p>
+<p>  关于活动的量<br>③ 活动ai的最早开始时间e(i):<br> 设活动ai为有向边<vj ,vk>，则 e(i) = ve(j)。<br>  ve(j)是从源点v0到vj的最长路径长度，决定了所有从vj开始的活动的最早开始时间。<br>④ 活动ai的最迟开始时间 l(i):<br>  l(i) 是在不会引起工期延误的前提下，该活动允许的最迟开始时间。设活动ai为有向边<vj ,vk>, 则 l(i) = vl(k)-weight(<j, k>)。</j,></vj></vj></p>
+<p>   关键活动： l(i)＝ e(i) 表示活动ak 是没有时间余量的关键活动</p>
+</blockquote>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2.png" alt="2" style="zoom: 33%;"></p>
+<p><img src="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png" alt="1"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/19/LCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/19/LCA/" class="post-title-link" itemprop="url">LCA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-19 09:24:26 / Geändert am: 06:45:02" itemprop="dateCreated datePublished" datetime="2021-05-19T09:24:26+08:00">2021-05-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><ol>
+<li>LCA的定义:</li>
+</ol>
+<ol>
+<li><p>方法1: 递归算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//root是树的根结点,二叉树使用</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    Node(<span class="keyword">int</span> v):val(v),left(<span class="literal">nullptr</span>),right(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">LCA</span><span class="params">(Node* root, <span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;val == u || root-&gt;val == v)&#123;<span class="comment">//root是其中一个根</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    Node* left = LCA(root-&gt;left,u,v);</span><br><span class="line">    Node* right = LCA(root-&gt;right,u,v);</span><br><span class="line">    <span class="keyword">if</span>(left!=<span class="literal">nullptr</span> &amp;&amp; right!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(left!=<span class="literal">nullptr</span>)&#123; <span class="comment">//出现在左子树上</span></span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(right!=<span class="literal">nullptr</span>)&#123;<span class="comment">//出现在右子树上</span></span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>倍增寻找(ST算法)</li>
+</ol>
+<blockquote>
+<p>​    算法执行之前,我们需要统计每个结点v的深度depth(v).</p>
+<p>​     LCA的特点: 如果结点w是结点u和结点v的最近公共祖先的话:</p>
+<p>​            让u往上走(depth(w) - depth(u) )步, 让v往上走(depth(v) - depth(w) )步,u,v都将走到结点w</p>
+</blockquote>
+<p><strong>寻找结点u和结点v LCA的 倍增算法的基本思路:</strong>    </p>
+<blockquote>
+<p>​    结点w未知,我们首先让u和v中较深的点往上走|depth(u)-depth(v)|步,再一起往上走.</p>
+<p>   并且利用二分搜索求出可到达的最近公共祖先的最小步数.</p>
+</blockquote>
+<p>不过其中要维护一个father数组 , 并且<code>father[i][j]</code> 表示 结点i 往上走j-1 步得到的祖先结点,father[]</p>
+<p>[源码]</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by doriswang on 2021/5/19.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> father[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> depth[MAX];</span><br><span class="line"><span class="keyword">int</span> N ;<span class="comment">//结点的个数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tree[MAX] ;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  利用dfs,初始化father数组</span></span><br><span class="line"><span class="comment"> * @param cur:当前结点</span></span><br><span class="line"><span class="comment"> * @param pre: 当前结点</span></span><br><span class="line"><span class="comment"> * @param d</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    father[cur][<span class="number">0</span>] = pre;</span><br><span class="line">    depth[cur] = d;</span><br><span class="line">    <span class="keyword">if</span>(tree[cur].empty())&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span> = tree[cur].<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">size</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch =tree[cur][i];</span><br><span class="line">        <span class="keyword">if</span>(ch!=pre)&#123; <span class="comment">//防止出现回路</span></span><br><span class="line">            dfs(ch,cur,d+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123; <span class="comment">////i的2^j祖先就是i的（2^(j-1))祖先的2^(j-1)祖先</span></span><br><span class="line">    dfs(root,<span class="number">-1</span>,<span class="number">0</span>);<span class="comment">//root为根结点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;(<span class="number">1</span>&lt;&lt;(j+<span class="number">1</span>))&lt;N;j++)&#123; <span class="comment">// 1&lt;&lt;(j+1)表示 2^(j+1),j表示高度</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(father[i][j]&lt;<span class="number">0</span>) father[i][j+<span class="number">1</span>] = <span class="number">-1</span>; <span class="comment">//到达根结点</span></span><br><span class="line">            <span class="keyword">else</span> father[i][j+<span class="number">1</span>] = father[father[i][j]][j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(depth[u]&gt;depth[v])&#123;</span><br><span class="line">        swap(u,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> temp = depth[v] - depth[u];</span><br><span class="line">    <span class="comment">//原来是这么写的,我觉得有点难记忆</span></span><br><span class="line"><span class="comment">//    for(int i=0;(1&lt;&lt;i)&lt;=temp;i++)&#123; //使u,v再同一高度,i表示树高</span></span><br><span class="line"><span class="comment">//        //(1&lt;&lt;i)&amp;f找到f化为2进制后1的位置，移动到相应的位置</span></span><br><span class="line"><span class="comment">//        if((1&lt;&lt;i)&amp; temp)&#123;   //比如f=5，二进制就是101,所以首先移动2^0祖先，然后再移动2^2祖先</span></span><br><span class="line"><span class="comment">//            v= father[v][i];</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    v = father[v][temp<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">if</span>(v==u)&#123;</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//father[u][i] 是找到u的往上第i-1个祖先,这里利用了二分的思想,所以 u=father[u][i], i是不断减小的</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i=(<span class="keyword">int</span>)log2(N*<span class="number">1.0</span>);i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(father[u][i]!= father[v][i])&#123;</span><br><span class="line">            u = father[u][i];</span><br><span class="line">            v = father[v][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[u][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    N =<span class="number">8</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;temp;</span><br><span class="line">            tree[i].push_back(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    init(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;LCA(<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 7 6</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 3 8</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">1 1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">8 //应该输出5</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">机试注意事项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-17 18:14:48 / Geändert am: 10:16:58" itemprop="dateCreated datePublished" datetime="2021-05-17T18:14:48+08:00">2021-05-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-c-中类型可以表示的范围"><a href="#1-c-中类型可以表示的范围" class="headerlink" title="1. c++中类型可以表示的范围"></a>1. c++中类型可以表示的范围</h2><p><img src="/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/2021-05-17_18-16.png" alt="2021-05-17_18-16"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/17/STL-set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/17/STL-set/" class="post-title-link" itemprop="url">STL-set</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-17 17:34:15 / Geändert am: 09:57:56" itemprop="dateCreated datePublished" datetime="2021-05-17T17:34:15+08:00">2021-05-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>内部自动有序并且不包含重复元素的容器</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<set\></set\></h1><h3 id="set的定义和初始化"><a href="#set的定义和初始化" class="headerlink" title="set的定义和初始化"></a>set的定义和初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; name;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; strs;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">char</span>&gt; a[<span class="number">100</span>]; <span class="comment">///set数组</span></span><br></pre></td></tr></table></figure>
+<h3 id="set容器内元素的访问"><a href="#set容器内元素的访问" class="headerlink" title="set容器内元素的访问"></a>set容器内元素的访问</h3><blockquote>
+<p>set只能通过迭代器访问</p>
+<p>set<int\>::iterator it;</int\></p>
+</blockquote>
+<p><strong>除了vector和string之外的STL容器都不支持<code>*(it+1)</code>的访问方式 </strong> 而且迭代器不能比较</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">		st.insert(<span class="number">3</span>);</span><br><span class="line">		st.insert(<span class="number">4</span>);</span><br><span class="line">		st.insert(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it = st.<span class="built_in">begin</span>() ; it != st.<span class="built_in">end</span>() ; it++)&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///output:  1 3 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="set常用函数"><a href="#set常用函数" class="headerlink" title="set常用函数"></a>set常用函数</h3><h4 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h4><p>底层是红黑树,自动递增排序和去重,时间复杂是$O(logN)$ , $N$ 为set内元素个数</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h4><p>find(value)返回set中对应为value的迭代器,找不到返回set.end() , 时间复杂是$O(logN)$ , $N$ 为set内元素个数</p>
+<h4 id="erase"><a href="#erase" class="headerlink" title="erase()"></a>erase()</h4><h5 id="删除单个元素"><a href="#删除单个元素" class="headerlink" title="删除单个元素"></a>删除单个元素</h5><h6 id="方法1"><a href="#方法1" class="headerlink" title="方法1:"></a>方法1:</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(it);  <span class="comment">//it为所需要删除的元素的迭代器,时间复杂度为O(1).</span></span><br></pre></td></tr></table></figure>
+<h6 id="方法2"><a href="#方法2" class="headerlink" title="方法2:"></a>方法2:</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(value); <span class="comment">//value为所要删除的值,时间复杂度是Olog(N) , N为set内元素个数</span></span><br></pre></td></tr></table></figure>
+<h5 id="删除一个区间内的所有元素"><a href="#删除一个区间内的所有元素" class="headerlink" title="删除一个区间内的所有元素"></a>删除一个区间内的所有元素</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>.erase(first,last) <span class="comment">//可以删除一个区间内所有的元素,[first,last)</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/05/17/STL-set/2021-05-17_17-51.png" alt="2021-05-17_17-51"></p>
+<h4 id="clear"><a href="#clear" class="headerlink" title="clear()"></a>clear()</h4><h4 id="size"><a href="#size" class="headerlink" title="size()"></a>size()</h4><h3 id="set的常见用途"><a href="#set的常见用途" class="headerlink" title="set的常见用途"></a>set的常见用途</h3><p><img src="/2021/05/17/STL-set/2021-05-17_17-57.png" alt="2021-05-17_17-57"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="post-title-link" itemprop="url">并查集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2021-05-16 20:46:24 / Geändert am: 15:48:54" itemprop="dateCreated datePublished" datetime="2021-05-16T20:46:24+08:00">2021-05-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="并查集定义"><a href="#并查集定义" class="headerlink" title="并查集定义"></a>并查集定义</h2><blockquote>
+<p>​    并查集:一种维护集合的数据结构, 可以支持两种操作</p>
+<pre><code>1. union: 合并两个集合
+ 2. find:判断两个元素是否在一个集合中
+</code></pre></blockquote>
+<h2 id="并查集的操作"><a href="#并查集的操作" class="headerlink" title="并查集的操作"></a>并查集的操作</h2><p>并查集是由father链接构成的树</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> father[MAX]; <span class="comment">//每个结点保存自己的father结点的下标</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	father[i]=<span class="number">-1</span>;<span class="comment">//每个人都是自己的父亲,树高为1,负值表示高度</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//带路径的压缩</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="comment">//Find的递归写法 </span></span><br><span class="line">	<span class="keyword">if</span>(Father[x]&lt;<span class="number">0</span> )&#123; <span class="keyword">return</span> x; &#125; <span class="comment">// x为根</span></span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> Father[x] = Find(x); <span class="comment">//采用路径压缩</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123; <span class="comment">//按秩合并</span></span><br><span class="line">	<span class="keyword">int</span> fa = Find(a);</span><br><span class="line">    <span class="keyword">int</span> fb = Find(b);</span><br><span class="line">    <span class="keyword">if</span>( fa!=fb) &#123;</span><br><span class="line">        <span class="keyword">if</span>(Fathe[fa]&lt;Father[fb&#125;])&#123; <span class="comment">//fa的树更高,fb并到fa</span></span><br><span class="line">            Father[fb] = fa;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( Father[fa] == Father[fb])&#123;</span><br><span class="line">            Father[fb] = fa;<span class="comment">//树高+1</span></span><br><span class="line">            Father[fa]--;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Father[fa] =  fb;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目:"></a>相关题目:</h3><p><a href>PAT1114  Family Property</a></p>
+<p>[code]:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> INF = <span class="number">1e-7</span>;</span><br><span class="line"><span class="keyword">int</span> father[<span class="number">10001</span>];<span class="comment">//维护并查集</span></span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">10001</span>];<span class="comment">//表明那个是有效的id</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x != father[x])</span><br><span class="line">        x = father[x];</span><br><span class="line"><span class="comment">//    father[init] = x;</span></span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fa = <span class="built_in">find</span>(a);</span><br><span class="line">    <span class="keyword">int</span> fb = <span class="built_in">find</span>(b);</span><br><span class="line">    <span class="keyword">if</span>(fa==fb) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(fa&lt;fb)&#123;<span class="comment">//a是根</span></span><br><span class="line">        father[fb] = fa;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        father[fa]=fb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里id就用int表示即可,方便用并查集实现</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id, fid,mid,cn,estate,area;</span><br><span class="line">    <span class="keyword">int</span> cid[<span class="number">10</span>];<span class="comment">//k&lt;5</span></span><br><span class="line">    Node(<span class="keyword">int</span> i, <span class="keyword">int</span> f, <span class="keyword">int</span> m,<span class="keyword">int</span> cn):id(i),fid(f),mid(m),cn(cn),estate(<span class="number">0</span>),area(<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            cid[<span class="number">10</span>]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> people;<span class="comment">//人数</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">double</span> estate;</span><br><span class="line">    <span class="keyword">double</span> area;</span><br><span class="line">    <span class="keyword">bool</span> flag;<span class="comment">//表明该data是否根结点</span></span><br><span class="line">    Data():people(<span class="number">0</span>),estate(<span class="number">0</span>),area(<span class="number">0</span>),flag(<span class="literal">false</span>),id(<span class="number">0</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Data a, Data b)</span></span>&#123;<span class="comment">//estate 降序</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(a.area - b.area) &gt; INF ? a.area &gt; b.area : a.id &lt; b.id;</span><br><span class="line">&#125;</span><br><span class="line">Data roots[<span class="number">10000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;N;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Node&gt; nodes;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10001</span>;i++)&#123;</span><br><span class="line">        father[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> id, fid,mid,cn;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; id &gt;&gt; fid&gt;&gt; mid&gt;&gt;cn;</span><br><span class="line">        Node temp = Node(id,fid,mid,cn);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;cn;j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;temp.cid[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt; temp.estate &gt;&gt; temp.area;</span><br><span class="line">        nodes.push_back(temp);</span><br><span class="line">    &#125;<span class="comment">//读入每个人的信息</span></span><br><span class="line">    <span class="comment">//进行合并</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">        Node temp = nodes[i];</span><br><span class="line">        <span class="keyword">int</span>  k = nodes[i].cn;</span><br><span class="line">        <span class="keyword">if</span>(temp.fid!=<span class="number">-1</span>)&#123;</span><br><span class="line">            Union(temp.id, temp.fid);</span><br><span class="line">            vis[temp.fid] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(temp.mid!=<span class="number">-1</span>)&#123;</span><br><span class="line">            Union(temp.id,temp.mid);</span><br><span class="line">            vis[temp.mid] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;k;j++)&#123;</span><br><span class="line">            Union(temp.id,temp.cid[j]);</span><br><span class="line">            vis[temp.cid[j]] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[temp.id] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//统计每个家族的情况</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">        Node temp = nodes[i];</span><br><span class="line">        <span class="keyword">int</span> x = <span class="built_in">find</span>(temp.id);</span><br><span class="line">        roots[x].id = x ;<span class="comment">//用于比较</span></span><br><span class="line">        <span class="keyword">if</span>(!roots[x].flag)&#123;</span><br><span class="line">            count++;</span><br><span class="line">            roots[x].flag = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        roots[x].estate +=temp.estate;</span><br><span class="line">        roots[x].area += temp.area;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i])&#123;</span><br><span class="line">            roots[<span class="built_in">find</span>(i)].people++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(roots[i].flag)&#123;</span><br><span class="line"><span class="comment">//            cout&lt;&lt;roots[i].id&lt;&lt; " "&lt;&lt;roots[i].estate&lt;&lt; " "&lt;&lt;roots[i].area&lt;&lt;" " &lt;&lt;roots[i].people&lt;&lt;endl;</span></span><br><span class="line">            roots[i].estate = roots[i].estate /(<span class="number">1.0</span>*roots[i].people);</span><br><span class="line">            roots[i].area= roots[i].area / (<span class="number">1.0</span>*roots[i].people);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(roots,roots+<span class="number">10000</span>,cmp);<span class="comment">//</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;setiosflags(ios::fixed)&lt;&lt; setprecision(<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">        <span class="keyword">char</span> ss[<span class="number">5</span>];</span><br><span class="line">        <span class="built_in">sprintf</span>(ss,<span class="string">"%04d"</span>,roots[i].id);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ss&lt;&lt;<span class="string">" "</span>&lt;&lt;roots[i].people&lt;&lt;<span class="string">" "</span>&lt;&lt;roots[i].estate&lt;&lt;<span class="string">" "</span>&lt;&lt;roots[i].area&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/05/16/PAT%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/16/PAT%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">PAT记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2021-05-16 20:16:04" itemprop="dateCreated datePublished" datetime="2021-05-16T20:16:04+08:00">2021-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2021-05-18 00:43:24" itemprop="dateModified" datetime="2021-05-18T00:43:24+08:00">2021-05-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这里用来记录PAT解题的一些考点,注意事项,源代码请到这里[link]去找. 按照题号写的, “XX_w2.cpp”是参考的大神的代码</p>
+<h2 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020.5.16"></a>2020.5.16</h2><h3 id="1106-Lowest-Price-in-Supply-Chain"><a href="#1106-Lowest-Price-in-Supply-Chain" class="headerlink" title="1106 Lowest Price in Supply Chain"></a>1106 <a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805362341822464" target="_blank" rel="noopener"><strong>Lowest Price in Supply Chain</strong></a></h3><p>同类题目:</p>
+<ul>
+<li>求叶子结点的最小层</li>
+<li>有向无权图的单元最短路的条数</li>
+</ul>
+<blockquote>
+<p>​    <strong>考点: 利用 图的DFS / BFS 求叶子结点的最小层</strong>(要减枝,不然会超时)    </p>
+<p>   利用vector<int\> Nodes[max] 构建邻接链表</int\></p>
+</blockquote>
+<p><strong>问题</strong></p>
+<blockquote>
+<ol>
+<li>结果要求保留小数点后4位, 需要控制输出格式 , cout&lt;&lt;setiosflag(ios::fixed)&lt;&lt;setprecision(4)&lt;&lt;…</li>
+<li>一般用double代替float,保留一定的精度</li>
+<li>边界min_depth的初值我设置成9999, 有点小,卡了三个样例,要注意边界值的设置</li>
+<li>bfs,我经常容易忘记结点出队/=\,害</li>
+</ol>
+</blockquote>
+<h3 id="1115-Counting-Nodes-in-a-BST"><a href="#1115-Counting-Nodes-in-a-BST" class="headerlink" title="1115 Counting Nodes in a BST"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805355987451904" target="_blank" rel="noopener">1115 <strong>Counting Nodes in a BST</strong></a></h3><ul>
+<li>计算BST中最低层和次低层的结点的个数</li>
+</ul>
+<p>相关考点:</p>
+<blockquote>
+<pre><code>1. BST的构建--insert,creatBST模板函数
+ 2. DFS
+</code></pre></blockquote>
+<p>问题:</p>
+<blockquote>
+<p>​    这次还是边界设置错啦,—int depth=-1; //只有一个结点的时候,出错</p>
+</blockquote>
+<h3 id="1114-Family-Property"><a href="#1114-Family-Property" class="headerlink" title="1114 Family Property"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805356599820288" target="_blank" rel="noopener">1114 Family Property</a></h3><ul>
+<li>统计求集合的并集,并集合中的信息</li>
+</ul>
+<p>相关考点:</p>
+<blockquote>
+<p>​    1.并查集的find 和 union 模板(==遗留问题, 路径压缩的并查集和非路径压缩有什么区别??,这里带路径压缩的find会导致出错)</p>
+<ol>
+<li><p>这里的4位的id是直接用int来表示的,方便并查集的实现;不过最后的输出格式要额外处理</p>
+<ul>
+<li>如何把int转换成string,并且高位用0填充<ul>
+<li>char des[10] ; int src = 1998 ;</li>
+<li>sprintf(des,”%04d”,src); //把src转换为4位的string,并用0填充,转换的结果存储到des中.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>经常开一个比较大的数组作为全局变量.节省一些处理.</p>
+<p>这道题开大数组,索引起来特别方便.不过要增加一个vis[10000]数组表示id是有效的.</p>
+<p>(自己做题总是小心翼翼,不想浪费太多的空间)</p>
+</li>
+<li><p>这道题数据处理的过程,可以多学习一些,自定义了两个struct,一个用来处理输入(输入一个结点,进行一次union操作,int father[]用来保存并查集结构) ；另外一个用来处理输出,(保存每个集合的统计信息)</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="1126-Eulerian-Path"><a href="#1126-Eulerian-Path" class="headerlink" title="1126 Eulerian Path"></a><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805349851185152" target="_blank" rel="noopener">1126 Eulerian Path</a></h3><ul>
+<li><p>判断图是否是欧拉图,半欧拉图,非欧拉图</p>
+<ul>
+<li><p>欧拉图的定义</p>
+<blockquote>
+<pre><code>欧拉回路：图G中经过每条边一次并且仅一次的回路称作欧拉回路
+</code></pre><p>欧拉通路：图G中经过每条边一次并且仅一次的路径称作欧拉通路。<br>欧拉图(Eulerian graph)指的就是存在欧拉回路的图。<br>半欧拉图(semi-Eulerian graph)指的是存在欧拉通路但不存在欧拉回路的图。</p>
+<p>1.无向图中：</p>
+<pre><code>无向图G为欧拉图，当且仅当G为连通图且所有顶点的度为偶数。
+</code></pre><p>　无向图G为半欧拉图，当且仅当G为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。</p>
+<p>2.有向图中：<br>　　有向图G为欧拉图，当且仅当G为连通图，且所有顶点的入度等于出度。<br>　　有向图G为半欧拉图，当且仅当G为连通图，且存在顶点u的入度比出度大1，v的入度比出度小1，其它所有顶点的入度等于出度。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>基本思路:</p>
+<ol>
+<li>统计所有顶点的度,计算度为奇数的结点的个数</li>
+<li>判断该图是否是连通图</li>
+</ol>
+<p><strong>考点</strong></p>
+<p>​    <strong>如何判断是否是连通图?</strong></p>
+<blockquote>
+<p>​    1.利用并查集(在接收输入时,构建并查集) ,时间复杂度</p>
+<p>​    2. 一次深搜DFS ,时间复杂度:  </p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lemon"
+      src="/fig/avater.jpeg">
+  <p class="site-author-name" itemprop="name">Lemon</p>
+  <div class="site-description" itemprop="description">在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lemon</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://gritcs.github.io/page/2/',]
+      });
+      });
+  </script>
+
+</body>
+</html>

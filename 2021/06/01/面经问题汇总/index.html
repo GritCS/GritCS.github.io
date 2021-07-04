@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gritcs.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经问题汇总">
+<meta property="og:url" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="[6.2 浙大吴健老师]  解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
+<meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
+<meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png">
+<meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png">
+<meta property="og:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png">
+<meta property="article:published_time" content="2021-06-01T01:36:08.000Z">
+<meta property="article:modified_time" content="2021-06-02T01:20:08.000Z">
+<meta property="article:author" content="Lemon">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
+
+<link rel="canonical" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>面经问题汇总 | Think World</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5dc40ea807961ee1d73f07103e4dfa7c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Think World</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Sunny</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/user/" rel="section"><i class="user fa-fw"></i>Über</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Schlagwörter</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Kategorien</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面经问题汇总
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              <time title="Erstellt: 2021-06-01 09:36:08" itemprop="dateCreated datePublished" datetime="2021-06-01T09:36:08+08:00">2021-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2021-06-02 09:20:08" itemprop="dateModified" datetime="2021-06-02T09:20:08+08:00">2021-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[6.2 浙大吴健老师]</p>
+<ol>
+<li><p>解释一下SVＤ，以及它的应用场景</p>
+<p><a href="https://www.cnblogs.com/endlesscoding/p/10033527.html" target="_blank" rel="noopener">[link]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/29846048" target="_blank" rel="noopener">[link]</a></p>
+<ul>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
+</li>
+<li><p>图示</p>
+</li>
+<li><p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
+</li>
+<li><p>SVD的性质</p>
+<ul>
+<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
+<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
+<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先验概率和后验概率之间的区别</p>
+<p><a href="https://blog.csdn.net/genghaihua/article/details/92194362" target="_blank" rel="noopener">[l1]</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82" target="_blank" rel="noopener">[l2]</a></p>
+<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：</p>
+<script type="math/tex; mode=display">
+P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}</script><p>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
+<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
+<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
+</li>
+</ol>
+<ol>
+<li><p>中值定理</p>
+<p><a href="https://zhuanlan.zhihu.com/p/47436090" target="_blank" rel="noopener">[link1]</a></p>
+<p>[link2]</p>
+<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
+<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
+<p><img src="/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
+</li>
+<li><p>简单介绍一下　中心极限定理</p>
+</li>
+</ol>
+<ol>
+<li><p>SVM大致的内容</p>
+<p><a href="https://zhuanlan.zhihu.com/p/31886934" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31886934</a></p>
+<p>也可以参考西瓜书的内容，讲的很详细</p>
+</li>
+<li><p>LDA(线性判别分析算法)</p>
+<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
+</li>
+<li><p>经典机器学习算法</p>
+<ul>
+<li>线性回归</li>
+<li>logistic回归</li>
+<li>LDA，仅限于二分类</li>
+<li>决策树</li>
+<li>朴素bayes</li>
+<li>KNN　(K最近邻算法)</li>
+<li>学习向量量化  (LVQ)</li>
+<li>SVM</li>
+<li>袋装法//随机森林</li>
+<li>Boosting 和 AdaBoost</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="prev" title="os-文件系统">
+      <i class="fa fa-chevron-left"></i> os-文件系统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/10/%E6%9C%BA%E8%AF%95%E6%97%A5%E5%BF%97/" rel="next" title="机试日志">
+      机试日志 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lemon"
+      src="/fig/avater.jpeg">
+  <p class="site-author-name" itemprop="name">Lemon</p>
+  <div class="site-description" itemprop="description">在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lemon</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
