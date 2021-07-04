@@ -98,7 +98,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -128,27 +128,27 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="home fa-fw"></i>Startseite</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/user/" rel="section"><i class="user fa-fw"></i>Über</a>
+    <a href="/user/" rel="section"><i class="user fa-fw"></i>معلومات</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Schlagwörter</a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>الوسوم</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Kategorien</a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>التصنيفات</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archiv</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>الأرشيفات</a>
 
   </li>
   </ul>
@@ -178,6 +178,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">笔试专业课知识点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+              
+
+              <time title="أُنشأ: 2021-07-04 11:51:19 / عُدل: 22:01:38" itemprop="dateCreated datePublished" datetime="2021-07-04T11:51:19+08:00">2021-07-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png" alt="image-20210704143335093"></p>
+<p>数据链路层    </p>
+<p>​        介质访问控制子层：主要任务是为每个节点隔离来自同一信道上其它节点所传送的信号，以调节活动节点的传输。</p>
+<p>​        常见的介质控制方法有：信道划分介质访问控制，随机访问介质访问控制和轮询访问介质访问控制，</p>
+<h3 id="CSMA协议-carrrier-sense-multiple-access"><a href="#CSMA协议-carrrier-sense-multiple-access" class="headerlink" title="CSMA协议(carrrier sense multiple access)"></a>CSMA协议(carrrier sense multiple access)</h3><blockquote>
+<p>​    CSMA/CD：</p>
+<p>​    发送前先侦听，等待信道变为空闲时再发送，碰撞检测就是边发边侦听，如果遇到碰撞时，就发送一个48bit的拥塞信号    </p>
+<p>​    ”先听后发，边听边发“</p>
+<p>​    适用于总线型网络或者半双工网络。</p>
+</blockquote>
+<p><strong>最小帧长的计算</strong>：</p>
+<p>​    原理是 因为是边发边侦听，所以要确保发送站在发送数据的同时，能检测可能存在的冲突，需要在发送完帧之前能够收到自己发送出去的数据(对方发出的拥塞信号)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最小帧长 &#x3D; 2* 总线传播时延 * 数据传输率</span><br><span class="line">总线传播时延 &#x3D; 信道长度 * 信道宽度</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CSMA/CA协议</p>
+<p>适用于无线网络。</p>
+</blockquote>
+<h3 id="TCP-流量控制和差错控制"><a href="#TCP-流量控制和差错控制" class="headerlink" title="TCP 流量控制和差错控制"></a>TCP 流量控制和差错控制</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704152537844.png" alt="image-20210704152537844"></p>
+<p>-==流量控制：是一个速度匹配服务，匹配发送方的发送速率和接收方的读取速率==</p>
+<p>-==TCP 拥塞控制： 是为了防止过多的数据注入网络，保证网络中的路由器或链路不致过载。拥塞往往表现为通讯时延的增加。==</p>
+<p>流量控制和差错控制的共同点：都是可以通过控制发送方发送数据的速率来达到控制效果。</p>
+<p>区别在于 拥塞控制是为了让网络能够承受现有的网络负荷，是一个全局性的过程，涉及所有的主机，所有的路由器以及降低网络传输性能的有关因素；相反流量控制只是单纯的 接收端控制发送端。</p>
+<p>TCP拥塞控制算法： 慢开始，拥塞避免，快重传，快恢复。</p>
+<h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3><h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>关于排序算法</p>
+<p>​    元素移动次数与关键字的初始排列次序无关的是：基数排序</p>
+<p>​    元素比较次数与关键词的初始序列无关的是 选择排序</p>
+<p>​    算法的时间复杂度与初始序列无关的是 选择排序</p>
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704220113711.png" alt="image-20210704220113711"></p>
+<h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h3 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704184909217.png" alt="image-20210704184909217"></p>
+<h3 id="Cache结构"><a href="#Cache结构" class="headerlink" title="Cache结构"></a>Cache结构</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Snipaste_2021-07-04_19-54-40.png" alt="Snipaste_2021-07-04_19-54-40"></p>
+<h4 id="cache地址映射"><a href="#cache地址映射" class="headerlink" title="cache地址映射"></a>cache地址映射</h4><p>​    cache结构： 标记项|数据项</p>
+<p>​    标记项：标记地址+有效位+脏位(可选,写回法)+替换计数位(可选)</p>
+<ol>
+<li><p>直接映射方法</p>
+<p>​    直接映射的地址结构： 标记地址+cache块号+块内地址</p>
+<p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200545526.png" alt="image-20210704200545526"></p>
+</li>
+<li><p>全相联映射</p>
+<p>​    <img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200607826.png" alt="image-20210704200607826"></p>
+</li>
+<li><p>组相联映射</p>
+<p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200629636.png" alt="image-20210704200629636"></p>
+</li>
+</ol>
+<h4 id="Cache中替换算法和写策略"><a href="#Cache中替换算法和写策略" class="headerlink" title="Cache中替换算法和写策略"></a>Cache中替换算法和写策略</h4><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200754536.png" alt="image-20210704200754536"></p>
+<p>写策略</p>
+<p>​    命中时，</p>
+<p>​        写直达：对cache写命中时，必须把数据同时写入主存中。</p>
+<p>​        写回法：只修改cache中，不立即写回，之后被换出时，写回到主存</p>
+<p>​    非命中时</p>
+<p>​        写分配：加载主存中的块写到cache中，然后之后更新主存中的块</p>
+<p>​        写不分配：直接写到主存中，不加载到内存中</p>
+<h3 id="访问冲突"><a href="#访问冲突" class="headerlink" title="访问冲突"></a>访问冲突</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png" alt="image-20210704200306480"></p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png" alt="image-20210704202347114"></p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><a href="https://github.com/GritCS/course_note/blob/master/2020os%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BA%92%E6%96%A5%EF%BC%8C%E5%90%8C%E6%AD%A5%EF%BC%8C%E6%AD%BB%E9%94%81.md" target="_blank" rel="noopener">[之前OS的复习笔记]</a></p>
+<p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png" alt="image-20210704212020783"></p>
+<p>死锁的4个必要条件：资源独占，不可剥夺，保持申请，循环等待</p>
+<blockquote>
+<p>① 资源独占。一个资源在同一时刻只能被分配给一个进程。如果某一进程申请某一资源，该资源正在被另外的某一进程所占有，则申请者需要等待，直到占有者释放该资源。</p>
+<p>② 不可剥夺。资源申请者不能强行地从资源占有者手中夺取资源，即资源只能由其占有者在使用完后自愿地释放</p>
+<p>③ 保持申请。进程在占有部分资源后还可以申请新的资源，而且在申请新资源的时候并不释放它已经占有的资源。</p>
+<p>④ 循环等待。存在一个进程等待序列{p1， p2，…， pn}，其中 p1 等待 p2 所占有的某一资源，p2 等待 p3 所占有的某一资源……pn 等待 p1 所占有的某一资源。</p>
+</blockquote>
+<p>死锁处理：死锁预防，死锁避免，死锁恢复，死锁检测</p>
+<ul>
+<li>死锁预防<ul>
+<li>对进程有关的资源活动加以限制，所有进程遵循这种限制，即可保证没有死锁发生。 </li>
+<li>优点： 简单，系统不需要做什么。 缺点： 对进程的约束比较难保证，如果违反时就有可能发生死锁</li>
+<li>预先分配法[系统：如果可以满足，全部分配；否则一个也不分配，破坏保持请求的条件]，</li>
+<li>有序分配法[按照资源编号由小到大的次序申请资源,破坏循环等待条件]</li>
+</ul>
+</li>
+<li>死锁避免<ul>
+<li>它不会对于申请进程有关资源的命令施加任何限制，而是对于进程发出的每一个系统能够满足的资源申请命令实施动态检查，并根据检查结果决定是否==实施资源分配==。</li>
+<li>银行家算法(Need数组，需要知道程序运行所需资源总量信息)</li>
+</ul>
+</li>
+<li>死锁检测(死锁已发生时，检测并解决)<ul>
+<li>死锁检测(在进程等待时检测，定时检测。。)</li>
+<li>死锁恢复：资源剥夺法，进程撤销法，进程回退法(要求系统保持进程的历史信息)</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺页发生的调度"><a href="#缺页发生的调度" class="headerlink" title="缺页发生的调度"></a>缺页发生的调度</h3><p>​    <img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215007867.png" alt="image-20210704215007867"></p>
+<p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215043716.png" alt="image-20210704215043716"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/28/%E6%AF%8F%E6%97%A5%E6%9C%BA%E8%AF%9520210628/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -200,10 +343,10 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2021-06-28 16:11:05 / Geändert am: 09:21:00" itemprop="dateCreated datePublished" datetime="2021-06-28T16:11:05+08:00">2021-06-28</time>
+              <time title="أُنشأ: 2021-06-28 16:11:05 / عُدل: 09:21:00" itemprop="dateCreated datePublished" datetime="2021-06-28T16:11:05+08:00">2021-06-28</time>
             </span>
 
           
@@ -313,16 +456,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-21 07:44:46" itemprop="dateCreated datePublished" datetime="2021-06-21T07:44:46+08:00">2021-06-21</time>
+              <time title="أُنشأ: 2021-06-21 07:44:46" itemprop="dateCreated datePublished" datetime="2021-06-21T07:44:46+08:00">2021-06-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-28 09:21:40" itemprop="dateModified" datetime="2021-06-28T09:21:40+08:00">2021-06-28</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-28 09:21:40" itemprop="dateModified" datetime="2021-06-28T09:21:40+08:00">2021-06-28</time>
               </span>
 
           
@@ -398,10 +541,10 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2021-06-19 18:18:15 / Geändert am: 12:55:38" itemprop="dateCreated datePublished" datetime="2021-06-19T18:18:15+08:00">2021-06-19</time>
+              <time title="أُنشأ: 2021-06-19 18:18:15 / عُدل: 12:55:38" itemprop="dateCreated datePublished" datetime="2021-06-19T18:18:15+08:00">2021-06-19</time>
             </span>
 
           
@@ -522,10 +665,10 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2021-06-19 17:54:03 / Geändert am: 09:54:02" itemprop="dateCreated datePublished" datetime="2021-06-19T17:54:03+08:00">2021-06-19</time>
+              <time title="أُنشأ: 2021-06-19 17:54:03 / عُدل: 09:54:02" itemprop="dateCreated datePublished" datetime="2021-06-19T17:54:03+08:00">2021-06-19</time>
             </span>
 
           
@@ -580,16 +723,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-18 11:06:40" itemprop="dateCreated datePublished" datetime="2021-06-18T11:06:40+08:00">2021-06-18</time>
+              <time title="أُنشأ: 2021-06-18 11:06:40" itemprop="dateCreated datePublished" datetime="2021-06-18T11:06:40+08:00">2021-06-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-19 08:56:30" itemprop="dateModified" datetime="2021-06-19T08:56:30+08:00">2021-06-19</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-19 08:56:30" itemprop="dateModified" datetime="2021-06-19T08:56:30+08:00">2021-06-19</time>
               </span>
 
           
@@ -704,16 +847,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-16 23:10:16" itemprop="dateCreated datePublished" datetime="2021-06-16T23:10:16+08:00">2021-06-16</time>
+              <time title="أُنشأ: 2021-06-16 23:10:16" itemprop="dateCreated datePublished" datetime="2021-06-16T23:10:16+08:00">2021-06-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-22 08:19:10" itemprop="dateModified" datetime="2021-06-22T08:19:10+08:00">2021-06-22</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-22 08:19:10" itemprop="dateModified" datetime="2021-06-22T08:19:10+08:00">2021-06-22</time>
               </span>
 
           
@@ -794,16 +937,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-16 15:06:49" itemprop="dateCreated datePublished" datetime="2021-06-16T15:06:49+08:00">2021-06-16</time>
+              <time title="أُنشأ: 2021-06-16 15:06:49" itemprop="dateCreated datePublished" datetime="2021-06-16T15:06:49+08:00">2021-06-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-18 06:20:58" itemprop="dateModified" datetime="2021-06-18T06:20:58+08:00">2021-06-18</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-18 06:20:58" itemprop="dateModified" datetime="2021-06-18T06:20:58+08:00">2021-06-18</time>
               </span>
 
           
@@ -864,16 +1007,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-16 15:05:56" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:56+08:00">2021-06-16</time>
+              <time title="أُنشأ: 2021-06-16 15:05:56" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:56+08:00">2021-06-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-19 14:16:44" itemprop="dateModified" datetime="2021-06-19T14:16:44+08:00">2021-06-19</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-19 14:16:44" itemprop="dateModified" datetime="2021-06-19T14:16:44+08:00">2021-06-19</time>
               </span>
 
           
@@ -1085,16 +1228,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Erstellt: 2021-06-16 15:05:39" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:39+08:00">2021-06-16</time>
+              <time title="أُنشأ: 2021-06-16 15:05:39" itemprop="dateCreated datePublished" datetime="2021-06-16T15:05:39+08:00">2021-06-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="Geändert am: 2021-06-22 07:01:10" itemprop="dateModified" datetime="2021-06-22T07:01:10+08:00">2021-06-22</time>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-22 07:01:10" itemprop="dateModified" datetime="2021-06-22T07:01:10+08:00">2021-06-22</time>
               </span>
 
           
@@ -1223,109 +1366,10 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/06/10/%E6%9C%BA%E8%AF%95%E6%97%A5%E5%BF%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/10/%E6%9C%BA%E8%AF%95%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">机试日志</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              <time title="Erstellt: 2021-06-10 22:10:37 / Geändert am: 14:50:02" itemprop="dateCreated datePublished" datetime="2021-06-10T22:10:37+08:00">2021-06-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>滑动窗口属于双指针算法中的一种。</p>
-<p>重要的问题</p>
-<blockquote>
-<ol>
-<li>窗口内是什么？</li>
-<li>如何移动窗口的起始位置?</li>
-<li>如何移动窗口的结束位置？</li>
-</ol>
-</blockquote>
-<h2 id="模板题"><a href="#模板题" class="headerlink" title="模板题"></a>模板题</h2><h3 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a><a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/" target="_blank" rel="noopener">209.长度最小的子数组</a></h3><p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的 连续 子数组，并返回其长度。如果不存在符合条件的子数组，返回 0。</p>
-<p>示例：</p>
-<p>输入：s = 7, nums = [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3] 是该条件下的长度最小的子数组。</p>
-<blockquote>
-<p>​    窗口：　满足其和大于target</p>
-<p>​    </p>
-<p>​    起始位置前移的条件：　如果当前窗口的和大于target时，需要往移(缩小窗口)</p>
-<p>​    结束位置前移的条件：     用于遍历数组，扩大窗口</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( sum &gt; s )&#123;<span class="comment">//如果是满足要求的窗口</span></span><br><span class="line">	<span class="keyword">int</span> temp_len = right-left+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(ans_len&gt;temp_len)&#123;  <span class="comment">//即使更新长度，保存最小的符合要求的长度</span></span><br><span class="line">			ans_len = temp_len;</span><br><span class="line">	&#125;</span><br><span class="line">	sum-=num[left++];　<span class="comment">//缩小窗口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="76-最小覆盖子串"><a href="#76-最小覆盖子串" class="headerlink" title="76.最小覆盖子串"></a><a href="https://leetcode-cn.com/problems/minimum-window-substring/" target="_blank" rel="noopener">76.最小覆盖子串</a></h3><p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
-<p>注意：如果 s 中存在这样的子串，我们保证它是唯一的答案。</p>
-<blockquote>
-<p>​    示例 1：</p>
-<p>输入：s = “ADOBECODEBANC”, t = “ABC”<br>输出：”BANC”</p>
-<p>示例 2：</p>
-<p>输入：s = “a”, t = “a”<br>输出：”a”</p>
-</blockquote>
-<p>思路完全同上面相同。 不过这里窗口的要求是要能够覆盖字符串 t,如何判断呢？</p>
-<p>方法１：暴力查询，失败，超时，因为会存在多个相同的字母</p>
-<p>方法２： 使用unordered_map&lt;&gt;统计每个字符串的长度(==不得不说自己真的是弱ji，关于string的stl函数不是很熟练)</p>
-<p>此次debug：</p>
-<ul>
-<li>String的使用substr(pos,len)　得到 str[pos,pos+len) 子串<ul>
-<li>str.find(ch)得到的是ch在str的下标，否则返回</li>
-<li>str.erase(pos,len)，删除str[pos,pos+len)</li>
-</ul>
-</li>
-<li>关于边界问题,第一个判断ss.empty() ,　还有一个就是right边界判断(我之前是用while写，改了好久，还是要固定思路，风格规范）</li>
-<li>还有无解情况的处理，就是如果此时不存在解，此时ans_left=ans_right =0;需要用flag标记一下</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isTrue</span><span class="params">(<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;&amp; ss,<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;&amp; tt)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ss.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> ptr=tt.<span class="built_in">begin</span>();ptr!=tt.<span class="built_in">end</span>();ptr++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ss[ptr-&gt;first]&lt;ptr-&gt;second)&#123; <span class="comment">//存在一个不能覆盖，map的使用也不是很熟，判断mymap[mykey]，如果此时mykey不存在，mymap[mykey]访问得到的是默认值</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">       <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;ss;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;tt;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> jj : t)&#123;</span><br><span class="line">            tt[jj]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res_len=INT32_MAX;</span><br><span class="line">        <span class="keyword">int</span> res_left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res_right=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left =<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right =<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;s.<span class="built_in">size</span>() &amp;&amp; right&lt;s.<span class="built_in">size</span>())&#123;</span><br><span class="line">            ss[s[right++]]++; <span class="comment">//</span></span><br><span class="line">            <span class="keyword">while</span>(isTrue(ss,tt))&#123;</span><br><span class="line">                flag=<span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">int</span> len = right-left+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(res_len&gt;len)&#123;</span><br><span class="line">                    res_len=len;</span><br><span class="line">                    res_left=left;</span><br><span class="line">                    res_right=right;</span><br><span class="line">                &#125;</span><br><span class="line">                ss[s[left++]]--; <span class="comment">//</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)</span><br><span class="line">            <span class="keyword">return</span> s.substr(res_left,res_right-res_left+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="الصفحة التالية"></i></a>
   </nav>
 
 
@@ -1369,10 +1413,10 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Inhaltsverzeichnis
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Übersicht
+          عام
         </li>
       </ul>
 
@@ -1393,21 +1437,21 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
-          <span class="site-state-item-name">Artikel</span>
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">Kategorien</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">schlagwörter</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
@@ -1439,7 +1483,7 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
   </span>
   <span class="author" itemprop="copyrightHolder">Lemon</span>
 </div>
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         

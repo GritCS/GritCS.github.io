@@ -98,7 +98,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -128,27 +128,27 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="home fa-fw"></i>Startseite</a>
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/user/" rel="section"><i class="user fa-fw"></i>Über</a>
+    <a href="/user/" rel="section"><i class="user fa-fw"></i>معلومات</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Schlagwörter</a>
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>الوسوم</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Kategorien</a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>التصنيفات</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archiv</a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>الأرشيفات</a>
 
   </li>
   </ul>
@@ -178,6 +178,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/fig/avater.jpeg">
+      <meta itemprop="name" content="Lemon">
+      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/06/c-11%E5%88%86%E7%AB%A01/" class="post-title-link" itemprop="url">c++11分章1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+              
+
+              <time title="أُنشأ: 2021-02-06 20:23:18 / عُدل: 13:21:52" itemprop="dateCreated datePublished" datetime="2021-02-06T20:23:18+08:00">2021-02-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>主要内容: 引用,指针,数组,动态内存分配</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><p>&lt;类型&gt;&amp;&lt;变量&gt; = &lt;对象或变量&gt;</p>
+</li>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>引用就是变量的另一个别名,对应的变量/对象必须存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span>&amp; rx = x;</span><br><span class="line"><span class="comment">// int x,&amp;rx = x;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>​    1.通过引用所做的读写操作实际上是作用于原变量上的</p>
+<p>​    2.引用必须在声明时,开始初始化</p>
+<p>​    3.引用一旦初始化,引用的名字不能再指定给其他变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a &#123; <span class="number">0</span> &#125;, b &#123; <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>&amp; r &#123; a &#125;;  <span class="comment">// 引用变量 r 在声明的同时就要初始化，r是a的别名</span></span><br><span class="line"> </span><br><span class="line">r = <span class="number">42</span>;  <span class="comment">// 相当于 a = 42</span></span><br><span class="line">r = b;   <span class="comment">// 相当于 a = b; 执行后 a 的值是1</span></span><br><span class="line">         <span class="comment">// 此处不是让r变成b的引用</span></span><br><span class="line">         <span class="comment">// 引用r声明并初始化后，r就不能再改为其它变量的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp; r2 = a;  <span class="comment">// 继续给a起别名</span></span><br><span class="line"><span class="keyword">int</span>&amp; r3 = r;  <span class="comment">// 声明引用变量 r3，用r初始化</span></span><br><span class="line">              <span class="comment">// 这个相当于 int&amp; r3 = a; 因为 r 是 a 的别名</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><h3 id="指针和引用的差异"><a href="#指针和引用的差异" class="headerlink" title="指针和引用的差异"></a>指针和引用的差异</h3><p><strong>指针和引用的应用场景是函数参数传递</strong></p>
+<p>void f(int<em> pa ,int</em> pb);  void f(int&amp; pa,int&amp; pb);</p>
+<p>从软件设计角度来看，使用引用更好，因为调用方不需要额外传参数时进行取地址运算.</p>
+<ul>
+<li>存取值的方式<ul>
+<li>对指针变量需要使用*来读取相应内存的内容</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>指针没有要求</li>
+</ul>
+</li>
+<li>对象或变量的存在性<ul>
+<li>引用有要求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="const和引用"><a href="#const和引用" class="headerlink" title="const和引用"></a>const和引用</h3><p><strong>const &lt;类型&gt;&amp;</strong>常用于返回值以及参数传递（保证不能修改相应的变量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量的引用</span></span><br><span class="line"><span class="keyword">int</span>    val =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">int</span> &amp; myval1=var;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; myval2 = var;</span><br><span class="line">myval1 = <span class="number">300</span>;<span class="comment">//合法，可以通过myval2对var进行修改，此时myval2,myval3,var同时被修改</span></span><br><span class="line">myval2 = <span class="number">100</span>;<span class="comment">//非法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量的引用</span></span><br><span class="line"> <span class="keyword">int</span> b=<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; aa=b;<span class="comment">//b的引用，可以选择用const的修饰</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; bb=<span class="number">1</span>;<span class="comment">//这里必须用const修饰</span></span><br><span class="line">aa = <span class="number">10</span>；<span class="comment">//非法</span></span><br><span class="line">bb = <span class="number">20</span>;<span class="comment">//非法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="引用在参数传递中的使用"><a href="#引用在参数传递中的使用" class="headerlink" title="引用在参数传递中的使用"></a>引用在参数传递中的使用</h3><p>如果在函数中不修改变量，建议使用 const T&amp;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> cvar  =<span class="number">200</span>;</span><br><span class="line"><span class="comment">/*形参：</span></span><br><span class="line"><span class="comment">void f(int a1,int &amp;a2, const int&amp; a3) </span></span><br><span class="line"><span class="comment">&#123;  &#125;*/</span> </span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//2和a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,var);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,cvar);<span class="comment">//cvar与a2 不合法</span></span><br><span class="line">f(<span class="number">1</span>,var,cvar);</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,cvar,var);<span class="comment">//cvar和a2 不合法</span></span><br><span class="line">f(var,var,var);</span><br><span class="line">f(cvar,var,cvar);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二维数组的初始化方式"><a href="#二维数组的初始化方式" class="headerlink" title="二维数组的初始化方式"></a>二维数组的初始化方式</h2><h2 id="空指针和动态内存分配"><a href="#空指针和动态内存分配" class="headerlink" title="空指针和动态内存分配"></a>空指针和动态内存分配</h2><p>1.1 0带来的二义性问题</p>
+<ul>
+<li>C语言中，空指针使用(void *)0来表示, 有时候，用“NULL”来表示空指针(由编译器决定实现方式，一种可能的实现方式是#define NULL 0)</li>
+<li>C++03中，空指针使用“0”来表示。0既是一个常量整数，也是一个常量空指针。</li>
+<li><strong>C++11中引入保留字“nullptr”作为空指针</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -200,10 +305,10 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2021-02-01 14:57:37 / Geändert am: 09:16:20" itemprop="dateCreated datePublished" datetime="2021-02-01T14:57:37+08:00">2021-02-01</time>
+              <time title="أُنشأ: 2021-02-01 14:57:37 / عُدل: 09:16:20" itemprop="dateCreated datePublished" datetime="2021-02-01T14:57:37+08:00">2021-02-01</time>
             </span>
 
           
@@ -277,16 +382,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-11-20 18:31:19 / Geändert am: 10:35:52" itemprop="dateCreated datePublished" datetime="2020-11-20T18:31:19+08:00">2020-11-20</time>
+              <time title="أُنشأ: 2020-11-20 18:31:19 / عُدل: 10:35:52" itemprop="dateCreated datePublished" datetime="2020-11-20T18:31:19+08:00">2020-11-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B-%E5%AE%9E%E9%AA%8C%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">深度学习,关键点检测,实验日志</span></a>
                 </span>
@@ -352,20 +457,20 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-09-03 17:32:45 / Geändert am: 12:01:18" itemprop="dateCreated datePublished" datetime="2020-09-03T17:32:45+08:00">2020-09-03</time>
+              <time title="أُنشأ: 2020-09-03 17:32:45 / عُدل: 12:01:18" itemprop="dateCreated datePublished" datetime="2020-09-03T17:32:45+08:00">2020-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
                 </span>
@@ -444,20 +549,20 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-09-03 14:19:39 / Geändert am: 08:41:12" itemprop="dateCreated datePublished" datetime="2020-09-03T14:19:39+08:00">2020-09-03</time>
+              <time title="أُنشأ: 2020-09-03 14:19:39 / عُدل: 08:41:12" itemprop="dateCreated datePublished" datetime="2020-09-03T14:19:39+08:00">2020-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
                 </span>
@@ -536,20 +641,20 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-09-03 11:14:27 / Geändert am: 04:35:46" itemprop="dateCreated datePublished" datetime="2020-09-03T11:14:27+08:00">2020-09-03</time>
+              <time title="أُنشأ: 2020-09-03 11:14:27 / عُدل: 04:35:46" itemprop="dateCreated datePublished" datetime="2020-09-03T11:14:27+08:00">2020-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
                 </span>
@@ -614,20 +719,20 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-09-03 09:36:14 / Geändert am: 03:13:16" itemprop="dateCreated datePublished" datetime="2020-09-03T09:36:14+08:00">2020-09-03</time>
+              <time title="أُنشأ: 2020-09-03 09:36:14 / عُدل: 03:13:16" itemprop="dateCreated datePublished" datetime="2020-09-03T09:36:14+08:00">2020-09-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
                 </span>
@@ -698,24 +803,24 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-08-31 20:27:42 / Geändert am: 13:54:06" itemprop="dateCreated datePublished" datetime="2020-08-31T20:27:42+08:00">2020-08-31</time>
+              <time title="أُنشأ: 2020-08-31 20:27:42 / عُدل: 13:54:06" itemprop="dateCreated datePublished" datetime="2020-08-31T20:27:42+08:00">2020-08-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" itemprop="url" rel="index"><span itemprop="name">语义分割</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/%E7%9A%AE%E8%82%A4%E7%99%8C/" itemprop="url" rel="index"><span itemprop="name">皮肤癌</span></a>
                 </span>
@@ -781,24 +886,24 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-08-30 20:51:16 / Geändert am: 23:34:32" itemprop="dateCreated datePublished" datetime="2020-08-30T20:51:16+08:00">2020-08-30</time>
+              <time title="أُنشأ: 2020-08-30 20:51:16 / عُدل: 23:34:32" itemprop="dateCreated datePublished" datetime="2020-08-30T20:51:16+08:00">2020-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">医学影像</span></a>
                 </span>
@@ -856,24 +961,24 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Erstellt: 2020-08-30 19:31:49 / Geändert am: 12:26:54" itemprop="dateCreated datePublished" datetime="2020-08-30T19:31:49+08:00">2020-08-30</time>
+              <time title="أُنشأ: 2020-08-30 19:31:49 / عُدل: 12:26:54" itemprop="dateCreated datePublished" datetime="2020-08-30T19:31:49+08:00">2020-08-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">في</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/" itemprop="url" rel="index"><span itemprop="name">关键点检测</span></a>
                 </span>
-                  . 
+                  ، 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F/" itemprop="url" rel="index"><span itemprop="name">医学影像</span></a>
                 </span>
@@ -919,106 +1024,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://gritcs.github.io/2020/08/30/BN_dropout/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/fig/avater.jpeg">
-      <meta itemprop="name" content="Lemon">
-      <meta itemprop="description" content="在人生的某些阶段,我们必须弄清楚自己是谁?越早认清楚自己越好,自己就不至于活在别人的口中了">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/30/BN_dropout/" class="post-title-link" itemprop="url">batch normalize</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              <time title="Erstellt: 2020-08-30 11:38:23 / Geändert am: 12:50:50" itemprop="dateCreated datePublished" datetime="2020-08-30T11:38:23+08:00">2020-08-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">in</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-                  . 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">经典网络</span></a>
-                </span>
-                  . 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">经典设计结构</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h1><p>参考文献：</p>
-<p><a href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank" rel="noopener">wiki</a></p>
-<p><a href="https://www.cnblogs.com/guoyaohua/p/8724433.html" target="_blank" rel="noopener">https://www.cnblogs.com/guoyaohua/p/8724433.html</a></p>
-<p>问题背景：</p>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">梯度消失</a>与<a href="https://zhuanlan.zhihu.com/p/32154263" target="_blank" rel="noopener">梯度爆炸</a>的问题</p>
-<p><a href="https://blog.csdn.net/qq_25737169/article/details/78847691" target="_blank" rel="noopener">一般解决方法汇总</a></p>
-<p>drop_out:这里可以参考吴恩达老师的deep learning课件</p>
-<h3 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h3><p>内部协变量移位现象(Internal Covariate shift)</p>
-<p>机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和测试数据是同时满足相同分布；</p>
-<p>​    在网络的训练阶段，由于前几层的参数发生变化，因此当前层的输入分布也会相应变化，因此当前层需要不断调整以适应新的分布。对于较深的网络，此问题尤为严重，因为较浅的隐藏层的细微变化将在它们在网络中传播时被放大，从而导致较深的隐藏层发生显着变化。因此，提出了批量标准化的方法，以减少这些不必要的偏移，以加快训练速度并生成更可靠的模型。</p>
-<p>​    NP的基本思想就是让每个隐层节点的激活输入分布固定下来（一般是放置在激活层之前）;类似于白化操作：对深层神经网络的每个隐层神经元的激活值做简化版本的白化操作.</p>
-<p>​    同时，我们可以发现BN还有其他的用途</p>
-<p>​        1.会使网络使用更高的学习速率而不会出现梯度消失或者梯度爆炸</p>
-<p>​        2.似乎存在正则化效果从而改善了归一化属性，可以不使用drop out　</p>
-<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
-<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="/2020/08/30/BN_dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
-<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
-<p><img src="/2020/08/30/BN_dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
-<p>①不仅仅极大提升了训练速度，收敛过程大大加快；</p>
-<p>②还能增加分类效果，一种解释是这是类似于 Dropout 的一种防止过拟合的正则化表达方式，所以不用 Dropout 也能达到相当的效果；</p>
-<p>③另外调参过程也简单多了，对于初始化要求没那么高，而且可以使用大的学习率等。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="الصفحة السابقة"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="الصفحة التالية"></i></a>
   </nav>
 
 
@@ -1062,10 +1071,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Inhaltsverzeichnis
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Übersicht
+          عام
         </li>
       </ul>
 
@@ -1086,21 +1095,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
-          <span class="site-state-item-name">Artikel</span>
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">Kategorien</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">schlagwörter</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
@@ -1132,7 +1141,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Lemon</span>
 </div>
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
