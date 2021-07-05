@@ -594,8 +594,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
 ]]></content>
       <tags>
         <tag>stl</tag>
-        <tag>string</tag>
-        <tag>字符串处理</tag>
       </tags>
   </entry>
   <entry>
@@ -627,7 +625,6 @@ X_L = X_l + \sum_{i =l}^{L-1} F(X_i,W_i)\\
 ]]></content>
       <tags>
         <tag>stl</tag>
-        <tag>list</tag>
       </tags>
   </entry>
   <entry>
@@ -2851,7 +2848,9 @@ w = w+ learningRate*\partial b
         <category>基础知识</category>
       </categories>
       <tags>
-        <tag>语义分割，深度学习，大创</tag>
+        <tag>大创</tag>
+        <tag>深度学习</tag>
+        <tag>语义分割</tag>
       </tags>
   </entry>
   <entry>
@@ -3484,5 +3483,10 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
         <tag>面试</tag>
         <tag>笔试</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面试英语问题总结</title>
+    <url>/2021/07/05/%E9%9D%A2%E8%AF%95%E8%8B%B1%E8%AF%AD%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
