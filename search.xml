@@ -3446,6 +3446,8 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
 <p>​        写分配：加载主存中的块写到cache中，然后之后更新主存中的块</p>
 <p>​        写不分配：直接写到主存中，不加载到内存中</p>
 <h3 id="访问冲突"><a href="#访问冲突" class="headerlink" title="访问冲突"></a>访问冲突</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png" alt="image-20210704200306480"></p>
+<h3 id="内存地址计算"><a href="#内存地址计算" class="headerlink" title="内存地址计算"></a>内存地址计算</h3><p>内存地址 = 基址寄存器+形式地址</p>
+<p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210705140249579.png" alt="image-20210705140249579"></p>
 <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png" alt="image-20210704202347114"></p>
 <h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><a href="https://github.com/GritCS/course_note/blob/master/2020os%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BA%92%E6%96%A5%EF%BC%8C%E5%90%8C%E6%AD%A5%EF%BC%8C%E6%AD%BB%E9%94%81.md" target="_blank" rel="noopener">[之前OS的复习笔记]</a></p>
 <p><img src="/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png" alt="image-20210704212020783"></p>
@@ -3487,6 +3489,20 @@ p(\theta|X)(posterior) = \frac{[p(X| \theta)(likehood)] * [p(\theta)(prior)]}{P(
   <entry>
     <title>面试英语问题总结</title>
     <url>/2021/07/05/%E9%9D%A2%E8%AF%95%E8%8B%B1%E8%AF%AD%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="个人介绍"><a href="#个人介绍" class="headerlink" title="个人介绍"></a>个人介绍</h2><blockquote>
+<p>​    </p>
+</blockquote>
+<h2 id="专业问题"><a href="#专业问题" class="headerlink" title="专业问题"></a>专业问题</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>​    Quicksort is a <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm" target="_blank" rel="noopener">divide-and-conquer algorithm</a>. It works by selecting a ‘pivot’ element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. For this reason, it is sometimes called <strong>partition-exchange sort</strong>.<a href="https://en.wikipedia.org/wiki/Quicksort#cite_note-4" target="_blank" rel="noopener">[4]</a> The sub-arrays are then sorted <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science" target="_blank" rel="noopener">recursively</a>). This can be done <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank" rel="noopener">in-place</a>, requiring small additional amounts of <a href="https://en.wikipedia.org/wiki/Main_memory" target="_blank" rel="noopener">memory</a> to perform the sorting.</p>
+<p>​     <a href="https://en.wikipedia.org/wiki/Analysis_of_algorithms" target="_blank" rel="noopener">Mathematical analysis</a> of quicksort shows that, <a href="https://en.wikipedia.org/wiki/Best,_worst_and_average_case" target="_blank" rel="noopener">on average</a>, the algorithm takes O(<em>n</em> log <em>n</em>) comparisons to sort <em>n</em> items. In the worst case, it makes O(<em>n</em>2) comparisons, though this behavior is rare.</p>
+</blockquote>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><blockquote>
+<p>​    In <a href="https://en.wikipedia.org/wiki/Computing" target="_blank" rel="noopener">computing</a>, a <strong>hash table</strong> (<strong>hash map</strong>) is a <a href="https://en.wikipedia.org/wiki/Data_structure" target="_blank" rel="noopener">data structure</a> that implements an associative array abstract data type. It can map <a href="https://en.wikipedia.org/wiki/Unique_key" target="_blank" rel="noopener">keys</a> to <a href="https://en.wikipedia.org/wiki/Value_(computer_science" target="_blank" rel="noopener">values</a>). A hash table uses a <a href="https://en.wikipedia.org/wiki/Hash_function" target="_blank" rel="noopener">hash function</a> to compute an <em>index</em>  into an array of <em>buckets</em> or <em>slots</em>, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored.</p>
+<p>​    In many situations, hash tables turn out to be on average more efficient than <a href="https://en.wikipedia.org/wiki/Search_tree" target="_blank" rel="noopener">search trees</a> or any other <a href="https://en.wikipedia.org/wiki/Table_(computing" target="_blank" rel="noopener">table</a>) lookup structure. For this reason, they are widely used in many kinds of computer <a href="https://en.wikipedia.org/wiki/Software" target="_blank" rel="noopener">software</a>, particularly for <a href="https://en.wikipedia.org/wiki/Associative_array" target="_blank" rel="noopener">associative arrays</a>, <a href="https://en.wikipedia.org/wiki/Database_index" target="_blank" rel="noopener">database indexing</a>, <a href="https://en.wikipedia.org/wiki/Cache_(computing" target="_blank" rel="noopener">caches</a>), and <a href="https://en.wikipedia.org/wiki/Set_(abstract_data_type" target="_blank" rel="noopener">sets</a>).</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>面试</tag>
+      </tags>
   </entry>
 </search>
