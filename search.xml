@@ -3016,6 +3016,7 @@ w = w+ learningRate*\partial b
 <p>​            Durability 持久性意味着事务执行完成后，该事务对数据库的更改便持久到了数据库中，这个更改是永久的</p>
 <p><a href="https://blog.csdn.net/corbin_zhang/article/details/80578005" target="_blank" rel="noopener">https://blog.csdn.net/corbin_zhang/article/details/80578005</a></p>
 <h2 id="事务的ACID特性怎么保证？（REDO-UNDO机制）"><a href="#事务的ACID特性怎么保证？（REDO-UNDO机制）" class="headerlink" title="事务的ACID特性怎么保证？（REDO/UNDO机制）"></a>事务的ACID特性怎么保证？（REDO/UNDO机制）</h2><p>Oracle中用<strong>锁</strong> 、<strong>并发与多版本</strong> （非阻塞读）保持<strong>一致性</strong> 和<strong>隔离性</strong> ，用事务的commit,rollback(回滚),savepoint保持<strong>原子性</strong> ，用数据库文件保持持久性，断电后，内存数据丢失，硬盘文件数据不丢失，重启后从文件中加载到内存，保持<strong>持久性</strong></p>
+<h1 id="解释一下数据库范式，以及如何从函数依赖角度理解数据库范式"><a href="#解释一下数据库范式，以及如何从函数依赖角度理解数据库范式" class="headerlink" title="解释一下数据库范式，以及如何从函数依赖角度理解数据库范式"></a>解释一下数据库范式，以及如何从函数依赖角度理解数据库范式</h1><p><a href="https://www.cnblogs.com/cane/p/3948204.html" target="_blank" rel="noopener">https://www.cnblogs.com/cane/p/3948204.html</a></p>
 <h2 id="电脑的开机过程"><a href="#电脑的开机过程" class="headerlink" title="电脑的开机过程"></a>电脑的开机过程</h2><p>计算机的整个启动过程分成四个阶段。</p>
 <ol>
 <li><p>读取BIOS(basic input/output system),硬件自检</p>
@@ -3026,6 +3027,7 @@ w = w+ learningRate*\partial b
 <li>启动操作系统</li>
 </ol>
 <p><a href="https://blog.csdn.net/LOVELX1991/article/details/8584428?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base" target="_blank" rel="noopener">[link]</a></p>
+<h2 id="malloc底层实现用的数据结构"><a href="#malloc底层实现用的数据结构" class="headerlink" title="malloc底层实现用的数据结构"></a>malloc底层实现用的数据结构</h2><p><a href="https://www.jianshu.com/p/7af62431983e" target="_blank" rel="noopener">malloc底层实现及原理 - 简书 (jianshu.com)</a></p>
 ]]></content>
       <tags>
         <tag>面试</tag>
