@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -163,116 +163,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/03/pytorch%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/aa.webp">
-      <meta itemprop="name" content="Sherry Wang">
-      <meta itemprop="description" content="记录点滴成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/09/03/pytorch%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">pytorch中的网络结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-09-03 17:32:45" itemprop="dateCreated datePublished" datetime="2020-09-03T17:32:45+08:00">2020-09-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-25 08:51:31" itemprop="dateModified" datetime="2021-07-25T08:51:31+08:00">2021-07-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>==<strong>首先先给出一些python面向对象的一些基础知识</strong>==</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/brucewong0516/article/details/79121179">子类中初始化父类</a>的相关问题</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/53927068">pytorch中网络构造的深入理解</a></p>
-<p><a target="_blank" rel="noopener" href="https://pytorch-cn.readthedocs.io/zh/latest/package_references/torch-nn/">官方中文文档</a></p>
-<h1 id="pytorch-nn-module"><a href="#pytorch-nn-module" class="headerlink" title="pytorch.nn.module"></a>pytorch.nn.module</h1><h2 id="current-layer"><a href="#current-layer" class="headerlink" title="current layer"></a>current layer</h2><p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html">api:</a></p>
-<h2 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h2><h3 id="torch-nn-Sequential"><a href="#torch-nn-Sequential" class="headerlink" title="torch.nn.Sequential"></a><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#torch.nn.Sequential">torch.nn.Sequential</a></h3><p>A sequential container.</p>
-<p>Modules will be added to it in the order they are passed in the constructor. Alternatively, an ordered dict of modules can also be passed in.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of using Sequential</span></span><br><span class="line">model = nn.Sequential(</span><br><span class="line">          nn.Conv2d(<span class="number">1</span>,<span class="number">20</span>,<span class="number">5</span>),</span><br><span class="line">          nn.ReLU(),</span><br><span class="line">          nn.Conv2d(<span class="number">20</span>,<span class="number">64</span>,<span class="number">5</span>),</span><br><span class="line">          nn.ReLU()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
-
-<h3 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h3><p>module 保存所有需要计算的参数</p>
-<p><strong>自己在设计网络时，要通过<code>nn.Parameter()</code>加入module的优化器管理</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLiner</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__int__</span>(<span class="params">self, inp, outp</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(MyLinear , self).__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        self.w = nn.Parameter(torch.randn(outp,inp))<span class="comment">#这时生成参数不需要 requires_grad =True</span></span><br><span class="line">        self.b = nn.Parameter(torch.randn(outp))</span><br><span class="line">        </span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self,x </span>):</span></span><br><span class="line">        x = x@self.w.t() +self.b</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h3 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">modules</span><br><span class="line"></span><br><span class="line">children</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">device = torch.device(&#x27;cuda&#x27;)</span><br><span class="line">net = Net()</span><br><span class="line">net.to(device)</span><br></pre></td></tr></table></figure>
-
-<h3 id="save-and-load"><a href="#save-and-load" class="headerlink" title="save and load"></a>save and load</h3><h4 id="save"><a href="#save" class="headerlink" title="save"></a>save</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cn = MyNet()</span><br><span class="line">......</span><br><span class="line">torch.save(cn.state_dict(), &quot;your_model_path.pth&quot;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="load"><a href="#load" class="headerlink" title="load"></a>load</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cn = MyNet()</span><br><span class="line"></span><br><span class="line">state_dict = torch.load(<span class="string">&quot;your_model_path.pth&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载训练好的参数</span></span><br><span class="line">cn.load_state_dict(state_dict)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="train-test"><a href="#train-test" class="headerlink" title="train/test"></a>train/test</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cn = cn.<span class="built_in">eval</span>()<span class="comment">#转换成测试状态</span></span><br><span class="line">cn = cn.train()<span class="comment">#转换成 训练状态</span></span><br></pre></td></tr></table></figure>
-
-<p>了解基本知识之后，以下从构建自己网络的思路开始讲述</p>
-<h1 id="mynet"><a href="#mynet" class="headerlink" title="mynet"></a>mynet</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27825451/article/details/90550890">https://blog.csdn.net/qq_27825451/article/details/90550890</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27825451/article/details/90705328">https://blog.csdn.net/qq_27825451/article/details/90705328</a></p>
-<p><strong>貌似是需要自己实验forward过程</strong></p>
-<h1 id="常用的网络模块"><a href="#常用的网络模块" class="headerlink" title="常用的网络模块"></a>常用的网络模块</h1><h2 id="Flatten"><a href="#Flatten" class="headerlink" title="Flatten"></a>Flatten</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flatten</span>(<span class="params">nn.Module </span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        	<span class="built_in">super</span>(Flatten, self ).__init__()</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, <span class="built_in">input</span></span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">input</span>.view(<span class="built_in">input</span>.size(<span class="number">0</span>),-<span class="number">1</span>) <span class="comment">#将数据打平作为卷积层和全连接层之间的过渡</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1330,6 +1220,89 @@
 <p>汇总代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">a = torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line">a1 = torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line">a2 = torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line">b = torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line">b2= torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line">b3 = torch.randn(<span class="number">32</span>,<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c = torch.stack([a,b],dim=<span class="number">0</span>)</span><br><span class="line">d = torch.cat([a,b],dim=<span class="number">0</span>)</span><br><span class="line">d = torch.cat([a1,d],dim=<span class="number">0</span>)</span><br><span class="line">d = torch.cat([a2,d],dim=<span class="number">0</span>)</span><br><span class="line">d = torch.cat([b2,d],dim=<span class="number">0</span>)</span><br><span class="line">d = torch.cat([b3,d],dim=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d.shape)</span><br><span class="line"></span><br><span class="line">n,m = d.split([<span class="number">2</span>*<span class="number">32</span>,<span class="number">4</span>*<span class="number">32</span>],dim=<span class="number">0</span>) <span class="comment">#指定每个sub-tensor的size,使用list表示，所有size的和必须等于拆分前的tensor的size</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(n.shape)</span><br><span class="line"><span class="built_in">print</span>(m.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nn,mm = d.split(<span class="number">3</span>*<span class="number">32</span>,dim=<span class="number">0</span>) <span class="comment">#如果所有长度都固定，就用一个数来表示每个sub-tensor的长度，sub-tensor的个数可以自动计算得到</span></span><br><span class="line"><span class="comment"># nn,mm = d.split(3,dim=0) #报错，如果每个sub-tensor第一维的size＝３，会返回64个sub-tensor</span></span><br><span class="line"><span class="built_in">print</span>(nn.shape)</span><br><span class="line"><span class="built_in">print</span>(mm.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nnn ,mmm = d.chunk(<span class="number">2</span>,dim=<span class="number">0</span>)<span class="comment">#拆分成两个tensor,每个tensor的长度相同为３*32</span></span><br><span class="line"><span class="built_in">print</span>(nnn.shape)</span><br><span class="line"><span class="built_in">print</span>(mmm.shape)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/24/Broadcasting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/08/24/Broadcasting/" class="post-title-link" itemprop="url">Broadcasting</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2020-08-24 23:43:31 / Modified: 16:05:46" itemprop="dateCreated datePublished" datetime="2020-08-24T23:43:31+08:00">2020-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-Broadcasting的基本准则"><a href="#1-Broadcasting的基本准则" class="headerlink" title="1.Broadcasting的基本准则"></a>1.Broadcasting的基本准则</h3><p><img src="Broadcasting/2020-08-25_00-03.png" alt="2020-08-25_00-03"></p>
+<p>例子</p>
+<p><img src="Broadcasting/2020-08-24_23-52.png" alt="2020-08-24_23-52"></p>
+<h3 id="2-Broadcasting引入的背景"><a href="#2-Broadcasting引入的背景" class="headerlink" title="2.Broadcasting引入的背景"></a>2.Broadcasting引入的背景</h3><pre><code>1. 实际计算需求：可以允许不同shape(但又满足某种标准)的tensor可以进行计算
+ 2. 同时这种原则满足数学上的运算，又无需手动操作，又不会消耗很多的内存（对比repeat)
+</code></pre>
 
       
     </div>
