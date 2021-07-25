@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1 基本数据类型1.1 python中数据类型与torch中数据类型的对比  《下图中常用的数据类型使用红色方框表示出来》 1.2 pytorch中String的表示方法 1.3　pytorch中CPU和GPU数据类型的区别 如果在GPU上面，则需要将其数据类型转换:方法：&#96;&#96;data&#x3D;data.cuda()&#96;　，调用此函数会返回一个ＧＰＵ上的一个应用 1.4 torch中数据类型的判断12345">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pytorch基础语法">
+<meta property="og:url" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="1 基本数据类型1.1 python中数据类型与torch中数据类型的对比  《下图中常用的数据类型使用红色方框表示出来》 1.2 pytorch中String的表示方法 1.3　pytorch中CPU和GPU数据类型的区别 如果在GPU上面，则需要将其数据类型转换:方法：&#96;&#96;data&#x3D;data.cuda()&#96;　，调用此函数会返回一个ＧＰＵ上的一个应用 1.4 torch中数据类型的判断12345">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-08.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-12.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-10.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_17-07.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-57.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-00.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12_1.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19_1.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-25.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-29.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-13.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-14.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23_1.png">
+<meta property="og:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-26.png">
+<meta property="article:published_time" content="2020-08-23T04:16:28.000Z">
+<meta property="article:modified_time" content="2020-08-25T00:47:30.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="大创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-08.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/","path":"2020/08/23/pytorch基础语法/","title":"pytorch基础语法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>pytorch基础语法 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">1 基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-python%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8Etorch%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 python中数据类型与torch中数据类型的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-pytorch%E4%B8%ADString%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 pytorch中String的表示方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-pytorch%E4%B8%ADCPU%E5%92%8CGPU%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">1.3　pytorch中CPU和GPU数据类型的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-torch%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 torch中数据类型的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Tensor%E7%9A%84%E5%BD%A2%E7%8A%B6"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Tensor的形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Dim-0%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Dim 0的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Dim-1%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Dim 1的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-Dim%EF%BC%92%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Dim２的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-Dim-3%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Dim 3的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-Dim-4-%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 Dim 4 的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BATensor"><span class="nav-number">2.</span> <span class="nav-text">2.创建Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Import-from-numpy"><span class="nav-number">2.1.</span> <span class="nav-text">1. Import from numpy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Import-from-list"><span class="nav-number">2.2.</span> <span class="nav-text">2. Import from list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">2.3.</span> <span class="nav-text">3. 未初始化的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%9A%8F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.4.</span> <span class="nav-text">4.随机初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%94%9F%E6%88%90%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">2.5.</span> <span class="nav-text">5.生成正态分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%94%9F%E6%88%90%E5%85%83%E7%B4%A0%E7%9B%B8%E5%90%8C%E7%9A%84tensor"><span class="nav-number">2.6.</span> <span class="nav-text">6.生成元素相同的tensor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%94%9F%E6%88%90%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E7%9A%84tensor"><span class="nav-number">2.7.</span> <span class="nav-text">7.生成等差数列的tensor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%85%B6%E4%BB%96%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0-Ones-zeros-eye"><span class="nav-number">2.8.</span> <span class="nav-text">8.其他生成函数(Ones, zeros,eye)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-randperm-random-shuffle"><span class="nav-number">2.9.</span> <span class="nav-text">9.randperm(random.shuffle)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/23/pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pytorch基础语法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2020-08-23 12:16:28" itemprop="dateCreated datePublished" datetime="2020-08-23T12:16:28+08:00">2020-08-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2020-08-25 08:47:30" itemprop="dateModified" datetime="2020-08-25T08:47:30+08:00">2020-08-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">in</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1 基本数据类型"></a>1 基本数据类型</h2><h3 id="1-1-python中数据类型与torch中数据类型的对比"><a href="#1-1-python中数据类型与torch中数据类型的对比" class="headerlink" title="1.1 python中数据类型与torch中数据类型的对比"></a>1.1 python中数据类型与torch中数据类型的对比</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-08.png" alt="2020-08-23_18-08"></p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-12.png" alt="2020-08-23_18-12"></p>
+<p>《下图中常用的数据类型使用红色方框表示出来》</p>
+<h3 id="1-2-pytorch中String的表示方法"><a href="#1-2-pytorch中String的表示方法" class="headerlink" title="1.2 pytorch中String的表示方法"></a>1.2 pytorch中String的表示方法</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-10.png" alt="2020-08-23_18-10"></p>
+<h3 id="1-3-pytorch中CPU和GPU数据类型的区别"><a href="#1-3-pytorch中CPU和GPU数据类型的区别" class="headerlink" title="1.3　pytorch中CPU和GPU数据类型的区别"></a>1.3　pytorch中CPU和GPU数据类型的区别</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_17-07.png" alt="2020-08-23_17-07"></p>
+<p>如果在GPU上面，则需要将其数据类型转换:<br>方法：``data=data.cuda()`　，调用此函数会返回一个ＧＰＵ上的一个应用</p>
+<h3 id="1-4-torch中数据类型的判断"><a href="#1-4-torch中数据类型的判断" class="headerlink" title="1.4 torch中数据类型的判断"></a>1.4 torch中数据类型的判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># torch中的数据类型</span></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)<span class="comment">#随机初始化一个两行三列的数据</span></span><br><span class="line"><span class="built_in">print</span>(a.<span class="built_in">type</span>()) <span class="comment">#查看数据类型</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(a,torch.FloatTensor)) <span class="comment">#数据类型合法性检验</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(a,torch.IntTensor))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string">torch.FloatTensor</span></span><br><span class="line"><span class="string">&lt;class &#x27;torch.Tensor&#x27;&gt;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">False</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-Tensor的形状"><a href="#1-5-Tensor的形状" class="headerlink" title="1.5 Tensor的形状"></a>1.5 Tensor的形状</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_18-57.png" alt="2020-08-23_18-57"></p>
+<p><code>data.shape</code>, <code>data.size()</code>,<code>data.dim()</code>,<code>data.numel()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dim =  size(data.shape) ,表示数据的深度／维度</span></span><br><span class="line"><span class="comment"># size=shape，表示数据的形状，记录每一维度的长度</span></span><br><span class="line"><span class="comment"># numel:表示tensor占用内存的长度</span></span><br><span class="line">d4 = torch.FloatTensor(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(d4.size())</span><br><span class="line"><span class="built_in">print</span>(d4.shape)</span><br><span class="line"><span class="built_in">print</span>(d4.dim())</span><br><span class="line"><span class="built_in">print</span>(d4.size(<span class="number">0</span>)) <span class="comment">#可以进行索引，某维度的长度，为了更好地与python进行交互，一般直接将size和shape转换成list</span></span><br><span class="line"><span class="built_in">print</span>(d4.size(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([2, 3])</span></span><br><span class="line"><span class="string">torch.Size([2, 3])</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-00.png" alt="2020-08-23_19-00"></p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19.png" alt="2020-08-23_19-19"></p>
+<h3 id="1-6-Dim-0的数据"><a href="#1-6-Dim-0的数据" class="headerlink" title="1.6 Dim 0的数据"></a>1.6 Dim 0的数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a=torch.tensor(<span class="number">1.0</span>)</span><br><span class="line"><span class="built_in">print</span>(a.shape) <span class="comment">#1.0/tensor(1.)是0维的是标量，但是[1.]是１维长度为１的Tensor</span></span><br><span class="line">                			<span class="comment">#标量的应用：计算的loss函数都是标量</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(a.shape))</span><br><span class="line"><span class="built_in">print</span>(a.size())</span><br><span class="line"><span class="built_in">print</span>(torch.tensor(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string">torch.Size([]),这里表示size中的‘list&#x27;长度为０</span></span><br><span class="line"><span class="string">0</span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string">tensor(2)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>标量的用途：　1.常见是在计算loss函数的结果是用标量表示的</p>
+<h3 id="1-7-Dim-1的数据"><a href="#1-7-Dim-1的数据" class="headerlink" title="1.7 Dim 1的数据"></a>1.7 Dim 1的数据</h3><p>常用于  1. Bias: wx+b 中的 b         2. Linear Input 例如，手写数字识别中的28*28 可以看作长度为784的一维数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##Dim 1/ rank 1</span></span><br><span class="line"><span class="comment">#其实在tensor 0.3 之前没有dim=0的Tensor，实际上维度为１，size=1的数即可表示标量,不过0.4之后把他们区分开了</span></span><br><span class="line"></span><br><span class="line">a1=torch.tensor([<span class="number">1.1</span>])<span class="comment">#dim=1,size=1</span></span><br><span class="line">a2=torch.tensor([<span class="number">1.1</span>,<span class="number">2.2</span>]) <span class="comment"># dim=1,size=2</span></span><br><span class="line"></span><br><span class="line">a3=torch.FloatTensor(<span class="number">1</span>) <span class="comment">#这里的参数指定的是Dim１的长度，随机初始化</span></span><br><span class="line"><span class="built_in">print</span>(a1.size())</span><br><span class="line"><span class="built_in">print</span>(a2.size())</span><br><span class="line"><span class="built_in">print</span>(a3.shape)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">torch.Size([1])</span></span><br><span class="line"><span class="string">torch.Size([2])</span></span><br><span class="line"><span class="string">torch.Size([1])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-8-Dim２的数据"><a href="#1-8-Dim２的数据" class="headerlink" title="1.8 Dim２的数据"></a>1.8 Dim２的数据</h3><p>常用场景：　1. Linear Input batch [ batch_size , features_num]</p>
+<p>a=torch.tensor([4,784])<br>其中4是指数据图片的数目，而784是指每一张图片的特征维度<br>适用于普通的机器学习数据</p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12_1.png" alt="2020-08-23_19-12_1"></p>
+<h3 id="1-9-Dim-3的数据"><a href="#1-9-Dim-3的数据" class="headerlink" title="1.9 Dim 3的数据"></a>1.9 Dim 3的数据</h3><p><strong>RNN Input Batch</strong>　[batch_size, sentence_num, word_one_sentence]</p>
+<p>例如，对于RNN神经网络进行语音识别与处理时[10,20,100]表示:每个单词包含100个特征，一句话一共有10个单词，而每次输20句话</p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-12.png" alt="2020-08-23_19-12"></p>
+<h3 id="1-10-Dim-4-的数据"><a href="#1-10-Dim-4-的数据" class="headerlink" title="1.10 Dim 4 的数据"></a>1.10 Dim 4 的数据</h3><p><strong>CNN input Batch</strong> [batch_size, channel_num, height, weight ]　</p>
+<p>通道数，图片的高度，图片的宽度</p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_19-19_1.png" alt="2020-08-23_19-19_1"></p>
+<h2 id="2-创建Tensor"><a href="#2-创建Tensor" class="headerlink" title="2.创建Tensor"></a>2.创建Tensor</h2><h3 id="1-Import-from-numpy"><a href="#1-Import-from-numpy" class="headerlink" title="1. Import from numpy"></a>1. Import from numpy</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([<span class="number">2</span>,<span class="number">3.3</span>]) <span class="comment"># 数据实际是double类型</span></span><br><span class="line"><span class="built_in">print</span>(torch.from_numpy(a))</span><br><span class="line"></span><br><span class="line">a = np.ones([<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.from_numpy(a))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([2.0000, 3.3000], dtype=torch.float64)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[1., 1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1., 1.]], dtype=torch.float64)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-Import-from-list"><a href="#2-Import-from-list" class="headerlink" title="2. Import from list"></a>2. Import from list</h3><p><strong>关于参数传递的小问题</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tensor / FloatTensor /IntTensor　等既可以传递数值型，也可以传递shape相关的类型的数据</span><br><span class="line">tensor只能传递数据list作为参数</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([<span class="number">2.</span>,<span class="number">3.2</span>])</span><br><span class="line">b = torch.tensor([[<span class="number">2.</span>,<span class="number">2.3</span>],[<span class="number">1.</span>,<span class="number">2.34</span>]])</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">a2 = torch.FloatTensor([<span class="number">2.</span>,<span class="number">3.2</span>])<span class="comment">##不建议用该方法，tensor可以 代替</span></span><br><span class="line">a3 = torch.FloatTensor(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>) <span class="comment">#建议传递参数为shape参数</span></span><br><span class="line"><span class="built_in">print</span>(a2)</span><br><span class="line"><span class="built_in">print</span>(a3)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;        </span></span><br><span class="line"><span class="string">tensor([2.0000, 3.2000])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[2.0000, 2.3000],</span></span><br><span class="line"><span class="string">        [1.0000, 2.3400]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([2.0000, 3.2000])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[[ 2.0281e+15,  4.5682e-41,  2.5162e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0260e+15,  4.5682e-41,  2.5162e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0260e+15,  4.5682e-41,  2.5157e-26,  4.5682e-41]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 2.0284e+15,  4.5682e-41,  2.6360e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 3.6957e+15,  4.5682e-41,  2.6361e-26,  4.5682e-41],</span></span><br><span class="line"><span class="string">         [ 2.0284e+15,  4.5682e-41, -2.9008e+29,  3.0639e-41]]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-未初始化的数据"><a href="#3-未初始化的数据" class="headerlink" title="3. 未初始化的数据"></a>3. 未初始化的数据</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-25.png" alt="2020-08-23_20-25"></p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-23_20-29.png" alt="2020-08-23_20-29"></p>
+<h3 id="4-随机初始化"><a href="#4-随机初始化" class="headerlink" title="4.随机初始化"></a>4.随机初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#相关函数</span><br><span class="line">torch.rand(Tensor.shape)　#生成一个[0,1)之间的随机数</span><br><span class="line">torch.randlike(Tensor tt)</span><br><span class="line"></span><br><span class="line">torch.randint(  int low , int high , [d1,d2....])#均匀采样，只采整数值</span><br><span class="line">torch.randint_like(Tensor tt ,int low, int high) </span><br></pre></td></tr></table></figure>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">a= torch.rand(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># a1 = torch.rand()</span></span><br><span class="line"></span><br><span class="line">b = torch.rand_like(a)<span class="comment">#会生成与ａ尺寸大小相同的随机数的tensor</span></span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">c = torch.randint(<span class="number">1</span>,<span class="number">99</span>,[<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line">d = torch.randint_like(c,<span class="number">1</span>,<span class="number">10</span>) <span class="comment">#使用randint一定要指出数据范围</span></span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[0.9843, 0.0908, 0.6296],</span></span><br><span class="line"><span class="string">        [0.5270, 0.4654, 0.3570],</span></span><br><span class="line"><span class="string">        [0.9419, 0.1018, 0.1724]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0.3775, 0.3013, 0.3237],</span></span><br><span class="line"><span class="string">        [0.6003, 0.1313, 0.1082],</span></span><br><span class="line"><span class="string">        [0.7574, 0.4202, 0.0610]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[20, 93, 85],</span></span><br><span class="line"><span class="string">        [20, 81, 95],</span></span><br><span class="line"><span class="string">        [22, 10, 88]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[8, 9, 8],</span></span><br><span class="line"><span class="string">        [2, 7, 4],</span></span><br><span class="line"><span class="string">        [1, 4, 9]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-生成正态分布"><a href="#5-生成正态分布" class="headerlink" title="5.生成正态分布"></a>5.生成正态分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#相关函数说明</span></span><br><span class="line">tensor.normal(mean,std,*,generator=<span class="literal">None</span>,out = <span class="literal">None</span>) -&gt;Tensor</span><br><span class="line"><span class="comment">#参数说明:该方法只能生成一维,需要进行形状变换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1. mean, std可以都为tensor，此时可以为每个元素指定分布来源</span></span><br><span class="line"><span class="comment">#2. mean,std可以一个为float/tensor，此时最后生成的Tensor的尺寸mean/std(数据类型为tensor)决定，此时所有数据共享均值或者方差</span></span><br><span class="line"><span class="comment">#3. mean,std都为float时，要求指明参数，此时所有数据都来源一个分布</span></span><br><span class="line"></span><br><span class="line">tensor,randn(*size , out = <span class="literal">None</span>, dtype = <span class="literal">None</span>,....)<span class="comment">#参数列表没有列全</span></span><br><span class="line"><span class="comment">#从平均值为0，方差为1的正态分布中返回一个填充有随机数的张量（也称为标准正态分布</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">a1 = torch.randn(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">#从平均值为0，方差为1的正态分布中返回一个填充有随机数的张量，形状由参数决定（也称为标准正态分布）</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#关于torch.normal：比较灵活，掌握一种方式就行</span></span><br><span class="line"><span class="comment">#方式１：保证mean和std的尺寸相同</span></span><br><span class="line">a = torch.normal( mean = torch.arange(<span class="number">1.</span>,<span class="number">11.</span>),std = torch.arange(<span class="number">1</span>,<span class="number">0</span>,-<span class="number">0.1</span>))</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment">#方式２：</span></span><br><span class="line">b = torch.normal(mean = torch.full([<span class="number">10</span>],<span class="number">0</span>),std = <span class="number">0.5</span>) <span class="comment">#这种方式也是可以实现所有数据来自一个分布</span></span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line">c = torch.normal(mean = <span class="number">10</span>, std = torch.arange(<span class="number">5</span>,<span class="number">0</span>,-<span class="number">0.5</span>))</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="comment">#方式３</span></span><br><span class="line">d = torch.normal(<span class="number">10</span>,<span class="number">0.1</span>,size=(<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(d)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[-0.6377,  0.0554, -0.7616],</span></span><br><span class="line"><span class="string">        [ 0.1244, -0.1076,  0.2659]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([-1.5609,  0.1449,  2.7791,  3.4830,  4.6098,  5.9147,  7.2475,  8.0593,</span></span><br><span class="line"><span class="string">         9.3134, 10.0676])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([ 0.8977, -0.6111, -0.2214, -0.0326,  0.4336, -0.2131, -0.0297, -0.0359,</span></span><br><span class="line"><span class="string">         0.0294, -0.3355])</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">tensor([11.8549, 12.7589, 13.7979, 12.9034,  8.1115, 15.1006, 13.7763, 12.9549,10.0838, 10.1662])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[10.0064,  9.8803,  9.9584],</span></span><br><span class="line"><span class="string">        [10.1267, 10.2988,  9.8402]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-生成元素相同的tensor"><a href="#6-生成元素相同的tensor" class="headerlink" title="6.生成元素相同的tensor"></a>6.生成元素相同的tensor</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-13.png" alt="2020-08-24_00-13"></p>
+<h3 id="7-生成等差数列的tensor"><a href="#7-生成等差数列的tensor" class="headerlink" title="7.生成等差数列的tensor"></a>7.生成等差数列的tensor</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#相关函数说明</span></span><br><span class="line">torch.arange( start ,end , offset )</span><br><span class="line"><span class="comment">#torch.range(start,end, offset) #闭区间</span></span><br><span class="line">torch.linspace(start, end, steps=<span class="number">100</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Return </span></span><br><span class="line"><span class="string">start (float) – the starting value for the set of points</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">end (float) – the ending value for the set of points</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">steps (int) – number of points to sample between start and end. Default: 100.</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">torch.logspace(torch.logspace(start, end, steps=<span class="number">100</span>, base=<span class="number">10.0</span>, out=<span class="literal">None</span>, dtype=<span class="literal">None</span>, layout=torch.strided, device=<span class="literal">None</span>, requires_grad=<span class="literal">False</span>) → Tensor</span><br><span class="line">               </span><br><span class="line"> <span class="string">&#x27;&#x27;&#x27;  </span></span><br><span class="line"><span class="string">    Returns a one-dimensional tensor of steps points logarithmically spaced with base base between base^&#123;start&#125;  and  base^&#123;end&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-14.png" alt="2020-08-24_00-14"></p>
+<p>???=＝如何设置base==</p>
+<h3 id="8-其他生成函数-Ones-zeros-eye"><a href="#8-其他生成函数-Ones-zeros-eye" class="headerlink" title="8.其他生成函数(Ones, zeros,eye)"></a>8.其他生成函数(Ones, zeros,eye)</h3><p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23.png" alt="2020-08-24_00-23"></p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23_1.png" alt="2020-08-24_00-23_1"></p>
+<h3 id="9-randperm-random-shuffle"><a href="#9-randperm-random-shuffle" class="headerlink" title="9.randperm(random.shuffle)"></a>9.randperm(random.shuffle)</h3><p>??</p>
+<p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-26.png" alt="2020-08-24_00-26"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/23/git%E5%91%BD%E4%BB%A4/" rel="prev" title="git命令">
+                  <i class="fa fa-chevron-left"></i> git命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/23/%E5%88%9D%E8%AF%86pytorch/" rel="next" title="初始pytorch">
+                  初始pytorch <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

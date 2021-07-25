@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[6.2 浙大wj老师 通过] 解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经问题汇总">
+<meta property="og:url" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="[6.2 浙大wj老师 通过] 解释一下SVＤ，以及它的应用场景 [link] [link]    图示     SVD的性质  可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪 也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐 同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
+<meta property="og:image" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png">
+<meta property="og:image" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png">
+<meta property="og:image" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png">
+<meta property="article:published_time" content="2021-06-01T01:36:08.000Z">
+<meta property="article:modified_time" content="2021-07-22T11:28:50.079Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png">
+
+
+<link rel="canonical" href="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/","path":"2021/06/01/面经问题汇总/","title":"面经问题汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>面经问题汇总 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%B5%99%E5%A4%A7wj%E8%80%81%E5%B8%88-%E9%80%9A%E8%BF%87"><span class="nav-number">1.</span> <span class="nav-text">[6.2 浙大wj老师 通过]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E6%9C%88%E4%B8%AD%E6%97%AC%E4%B8%AD%E7%A7%91%E5%A4%A7%E6%95%B0%E5%AD%97%E5%AA%92%E4%BD%93%E5%AE%9E%E9%AA%8C%E5%AE%A4-%E9%80%9A%E8%BF%87"><span class="nav-number">2.</span> <span class="nav-text">[6月中旬中科大数字媒体实验室    通过]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-pkusz-cj%E8%80%81%E5%B8%88%E8%AF%BE%E9%A2%98%E7%BB%84%E7%BB%84%E9%9D%A2-%E9%80%9A%E8%BF%87"><span class="nav-number">3.</span> <span class="nav-text">[6.10 pkusz cj老师课题组组面   通过]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-thusz-xst%E8%80%81%E5%B8%88%E8%AF%BE%E9%A2%98%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">[6.10 thusz xst老师课题组]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-14-%E5%8D%8E%E7%A7%91-%E4%BC%98%E8%90%A5"><span class="nav-number">5.</span> <span class="nav-text">[7.14 华科 优营]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-22-pkusz-cj%E8%80%81%E5%B8%88%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">[7.22 pkusz cj老师电话面试]</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/01/%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面经问题汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-06-01 09:36:08" itemprop="dateCreated datePublished" datetime="2021-06-01T09:36:08+08:00">2021-06-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-07-22 19:28:50" itemprop="dateModified" datetime="2021-07-22T19:28:50+08:00">2021-07-22</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="6-2-浙大wj老师-通过"><a href="#6-2-浙大wj老师-通过" class="headerlink" title="[6.2 浙大wj老师 通过]"></a>[6.2 浙大wj老师 通过]</h2><ol>
+<li><p>解释一下SVＤ，以及它的应用场景</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/endlesscoding/p/10033527.html">[link]</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29846048">[link]</a></p>
+<ul>
+<li><p><img src="%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_17-19.png" alt="2021-06-02_17-19"></p>
+</li>
+<li><p>图示</p>
+</li>
+<li><p><img src="%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-32.png" alt="2021-06-02_14-32"></p>
+<p><img src="%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-31.png" alt="2021-06-02_14-31"></p>
+</li>
+<li><p>SVD的性质</p>
+<ul>
+<li>可以用最大的k个的奇异值和对应的左右奇异向量来近似描述矩阵，由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪</li>
+<li>也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐</li>
+<li>同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先验概率和后验概率之间的区别</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/genghaihua/article/details/92194362">[l1]</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38567891#:~:text=%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%EF%BC%88posterior%20probability%EF%BC%89%EF%BC%9A,%E6%8C%87%E6%9F%90%E4%BB%B6%E4%BA%8B%E5%B7%B2%E7%BB%8F%E5%8F%91%E7%94%9F%EF%BC%8C%E6%83%B3%E8%A6%81%E8%AE%A1%E7%AE%97%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%91%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E7%94%B1%E6%9F%90%E4%B8%AA%E5%9B%A0%E7%B4%A0%E5%BC%95%E8%B5%B7%E7%9A%84%E6%A6%82%E7%8E%87%E3%80%82%20%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E5%B0%B1%E6%98%AF%E4%BA%8B%E5%85%88%E5%8F%AF%E4%BC%B0%E8%AE%A1%E7%9A%84%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%EF%BC%8C%E8%80%8C%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%B1%BB%E4%BC%BC%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F%E2%80%9C%E7%94%B1%E6%9E%9C%E6%BA%AF%E5%9B%A0%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E3%80%82">[l2]</a></p>
+<p><strong>贝叶斯公式：</strong>符号定义与全概率公式相同，则：<br>$$<br>P(B_i |A) = \frac{P(B_i)P(A|B_i)}{P(A)}<br>$$<br>可以看出，贝叶斯公式是“由果溯因”的思想，当知道某件事的结果后，由结果推断这件事是由各个原因导致的概率为多少</p>
+<p><strong>先验概率（prior  probability）：</strong>指根据以往经验和分析。在实验或采样前就可以得到的概率。$P(B_i)$</p>
+<p><strong>后验概率（posterior  probability）：</strong>指某件事已经发生，想要计算这件事发生的原因是由某个因素引起的概率 $P(B_i|A)$</p>
+</li>
+<li><p>中值定理</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47436090">[link1]</a></p>
+<p>[link2]</p>
+<p>函数与其导数是两个不同的函数；而导数只是反映函数在一点的局部特征；</p>
+<p>如果要了解函数在其定义域上的整体性态，就需要在导数及函数间建立起联系，微分中值定理就是这种作用。</p>
+<p><img src="%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/2021-06-02_14-38.png" alt="2021-06-02_14-38"></p>
+</li>
+<li><p>简单介绍一下　中心极限定理</p>
+</li>
+<li><p>SVM大致的内容</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31886934">https://zhuanlan.zhihu.com/p/31886934</a></p>
+<p>也可以参考西瓜书的内容，讲的很详细</p>
+</li>
+<li><p>LDA(线性判别分析算法)</p>
+<p>常用于降维，特征提取，二分类。目的是对数据进行降维，保留尽可能多的分类信息，因此需要找到最佳的投影方向，将数据点尽可能的分开。分开的标准是同类数据尽可能靠近，不同类的数据尽可能分开</p>
+</li>
+<li><p>经典机器学习算法</p>
+<ul>
+<li>线性回归</li>
+<li>logistic回归</li>
+<li>LDA，仅限于二分类</li>
+<li>决策树</li>
+<li>朴素bayes</li>
+<li>KNN　(K最近邻算法)</li>
+<li>学习向量量化  (LVQ)</li>
+<li>SVM</li>
+<li>袋装法//随机森林</li>
+<li>Boosting 和 AdaBoost</li>
+</ul>
+</li>
+</ol>
+<h2 id="6月中旬中科大数字媒体实验室-通过"><a href="#6月中旬中科大数字媒体实验室-通过" class="headerlink" title="[6月中旬中科大数字媒体实验室    通过]"></a>[6月中旬中科大数字媒体实验室    通过]</h2><p>主要是围绕简历问了 一下注意力机制，U-net的结构等内容</p>
+<p>英语问题比较多：介绍一下家乡，快速排序等等</p>
+<h2 id="6-10-pkusz-cj老师课题组组面-通过"><a href="#6-10-pkusz-cj老师课题组组面-通过" class="headerlink" title="[6.10 pkusz cj老师课题组组面   通过]"></a>[6.10 pkusz cj老师课题组组面   通过]</h2><p>朴素贝叶斯公式</p>
+<p>log损失函数</p>
+<p>围绕简历问了一下（知识蒸馏）</p>
+<p>英语口语是随机抽选话题，我选到的是10年后你觉得人工智能的发展如何；</p>
+<p>比较轻松的一些话题：你觉得你是什么样的人？迄今为止你做过做骄傲的一件事情？你遇到最大的困难是什么，如何克服的？</p>
+<h2 id="6-10-thusz-xst老师课题组"><a href="#6-10-thusz-xst老师课题组" class="headerlink" title="[6.10 thusz xst老师课题组]"></a>[6.10 thusz xst老师课题组]</h2><p>这个面试是需要先完成课题组给的论文复现任务，展示自己的成果(15 min)。</p>
+<p>==太拉了，自己没有安排好时间，讲完ppt就没时间了。</p>
+<p>不过老师最后问了几个比较关键的问题：1.你参加过什么程序竞赛， 2.在github上有什么公开的项目 其它就围绕我完成的课题来问的！！</p>
+<blockquote>
+<p>​    教训：</p>
+<p>xst老师难度已经比肩本部了，他们比较看重编程能力（如我上面提到的问题1，2）</p>
+<p>另外在做展示报告时，一定要先展示自己的工作量最大的部分，言简意赅。</p>
+<p>清北更看重你对事情理解透彻了，简单用1，2句话就可以交代清楚你的工作。</p>
+</blockquote>
+<h2 id="7-14-华科-优营"><a href="#7-14-华科-优营" class="headerlink" title="[7.14 华科 优营]"></a>[7.14 华科 优营]</h2><p>华科21年夏令营面试太水了，基本没刷人，大概持续了5min左右，主要是围绕简历面试，没有英语口语+专业课。</p>
+<h2 id="7-22-pkusz-cj老师电话面试"><a href="#7-22-pkusz-cj老师电话面试" class="headerlink" title="[7.22 pkusz cj老师电话面试]"></a>[7.22 pkusz cj老师电话面试]</h2><p>面试持续了55min，氛围比较轻松，老师主要了解一下学校，家庭背景,恋爱状况之类的，了解一下你个人的性格，之后就围绕简历问一下你实际水平。</p>
+<p>这里列一下我觉得比较重要的问题:</p>
+<ul>
+<li>首先，老师就问了已经有offer了么（我说没得，哈哈哈，老师竟然不信，但我一菜狗，就真的没有一个，华科算一个）（== 华科：又被冒犯到，华科还是很好的，不过我没有联系到好的老师，所以就一般般啦）</li>
+<li>你对硕士期间实习怎么看（我回复的是我是科研导向，所以无所谓）</li>
+<li>要求硕士期间发表一篇CVPR，你怎么看（我持积极态度吧）</li>
+<li>你觉得CVPR论文的特点是什么，什么样的论文才可以发表在CVPR上？（我就随便凭借我自己的印象，感觉CVPR是在想法上比较创新，而不是方法上）</li>
+<li>简单用1，2句话介绍一下知识蒸馏(项目相关，不过一定要透彻理解自己的项目)</li>
+<li>总结一下你论文的创新点，之后老师随即问：我觉得你的论文不创新啊（==，为难我了，不过我随便糊弄过去了233）</li>
+<li>让我口述其中一篇论文的网路结构</li>
+<li>解释一下SVM中核函数的作用</li>
+<li>你觉得滤波器和SVM中核函数的关系是什么？（从功能上来看，两个功能相同)</li>
+<li>你觉得SVM和CNN应该如何结合？（刚好我之前刚学习到两阶段目标检测的网络结构，里面有提到SVM和CNN结合的话，需要多阶段训练。然后我回复的是如果是普通的连接的话，SVM是分类的，要看CNN在哪里需要分类，可以结合一下，但是训练就不能是端到端训练了。其它更复杂的，就需要好好思考，调研了）</li>
+</ul>
+<p>最后老师给我的总结就是<strong>有深入学习过深度学习的一些内容</strong>，但是思考的不是特别深刻，比如不能1，2句话讲清楚一件事情。（我觉得老师说的蛮有道理的吧。希望之后看论文，多跳出方法流程本身（流程也重要），多思考多对比，反思想法上，本质上的创新。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/01/os-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="prev" title="os-文件系统">
+                  <i class="fa fa-chevron-left"></i> os-文件系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/10/%E6%9C%BA%E8%AF%95%E6%97%A5%E5%BF%97/" rel="next" title="机试日志">
+                  机试日志 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

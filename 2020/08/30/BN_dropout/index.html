@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="BN参考文献： wiki https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guoyaohua&#x2F;p&#x2F;8724433.html 问题背景： 梯度消失与梯度爆炸的问题 一般解决方法汇总 drop_out:这里可以参考吴恩达老师的deep learning课件 要解决的问题内部协变量移位现象(Internal Covariate shift) 机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="batch normalize">
+<meta property="og:url" content="http://example.com/2020/08/30/BN_dropout/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="BN参考文献： wiki https:&#x2F;&#x2F;www.cnblogs.com&#x2F;guoyaohua&#x2F;p&#x2F;8724433.html 问题背景： 梯度消失与梯度爆炸的问题 一般解决方法汇总 drop_out:这里可以参考吴恩达老师的deep learning课件 要解决的问题内部协变量移位现象(Internal Covariate shift) 机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2020/08/30/BN_dropout/BN_dropout/2020-08-30_18-13.png">
+<meta property="og:image" content="http://example.com/2020/08/30/BN_dropout/BN_dropout/2020-08-30_18-04.png">
+<meta property="og:image" content="http://example.com/2020/08/30/BN_dropout/BN_dropout/2020-08-30_18-12.png">
+<meta property="og:image" content="http://example.com/2020/08/30/BN_dropout/BN_dropout/2020-08-30_18-06.png">
+<meta property="article:published_time" content="2020-08-30T03:38:23.000Z">
+<meta property="article:modified_time" content="2020-08-30T04:50:50.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="大创">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="网络结构优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/08/30/BN_dropout/BN_dropout/2020-08-30_18-13.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/30/BN_dropout/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/30/BN_dropout/","path":"2020/08/30/BN_dropout/","title":"batch normalize"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>batch normalize | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BN"><span class="nav-number">1.</span> <span class="nav-text">BN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.0.1.</span> <span class="nav-text">要解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E8%B4%A8%E6%80%9D%E6%83%B3"><span class="nav-number">1.0.2.</span> <span class="nav-text">本质思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.0.3.</span> <span class="nav-text">算法步骤</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/30/BN_dropout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          batch normalize
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+      
+
+      <time title="Erstellt: 2020-08-30 11:38:23 / Geändert am: 12:50:50" itemprop="dateCreated datePublished" datetime="2020-08-30T11:38:23+08:00">2020-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">in</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">经典网络</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C/%E7%BB%8F%E5%85%B8%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">经典设计结构</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h1><p>参考文献：</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Batch_normalization">wiki</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/guoyaohua/p/8724433.html">https://www.cnblogs.com/guoyaohua/p/8724433.html</a></p>
+<p>问题背景：</p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E9%97%AE%E9%A2%98">梯度消失</a>与<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32154263">梯度爆炸</a>的问题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25737169/article/details/78847691">一般解决方法汇总</a></p>
+<p>drop_out:这里可以参考吴恩达老师的deep learning课件</p>
+<h3 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h3><p>内部协变量移位现象(Internal Covariate shift)</p>
+<p>机器学习中有一个比较重要的假设：独立同分布，就是假设训练数据和测试数据是同时满足相同分布；</p>
+<p>​    在网络的训练阶段，由于前几层的参数发生变化，因此当前层的输入分布也会相应变化，因此当前层需要不断调整以适应新的分布。对于较深的网络，此问题尤为严重，因为较浅的隐藏层的细微变化将在它们在网络中传播时被放大，从而导致较深的隐藏层发生显着变化。因此，提出了批量标准化的方法，以减少这些不必要的偏移，以加快训练速度并生成更可靠的模型。</p>
+<p>​    NP的基本思想就是让每个隐层节点的激活输入分布固定下来（一般是放置在激活层之前）;类似于白化操作：对深层神经网络的每个隐层神经元的激活值做简化版本的白化操作.</p>
+<p>​    同时，我们可以发现BN还有其他的用途</p>
+<p>​        1.会使网络使用更高的学习速率而不会出现梯度消失或者梯度爆炸</p>
+<p>​        2.似乎存在正则化效果从而改善了归一化属性，可以不使用drop out　</p>
+<h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p><img src="BN_dropout/2020-08-30_18-13.png" alt="2020-08-30_18-13"></p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p><img src="BN_dropout/2020-08-30_18-04.png" alt="2020-08-30_18-04"></p>
+<p><img src="BN_dropout/2020-08-30_18-12.png" alt="2020-08-30_18-12"></p>
+<p><img src="BN_dropout/2020-08-30_18-06.png" alt="2020-08-30_18-06"></p>
+<p>①不仅仅极大提升了训练速度，收敛过程大大加快；</p>
+<p>②还能增加分类效果，一种解释是这是类似于 Dropout 的一种防止过拟合的正则化表达方式，所以不用 Dropout 也能达到相当的效果；</p>
+<p>③另外调参过程也简单多了，对于初始化要求没那么高，而且可以使用大的学习率等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E4%BC%98%E5%8C%96/" rel="tag"># 网络结构优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/29/ResNet/" rel="prev" title="ResNet">
+                  <i class="fa fa-chevron-left"></i> ResNet
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/30/FR-DDH/" rel="next" title="FR_DDH">
+                  FR_DDH <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

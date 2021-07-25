@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="广度优先搜索(BFS) ​    BFS:搜索过程中，遇到分叉口时，总是先依次访问从该分叉口能直接到达的所有结点，然后再按照这些结点被访问的顺序去依次访问他们能直接到达的所有结点。以此类推，直到所有结点都被访问为止。  解题思路： 状态：需要确定所求解问题的状态，通过状态的拓展，遍历所有状态 状态拓展的方式：用队列去存储状态，每次去队列头部进行拓展(FIFO) 有效状态：利用题目要求，对BFS搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS_DFS">
+<meta property="og:url" content="http://example.com/2021/05/11/BFS-DFS/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="广度优先搜索(BFS) ​    BFS:搜索过程中，遇到分叉口时，总是先依次访问从该分叉口能直接到达的所有结点，然后再按照这些结点被访问的顺序去依次访问他们能直接到达的所有结点。以此类推，直到所有结点都被访问为止。  解题思路： 状态：需要确定所求解问题的状态，通过状态的拓展，遍历所有状态 状态拓展的方式：用队列去存储状态，每次去队列头部进行拓展(FIFO) 有效状态：利用题目要求，对BFS搜索">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/05/11/BFS-DFS/BFS-DFS/2021-05-13_07-13.png">
+<meta property="article:published_time" content="2021-05-11T01:05:46.000Z">
+<meta property="article:modified_time" content="2021-05-12T15:19:58.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="机试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/11/BFS-DFS/BFS-DFS/2021-05-13_07-13.png">
+
+
+<link rel="canonical" href="http://example.com/2021/05/11/BFS-DFS/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/05/11/BFS-DFS/","path":"2021/05/11/BFS-DFS/","title":"BFS_DFS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>BFS_DFS | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-BFS"><span class="nav-number">1.</span> <span class="nav-text">广度优先搜索(BFS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">解题思路：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">相关例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E5%9D%97%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">计算矩阵中块的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B0%E5%87%BA%E8%BF%B7%E5%AE%AB%E7%9A%84%E6%9C%80%E5%B0%8F%E6%AD%A5%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">走出迷宫的最小步数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%9B%E9%9B%85%E4%BA%BA%E7%9A%84%E5%AF%86%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">玛雅人的密码</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/11/BFS-DFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BFS_DFS
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-05-11 09:05:46" itemprop="dateCreated datePublished" datetime="2021-05-11T09:05:46+08:00">2021-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-05-12 23:19:58" itemprop="dateModified" datetime="2021-05-12T23:19:58+08:00">2021-05-12</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="广度优先搜索-BFS"><a href="#广度优先搜索-BFS" class="headerlink" title="广度优先搜索(BFS)"></a>广度优先搜索(BFS)</h1><blockquote>
+<p>​    BFS:搜索过程中，遇到分叉口时，总是先依次访问从该分叉口能直接到达的所有结点，然后再按照这些结点被访问的顺序去依次访问他们能直接到达的所有结点。以此类推，直到所有结点都被访问为止。</p>
+</blockquote>
+<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><ul>
+<li>状态：需要确定所求解问题的状态，通过状态的拓展，遍历所有状态</li>
+<li>状态拓展的方式：用队列去存储状态，每次去队列头部进行拓展(FIFO)</li>
+<li>有效状态：利用题目要求，对BFS搜索树进行剪枝。注意有效状态数的上限，是否符合复杂度要求</li>
+<li>应用场景：<ul>
+<li>解决最短路径(最优问题)</li>
+</ul>
+</li>
+</ul>
+<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><h3 id="计算矩阵中块的个数"><a href="#计算矩阵中块的个数" class="headerlink" title="计算矩阵中块的个数"></a>计算矩阵中块的个数</h3><p><img src="BFS-DFS/2021-05-13_07-13.png" alt="2021-05-13_07-13"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="走出迷宫的最小步数"><a href="#走出迷宫的最小步数" class="headerlink" title="走出迷宫的最小步数"></a>走出迷宫的最小步数</h3><h3 id="玛雅人的密码"><a href="#玛雅人的密码" class="headerlink" title="玛雅人的密码"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/761fc1e2f03742c2aa929c19ba96dbb0?tpId=60&tqId=29484&tPage=1&ru=/kaoyan/retest/1001&qru=/ta/tsing-kaoyan/question-ranking&tab=answerKey">玛雅人的密码</a></h3><blockquote>
+<p>​    题解思路:</p>
+<p>​    首先要先确定解题的状态(构造一个结构体,保存当前字符串,移位的次数)</p>
+<p>​     合适拓展状态:<br>​         出队时,把当前字符串从0-k-1,都与右侧的元素交换, 移位次数加一(另外要有一个vis保存已经遍历过的字符串,已经判断过的字符串不再入队)</p>
+<p>​    结束状态:</p>
+<p>​        找到符合要求的字符串,返回移位次数</p>
+<p>​        队列为空,返回.    </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">status</span>&#123;</span></span><br><span class="line">    string cur_str;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">status</span>(string cur , <span class="keyword">int</span> n) : <span class="built_in">cur_str</span>(cur),<span class="built_in">n</span>(n)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">set&lt;string&gt; vis;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(queue&lt;status&gt; sset,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!sset.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        status current = sset.<span class="built_in">front</span>();</span><br><span class="line">        sset.<span class="built_in">pop</span>();</span><br><span class="line">        string cur = current.cur_str;</span><br><span class="line">        <span class="keyword">int</span> n = current.n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            <span class="built_in">swap</span>(cur[i],cur[i+<span class="number">1</span>]);<span class="comment">//交换</span></span><br><span class="line">            <span class="keyword">if</span>(cur.<span class="built_in">find</span>(<span class="string">&quot;2012&quot;</span>)!=<span class="number">-1</span> )&#123;</span><br><span class="line">                <span class="keyword">return</span> n+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(vis.<span class="built_in">find</span>(cur)==vis.<span class="built_in">end</span>())&#123;</span><br><span class="line">                    vis.<span class="built_in">insert</span>(cur);</span><br><span class="line">                    <span class="function">status <span class="title">next</span><span class="params">(cur,n+<span class="number">1</span>)</span></span>;</span><br><span class="line">                    sset.<span class="built_in">push</span>(next);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">swap</span>(cur[i],cur[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    <span class="keyword">int</span> size =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    cin&gt;&gt;size;</span><br><span class="line">    cin&gt;&gt;str;</span><br><span class="line">    <span class="keyword">if</span>(str.<span class="built_in">find</span>(<span class="string">&quot;2012&quot;</span>)!=<span class="number">-1</span>)&#123;</span><br><span class="line">        cout&lt;&lt; <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">        queue&lt;status&gt; sset;</span><br><span class="line">        <span class="function">status <span class="title">init</span><span class="params">(str,<span class="number">0</span>)</span></span>;</span><br><span class="line">        sset.<span class="built_in">push</span>(init);</span><br><span class="line">        cout&lt;&lt;<span class="built_in">bfs</span>(sset,size);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E6%9C%BA%E8%AF%95/" rel="tag"># 机试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/14/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="prev" title="贪心算法">
+                  <i class="fa fa-chevron-left"></i> 贪心算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/14/pat1043/" rel="next" title="pat1043">
+                  pat1043 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="主要内容: 引用,指针,数组,动态内存分配 引用 &lt;类型&gt;&amp;&lt;变量&gt; &#x3D; &lt;对象或变量&gt;  定义引用就是变量的另一个别名,对应的变量&#x2F;对象必须存在 123int x;int&amp; rx &#x3D; x;&#x2F;&#x2F; int x,&amp;rx &#x3D; x; 性质​    1.通过引用所做的读写操作实际上是作用于原变量上的 ​    2.引用必须在声明时,开始初始化 ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++11分章1">
+<meta property="og:url" content="http://example.com/2021/02/06/c-11%E5%88%86%E7%AB%A01/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="主要内容: 引用,指针,数组,动态内存分配 引用 &lt;类型&gt;&amp;&lt;变量&gt; &#x3D; &lt;对象或变量&gt;  定义引用就是变量的另一个别名,对应的变量&#x2F;对象必须存在 123int x;int&amp; rx &#x3D; x;&#x2F;&#x2F; int x,&amp;rx &#x3D; x; 性质​    1.通过引用所做的读写操作实际上是作用于原变量上的 ​    2.引用必须在声明时,开始初始化 ​">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-02-06T12:23:18.000Z">
+<meta property="article:modified_time" content="2021-02-06T05:21:52.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/02/06/c-11%E5%88%86%E7%AB%A01/","path":"2021/02/06/c-11分章1/","title":"c++11分章1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>c++11分章1 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">1.3.</span> <span class="nav-text">指针和引用的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const%E5%92%8C%E5%BC%95%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">const和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9C%A8%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">引用在参数传递中的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">二维数组的初始化方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">空指针和动态内存分配</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          c++11分章1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+      
+
+      <time title="Erstellt: 2021-02-06 20:23:18 / Geändert am: 13:21:52" itemprop="dateCreated datePublished" datetime="2021-02-06T20:23:18+08:00">2021-02-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>主要内容: 引用,指针,数组,动态内存分配</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><p>&lt;类型&gt;&amp;&lt;变量&gt; = &lt;对象或变量&gt;</p>
+</li>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>引用就是变量的另一个别名,对应的变量/对象必须存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span>&amp; rx = x;</span><br><span class="line"><span class="comment">// int x,&amp;rx = x;</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>​    1.通过引用所做的读写操作实际上是作用于原变量上的</p>
+<p>​    2.引用必须在声明时,开始初始化</p>
+<p>​    3.引用一旦初始化,引用的名字不能再指定给其他变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a &#123; <span class="number">0</span> &#125;, b &#123; <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>&amp; r &#123; a &#125;;  <span class="comment">// 引用变量 r 在声明的同时就要初始化，r是a的别名</span></span><br><span class="line"> </span><br><span class="line">r = <span class="number">42</span>;  <span class="comment">// 相当于 a = 42</span></span><br><span class="line">r = b;   <span class="comment">// 相当于 a = b; 执行后 a 的值是1</span></span><br><span class="line">         <span class="comment">// 此处不是让r变成b的引用</span></span><br><span class="line">         <span class="comment">// 引用r声明并初始化后，r就不能再改为其它变量的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp; r2 = a;  <span class="comment">// 继续给a起别名</span></span><br><span class="line"><span class="keyword">int</span>&amp; r3 = r;  <span class="comment">// 声明引用变量 r3，用r初始化</span></span><br><span class="line">              <span class="comment">// 这个相当于 int&amp; r3 = a; 因为 r 是 a 的别名</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="指针和引用的差异"><a href="#指针和引用的差异" class="headerlink" title="指针和引用的差异"></a>指针和引用的差异</h3><p><strong>指针和引用的应用场景是函数参数传递</strong></p>
+<p>void f(int* pa ,int* pb);  void f(int&amp; pa,int&amp; pb);</p>
+<p>从软件设计角度来看，使用引用更好，因为调用方不需要额外传参数时进行取地址运算.</p>
+<ul>
+<li>存取值的方式<ul>
+<li>对指针变量需要使用*来读取相应内存的内容</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>指针没有要求</li>
+</ul>
+</li>
+<li>对象或变量的存在性<ul>
+<li>引用有要求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="const和引用"><a href="#const和引用" class="headerlink" title="const和引用"></a>const和引用</h3><p>**const &lt;类型&gt;&amp;**常用于返回值以及参数传递（保证不能修改相应的变量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量的引用</span></span><br><span class="line"><span class="keyword">int</span>    val =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">int</span> &amp; myval1=var;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; myval2 = var;</span><br><span class="line">myval1 = <span class="number">300</span>;<span class="comment">//合法，可以通过myval2对var进行修改，此时myval2,myval3,var同时被修改</span></span><br><span class="line">myval2 = <span class="number">100</span>;<span class="comment">//非法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量的引用</span></span><br><span class="line"> <span class="keyword">int</span> b=<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; aa=b;<span class="comment">//b的引用，可以选择用const的修饰</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; bb=<span class="number">1</span>;<span class="comment">//这里必须用const修饰</span></span><br><span class="line">aa = <span class="number">10</span>；<span class="comment">//非法</span></span><br><span class="line">bb = <span class="number">20</span>;<span class="comment">//非法</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="引用在参数传递中的使用"><a href="#引用在参数传递中的使用" class="headerlink" title="引用在参数传递中的使用"></a>引用在参数传递中的使用</h3><p>如果在函数中不修改变量，建议使用 const T&amp;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> cvar  =<span class="number">200</span>;</span><br><span class="line"><span class="comment">/*形参：</span></span><br><span class="line"><span class="comment">void f(int a1,int &amp;a2, const int&amp; a3) </span></span><br><span class="line"><span class="comment">&#123;  &#125;*/</span> </span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//2和a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,var,var);</span><br><span class="line"></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,cvar,cvar);<span class="comment">//cvar与a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,var,cvar);</span><br><span class="line"></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,cvar,var);<span class="comment">//cvar和a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(var,var,var);</span><br><span class="line"><span class="built_in">f</span>(cvar,var,cvar);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="二维数组的初始化方式"><a href="#二维数组的初始化方式" class="headerlink" title="二维数组的初始化方式"></a>二维数组的初始化方式</h2><h2 id="空指针和动态内存分配"><a href="#空指针和动态内存分配" class="headerlink" title="空指针和动态内存分配"></a>空指针和动态内存分配</h2><p>1.1 0带来的二义性问题</p>
+<ul>
+<li>C语言中，空指针使用(void *)0来表示, 有时候，用“NULL”来表示空指针(由编译器决定实现方式，一种可能的实现方式是#define NULL 0)</li>
+<li>C++03中，空指针使用“0”来表示。0既是一个常量整数，也是一个常量空指针。</li>
+<li><strong>C++11中引入保留字“nullptr”作为空指针</strong></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/" rel="prev" title="C++中字符串总结">
+                  <i class="fa fa-chevron-left"></i> C++中字符串总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/12/STL-vector/" rel="next" title="vector">
+                  vector <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

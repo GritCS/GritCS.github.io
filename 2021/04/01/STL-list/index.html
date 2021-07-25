@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="list的底层结构环形双向链表   List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.com&#x2F;pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL-list">
+<meta property="og:url" content="http://example.com/2021/04/01/STL-list/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="list的底层结构环形双向链表   List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.com&#x2F;pr">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-41.png">
+<meta property="og:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-49.png">
+<meta property="article:published_time" content="2021-04-01T06:39:52.000Z">
+<meta property="article:modified_time" content="2021-07-05T00:32:08.245Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="stl">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-41.png">
+
+
+<link rel="canonical" href="http://example.com/2021/04/01/STL-list/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/04/01/STL-list/","path":"2021/04/01/STL-list/","title":"STL-list"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>STL-list | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#list%E7%9A%84%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">list的底层结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">list的相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#list%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">list的定义和构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list%E7%9A%84%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">2.2.</span> <span class="nav-text">list的插入和删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#list%E6%8F%92%E5%85%A5"><span class="nav-number">2.2.1.</span> <span class="nav-text">list插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">list删除操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list%E7%9A%84%E7%A7%BB%E5%8A%A8%E5%92%8C%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">list的移动和拼接操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">list中的高级算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#merge"><span class="nav-number">2.4.1.</span> <span class="nav-text">merge()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort"><span class="nav-number">2.4.2.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%BA%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%EF%BC%8C%E4%BE%8B%E5%A6%82%E4%B8%BA%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="nav-number">2.4.3.</span> <span class="nav-text">list中数据类型为基本类型，例如为整数类型排序：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E4%B8%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.4.</span> <span class="nav-text">list中的类型为自定义类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%84%E5%88%99%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">2.4.5.</span> <span class="nav-text">3、自定义规则进行排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1-%E5%8F%82%E8%80%83-2-%EF%BC%89"><span class="nav-number">2.4.5.1.</span> <span class="nav-text">3.1 使用函数对象 (参考[2]）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E4%BD%BF%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%EF%BC%9A%EF%BC%88%E5%8F%82%E8%80%83-3-%EF%BC%89"><span class="nav-number">2.4.5.2.</span> <span class="nav-text">3.2 使用回调函数自定义排序规则：（参考[3]）</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/01/STL-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STL-list
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-04-01 14:39:52" itemprop="dateCreated datePublished" datetime="2021-04-01T14:39:52+08:00">2021-04-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-07-05 08:32:08" itemprop="dateModified" datetime="2021-07-05T08:32:08+08:00">2021-07-05</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="list的底层结构"><a href="#list的底层结构" class="headerlink" title="list的底层结构"></a>list的底层结构</h2><p><strong>环形双向链表</strong></p>
+<p><img src="STL-list/2021-04-01_14-41.png" alt="2021-04-01_14-41"></p>
+<p><img src="STL-list/2021-04-01_14-49.png" alt="2021-04-01_14-49"></p>
+<p><strong>List的重要性质：</strong></p>
+<ol>
+<li><strong>插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响</strong> ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效</li>
+<li>不支持随机存取，下标操作和at()函数</li>
+</ol>
+<h2 id="list的相关操作"><a href="#list的相关操作" class="headerlink" title="list的相关操作"></a>list的相关操作</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">https://leetcode-cn.com/problems/lru-cache/</a></p>
+<h3 id="list的定义和构造函数"><a href="#list的定义和构造函数" class="headerlink" title="list的定义和构造函数"></a>list的定义和构造函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">list&lt;A&gt; listname;</span><br><span class="line"><span class="function">list&lt;A&gt; <span class="title">listname</span><span class="params">(size)</span></span>;</span><br><span class="line"><span class="function">list&lt;A&gt; <span class="title">listname</span><span class="params">(size, value)</span></span>;</span><br><span class="line"><span class="function">list&lt;A&gt; <span class="title">listname</span><span class="params">(elselist)</span></span>;</span><br><span class="line"><span class="function">list&lt;A&gt; <span class="title">listname</span> <span class="params">(first,last)</span></span>;<span class="comment">// </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> iv[<span class="number">5</span>] =&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="function">list&lt;<span class="keyword">int</span>&gt; <span class="title">ilist2</span><span class="params">(iv,iv+<span class="keyword">sizeof</span>(iv)<span class="comment">//sizeof(int))</span></span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="list的插入和删除"><a href="#list的插入和删除" class="headerlink" title="list的插入和删除"></a>list的插入和删除</h3><h4 id="list插入"><a href="#list插入" class="headerlink" title="list插入"></a>list插入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_front</span><span class="params">(<span class="keyword">const</span> A&amp; x)</span></span>; <span class="comment">//作为头节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">const</span> A&amp; x)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">(iterator position, <span class="keyword">const</span> A&amp; x)</span></span>; <span class="comment">//在迭代器position所指的位置之前 插入结点，内容为x,position不失效</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="list删除操作"><a href="#list删除操作" class="headerlink" title="list删除操作"></a>list删除操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_front</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator position)</span></span>;<span class="comment">//只是被删除的结点迭代器失效，</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> T&amp; value)</span></span>; <span class="comment">//将数值为value的所有元素都移除</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="list的移动和拼接操作"><a href="#list的移动和拼接操作" class="headerlink" title="list的移动和拼接操作"></a>list的移动和拼接操作</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面拼接操作中，x中的元素也有变化</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">splice</span>(iterator position,list&amp; x); <span class="comment">//将x拼接到position所指的位置之前，x不同于position所指的list</span></span><br><span class="line"><span class="built_in">splice</span>(iterator position, list&amp; x, iterator i);<span class="comment">// i指向 list x中的一个元素，将i接合与position之前。 i和position可以指向同一个list，swap操作</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">splice</span>(iterator position, list&amp; x ,iterator first ,iterator last);</span><br><span class="line"><span class="comment">//将 list x中的[first，last）中的元素拼接到position中</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="comment">// splicing lists</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  list&lt;<span class="keyword">int</span>&gt; mylist1, mylist2;</span><br><span class="line"></span><br><span class="line">  list&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set some initial values:</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">4</span>; i++)</span><br><span class="line"></span><br><span class="line">     mylist1.<span class="built_in">push_back</span>(i);      <span class="comment">// mylist1: 1 2 3 4</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">3</span>; i++)</span><br><span class="line"></span><br><span class="line">     mylist2.<span class="built_in">push_back</span>(i*<span class="number">10</span>);   <span class="comment">// mylist2: 10 20 30</span></span><br><span class="line"></span><br><span class="line">  it = mylist1.<span class="built_in">begin</span>();</span><br><span class="line"></span><br><span class="line">  ++it;                         <span class="comment">// points to 2</span></span><br><span class="line"></span><br><span class="line">  mylist1.<span class="built_in">splice</span> (it, mylist2); <span class="comment">// mylist1: 1 10 20 30 2 3 4</span></span><br><span class="line"></span><br><span class="line">                                <span class="comment">// mylist2 (empty)</span></span><br><span class="line"></span><br><span class="line">                                <span class="comment">// &quot;it&quot; still points to 2 (the 5th element)                                     </span></span><br><span class="line"></span><br><span class="line">  mylist2.<span class="built_in">splice</span> (mylist2.<span class="built_in">begin</span>(),mylist1, it);</span><br><span class="line">                               <span class="comment">// mylist1: 1 10 20 30 3 4</span></span><br><span class="line">                                <span class="comment">// mylist2: 2</span></span><br><span class="line">                                <span class="comment">// &quot;it&quot; is now invalid.</span></span><br><span class="line">  it = mylist1.<span class="built_in">begin</span>();</span><br><span class="line">  <span class="built_in">advance</span>(it,<span class="number">3</span>);                <span class="comment">// &quot;it&quot; points now to 30</span></span><br><span class="line"> mylist1.<span class="built_in">splice</span> ( mylist1.<span class="built_in">begin</span>(), mylist1, it, mylist1.<span class="built_in">end</span>());</span><br><span class="line">                                <span class="comment">// mylist1: 30 3 4 1 10 20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="list中的高级算法"><a href="#list中的高级算法" class="headerlink" title="list中的高级算法"></a>list中的高级算法</h3><p>algorithm 中常见的库函数 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cl939974883/article/details/104225232">https://blog.csdn.net/cl939974883/article/details/104225232</a></p>
+<h4 id="merge"><a href="#merge" class="headerlink" title="merge()"></a><code>merge()</code></h4><p>tips:</p>
+<blockquote>
+<p>0.algorithm 里的反转函数接口:reverse(first,last) 参数为容器的迭代器起始位置和终止位置1.string和vector和deque只能使用模板库算法里的反转函数<br>2.list可以使用算法里的和list类的reverse<br>3.stack和queue没有迭代器，自然不能使用算法里的reverse,其类也没有提供反转的成员函数<br>4.set和map的元素是按照键值排序的，不能修改键值，不可反转.<br>————————————————<br>版权声明：本文为CSDN博主「嘻嘻作者哈哈」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43971252/article/details/88566605">https://blog.csdn.net/weixin_43971252/article/details/88566605</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;abcde&quot;</span>)</span></span>;</span><br><span class="line">	<span class="built_in">reverse</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>());         <span class="comment">//string使用&lt;algorithm&gt;里的reverse ,string类自身没有reverse成员函数</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;string elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">size</span>(); i++)</span><br><span class="line">		cout &lt;&lt; str.<span class="built_in">at</span>(i) &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt; v&#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span> &#125;;</span><br><span class="line">	<span class="built_in">reverse</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>());            <span class="comment">//vector使用&lt;algorithm&gt;里的reverse,vector类自身也没有reverse成员函数</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;vector elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (vector&lt;<span class="keyword">int</span>&gt;::iterator it = v.<span class="built_in">begin</span>(); it != v.<span class="built_in">end</span>(); it++)</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	list&lt;<span class="keyword">int</span>&gt; l&#123; <span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">-5</span>,<span class="number">-6</span> &#125;;</span><br><span class="line">	<span class="built_in">reverse</span>(l.<span class="built_in">begin</span>(), l.<span class="built_in">end</span>());           <span class="comment">//list使用算法里的</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;list elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(list&lt;<span class="keyword">int</span>&gt;::iterator it=l.<span class="built_in">begin</span>();it!=l.<span class="built_in">end</span>();it++)</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	l.<span class="built_in">reverse</span>();                         <span class="comment">//list使用自身类的reverse成员函数</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;list elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (list&lt;<span class="keyword">int</span>&gt;::iterator it = l.<span class="built_in">begin</span>(); it != l.<span class="built_in">end</span>(); it++)</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//queue和stack容器不支持遍历操作，没有迭代器，所以不能使用算法里的反转函数，其类也没有提供反转的成员函数</span></span><br><span class="line">	queue&lt;<span class="keyword">int</span>&gt; myq;</span><br><span class="line">	myq.<span class="built_in">emplace</span>(<span class="number">1</span>);</span><br><span class="line">	myq.<span class="built_in">push</span>(<span class="number">2</span>);</span><br><span class="line">	</span><br><span class="line">	stack&lt;<span class="keyword">int</span>&gt; mys;</span><br><span class="line">	mys.<span class="built_in">emplace</span>(<span class="number">6</span>);</span><br><span class="line">	mys.<span class="built_in">push</span>(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">	deque&lt;<span class="keyword">int</span>&gt; myd&#123; <span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span> &#125;;</span><br><span class="line">	<span class="built_in">reverse</span>(myd.<span class="built_in">begin</span>(), myd.<span class="built_in">end</span>());       <span class="comment">//deque容器使用算法里的反转函数，deque类没有reverse成员函数</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;deque elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (deque&lt;<span class="keyword">int</span>&gt;::iterator it = myd.<span class="built_in">begin</span>(); it != myd.<span class="built_in">end</span>(); it++)</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; <span class="string">&quot;  &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//因为set和map是关联式容器，在插入元素时就已经根据键值排好序了，如果反转会使元素变成无序状态，从而破会容器组织</span></span><br><span class="line">	set&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">	s.<span class="built_in">insert</span>(<span class="number">10</span>);</span><br><span class="line">	s.<span class="built_in">insert</span>(<span class="number">9</span>);</span><br><span class="line">	s.<span class="built_in">insert</span>(<span class="number">8</span>);</span><br><span class="line">	<span class="comment">//reverse(s.begin(), s.end());</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;set elem : &quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (set&lt;<span class="keyword">int</span>&gt;::iterator it = s.<span class="built_in">begin</span>(); it != s.<span class="built_in">end</span>(); it++)</span><br><span class="line">		cout &lt;&lt; *it &lt;&lt; <span class="string">&quot;  &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	map&lt;<span class="keyword">int</span>, string&gt; m;</span><br><span class="line">	m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>, <span class="string">&quot;小王&quot;</span>));</span><br><span class="line">	m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>, <span class="string">&quot;小玲&quot;</span>));</span><br><span class="line">	<span class="comment">//reverse(m.begin(), m.end());</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;map elem : &quot;</span> &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (map&lt;<span class="keyword">int</span>, string&gt;::iterator it = m.<span class="built_in">begin</span>(); it != m.<span class="built_in">end</span>(); it++)</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;key : &quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">&quot;  value : &quot;</span> &lt;&lt; it-&gt;second &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a><code>sort</code></h4><h4 id="list中数据类型为基本类型，例如为整数类型排序："><a href="#list中数据类型为基本类型，例如为整数类型排序：" class="headerlink" title="list中数据类型为基本类型，例如为整数类型排序："></a>list中数据类型为基本类型，例如为整数类型排序：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    list&lt;<span class="keyword">int</span>&gt; num;</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="number">1</span> );</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="number">3</span> );</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="number">2</span> );</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="number">9</span> );</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="number">5</span> );</span><br><span class="line">    num.<span class="built_in">sort</span>();</span><br><span class="line">    list&lt;<span class="keyword">int</span>&gt;::iterator vi;</span><br><span class="line">    <span class="keyword">for</span>( vi=num.<span class="built_in">begin</span>();vi!=num.<span class="built_in">end</span>();vi++) </span><br><span class="line">    &#123;</span><br><span class="line">        cout  &lt;&lt; *vi &lt;&lt; endl;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="list中的类型为自定义类型"><a href="#list中的类型为自定义类型" class="headerlink" title="list中的类型为自定义类型"></a>list中的类型为自定义类型</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span></span></span><br><span class="line"><span class="class"> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">int</span> age;</span><br><span class="line">      <span class="built_in">student</span>()</span><br><span class="line">      &#123;&#125;</span><br><span class="line">      <span class="built_in">student</span>(<span class="keyword">int</span> a)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">this</span>-&gt;age=a;</span><br><span class="line">      &#125;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (student b)</span><br><span class="line">     &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">this</span>-&gt;age &lt; b.age;</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">     <span class="keyword">bool</span> <span class="keyword">operator</span> &gt; (student b)</span><br><span class="line">     &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">this</span>-&gt;age &gt; b.age;</span><br><span class="line">     &#125; </span><br><span class="line"> </span><br><span class="line"> &#125;; </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    list&lt;student&gt; num;</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="built_in">student</span>(<span class="number">1</span>) );</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="built_in">student</span>(<span class="number">5</span>));</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="built_in">student</span>(<span class="number">2</span>));</span><br><span class="line">    num.<span class="built_in">push_back</span>( <span class="built_in">student</span>(<span class="number">6</span>));</span><br><span class="line">    num.<span class="built_in">sort</span>();</span><br><span class="line">   <span class="comment">// sort(num.begin(),num.end());</span></span><br><span class="line">    list&lt;student&gt;::iterator vi;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>( vi=num.<span class="built_in">begin</span>();vi!=num.<span class="built_in">end</span>();vi++) </span><br><span class="line">    &#123;</span><br><span class="line">        cout  &lt;&lt; vi-&gt;age &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    num.<span class="built_in">clear</span>();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、自定义规则进行排序"><a href="#3、自定义规则进行排序" class="headerlink" title="3、自定义规则进行排序"></a>3、自定义规则进行排序</h4><h5 id="3-1-使用函数对象-参考-2-）"><a href="#3-1-使用函数对象-参考-2-）" class="headerlink" title="3.1 使用函数对象 (参考[2]）"></a>3.1 使用函数对象 (参考[2]）</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"> <span class="keyword">int</span> a,b;</span><br><span class="line"> <span class="built_in">A</span>(<span class="keyword">int</span> t1,<span class="keyword">int</span> t2)&#123;a=t1,b=t2;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line"> <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> A&amp; t1,<span class="keyword">const</span> A&amp; t2)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> t1.a&lt;t2.a;    <span class="comment">//会产生升序排序,若改为&gt;,则变为降序</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> list&lt;A&gt; list_a;</span><br><span class="line"> <span class="function">A <span class="title">a1</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span>, <span class="title">a2</span><span class="params">(<span class="number">4</span>,<span class="number">6</span>)</span>, <span class="title">a3</span><span class="params">(<span class="number">2</span>,<span class="number">8</span>)</span></span>;</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a1);</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a2);</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a3);</span><br><span class="line"> </span><br><span class="line"> list_a.<span class="built_in">sort</span>(<span class="built_in">node</span>()); <span class="comment">//排序操作； </span></span><br><span class="line"> </span><br><span class="line"> list&lt;A&gt;::iterator ite;</span><br><span class="line"> ite=list_a.<span class="built_in">begin</span>();</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)  &#123;cout&lt;&lt;ite-&gt;a&lt;&lt;endl; ite++;&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-使用回调函数自定义排序规则：（参考-3-）"><a href="#3-2-使用回调函数自定义排序规则：（参考-3-）" class="headerlink" title="3.2 使用回调函数自定义排序规则：（参考[3]）"></a>3.2 使用回调函数自定义排序规则：（参考[3]）</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"> <span class="keyword">int</span> a,b;</span><br><span class="line"> <span class="built_in">A</span>(<span class="keyword">int</span> t1,<span class="keyword">int</span> t2)&#123;a=t1,b=t2;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(A a1, A a2)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a1.a &lt; a2.a;  <span class="comment">//会产生升序排列，若改为&gt;,则会产生降序； </span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> list&lt;A&gt; list_a;</span><br><span class="line"> <span class="function">A <span class="title">a1</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span>, <span class="title">a2</span><span class="params">(<span class="number">4</span>,<span class="number">6</span>)</span>, <span class="title">a3</span><span class="params">(<span class="number">2</span>,<span class="number">8</span>)</span></span>;</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a1);</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a2);</span><br><span class="line"> list_a.<span class="built_in">push_back</span>(a3);</span><br><span class="line"> </span><br><span class="line"> list_a.<span class="built_in">sort</span>(compare); <span class="comment">//排序操作； </span></span><br><span class="line"> </span><br><span class="line"> list&lt;A&gt;::iterator ite;</span><br><span class="line"> ite=list_a.<span class="built_in">begin</span>();</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)  &#123;cout&lt;&lt;ite-&gt;a&lt;&lt;endl; ite++;&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stl/" rel="tag"># stl</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/27/leetcode%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%80%BB%E7%BB%93/" rel="prev" title="leetcode线性表总结">
+                  <i class="fa fa-chevron-left"></i> leetcode线性表总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/" rel="next" title="双指针">
+                  双指针 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

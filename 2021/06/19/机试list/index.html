@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="机试的难度 个人认为，机试难度可以分四个等级： 第一级，清北难度，能通过且取得不错成绩的很多都是打ACM竞赛的大佬，没受过专业训练很难拿高分，这个难度下题目很多都是ACM竞赛等级。不过北大的难度貌似没有那么高。 第二级，华五难度，题目涉及基础算法和数据结构，如果只会暴力算法无法通过机试，但如果你刷过一些算法和数据结构的题目，非低分通过机试应该不成问题。 第三级，基础难度，以北航华科为代表，题目涉及">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机试list">
+<meta property="og:url" content="http://example.com/2021/06/19/%E6%9C%BA%E8%AF%95list/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="机试的难度 个人认为，机试难度可以分四个等级： 第一级，清北难度，能通过且取得不错成绩的很多都是打ACM竞赛的大佬，没受过专业训练很难拿高分，这个难度下题目很多都是ACM竞赛等级。不过北大的难度貌似没有那么高。 第二级，华五难度，题目涉及基础算法和数据结构，如果只会暴力算法无法通过机试，但如果你刷过一些算法和数据结构的题目，非低分通过机试应该不成问题。 第三级，基础难度，以北航华科为代表，题目涉及">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-19T10:18:15.000Z">
+<meta property="article:modified_time" content="2021-06-19T04:55:38.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="机试">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/06/19/%E6%9C%BA%E8%AF%95list/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/06/19/%E6%9C%BA%E8%AF%95list/","path":"2021/06/19/机试list/","title":"机试list"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机试list | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二分图模板题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">找出只出现一次的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m%E7%9A%84n%E6%AC%A1%E6%96%B9"><span class="nav-number">2.2.</span> <span class="nav-text">m的n次方</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E5%BF%AB%E9%80%9F%E5%B9%82%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">也可以参考快速幂的做法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E4%B8%8D%E5%A4%A7%E4%BA%8EN%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9A%842%E7%9A%84%E5%B9%82%E6%8C%87%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">找出不大于N的最大的2的幂指数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BA%A4"><span class="nav-number">3.</span> <span class="nav-text">上交</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/19/%E6%9C%BA%E8%AF%95list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机试list
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+      
+
+      <time title="Erstellt: 2021-06-19 18:18:15 / Geändert am: 12:55:38" itemprop="dateCreated datePublished" datetime="2021-06-19T18:18:15+08:00">2021-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>机试的难度</p>
+<p>个人认为，机试难度可以分四个等级：</p>
+<p>第一级，清北难度，能通过且取得不错成绩的很多都是打ACM竞赛的大佬，没受过专业训练很难拿高分，这个难度下题目很多都是ACM竞赛等级。不过北大的难度貌似没有那么高。</p>
+<p>第二级，华五难度，题目涉及基础算法和数据结构，如果只会暴力算法无法通过机试，但如果你刷过一些算法和数据结构的题目，非低分通过机试应该不成问题。</p>
+<p>第三级，基础难度，以北航华科为代表，题目涉及大量基础数据结构和编程细节，主要考察编程而非算法能力，个人认为接触过基础数据结构且编程细心的同学应该能够通过。但这些高校往往会限定标准C编程，这点还要注意。</p>
+<p>第四级，不进行机试，以国防科大、中科院自动化所为代表，这些学校只有面试没有机试。<br>刷题</p>
+<p>整理出一些典型题目或“板子”以备考前复习。</p>
+<table>
+<thead>
+<tr>
+<th>南大计算机</th>
+<th><strong>300分的题目一共三道题，每道题100分、通过样例点给分（每道题10个样例点），是在线OJ形式、可以看到自己的实时排名（和浙大类似）,动态规划多一些</strong></th>
+<th>120以下的同学貌似被淘汰了、同学190都是专硕。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>浙大</td>
+<td><strong>三小时四道英文题，题目难度号称PTA甲级难度（实际难度是PTA乙级到甲级之间），题目分值是20,25,25,30这样</strong>.<strong>题目是OJ形式，根据通过的样例点得分，不计罚时，采用PTA的系统，能够看到自己的实时得分和排名</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>中科大</strong></td>
+<td>机试和上交的机试形式差不多，都是非OJ形式。具体而言，三小时做五道算法题，开始的时候给你发纸质的题目和示例（中文），然后自己写程序自己想样例测试，最后工作人员拷走你电脑上的程序。题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。题目样例没有全通过的话最后会有老师阅卷打分，这点和北航一样。<br/></td>
+<td><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e800b2de4810">2019</a></td>
+</tr>
+<tr>
+<td>北航</td>
+<td>题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。虽然之前的通知和宣讲会说最好是C标准编程，但实际上都是可以用的。然而北航的评测系统不是OJ形式，只能显示你提交的代码编译是否通过，具体能不能AC只能靠本地自己编用例测试了（所以一定要细心！！）。不过还好，如果你有一道题没有AC的话，老师会查看你的源代码，根据你代码体现的思想和编码习惯什么的给分，所以就算做不完也一定要记得提交呀！<br/></td>
+<td></td>
+</tr>
+<tr>
+<td>上交</td>
+<td><strong>上交的机试不是OJ形式的，而是发给你英文的纸质题目描述和一个样例（运行时间10s以内都ok），自己编写、本地调试，结束后由老师过来把源代码和可运行的exe文件拷走，可选择的编译器有VS/code blocks/DEV C++等</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>北深</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>清深</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38633884/article/details/97178586">https://blog.csdn.net/qq_38633884/article/details/97178586</a></p>
+<p>自动化所:问数学和机器学习多一些，<strong>自动化所只有面试没有机试</strong></p>
+<p><strong>中科大的考核机制：学院机试+学院面试+课题组考核，其中学院的机试、面试小分和学院考核总成绩都达标即可获得优营资格，听过优营比例很高的，我们这届计算机夏令营貌似有六七十人</strong></p>
+<h2 id="二分图模板题"><a href="#二分图模板题" class="headerlink" title="二分图模板题"></a>二分图模板题</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shenben/p/5573788.html">https://www.cnblogs.com/shenben/p/5573788.html</a></p>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RioTian/p/12371164.html">[link]</a></p>
+<h3 id="找出只出现一次的数"><a href="#找出只出现一次的数" class="headerlink" title="找出只出现一次的数"></a>找出只出现一次的数</h3><blockquote>
+<p>给你一组整型数据，这些数据中，其中有一个数只出现了一次，其他的数都出现了两次，让你来找出一个数 。</p>
+<p>所有的数进行异或</p>
+</blockquote>
+<h3 id="m的n次方"><a href="#m的n次方" class="headerlink" title="m的n次方"></a>m的n次方</h3><h4 id="也可以参考快速幂的做法"><a href="#也可以参考快速幂的做法" class="headerlink" title="也可以参考快速幂的做法"></a>也可以参考快速幂的做法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速幂的递归写法,复杂度为 logb </span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">mypow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)   <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>==<span class="number">0</span>)&#123;<span class="comment">//为偶数</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">mypow</span>(a,b/<span class="number">2</span>)*<span class="built_in">mypow</span>(a,b/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(b&amp;<span class="number">1</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> a*<span class="built_in">mypow</span>(a,b<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="找出不大于N的最大的2的幂指数"><a href="#找出不大于N的最大的2的幂指数" class="headerlink" title="找出不大于N的最大的2的幂指数"></a>找出不大于N的最大的2的幂指数</h3><blockquote>
+<p>​    把N的二进制中最左边的 1 保留，后面的 1 全部变为 0, 如何实现?</p>
+<p>​    ans=最左侧的1,eg: N=19 = 0001 0011, ans = 0001 0000</p>
+</blockquote>
+<p>代码实现:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findN</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">8</span> <span class="comment">// 整型一般是 32 位，上面我是假设 8 位。</span></span><br><span class="line">    <span class="built_in"><span class="keyword">return</span></span> (n + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="上交"><a href="#上交" class="headerlink" title="上交"></a>上交</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1. 给定两个英文单词，每次操作可以删去任一单词中的任一字母，求使两个单词最终一样的最少操作次数</span><br><span class="line">Eg：给定eat和sea，最少操作次数为2。</span><br><span class="line">输入：eat/sea</span><br><span class="line">输出：2</span><br><span class="line"></span><br><span class="line">2. 商店中有若干商品，它们也会打包在一起优惠出售，现给出需要购买的商品数量，求最低购买价格。要求购买的商品数量刚好符合题目要求。</span><br><span class="line">eg：</span><br><span class="line">输入信息：[2,4],[[3,0,5],[1,2,10]],[3,2]</span><br><span class="line">题目解释：</span><br><span class="line">输入：第一个矩阵是商品单买的价格，第二个矩阵为各种打包售卖时的数目与价格，第三个矩阵是各类商品需要购买数量</span><br><span class="line">输出：最低价格</span><br><span class="line">举例：商店中有A、B两种商品，A价格为2元，B价格为4元；优惠组合一包含3个A商品，0个B商品，共5元；优惠组合二包含1个A商品，2个B商品，共10元；现在要购买3个A商品，2个B商品；</span><br><span class="line">答案：最低价格是，购买1个优惠组合一（含3个A、0个B），5元；再单独购买2个B，8元；共计13元</span><br><span class="line">输出信息：13</span><br><span class="line"></span><br><span class="line">3. 一个有序三元组（a,b,c）, 1&lt;=a&lt;=X, 1&lt;=b&lt;=Y, 1&lt;=c&lt;=Z，且a，b，c皆为正整数。</span><br><span class="line"> 给定X,Y,Z求所有能够形成三角形的(a,b,c)的数目。(3,4,5)和(3,5,4)为两个三角形。</span><br><span class="line"> 输入:X Y Z（三个数都在1到10的九次方之间）</span><br><span class="line"> 输出数量。输出结果对1000000007取模。</span><br><span class="line"> 样例:</span><br><span class="line"> 输入：2 3 3</span><br><span class="line"> 输出：9</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E8%AF%95/" rel="tag"># 机试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/19/%E5%BF%AB%E9%80%9F%E5%B9%82/" rel="prev" title="快速幂">
+                  <i class="fa fa-chevron-left"></i> 快速幂
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/21/vue%E5%9F%BA%E7%A1%80/" rel="next" title="vue基础">
+                  vue基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

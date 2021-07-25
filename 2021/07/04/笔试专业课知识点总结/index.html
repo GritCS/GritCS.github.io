@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="计算机网络 数据链路层     ​        介质访问控制子层：主要任务是为每个节点隔离来自同一信道上其它节点所传送的信号，以调节活动节点的传输。 ​        常见的介质控制方法有：信道划分介质访问控制，随机访问介质访问控制和轮询访问介质访问控制， CSMA协议(carrrier sense multiple access) ​    CSMA&#x2F;CD： ​    发送前先侦听，等待信道变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔试专业课知识点总结">
+<meta property="og:url" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="计算机网络 数据链路层     ​        介质访问控制子层：主要任务是为每个节点隔离来自同一信道上其它节点所传送的信号，以调节活动节点的传输。 ​        常见的介质控制方法有：信道划分介质访问控制，随机访问介质访问控制和轮询访问介质访问控制， CSMA协议(carrrier sense multiple access) ​    CSMA&#x2F;CD： ​    发送前先侦听，等待信道变">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704152537844.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704220113711.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704184909217.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Snipaste_2021-07-04_19-54-40.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200545526.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200607826.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200629636.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200754536.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210705140249579.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215007867.png">
+<meta property="og:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215043716.png">
+<meta property="article:published_time" content="2021-07-04T03:51:19.000Z">
+<meta property="article:modified_time" content="2021-07-05T06:02:57.387Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="笔试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png">
+
+
+<link rel="canonical" href="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/","path":"2021/07/04/笔试专业课知识点总结/","title":"笔试专业课知识点总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>笔试专业课知识点总结 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSMA%E5%8D%8F%E8%AE%AE-carrrier-sense-multiple-access"><span class="nav-number">1.0.1.</span> <span class="nav-text">CSMA协议(carrrier sense multiple access)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%92%8C%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="nav-number">1.0.2.</span> <span class="nav-text">TCP 流量控制和差错控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.0.3.</span> <span class="nav-text">Http协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="nav-number">2.0.1.</span> <span class="nav-text">KMP算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.0.2.</span> <span class="nav-text">二叉树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">计算机组成原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-number">3.0.1.</span> <span class="nav-text">浮点运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E7%BB%93%E6%9E%84"><span class="nav-number">3.0.2.</span> <span class="nav-text">Cache结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cache%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">cache地址映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache%E4%B8%AD%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95%E5%92%8C%E5%86%99%E7%AD%96%E7%95%A5"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">Cache中替换算法和写策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%86%B2%E7%AA%81"><span class="nav-number">3.0.3.</span> <span class="nav-text">访问冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E8%AE%A1%E7%AE%97"><span class="nav-number">3.0.4.</span> <span class="nav-text">内存地址计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD"><span class="nav-number">4.0.1.</span> <span class="nav-text">中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">4.0.2.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E9%A1%B5%E5%8F%91%E7%94%9F%E7%9A%84%E8%B0%83%E5%BA%A6"><span class="nav-number">4.0.3.</span> <span class="nav-text">缺页发生的调度</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          笔试专业课知识点总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-07-04 11:51:19" itemprop="dateCreated datePublished" datetime="2021-07-04T11:51:19+08:00">2021-07-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-07-05 14:02:57" itemprop="dateModified" datetime="2021-07-05T14:02:57+08:00">2021-07-05</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png" alt="image-20210704143335093"></p>
+<p>数据链路层    </p>
+<p>​        介质访问控制子层：主要任务是为每个节点隔离来自同一信道上其它节点所传送的信号，以调节活动节点的传输。</p>
+<p>​        常见的介质控制方法有：信道划分介质访问控制，随机访问介质访问控制和轮询访问介质访问控制，</p>
+<h3 id="CSMA协议-carrrier-sense-multiple-access"><a href="#CSMA协议-carrrier-sense-multiple-access" class="headerlink" title="CSMA协议(carrrier sense multiple access)"></a>CSMA协议(carrrier sense multiple access)</h3><blockquote>
+<p>​    CSMA/CD：</p>
+<p>​    发送前先侦听，等待信道变为空闲时再发送，碰撞检测就是边发边侦听，如果遇到碰撞时，就发送一个48bit的拥塞信号    </p>
+<p>​    ”先听后发，边听边发“</p>
+<p>​    适用于总线型网络或者半双工网络。</p>
+</blockquote>
+<p><strong>最小帧长的计算</strong>：</p>
+<p>​    原理是 因为是边发边侦听，所以要确保发送站在发送数据的同时，能检测可能存在的冲突，需要在发送完帧之前能够收到自己发送出去的数据(对方发出的拥塞信号)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最小帧长 = 2* 总线传播时延 * 数据传输率</span><br><span class="line">总线传播时延 = 信道长度 * 信道宽度</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>CSMA/CA协议</p>
+<p>适用于无线网络。</p>
+</blockquote>
+<h3 id="TCP-流量控制和差错控制"><a href="#TCP-流量控制和差错控制" class="headerlink" title="TCP 流量控制和差错控制"></a>TCP 流量控制和差错控制</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704152537844.png" alt="image-20210704152537844"></p>
+<p>-==流量控制：是一个速度匹配服务，匹配发送方的发送速率和接收方的读取速率==</p>
+<p>-==TCP 拥塞控制： 是为了防止过多的数据注入网络，保证网络中的路由器或链路不致过载。拥塞往往表现为通讯时延的增加。==</p>
+<p>流量控制和差错控制的共同点：都是可以通过控制发送方发送数据的速率来达到控制效果。</p>
+<p>区别在于 拥塞控制是为了让网络能够承受现有的网络负荷，是一个全局性的过程，涉及所有的主机，所有的路由器以及降低网络传输性能的有关因素；相反流量控制只是单纯的 接收端控制发送端。</p>
+<p>TCP拥塞控制算法： 慢开始，拥塞避免，快重传，快恢复。</p>
+<h3 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h3><h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>关于排序算法</p>
+<p>​    元素移动次数与关键字的初始排列次序无关的是：基数排序</p>
+<p>​    元素比较次数与关键词的初始序列无关的是 选择排序</p>
+<p>​    算法的时间复杂度与初始序列无关的是 选择排序</p>
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704220113711.png" alt="image-20210704220113711"></p>
+<h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h3 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704184909217.png" alt="image-20210704184909217"></p>
+<h3 id="Cache结构"><a href="#Cache结构" class="headerlink" title="Cache结构"></a>Cache结构</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Snipaste_2021-07-04_19-54-40.png" alt="Snipaste_2021-07-04_19-54-40"></p>
+<h4 id="cache地址映射"><a href="#cache地址映射" class="headerlink" title="cache地址映射"></a>cache地址映射</h4><p>​    cache结构： 标记项|数据项</p>
+<p>​    标记项：标记地址+有效位+脏位(可选,写回法)+替换计数位(可选)</p>
+<ol>
+<li><p>直接映射方法</p>
+<p>​    直接映射的地址结构： 标记地址+cache块号+块内地址</p>
+<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200545526.png" alt="image-20210704200545526"></p>
+</li>
+<li><p>全相联映射</p>
+<p>​    <img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200607826.png" alt="image-20210704200607826"></p>
+</li>
+<li><p>组相联映射</p>
+<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200629636.png" alt="image-20210704200629636"></p>
+</li>
+</ol>
+<h4 id="Cache中替换算法和写策略"><a href="#Cache中替换算法和写策略" class="headerlink" title="Cache中替换算法和写策略"></a>Cache中替换算法和写策略</h4><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200754536.png" alt="image-20210704200754536"></p>
+<p>写策略</p>
+<p>​    命中时，</p>
+<p>​        写直达：对cache写命中时，必须把数据同时写入主存中。</p>
+<p>​        写回法：只修改cache中，不立即写回，之后被换出时，写回到主存</p>
+<p>​    非命中时</p>
+<p>​        写分配：加载主存中的块写到cache中，然后之后更新主存中的块</p>
+<p>​        写不分配：直接写到主存中，不加载到内存中</p>
+<h3 id="访问冲突"><a href="#访问冲突" class="headerlink" title="访问冲突"></a>访问冲突</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png" alt="image-20210704200306480"></p>
+<h3 id="内存地址计算"><a href="#内存地址计算" class="headerlink" title="内存地址计算"></a>内存地址计算</h3><p>内存地址 = 基址寄存器+形式地址</p>
+<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210705140249579.png" alt="image-20210705140249579"></p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png" alt="image-20210704202347114"></p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><a target="_blank" rel="noopener" href="https://github.com/GritCS/course_note/blob/master/2020os%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BA%92%E6%96%A5%EF%BC%8C%E5%90%8C%E6%AD%A5%EF%BC%8C%E6%AD%BB%E9%94%81.md">[之前OS的复习笔记]</a></p>
+<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png" alt="image-20210704212020783"></p>
+<p>死锁的4个必要条件：资源独占，不可剥夺，保持申请，循环等待</p>
+<blockquote>
+<p>① 资源独占。一个资源在同一时刻只能被分配给一个进程。如果某一进程申请某一资源，该资源正在被另外的某一进程所占有，则申请者需要等待，直到占有者释放该资源。</p>
+<p>② 不可剥夺。资源申请者不能强行地从资源占有者手中夺取资源，即资源只能由其占有者在使用完后自愿地释放</p>
+<p>③ 保持申请。进程在占有部分资源后还可以申请新的资源，而且在申请新资源的时候并不释放它已经占有的资源。</p>
+<p>④ 循环等待。存在一个进程等待序列{p1， p2，…， pn}，其中 p1 等待 p2 所占有的某一资源，p2 等待 p3 所占有的某一资源……pn 等待 p1 所占有的某一资源。</p>
+</blockquote>
+<p>死锁处理：死锁预防，死锁避免，死锁恢复，死锁检测</p>
+<ul>
+<li>死锁预防<ul>
+<li>对进程有关的资源活动加以限制，所有进程遵循这种限制，即可保证没有死锁发生。 </li>
+<li>优点： 简单，系统不需要做什么。 缺点： 对进程的约束比较难保证，如果违反时就有可能发生死锁</li>
+<li>预先分配法[系统：如果可以满足，全部分配；否则一个也不分配，破坏保持请求的条件]，</li>
+<li>有序分配法[按照资源编号由小到大的次序申请资源,破坏循环等待条件]</li>
+</ul>
+</li>
+<li>死锁避免<ul>
+<li>它不会对于申请进程有关资源的命令施加任何限制，而是对于进程发出的每一个系统能够满足的资源申请命令实施动态检查，并根据检查结果决定是否==实施资源分配==。</li>
+<li>银行家算法(Need数组，需要知道程序运行所需资源总量信息)</li>
+</ul>
+</li>
+<li>死锁检测(死锁已发生时，检测并解决)<ul>
+<li>死锁检测(在进程等待时检测，定时检测。。)</li>
+<li>死锁恢复：资源剥夺法，进程撤销法，进程回退法(要求系统保持进程的历史信息)</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺页发生的调度"><a href="#缺页发生的调度" class="headerlink" title="缺页发生的调度"></a>缺页发生的调度</h3><p>​    <img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215007867.png" alt="image-20210704215007867"></p>
+<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215043716.png" alt="image-20210704215043716"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+              <a href="/tags/%E7%AC%94%E8%AF%95/" rel="tag"># 笔试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/28/%E6%AF%8F%E6%97%A5%E6%9C%BA%E8%AF%9520210628/" rel="prev" title="每日机试20210628">
+                  <i class="fa fa-chevron-left"></i> 每日机试20210628
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/05/%E9%9D%A2%E8%AF%95%E8%8B%B1%E8%AF%AD%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="next" title="面试英语问题总结">
+                  面试英语问题总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

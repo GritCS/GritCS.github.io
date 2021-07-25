@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="梯度基本概念 梯度是方向导数最大的地方 利用SGD深度学习的一般步骤   影响优化器的因素每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习 梯度问题局部最小值 鞍点 权重初始值 不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现梯度消失或者梯度爆炸的问题 常见的初始化方法：[还没有彻底的理解，先学习一个框架] https:&#x2F;&#x2F;blog.csdn.net&#x2F;u012328">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机梯度下降">
+<meta property="og:url" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="梯度基本概念 梯度是方向导数最大的地方 利用SGD深度学习的一般步骤   影响优化器的因素每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习 梯度问题局部最小值 鞍点 权重初始值 不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现梯度消失或者梯度爆炸的问题 常见的初始化方法：[还没有彻底的理解，先学习一个框架] https:&#x2F;&#x2F;blog.csdn.net&#x2F;u012328">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-05.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-21.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-22.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-26.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-31.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-34.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-35.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-04.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-16.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-22.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-14.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15_1.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_2.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_1.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-45.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png">
+<meta property="og:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png">
+<meta property="article:published_time" content="2020-08-26T01:41:39.000Z">
+<meta property="article:modified_time" content="2020-09-02T19:54:58.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="大创">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/","path":"2020/08/26/随机梯度下降/","title":"随机梯度下降"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>随机梯度下降 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">梯度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8SGD%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text">利用SGD深度学习的一般步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">1.3.</span> <span class="nav-text">影响优化器的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">梯度问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">1.3.1.0.1.</span> <span class="nav-text">局部最小值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%9E%8D%E7%82%B9"><span class="nav-number">1.3.1.0.2.</span> <span class="nav-text">鞍点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="nav-number">1.3.2.</span> <span class="nav-text">权重初始值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#learning-rate"><span class="nav-number">1.3.3.</span> <span class="nav-text">learning rate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#momentum"><span class="nav-number">1.3.4.</span> <span class="nav-text">momentum</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E4%B8%8Eloss%E7%9A%84%E6%A2%AF%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">激活函数与loss的梯度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">激活函数的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8pytorch%E7%9B%B8%E5%AF%B9%E5%BA%94%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.1.</span> <span class="nav-text">在pytorch相对应的函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84loss%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">常见的loss函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%AF%BC%E6%95%B0%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.2.1.</span> <span class="nav-text">相关导数推导</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mse"><span class="nav-number">2.2.1.0.1.</span> <span class="nav-text">mse</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#softmax"><span class="nav-number">2.2.1.0.2.</span> <span class="nav-text">softmax</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pytorch%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">2.3.</span> <span class="nav-text">pytorch中的自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#torch-autograd-grad"><span class="nav-number">2.3.1.</span> <span class="nav-text">torch.autograd.grad()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loss-backword"><span class="nav-number">2.3.2.</span> <span class="nav-text">loss.backword()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-number">2.3.3.</span> <span class="nav-text">两种方法对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84bug%E5%92%8C%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.4.</span> <span class="nav-text">遇到的bug和解决问题</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          随机梯度下降
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2020-08-26 09:41:39" itemprop="dateCreated datePublished" datetime="2020-08-26T09:41:39+08:00">2020-08-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2020-09-03 03:54:58" itemprop="dateModified" datetime="2020-09-03T03:54:58+08:00">2020-09-03</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">in</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png" alt="2020-08-26_09-57"></p>
+<p>梯度是方向导数最大的地方</p>
+<h3 id="利用SGD深度学习的一般步骤"><a href="#利用SGD深度学习的一般步骤" class="headerlink" title="利用SGD深度学习的一般步骤"></a>利用SGD深度学习的一般步骤</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-05.png" alt="2020-08-26_10-05"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-21.png" alt="2020-08-26_10-21"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-22.png" alt="2020-08-26_10-22"></p>
+<h3 id="影响优化器的因素"><a href="#影响优化器的因素" class="headerlink" title="影响优化器的因素"></a>影响优化器的因素</h3><p>每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习</p>
+<h4 id="梯度问题"><a href="#梯度问题" class="headerlink" title="梯度问题"></a>梯度问题</h4><h6 id="局部最小值"><a href="#局部最小值" class="headerlink" title="局部最小值"></a>局部最小值</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-26.png" alt="2020-08-26_10-26"></p>
+<h6 id="鞍点"><a href="#鞍点" class="headerlink" title="鞍点"></a>鞍点</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-31.png" alt="2020-08-26_10-31"></p>
+<h4 id="权重初始值"><a href="#权重初始值" class="headerlink" title="权重初始值"></a>权重初始值</h4><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-34.png" alt="2020-08-26_10-34"></p>
+<p>不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现<strong>梯度消失</strong>或者<strong>梯度爆炸</strong>的问题</p>
+<p>常见的初始化方法：[还没有彻底的理解，先学习一个框架]</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62850258">https://zhuanlan.zhihu.com/p/62850258</a></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-35.png" alt="2020-08-26_10-35"></p>
+<h4 id="learning-rate"><a href="#learning-rate" class="headerlink" title="learning rate"></a>learning rate</h4><p>逐步衰减;过大，可能会出现震荡，不会达到局部最优解;过小，优化的速度会很慢</p>
+<h4 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h4><p>动量：用来逃出局部最优解</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-04.png" alt="2020-08-26_11-04"></p>
+<h2 id="激活函数与loss的梯度计算"><a href="#激活函数与loss的梯度计算" class="headerlink" title="激活函数与loss的梯度计算"></a>激活函数与loss的梯度计算</h2><p>注意！！！：梯度是向量，这是我之前一致都不大注意的点，将它与导数混淆</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-16.png" alt="2020-08-26_11-16"></p>
+<h3 id="激活函数的概念"><a href="#激活函数的概念" class="headerlink" title="激活函数的概念"></a>激活函数的概念</h3><p>灵感来自 青蛙的神经元的结构–一个阈值函数：神经元并不是各个输入的加权求和而是只有大于某个阈值之后才会输出，输出值是固定的值</p>
+<p>早期的激活函数</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-22.png" alt="2020-08-26_11-22"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Doris12138lucky/article/details/104375745">之前自己总结有各种激活函数</a>：</p>
+<p>课程里所提到的几个简单的激活函数，以及对应的导数</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-14.png" alt="2020-08-26_16-14"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15.png" alt="2020-08-26_16-15"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15_1.png" alt="2020-08-26_16-15_1"></p>
+<h4 id="在pytorch相对应的函数"><a href="#在pytorch相对应的函数" class="headerlink" title="在pytorch相对应的函数"></a>在pytorch相对应的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.sigmoid()</span><br><span class="line"></span><br><span class="line">torch.tanh()</span><br><span class="line"></span><br><span class="line">torch.nn.functional.relu()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="常见的loss函数"><a href="#常见的loss函数" class="headerlink" title="常见的loss函数"></a>常见的loss函数</h3><p>mean-square-error</p>
+<p>Cross-Entropy-loss</p>
+<p>Softmax</p>
+<h4 id="相关导数推导"><a href="#相关导数推导" class="headerlink" title="相关导数推导"></a>相关导数推导</h4><h6 id="mse"><a href="#mse" class="headerlink" title="mse"></a>mse</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_2.png" alt="2020-08-26_16-20_2"></p>
+<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20.png" alt="2020-08-26_16-20"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_1.png" alt="2020-08-26_16-20_1"></p>
+<h3 id="pytorch中的自动求导"><a href="#pytorch中的自动求导" class="headerlink" title="pytorch中的自动求导"></a>pytorch中的自动求导</h3><h4 id="torch-autograd-grad"><a href="#torch-autograd-grad" class="headerlink" title="torch.autograd.grad()"></a><code>torch.autograd.grad()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">#方法2：</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">0</span>],[a],retain_graph= <span class="literal">True</span>)) <span class="comment">#单个计算每个损失函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">1</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">2</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.5666, 0.6252, 0.9636], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.2819, 0.2989, 0.4192], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">(tensor([ 0.2024, -0.0842, -0.1182]),)</span></span><br><span class="line"><span class="string">(tensor([-0.0842,  0.2096, -0.1253]),)</span></span><br><span class="line"><span class="string">(tensor([-0.1182, -0.1253,  0.2435]),)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="loss-backword"><a href="#loss-backword" class="headerlink" title="loss.backword()"></a><code>loss.backword()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">##p.backward() 报错 ，因为此时p为向量，没有办法进行求导</span></span><br><span class="line"><span class="comment"># pytorch: grad can be implicitly created only for scalar outputs</span></span><br><span class="line"><span class="comment">##只能对单个y进行自动求导，</span></span><br><span class="line"><span class="comment">#所以单独列开，同时由于p[0]-p[2]都使用同一个计算图，</span></span><br><span class="line"><span class="comment"># 但是pytorch的计算图如果没有显式声明要保存，计算一次之后会作废，所以要置retain_graph=True</span></span><br><span class="line"><span class="comment"># retain_graph 有效次数是1次，即如果下次还需要用到计算图，还是需要置为True</span></span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">1</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">2</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(a.grad) </span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.1281, 0.9067, 0.9391], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.1842, 0.4013, 0.4145], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">tensor([1.4901e-08, 4.4703e-08, 1.4901e-08])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.grad(</span><br><span class="line"></span><br><span class="line">outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line"></span><br><span class="line">inputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]],</span><br><span class="line"></span><br><span class="line">grad_outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>,</span><br><span class="line"></span><br><span class="line">retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    																		<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line">create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>,</span><br><span class="line"></span><br><span class="line">only_inputs: <span class="built_in">bool</span> = <span class="literal">True</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    												<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allow_unused: <span class="built_in">bool</span> = <span class="literal">False</span>) → <span class="type">Tuple</span>[torch.Tensor, ...] </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.backward(</span><br><span class="line">			tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line">			</span><br><span class="line">			grad_tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>, </span><br><span class="line">			</span><br><span class="line">			grad_variables: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor],<span class="literal">None</span>] = <span class="literal">None</span>) → <span class="literal">None</span></span><br><span class="line">			</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#该函数是将所有的梯度计算都累加到需要计算梯度的变量的grad属性中</span></span><br></pre></td></tr></table></figure>
+
+<p>官方文档建议使用第一种，因为第二种存在内存泄漏问题（也不是很清楚</p>
+<h4 id="遇到的bug和解决问题"><a href="#遇到的bug和解决问题" class="headerlink" title="遇到的bug和解决问题"></a>遇到的bug和解决问题</h4><p>代码背景</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br></pre></td></tr></table></figure>
+
+<p><strong>RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.</strong></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-45.png" alt="2020-08-26_16-45"></p>
+<p>修改方案： retain_graph</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png" alt="2020-08-26_16-46"></p>
+<p><strong>pytorch: grad can be implicitly created only for scalar outputs</strong></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png" alt="2020-08-26_16-49"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/" rel="prev" title="语义分割概述">
+                  <i class="fa fa-chevron-left"></i> 语义分割概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/27/%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98/" rel="next" title="最大流问题">
+                  最大流问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

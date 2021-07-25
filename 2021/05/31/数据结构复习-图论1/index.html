@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="最短路问题   算法 算法思路 备注    Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可以用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习_图论1">
+<meta property="og:url" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="最短路问题   算法 算法思路 备注    Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可以用">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/数据结构复习-图论1/2.png">
+<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png">
+<meta property="article:published_time" content="2021-05-31T02:06:28.000Z">
+<meta property="article:modified_time" content="2021-06-19T03:11:24.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
+
+
+<link rel="canonical" href="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/","path":"2021/05/31/数据结构复习-图论1/","title":"数据结构复习_图论1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构复习_图论1 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">最短路问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">相关算法的伪代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prim%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">Prim算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="nav-number">1.2.</span> <span class="nav-text">相关题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">最小生成树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">关键路径</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构复习_图论1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-05-31 10:06:28" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-06-19 11:11:24" itemprop="dateModified" datetime="2021-06-19T11:11:24+08:00">2021-06-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>算法思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dijkstra</td>
+<td>求解权图的单源最短路径<br>按照非递减次序依次得到各顶点的最小路径长度。<br>适用条件:不存在负权边</td>
+<td>时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​</td>
+</tr>
+<tr>
+<td>Bellman-Ford算法</td>
+<td>求解权图的单源最短路径<br>使用条件:可以计算包含负权的边，不能计算包含负圈的边<br>思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边<br>可以用来判断图是否包含负环:循环第v次时，仍进行松弛操作</td>
+<td>时间复杂度是O(V *E)​，空间复杂度O(E)​</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>求解非权图的单源最短路径<br></td>
+<td>时间复杂度:O(n^2)–邻接矩阵，O(E*V)​-邻接链表</td>
+</tr>
+<tr>
+<td>mark优化的Bellman-Ford算法</td>
+<td>增加一个mark标记，如果在一次循环中，bellman-Ford没有进行松弛操作，则退出循环</td>
+<td></td>
+</tr>
+<tr>
+<td>SPFA</td>
+<td><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35644234/article/details/61614581">https://blog.csdn.net/qq_35644234/article/details/61614581</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shadowland/p/5870640.html">https://www.cnblogs.com/shadowland/p/5870640.html</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Floyd算法</td>
+<td>邻接矩阵存储图像<br>适用条件：不存在负权值边组成的回路<br>path[i][j]保存路径</td>
+<td>多源最短路，时间复杂度O(V^３)​</td>
+</tr>
+</tbody></table>
+<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" alt="2021-05-31_15-59"></p>
+<h3 id="相关算法的伪代码"><a href="#相关算法的伪代码" class="headerlink" title="相关算法的伪代码"></a>相关算法的伪代码</h3><p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png" alt="2021-06-19_19-09"></p>
+<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png" alt="2021-06-19_19-09_1"></p>
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png" alt="2021-06-19_19-08"></p>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><blockquote>
+<p>最长路径的计算    </p>
+<p>次短路计算</p>
+<p>关于多条最短路径的计算，参考PAT相关题目（我记得有道PAT用的dijkstra计算的负权最短路径</p>
+</blockquote>
+<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><p>问题：寻找包含全部顶点的连通子图，且代价最小</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>思路</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prim</td>
+<td>类似于Dijkstra思路，求$V_0$的单源最短路径，构成最小生成树<br>求边稠密网<br>用pre存储树结构,</td>
+<td>时间复杂度为O(n^2) 使用堆优化，可以达到O(e*logn)​</td>
+</tr>
+<tr>
+<td>Kruskal</td>
+<td>思路：T为最小生成数，连通图　G=(V,E,C) ; 在E中选择权值最小的边，如果不成环，则加入T中，直到选够n-1条边<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34922624">https://zhuanlan.zhihu.com/p/34922624</a></td>
+<td>时间复杂度O(ElogV ),采用并查集判环－一次find() : logV</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png" alt="2021-05-31_15-57"></p>
+</blockquote>
+<blockquote>
+<p>闭圈法/破圈法</p>
+<p>最大生成树</p>
+</blockquote>
+<blockquote>
+<p>相关例题：POJ 3255:</p>
+</blockquote>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><strong>AOV网</strong>：用顶点表示活动，用有向边表示活动之间的前后关系，称这样的有向图表示AOV网。</p>
+<p>拓扑排序：在图论中，由一个有向无环图的顶点组成的序列，当且仅当满足一下条件时，称为该图的一个拓扑排序</p>
+<ul>
+<li>每个顶点出现且只出现一次</li>
+<li>如果顶点Ａ在序列中排在Ｂ的前面，则图中不存在从顶点B到顶点A之间的路径。</li>
+</ul>
+<p>每个AOV网都有一个或者多个拓扑排序。</p>
+<p>拓扑排序的方法：（可以采用深搜－<a target="_blank" rel="noopener" href="https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%98%AF$O(V+E)$%EF%BC%89">https://note.youdao.com/ynoteshare1/index.html?id=367d1dbbbc7034a7d1e86bf27bb38e84&amp;type=note时间复杂度是$O(V+E)$）</a></p>
+<blockquote>
+<ol>
+<li>从AOV网中选择一个没有前驱(入度为0)的顶点并输出。</li>
+<li>从网中删除该顶点和所有以它为起点的有向边。</li>
+<li>重复1和２,直到AOV图为空或者剩余结点都不为空（后者表示存在回路）。</li>
+</ol>
+</blockquote>
+<h2 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h2><p><strong>AOE</strong>网:　边表示活动，边的权值表示活动的持续时间，顶点表示入边的活动已经完成，出边的活动可以开始的状态，称为事件</p>
+<p>源点：表示整个工程的开始(入度为０)</p>
+<p>汇点：表示整个工程的结束(出度为０)</p>
+<p>关键路径：在<strong>AOE</strong>中，具有最大长度的路径。关键路径上的活动都是关键活动。</p>
+<p>关键活动:不能延期的活动。不按期完成就会影响整个工期的活动。</p>
+<p><strong>求关键路径的算法</strong></p>
+<blockquote>
+<p>vn表示汇点，v0表示源点<br>关于事件的量<br>① 事件vj的最早发生时间 ve(j):<br>    从源点v0到vj的最长路径长度。<br>② 事件vj的最迟发生时间 vl(j):<br>    保证汇点的最早发生时间不推迟的前提下，事件vj允许的最迟开始时间，等于ve(n)减去从vj到vn最长路径长度</p>
+<p>  关于活动的量<br>③ 活动ai的最早开始时间e(i):<br> 设活动ai为有向边&lt;vj ,vk&gt;，则 e(i) = ve(j)。<br>  ve(j)是从源点v0到vj的最长路径长度，决定了所有从vj开始的活动的最早开始时间。<br>④ 活动ai的最迟开始时间 l(i):<br>  l(i) 是在不会引起工期延误的前提下，该活动允许的最迟开始时间。设活动ai为有向边&lt;vj ,vk&gt;, 则 l(i) = vl(k)-weight(&lt;j, k&gt;)。</p>
+<p>   关键活动： l(i)＝ e(i) 表示活动ak 是没有时间余量的关键活动</p>
+</blockquote>
+<img src="数据结构复习-图论1/2.png" alt="2" style="zoom: 33%;" />
+
+<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png" alt="1"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/19/LCA/" rel="prev" title="LCA">
+                  <i class="fa fa-chevron-left"></i> LCA
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/31/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" rel="next" title="算法复习-相关概念">
+                  算法复习-相关概念 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="STL中map的基本用法pairmap中存储的基本数据类型是pair,首先我们简单介绍一下pair的基本结构 pair 定义在&lt;map.h&gt;中， pair是有两个变量的结构体，变量的默认权限是public，都可以访问，只是first设置为const，不能修改键值 底层实现结构定义1234567891011121314151617template &lt;class T1,class T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL-map">
+<meta property="og:url" content="http://example.com/2021/02/24/STL-map/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="STL中map的基本用法pairmap中存储的基本数据类型是pair,首先我们简单介绍一下pair的基本结构 pair 定义在&lt;map.h&gt;中， pair是有两个变量的结构体，变量的默认权限是public，都可以访问，只是first设置为const，不能修改键值 底层实现结构定义1234567891011121314151617template &lt;class T1,class T">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-02-24T02:14:27.000Z">
+<meta property="article:modified_time" content="2021-03-21T18:20:38.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="stl">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/02/24/STL-map/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/02/24/STL-map/","path":"2021/02/24/STL-map/","title":"STL-map"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>STL-map | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL%E4%B8%ADmap%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">STL中map的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pair"><span class="nav-number">1.1.</span> <span class="nav-text">pair</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">底层实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">结构定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0-make-pair"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">成员函数 make_pair</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">1.2.</span> <span class="nav-text">map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.2.</span> <span class="nav-text">增加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7%E8%8E%B7%E5%8F%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">基本属性获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">重载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">&#x3D;&#x3D;,&lt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">[]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.5.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%851"><span class="nav-number">1.2.6.</span> <span class="nav-text">补充1:</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/24/STL-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STL-map
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-02-24 10:14:27" itemprop="dateCreated datePublished" datetime="2021-02-24T10:14:27+08:00">2021-02-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-03-22 02:20:38" itemprop="dateModified" datetime="2021-03-22T02:20:38+08:00">2021-03-22</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="STL中map的基本用法"><a href="#STL中map的基本用法" class="headerlink" title="STL中map的基本用法"></a>STL中map的基本用法</h1><h2 id="pair"><a href="#pair" class="headerlink" title="pair"></a>pair</h2><p>map中存储的基本数据类型是pair,首先我们简单介绍一下pair的基本结构</p>
+<p>pair 定义在&lt;map.h&gt;中，</p>
+<p><strong>pair</strong>是有两个变量的结构体，变量的默认权限是public，都可以访问，只是first设置为const，不能修改键值</p>
+<h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><h4 id="结构定义"><a href="#结构定义" class="headerlink" title="结构定义"></a>结构定义</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T1</span>,<span class="keyword">class</span> <span class="title">T2</span>&gt;</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">pair</span>&#123;</span></span><br><span class="line">       <span class="keyword">typedef</span> T1 first_type;</span><br><span class="line">       <span class="keyword">typedef</span> T2 second_type;</span><br><span class="line">       </span><br><span class="line">       T1 first;</span><br><span class="line">       T2 second;</span><br><span class="line">       </span><br><span class="line">       <span class="built_in">pair</span>(): <span class="built_in">first</span>(<span class="built_in">T1</span>()) ,<span class="built_in">second</span>(<span class="built_in">T2</span>())&#123;&#125;</span><br><span class="line">       </span><br><span class="line">       <span class="built_in">pair</span>(<span class="keyword">const</span> T1&amp; a,<span class="keyword">const</span> T2&amp; b): <span class="built_in">first</span>(a) ,<span class="built_in">second</span>(b) &#123; &#125;</span><br><span class="line">     <span class="meta">#<span class="meta-keyword">ifdef</span>	__STL_MEMBER_TEMPLATES</span></span><br><span class="line">       <span class="function"><span class="keyword">template</span>&lt;class U1,class U2&gt;</span></span><br><span class="line"><span class="function">       <span class="title">pair</span><span class="params">(<span class="keyword">const</span> pair&lt;U1,U2&gt;&amp; p)</span> :dirst(p.first),second(p.second)&#123;</span>&#125;</span><br><span class="line">       <span class="meta">#<span class="meta-keyword">endif</span>  </span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T1</span>, <span class="keyword">class</span> <span class="title">T2</span>&gt;</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> pair&lt;T1, T2&gt;&amp; x, <span class="keyword">const</span> pair&lt;T1, T2&gt;&amp; y) &#123; </span><br><span class="line">  <span class="keyword">return</span> x.first == y.first &amp;&amp; x.second == y.second; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T1</span>, <span class="keyword">class</span> <span class="title">T2</span>&gt;</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> pair&lt;T1, T2&gt;&amp; x, <span class="keyword">const</span> pair&lt;T1, T2&gt;&amp; y) &#123; </span><br><span class="line">  <span class="keyword">return</span> x.first &lt; y.first || (!(y.first &lt; x.first) &amp;&amp; x.second &lt; y.second); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="成员函数-make-pair"><a href="#成员函数-make-pair" class="headerlink" title="成员函数 make_pair"></a>成员函数 make_pair</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class T1, classT2&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> pair&lt;T1,T2&gt; <span class="title">make_pair</span><span class="params">(<span class="keyword">const</span> T1&amp; x,<span class="keyword">const</span> T2&amp; y)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> pair&lt;T1,T2&gt;(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>map存储的基本数据类型是pair,数据结构是RB-tree，可以理解为关联数组。可以使用键作为下标来获得相应的值。关联的本质在于元素的值与某个特定的键相关联。</p>
+<p>map元素的键值是唯一的，multimap允许重复元素</p>
+<p>map的insert必须是以pair为存储结构，当然也可以直接使用make_pair构造一个临时pair</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">map c / multimap c; //产生一个空的map或者multimap，不包含任何因素</span></span><br><span class="line"><span class="comment">map c(op) / multimap c(op); //以op为排序准则，产生一个空的map</span></span><br><span class="line"><span class="comment">map c1(c2) / multimap c1(c2) ; //产生某个map或者multimap对象的副本，所有元素均被复制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">map c(beg,end) /multimap c(beg,end); //以区间(beg,end)内的元素产生一个新的map/multimap</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">map c(beg,end,op) / multimap c(beg,end,op) //以区间(beg,end)内的元素产生一个新的map/multimap，排序准则为op</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">double</span>&gt;  m1;</span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">double</span>,greater&lt;<span class="keyword">int</span>&gt;&gt; m2; <span class="comment">//降序排列</span></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">double</span>,less&lt;<span class="keyword">int</span>&gt;&gt; m3; <span class="comment">//升序排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//采用插入方式，增加元素</span></span><br><span class="line"><span class="comment">//对应迭代器的声明</span></span><br><span class="line">map&lt;<span class="keyword">int</span> ,<span class="keyword">double</span>&gt;::iterator itm;</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加元素"><a href="#增加元素" class="headerlink" title="增加元素"></a>增加元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//方式1：提前先定义好pair</span></span><br><span class="line">	pair&lt;string, <span class="keyword">int</span>&gt; p;</span><br><span class="line">	p.first = <span class="string">&quot;zero&quot;</span>, p.second = <span class="number">0</span>;</span><br><span class="line">	m.<span class="built_in">insert</span>(p); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方式2：使用make_pair方式创建临时pair对象</span></span><br><span class="line">	m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="string">&quot;one&quot;</span>, <span class="number">1</span>));</span><br><span class="line">	</span><br><span class="line"><span class="comment">////[key] 自动添加，参考符号重载</span></span><br><span class="line">	m[<span class="string">&quot;two&quot;</span>]=<span class="number">3</span>;</span><br><span class="line">	</span><br><span class="line">	std::cout&lt;&lt;m[<span class="string">&quot;three&quot;</span>]; <span class="comment">//输出0,默认值</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本属性获取"><a href="#基本属性获取" class="headerlink" title="基本属性获取"></a>基本属性获取</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">map</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 实际调用的是RB-tree的key_comp函数</span></span><br><span class="line">  <span class="function">key_compare <span class="title">key_comp</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">key_comp</span>(); &#125;</span><br><span class="line">    <span class="comment">// value_comp实际返回的是一个仿函数value_compare</span></span><br><span class="line">  <span class="function">value_compare <span class="title">value_comp</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">value_compare</span>(t.<span class="built_in">key_comp</span>()); &#125;</span><br><span class="line">    <span class="comment">// 以下的begin, end等操作都是调用的是RB-tree的接口</span></span><br><span class="line">    </span><br><span class="line">   <span class="comment">//迭代器</span></span><br><span class="line">  <span class="function">iterator <span class="title">begin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">begin</span>(); &#125;</span><br><span class="line">  <span class="function">const_iterator <span class="title">begin</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">begin</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="function">iterator <span class="title">end</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">end</span>(); &#125;</span><br><span class="line">  <span class="function">const_iterator <span class="title">end</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">end</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">  <span class="function">reverse_iterator <span class="title">rbegin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">rbegin</span>(); &#125;</span><br><span class="line">  <span class="function">const_reverse_iterator <span class="title">rbegin</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">rbegin</span>(); &#125;</span><br><span class="line">  <span class="function">reverse_iterator <span class="title">rend</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">rend</span>(); &#125;</span><br><span class="line">  <span class="function">const_reverse_iterator <span class="title">rend</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">rend</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断是否为空</span></span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">empty</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//计算尺寸</span></span><br><span class="line">  <span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">size</span>(); &#125;</span><br><span class="line">  <span class="function">size_type <span class="title">max_size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> t.<span class="built_in">max_size</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 交换, 调用RB-tree的swap, 实际只交换count</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(map&lt;Key k, T t, Compare, Alloc&gt;&amp; x)</span> </span>&#123; t.<span class="built_in">swap</span>(x.t); &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="keyword">class</span> <span class="title">T</span>, <span class="keyword">class</span> <span class="title">Compare</span>, <span class="keyword">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(map&lt;Key, T, Compare, Alloc&gt;&amp; x, </span></span></span><br><span class="line"><span class="params"><span class="function">                 map&lt;Key, T, Compare, Alloc&gt;&amp; y)</span> </span>&#123;</span><br><span class="line">  x.<span class="built_in">swap</span>(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="重载-1"><a href="#重载-1" class="headerlink" title="重载"></a>重载</h3><h4 id="lt"><a href="#lt" class="headerlink" title="==,&lt;"></a><code>==</code>,<code>&lt;</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//大小比较，取决于值的大小</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">map</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">map</span>(<span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; x) : <span class="built_in">t</span>(x.t) &#123;&#125;</span><br><span class="line">  map&lt;Key, T, Compare, Alloc&gt;&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; x)</span><br><span class="line">  &#123;</span><br><span class="line">    t = x.t;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>; </span><br><span class="line">  &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="keyword">class</span> <span class="title">T</span>, <span class="keyword">class</span> <span class="title">Compare</span>, <span class="keyword">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; x, </span><br><span class="line">                       <span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; y) &#123;</span><br><span class="line">  <span class="keyword">return</span> x.t == y.t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="keyword">class</span> <span class="title">T</span>, <span class="keyword">class</span> <span class="title">Compare</span>, <span class="keyword">class</span> <span class="title">Alloc</span>&gt;</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; x, </span><br><span class="line">                      <span class="keyword">const</span> map&lt;Key, T, Compare, Alloc&gt;&amp; y) &#123;</span><br><span class="line">  <span class="keyword">return</span> x.t &lt; y.t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title="[]"></a><code>[]</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">map</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 1.  insert(value_type(k, T()) : 查找是否存在该键值, 如果存在则返回该pair, 不存在这重新构造一该键值并且值为空</span></span><br><span class="line">	<span class="comment">// 2.  *((insert(value_type(k, T()))).first) : pair的第一个元素表示指向该元素的迭代器, 第二个元素指的是(false与true)是否存在,  first 便是取出该迭代器而 * 取出pair.</span></span><br><span class="line">	<span class="comment">// 3.  (*((insert(value_type(k, T()))).first)).second : 取出pair结构中的second保存的数据</span></span><br><span class="line">  T&amp; <span class="keyword">operator</span>[](<span class="keyword">const</span> key_type&amp; k) &#123;</span><br><span class="line">    <span class="keyword">return</span> ( *(  (  <span class="built_in">insert</span>(<span class="built_in">value_type</span>(k, <span class="built_in">T</span>()))   ).first)  ).second;</span><br><span class="line">  &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//swap() ,交换两个键值的内容</span></span><br><span class="line">std::cout&lt;&lt;mm[<span class="string">&quot;1&quot;</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;mm[<span class="string">&quot;2&quot;</span>]&lt;&lt;std::endl;</span><br><span class="line">std::<span class="built_in">swap</span>(mm[<span class="string">&quot;1&quot;</span>],mm[<span class="string">&quot;2&quot;</span>]); </span><br><span class="line">std::cout&lt;&lt;mm[<span class="string">&quot;1&quot;</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;mm[<span class="string">&quot;2&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//erase</span></span><br><span class="line">iterator erase（iterator it);<span class="comment">//通过一个条目对象删除</span></span><br><span class="line"></span><br><span class="line">iterator erase（iterator first，iterator last）<span class="comment">//删除一个范围</span></span><br><span class="line"></span><br><span class="line"><span class="function">size_type <span class="title">erase</span><span class="params">(<span class="keyword">const</span> Key&amp;key)</span></span>;<span class="comment">//通过关键字删除</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">clear</span>()<span class="comment">//就相当于enumMap.erase(enumMap.begin(),enumMap.end());</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//count(const Key&amp; key)</span></span><br><span class="line"><span class="function">size_type <span class="title">count</span><span class="params">(<span class="keyword">const</span> Key&amp; key )</span>  <span class="keyword">const</span></span>;<span class="comment">//函数功能是返回元素在map/multimap中出现的次数。对于map型容器，返回值只有 0/1</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment">//find,其功能是返回指向key的迭代器。如果键值key对应的元素不存在，在函数返回迭代器end()</span></span><br><span class="line"><span class="function">iterator <span class="title">find</span><span class="params">(<span class="keyword">const</span> Key&amp; key)</span></span>;</span><br><span class="line"><span class="function">const_iterator <span class="title">find</span><span class="params">(<span class="keyword">const</span> Key&amp; key )</span> <span class="keyword">const</span></span>;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="补充1"><a href="#补充1" class="headerlink" title="补充1:"></a>补充1:</h3><p>在STL中，map,set，multimap，multiset底层都是用红黑树实现，都是有序的</p>
+<p>相关操作的复杂度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插入: O(logN)</span><br><span class="line">查看:O(logN)</span><br><span class="line">删除:O(logN)</span><br></pre></td></tr></table></figure>
+
+<p>hash_map, hash_set, hash_multimap, and hash_multiset<br> 上述四种容器采用哈希表实现，不同操作的时间复杂度为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插入:O(1)，最坏情况O(N)</span><br><span class="line"> 查看:O(1)，最坏情况O(N)</span><br><span class="line"> 删除:O(1)，最坏情况O(N)。</span><br></pre></td></tr></table></figure>
+
+<p>unordered_map 和 hash_map的内部结构都是用哈希表来实现，但是在C++11中，hash_map已经被舍弃了，最好建议使用unordered_map</p>
+<p>更详细的相关区别： <a target="_blank" rel="noopener" href="https://blog.csdn.net/chen134225/article/details/83106569">https://blog.csdn.net/chen134225/article/details/83106569</a></p>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/GritCS/STL/blob/master/30%20map.md">https://github.com/GritCS/STL/blob/master/30%20map.md</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/stl/" rel="tag"># stl</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="prev" title="排序算法总结">
+                  <i class="fa fa-chevron-left"></i> 排序算法总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/28/%E5%9B%BE%E8%AE%BA1/" rel="next" title="图论1">
+                  图论1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="**STL(Standard Template Library)**概念​    6大组件： 容器，算法，迭代器，仿函数，适配器，空间配置器 在C++标准中，STL被组织成13个头文件 algorithm , deque , functional iterator vector memory numeric queue stack set utility map list STL的优点：1.不需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector">
+<meta property="og:url" content="http://example.com/2021/02/12/STL-vector/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="**STL(Standard Template Library)**概念​    6大组件： 容器，算法，迭代器，仿函数，适配器，空间配置器 在C++标准中，STL被组织成13个头文件 algorithm , deque , functional iterator vector memory numeric queue stack set utility map list STL的优点：1.不需要">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/02/12/STL-vector/STL-vector/2021-02-13_23-09.png">
+<meta property="article:published_time" content="2021-02-12T08:12:49.000Z">
+<meta property="article:modified_time" content="2021-05-17T16:34:22.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="stl">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/12/STL-vector/STL-vector/2021-02-13_23-09.png">
+
+
+<link rel="canonical" href="http://example.com/2021/02/12/STL-vector/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/02/12/STL-vector/","path":"2021/02/12/STL-vector/","title":"vector"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vector | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STL-Standard-Template-Library-%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">**STL(Standard Template Library)**概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-number">2.</span> <span class="nav-text">vector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%A2%9E%E9%95%BF%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">动态增长原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector%E5%B8%B8%E7%94%A8API"><span class="nav-number">2.2.</span> <span class="nav-text">vector常用API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vector%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">vector构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">其他基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E8%8E%B7%E5%8F%96"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">属性获取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">元素访问方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">增删改查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B0%83%E6%95%B4"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">容器的调整</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vector%E9%81%8D%E5%8E%86"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">vector遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-number">2.2.2.5.1.</span> <span class="nav-text">1.使用迭代器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-for-at"><span class="nav-number">2.2.2.5.2.</span> <span class="nav-text">2.for_at</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-STL-for-each"><span class="nav-number">2.2.2.5.3.</span> <span class="nav-text">3. STL for_each</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">vector高级编程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%9F%A5%E6%89%BE%E5%92%8C%E6%90%9C%E7%B4%A2"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">元素查找和搜索</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">元素排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E8%B7%9F%E6%8D%AE%E5%85%83%E7%B4%A0%E8%87%AA%E8%BA%AB%E5%AE%9A%E4%B9%89%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%85%B3%E7%B3%BB%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%8D%87%E5%BA%8F%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.3.2.1.</span> <span class="nav-text">1.跟据元素自身定义的大小关系，进行升序排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E5%88%A9%E7%94%A8cmp%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E5%A4%A7%E5%B0%8F%E5%85%B3%E7%B3%BB%EF%BC%8Cbool-cmp"><span class="nav-number">2.2.3.2.2.</span> <span class="nav-text">2.利用cmp函数定义大小关系，bool cmp{};</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/12/STL-vector/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vector
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-02-12 16:12:49" itemprop="dateCreated datePublished" datetime="2021-02-12T16:12:49+08:00">2021-02-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-05-18 00:34:22" itemprop="dateModified" datetime="2021-05-18T00:34:22+08:00">2021-05-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="STL-Standard-Template-Library-概念"><a href="#STL-Standard-Template-Library-概念" class="headerlink" title="**STL(Standard Template Library)**概念"></a>**STL(Standard Template Library)**概念</h2><p>​    6大组件： 容器，算法，迭代器，仿函数，适配器，空间配置器</p>
+<p>在C++标准中，STL被组织成13个头文件</p>
+<p>algorithm ,</p>
+<p>deque ,</p>
+<p>functional</p>
+<p>iterator</p>
+<p>vector</p>
+<p>memory</p>
+<p>numeric</p>
+<p>queue</p>
+<p>stack</p>
+<p>set</p>
+<p>utility</p>
+<p>map</p>
+<p>list</p>
+<p>STL的优点：1.不需要额外安装其他软件包</p>
+<p>​                    2.实现了数据结构和算法的分离</p>
+<p>​                    3.程序员可以不用思考STL具体的实现过程，封装易用</p>
+<p>​                    4.高可重用性(模板类，模板函数)</p>
+<p>​                    5.高性能</p>
+<p>​                    6.高移植性</p>
+<p>​                    7.跨平台性</p>
+<p>容器：</p>
+<p>​    序列式容器：容器的元素的位置是由 进入容器的时机和地点来决定</p>
+<p>​    关联式容器：容器已有规则，通常提供键值key作为索引</p>
+<p>​    </p>
+<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><h3 id="动态增长原理"><a href="#动态增长原理" class="headerlink" title="动态增长原理"></a>动态增长原理</h3><p>vector：动态数组,可变数组,单口容器</p>
+<p>动态增长原理：当插入新元素的时候，如果空间不足，vector会重新申请更大的一块内存空间，将源空间数据拷贝到新空间，释放旧空间数据，再把新元素插入新申请空间.<strong>注意：一旦引起空间重新配置，指向原vector的所有迭代器都失效了</strong></p>
+<p><strong>3个迭代器属性：start,finish,end_of_storage</strong></p>
+<p><strong>finish: 指向数组中最后一个元素的下一个位置</strong></p>
+<p><img src="STL-vector/2021-02-13_23-09.png" alt="2021-02-13_23-09"></p>
+<h3 id="vector常用API"><a href="#vector常用API" class="headerlink" title="vector常用API"></a>vector常用API</h3><h4 id="vector构造函数"><a href="#vector构造函数" class="headerlink" title="vector构造函数"></a>vector构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;T&gt; V; <span class="comment">//利用模板实现类实现 ，默认构造函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>() );  <span class="comment">//v为vector&lt;T&gt;</span></span><br><span class="line"><span class="comment">//将v[begin(), end()] 区间中的元素拷贝给本身</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>(n,elem ); <span class="comment">//构造函数将n个elem拷贝给本身</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个赋值函数</span></span><br><span class="line"><span class="keyword">int</span> arr[] =&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">vl</span><span class="params">(arr,arr + <span class="keyword">sizeof</span>(arr)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>) )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他基本操作"><a href="#其他基本操作" class="headerlink" title="其他基本操作"></a>其他基本操作</h4><h5 id="属性获取"><a href="#属性获取" class="headerlink" title="属性获取"></a>属性获取</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 获取数据的开始以及结束位置的指针. 记住这里返回的是迭代器, 也就是vector迭代器就是该类型的指针.</span></span><br><span class="line">    <span class="function">iterator <span class="title">begin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> start; &#125;</span><br><span class="line">    <span class="function">iterator <span class="title">end</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> finish; &#125;</span><br><span class="line">	<span class="comment">// 获取值</span></span><br><span class="line">	<span class="function">reference <span class="title">front</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *<span class="built_in">begin</span>(); &#125;</span><br><span class="line">    <span class="function">reference <span class="title">back</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *(<span class="built_in">end</span>() - <span class="number">1</span>); &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取右值</span></span><br><span class="line">	<span class="function">const_iterator <span class="title">begin</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> start; &#125;</span><br><span class="line">    <span class="function">const_iterator <span class="title">end</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> finish; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">const_reference <span class="title">front</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *<span class="built_in">begin</span>(); &#125; <span class="comment">//首元素</span></span><br><span class="line">	<span class="function">const_reference <span class="title">back</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *(<span class="built_in">end</span>() - <span class="number">1</span>); &#125;<span class="comment">//最后一个元素</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取基本数组信息</span></span><br><span class="line">	<span class="function">size_type <span class="title">size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">size_type</span>(<span class="built_in">end</span>() - <span class="built_in">begin</span>()); &#125;	 <span class="comment">// 数组元素的个数</span></span><br><span class="line">    <span class="function">size_type <span class="title">max_size</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">size_type</span>(<span class="number">-1</span>) / <span class="built_in"><span class="keyword">sizeof</span></span>(T); &#125;	<span class="comment">// 最大能存储的元素个数</span></span><br><span class="line">    <span class="function">size_type <span class="title">capacity</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">size_type</span>(end_of_storage - <span class="built_in">begin</span>()); &#125;	<span class="comment">// 数组的实际大小</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="元素访问方法"><a href="#元素访问方法" class="headerlink" title="元素访问方法"></a>元素访问方法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">typename</span> T&gt; c;</span><br><span class="line"></span><br><span class="line">c.<span class="built_in">at</span>(index);</span><br><span class="line">c[index]; <span class="comment">//这两种访问方式返回值都是引用，可读可写</span></span><br><span class="line"></span><br><span class="line">c.<span class="built_in">front</span>();<span class="comment">//返回第一个元素</span></span><br><span class="line">c.<span class="built_in">back</span>();<span class="comment">//返回最后一个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h5><ul>
+<li><p><strong>push和pop操作都只是对尾部finish进行操作的</strong></p>
+</li>
+<li><p><code>erase</code>清除是一个<strong>左闭右开的区间</strong>.</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">const</span> T&amp; x)</span></span>;</span><br><span class="line">vector&lt;T ,Alloc&gt; ::<span class="built_in">insert</span>(iterator position, size_type n, <span class="keyword">const</span> T&amp; x); <span class="comment">//从position开始，插入n个元素，元素的初值是x</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>; <span class="comment">//将尾端元素拿掉，并调整大小</span></span><br><span class="line"></span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator first,iterator last)</span></span>; <span class="comment">//清除[first,last) 中的所有元素,return first</span></span><br><span class="line">  </span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(iterator position)</span></span>; <span class="comment">//清除某个位置上的元素 return position</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; <span class="built_in">erase</span>(<span class="built_in">begin</span>(), <span class="built_in">end</span>()); &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="容器的调整"><a href="#容器的调整" class="headerlink" title="容器的调整"></a>容器的调整</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">(size_type n)</span><span class="comment">//修改容器的实际大小</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span> <span class="params">(size_type new_size)</span></span></span><br></pre></td></tr></table></figure>
+
+<h5 id="vector遍历"><a href="#vector遍历" class="headerlink" title="vector遍历"></a><strong>vector遍历</strong></h5><h6 id="1-使用迭代器"><a href="#1-使用迭代器" class="headerlink" title="1.使用迭代器"></a>1.使用迭代器</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Iter_for</span><span class="params">(vector&lt;T&gt;&amp; vt)</span></span>&#123;</span><br><span class="line">	T temp;</span><br><span class="line">	vector&lt;T&gt; :: iterator iter;</span><br><span class="line">	<span class="keyword">for</span>(iter=vt.<span class="built_in">begin</span>(); iter!=vt.<span class="built_in">end</span>(); iter++)&#123;</span><br><span class="line">		temp =*iter;</span><br><span class="line">		std::cout&lt;&lt;temp&lt;&lt;std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-for-at"><a href="#2-for-at" class="headerlink" title="2.for_at"></a>2.for_at</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">at_for</span><span class="params">(vector&lt;T&gt;&amp; vt)</span></span>&#123;</span><br><span class="line">	T temp;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m=vt.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        temp=vt.<span class="built_in">at</span>(i);</span><br><span class="line">        std::cout&lt;&lt;temp&lt;&lt;std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-STL-for-each"><a href="#3-STL-for-each" class="headerlink" title="3. STL for_each"></a>3. STL for_each</h6><p><strong>for_each原型</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">template</span> &lt; <span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> Function &gt;</span><br><span class="line"><span class="function">Function <span class="title">for_each</span><span class="params">(InputIterator beg, InputIterator end, Function f)</span>  </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(beg != end) </span><br><span class="line">    <span class="built_in">f</span>(*beg++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt;temp&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">   	vector&lt;<span class="keyword">int</span>&gt; myvt=std::vector&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="built_in"><span class="keyword">sizeof</span></span>(nums)/<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">    std::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),print)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vector高级编程"><a href="#vector高级编程" class="headerlink" title="vector高级编程"></a>vector高级编程</h4><h5 id="元素查找和搜索"><a href="#元素查找和搜索" class="headerlink" title="元素查找和搜索"></a>元素查找和搜索</h5><p>使用STL通用算法find()</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class InputIterator,class T&gt; <span class="keyword">inline</span></span></span><br><span class="line"><span class="function"> InputIterator <span class="title">find</span><span class="params">(InputIterator first,InputIterator last, <span class="keyword">const</span> T&amp; value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">InputIterator <span class="title">find_if</span><span class="params">(InputIterator first,InputIterator last,Predicate predicate)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="元素排序"><a href="#元素排序" class="headerlink" title="元素排序"></a>元素排序</h5><p>使用STL通用算法<strong>sort()</strong></p>
+<p><strong>sort()底层实现是插入排序优化的快排，时间复杂度是 n*log2(n)</strong></p>
+<h6 id="1-跟据元素自身定义的大小关系，进行升序排序"><a href="#1-跟据元素自身定义的大小关系，进行升序排序" class="headerlink" title="1.跟据元素自身定义的大小关系，进行升序排序"></a>1.跟据元素自身定义的大小关系，进行升序排序</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessIterator</span>&gt;</span></span><br><span class="line">   <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(RandomAccessIterator first, RandomAccessIterator)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt; temp&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">34</span>,<span class="number">1</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">11</span>&#125;;</span><br><span class="line">    std::vector&lt;<span class="keyword">int</span>&gt; ptr = std::vector&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="built_in"><span class="keyword">sizeof</span></span>(nums)/<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="comment">//遍历方法</span></span><br><span class="line">    std::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),print);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//sort两个参数</span></span><br><span class="line">    std::<span class="built_in">sort</span>(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>());</span><br><span class="line">    std::cout&lt;&lt;std::endl;</span><br><span class="line">    std::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),print);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">34,1,89,0,3,5,11</span></span><br><span class="line"><span class="comment">0,1,3,5,11,34,89</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-利用cmp函数定义大小关系，bool-cmp"><a href="#2-利用cmp函数定义大小关系，bool-cmp" class="headerlink" title="2.利用cmp函数定义大小关系，bool cmp{};"></a>2.利用cmp函数定义大小关系，bool cmp{};</h6><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; temp)</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt; temp&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a&gt;b);<span class="comment">//升序排列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nums[] = &#123;<span class="number">34</span>,<span class="number">1</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">11</span>&#125;;</span><br><span class="line">    std::vector&lt;<span class="keyword">int</span>&gt; ptr = std::vector&lt;<span class="keyword">int</span>&gt;(nums,nums+<span class="built_in"><span class="keyword">sizeof</span></span>(nums)/<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="comment">//遍历方法</span></span><br><span class="line">    std::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),print);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//sort三个参数</span></span><br><span class="line">    std::<span class="built_in">sort</span>(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),cmp);</span><br><span class="line">    std::cout&lt;&lt;std::endl;</span><br><span class="line">    std::for_each(ptr.<span class="built_in">begin</span>(),ptr.<span class="built_in">end</span>(),print);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">34 1 89 0 3 5 11 </span></span><br><span class="line"><span class="comment">89 34 11 5 3 1 0 </span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/stl/" rel="tag"># stl</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/06/c-11%E5%88%86%E7%AB%A01/" rel="prev" title="c++11分章1">
+                  <i class="fa fa-chevron-left"></i> c++11分章1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/20/%E5%A0%86/" rel="next" title="堆">
+                  堆 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

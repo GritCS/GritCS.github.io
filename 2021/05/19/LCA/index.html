@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="LCA LCA的定义:   方法1: 递归算法 123456789101112131415161718192021222324252627&#x2F;&#x2F;root是树的根结点,二叉树使用struct Node&amp;#123;    int val;    Node* left;    Node* right;    Node(int v):val(v),left(nullptr),right(nullptr)&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCA">
+<meta property="og:url" content="http://example.com/2021/05/19/LCA/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="LCA LCA的定义:   方法1: 递归算法 123456789101112131415161718192021222324252627&#x2F;&#x2F;root是树的根结点,二叉树使用struct Node&amp;#123;    int val;    Node* left;    Node* right;    Node(int v):val(v),left(nullptr),right(nullptr)&amp;#">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-05-19T01:24:26.000Z">
+<meta property="article:modified_time" content="2021-05-18T22:45:02.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="PAT">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/05/19/LCA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/05/19/LCA/","path":"2021/05/19/LCA/","title":"LCA"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>LCA | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LCA"><span class="nav-number">1.</span> <span class="nav-text">LCA</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/19/LCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LCA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+      
+
+      <time title="Erstellt: 2021-05-19 09:24:26 / Geändert am: 06:45:02" itemprop="dateCreated datePublished" datetime="2021-05-19T09:24:26+08:00">2021-05-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><ol>
+<li>LCA的定义:</li>
+</ol>
+<ol>
+<li><p>方法1: 递归算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//root是树的根结点,二叉树使用</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="keyword">int</span> v):<span class="built_in">val</span>(v),<span class="built_in">left</span>(<span class="literal">nullptr</span>),<span class="built_in">right</span>(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">LCA</span><span class="params">(Node* root, <span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;val == u || root-&gt;val == v)&#123;<span class="comment">//root是其中一个根</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    Node* left = <span class="built_in">LCA</span>(root-&gt;left,u,v);</span><br><span class="line">    Node* right = <span class="built_in">LCA</span>(root-&gt;right,u,v);</span><br><span class="line">    <span class="keyword">if</span>(left!=<span class="literal">nullptr</span> &amp;&amp; right!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(left!=<span class="literal">nullptr</span>)&#123; <span class="comment">//出现在左子树上</span></span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(right!=<span class="literal">nullptr</span>)&#123;<span class="comment">//出现在右子树上</span></span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>倍增寻找(ST算法)</p>
+</li>
+</ol>
+<blockquote>
+<p>​    算法执行之前,我们需要统计每个结点v的深度depth(v).</p>
+<p>​     LCA的特点: 如果结点w是结点u和结点v的最近公共祖先的话:</p>
+<p>​            让u往上走(depth(w) - depth(u) )步, 让v往上走(depth(v) - depth(w) )步,u,v都将走到结点w</p>
+</blockquote>
+<p><strong>寻找结点u和结点v LCA的 倍增算法的基本思路:</strong>    </p>
+<blockquote>
+<p>​    结点w未知,我们首先让u和v中较深的点往上走|depth(u)-depth(v)|步,再一起往上走.</p>
+<p>   并且利用二分搜索求出可到达的最近公共祖先的最小步数.</p>
+</blockquote>
+<p>不过其中要维护一个father数组 , 并且<code>father[i][j]</code> 表示 结点i 往上走j-1 步得到的祖先结点,father[]</p>
+<p>[源码]</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by doriswang on 2021/5/19.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">int</span> father[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> depth[MAX];</span><br><span class="line"><span class="keyword">int</span> N ;<span class="comment">//结点的个数</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; tree[MAX] ;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  利用dfs,初始化father数组</span></span><br><span class="line"><span class="comment"> * @param cur:当前结点</span></span><br><span class="line"><span class="comment"> * @param pre: 当前结点</span></span><br><span class="line"><span class="comment"> * @param d</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    father[cur][<span class="number">0</span>] = pre;</span><br><span class="line">    depth[cur] = d;</span><br><span class="line">    <span class="keyword">if</span>(tree[cur].<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> size = tree[cur].<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ch =tree[cur][i];</span><br><span class="line">        <span class="keyword">if</span>(ch!=pre)&#123; <span class="comment">//防止出现回路</span></span><br><span class="line">            <span class="built_in">dfs</span>(ch,cur,d+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123; <span class="comment">////i的2^j祖先就是i的（2^(j-1))祖先的2^(j-1)祖先</span></span><br><span class="line">    <span class="built_in">dfs</span>(root,<span class="number">-1</span>,<span class="number">0</span>);<span class="comment">//root为根结点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;(<span class="number">1</span>&lt;&lt;(j+<span class="number">1</span>))&lt;N;j++)&#123; <span class="comment">// 1&lt;&lt;(j+1)表示 2^(j+1),j表示高度</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(father[i][j]&lt;<span class="number">0</span>) father[i][j+<span class="number">1</span>] = <span class="number">-1</span>; <span class="comment">//到达根结点</span></span><br><span class="line">            <span class="keyword">else</span> father[i][j+<span class="number">1</span>] = father[father[i][j]][j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LCA</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(depth[u]&gt;depth[v])&#123;</span><br><span class="line">        <span class="built_in">swap</span>(u,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> temp = depth[v] - depth[u];</span><br><span class="line">    <span class="comment">//原来是这么写的,我觉得有点难记忆</span></span><br><span class="line"><span class="comment">//    for(int i=0;(1&lt;&lt;i)&lt;=temp;i++)&#123; //使u,v再同一高度,i表示树高</span></span><br><span class="line"><span class="comment">//        //(1&lt;&lt;i)&amp;f找到f化为2进制后1的位置，移动到相应的位置</span></span><br><span class="line"><span class="comment">//        if((1&lt;&lt;i)&amp; temp)&#123;   //比如f=5，二进制就是101,所以首先移动2^0祖先，然后再移动2^2祖先</span></span><br><span class="line"><span class="comment">//            v= father[v][i];</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    v = father[v][temp<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">if</span>(v==u)&#123;</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//father[u][i] 是找到u的往上第i-1个祖先,这里利用了二分的思想,所以 u=father[u][i], i是不断减小的</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i=(<span class="keyword">int</span>)<span class="built_in">log2</span>(N*<span class="number">1.0</span>);i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(father[u][i]!= father[v][i])&#123;</span><br><span class="line">            u = father[u][i];</span><br><span class="line">            v = father[v][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> father[u][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    N =<span class="number">8</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">        cin&gt;&gt;m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp;</span><br><span class="line">            cin&gt;&gt;temp;</span><br><span class="line">            tree[i].<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">init</span>(<span class="number">5</span>);</span><br><span class="line">    cout&lt;&lt;<span class="built_in">LCA</span>(<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 7 6</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">2 3 8</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">1 1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">8 //应该输出5</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/PAT/" rel="tag"># PAT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/17/%E6%9C%BA%E8%AF%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="prev" title="机试注意事项">
+                  <i class="fa fa-chevron-left"></i> 机试注意事项
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/" rel="next" title="数据结构复习_图论1">
+                  数据结构复习_图论1 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

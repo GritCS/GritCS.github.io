@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1234567struct Node&amp;#123;    int height;    int val;    Node* left;    Node* right;    Node(int v):val(v),left(nullptr),height(1),right(nullptr)&amp;#123;&amp;#125;;&amp;#125;;    查找123456789101112131415Node* find">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AVL">
+<meta property="og:url" content="http://example.com/2021/05/14/AVL/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="1234567struct Node&amp;#123;    int height;    int val;    Node* left;    Node* right;    Node(int v):val(v),left(nullptr),height(1),right(nullptr)&amp;#123;&amp;#125;;&amp;#125;;    查找123456789101112131415Node* find">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-05-14T12:35:56.000Z">
+<meta property="article:modified_time" content="2021-07-04T14:16:44.159Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="机试">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/05/14/AVL/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/05/14/AVL/","path":"2021/05/14/AVL/","title":"AVL"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AVL | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE"><span class="nav-number">1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E6%97%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">左旋操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%B3%E6%97%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">右旋操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5-1"><span class="nav-number">2.3.</span> <span class="nav-text">插入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BAVL"><span class="nav-number">4.</span> <span class="nav-text">建立AVL</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/14/AVL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AVL
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-05-14 20:35:56" itemprop="dateCreated datePublished" datetime="2021-05-14T20:35:56+08:00">2021-05-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-07-04 22:16:44" itemprop="dateModified" datetime="2021-07-04T22:16:44+08:00">2021-07-04</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    Node* left;</span><br><span class="line">    Node* right;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="keyword">int</span> v):<span class="built_in">val</span>(v),<span class="built_in">left</span>(<span class="literal">nullptr</span>),<span class="built_in">height</span>(<span class="number">1</span>),<span class="built_in">right</span>(<span class="literal">nullptr</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">find</span><span class="params">(Node* root ,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val == val)&#123;</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> (root-&gt;val&gt;val)&#123;</span><br><span class="line">        </span><br><span class="line">		<span class="built_in">find</span>(root-&gt;left , val);</span><br><span class="line">        </span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">find</span>(root-&gt;right,val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><h4 id="左旋操作"><a href="#左旋操作" class="headerlink" title="左旋操作"></a>左旋操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">L</span><span class="params">(Node*&amp; root)</span></span>&#123;</span><br><span class="line">    Node* temp = root-&gt;right;</span><br><span class="line">    root-&gt;right = temp-&gt;left;</span><br><span class="line">    temp-&gt;left = root;</span><br><span class="line">    <span class="built_in">updateHeight</span>(root);</span><br><span class="line">    <span class="built_in">updateHeight</span>(temp);</span><br><span class="line">    root = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="右旋操作"><a href="#右旋操作" class="headerlink" title="右旋操作"></a>右旋操作</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">R</span><span class="params">(Node* &amp; root)</span></span>&#123;<span class="comment">//指针引用型</span></span><br><span class="line">    Node* temp = root-&gt;left;</span><br><span class="line">    root -&gt;left = temp-&gt;right;</span><br><span class="line">    temp-&gt;right = root;</span><br><span class="line">    <span class="built_in">updateHeight</span>(root);</span><br><span class="line">    <span class="built_in">updateHeight</span>(temp);</span><br><span class="line">    root = temp;<span class="comment">//根结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 左右子树高度的差值称为该结点的平衡因子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getBalanceFactor</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">getHeight</span>(root-&gt;left) - <span class="built_in">getHeight</span>(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateHeight</span><span class="params">(Node* root)</span></span>&#123;</span><br><span class="line">    root-&gt;height = <span class="built_in">max</span>(<span class="built_in">getHeight</span>(root-&gt;left),<span class="built_in">getHeight</span>(root-&gt;right))+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node*&amp; root, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>(v);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val&gt;v)&#123;<span class="comment">//向左子树插</span></span><br><span class="line">            <span class="built_in">insert</span>(root-&gt;left,v);<span class="comment">//</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root)==<span class="number">2</span>)&#123;<span class="comment">//如果不平衡,向左插,只会增加1</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root-&gt;left)==<span class="number">1</span>)&#123;<span class="comment">//LL型</span></span><br><span class="line">                    <span class="built_in">R</span>(root);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root-&gt;left)==<span class="number">-1</span>)&#123;</span><br><span class="line">                    <span class="built_in">L</span>(root-&gt;left);</span><br><span class="line">                    <span class="built_in">R</span>(root);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">insert</span>(root-&gt;right,v);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root)==<span class="number">-2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root-&gt;right)==<span class="number">-1</span>)&#123;<span class="comment">//RR</span></span><br><span class="line">                    <span class="built_in">L</span>(root);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">getBalanceFactor</span>(root-&gt;right)==<span class="number">1</span>)&#123;<span class="comment">//RL</span></span><br><span class="line">                    <span class="built_in">R</span>(root-&gt;right);</span><br><span class="line">                    <span class="built_in">L</span>(root);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">       <span class="built_in">updateHeight</span>(root);<span class="comment">//插入之后记得update一下高度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>之前就是插入之后,忘记updateHeight(),出错了</strong></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>&lt;==================较为复杂,之后再填坑======&gt;</p>
+<h3 id="建立AVL"><a href="#建立AVL" class="headerlink" title="建立AVL"></a>建立AVL</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">CreatAVL</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; nodes)</span></span>&#123;</span><br><span class="line">    Node* root = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> size = nodes.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">        <span class="built_in">insert</span>(root,nodes[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E6%9C%BA%E8%AF%95/" rel="tag"># 机试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/14/pat1043/" rel="prev" title="pat1043">
+                  <i class="fa fa-chevron-left"></i> pat1043
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/16/PAT%E8%AE%B0%E5%BD%95/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

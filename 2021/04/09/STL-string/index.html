@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="使用时，需要#include&lt;string&gt; string定义和初始化12string str;string str &#x3D; &quot;abcd&quot;;  string中内容的访问123456789101112131415&#x2F;&#x2F;1.直接通过下标访问string str &#x3D; &quot;abcd&quot;;str[0];&#x2F;&#x2F;2.通过迭代器访问#include&lt;stdio.h&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL-string">
+<meta property="og:url" content="http://example.com/2021/04/09/STL-string/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="使用时，需要#include&lt;string&gt; string定义和初始化12string str;string str &#x3D; &quot;abcd&quot;;  string中内容的访问123456789101112131415&#x2F;&#x2F;1.直接通过下标访问string str &#x3D; &quot;abcd&quot;;str[0];&#x2F;&#x2F;2.通过迭代器访问#include&lt;stdio.h&amp;g">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-09T06:30:32.000Z">
+<meta property="article:modified_time" content="2021-07-05T00:32:01.941Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="stl">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/09/STL-string/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2021/04/09/STL-string/","path":"2021/04/09/STL-string/","title":"STL-string"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>STL-string | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#string%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">string定义和初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string%E4%B8%AD%E5%86%85%E5%AE%B9%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="nav-number">2.</span> <span class="nav-text">string中内容的访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">string常用的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.0.1.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">3.0.2.</span> <span class="nav-text">增删改查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%BA%93%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">相关库函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">4.1.</span> <span class="nav-text">常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%8D%A2-transform"><span class="nav-number">4.1.1.</span> <span class="nav-text">大小写字母转换(transform)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/09/STL-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STL-string
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2021-04-09 14:30:32" itemprop="dateCreated datePublished" datetime="2021-04-09T14:30:32+08:00">2021-04-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2021-07-05 08:32:01" itemprop="dateModified" datetime="2021-07-05T08:32:01+08:00">2021-07-05</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>使用时，需要<code>#include&lt;string&gt;</code></p>
+<h2 id="string定义和初始化"><a href="#string定义和初始化" class="headerlink" title="string定义和初始化"></a>string定义和初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string str;</span><br><span class="line">string str = <span class="string">&quot;abcd&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="string中内容的访问"><a href="#string中内容的访问" class="headerlink" title="string中内容的访问"></a>string中内容的访问</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.直接通过下标访问</span></span><br><span class="line">string str = <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line">str[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.通过迭代器访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str =<span class="string">&quot;sadas&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(string::iterator it = str.<span class="built_in">begin</span>();it!=str.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">        cout&lt;&lt;*it&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//和vector一样，string的迭代器支持加减整数操作</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="string常用的函数"><a href="#string常用的函数" class="headerlink" title="string常用的函数"></a>string常用的函数</h2><h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//operator+=，支持两个string直接拼接</span></span><br><span class="line">string str1 = <span class="string">&quot;abc&quot;</span>,str2 = <span class="string">&quot;xsf&quot;</span>,str3;</span><br><span class="line">str3 = str1+str2; <span class="comment">// str3 = &quot;abcxsf&quot;;</span></span><br><span class="line">str1 += str2; <span class="comment">//str1=&quot;abcxsf&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//compare operator == ，!= ,&lt; , &lt;= ,&gt;,&gt;= 比较大小,比较规则是字典序</span></span><br><span class="line">string str1 = <span class="string">&quot;aa&quot;</span> , str2 = <span class="string">&quot;aaa&quot;</span> ,str3 = <span class="string">&quot;abc&quot;</span> ,str4 = <span class="string">&quot;xyz&quot;</span>;</span><br><span class="line"><span class="keyword">bool</span> b1 = str1&lt;str2; <span class="comment">//true</span></span><br><span class="line"><span class="keyword">bool</span> b2 = str3&gt;str2;<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">length</span>()/<span class="built_in">size</span>() <span class="comment">//返回字符串长度</span></span><br><span class="line"> str.<span class="built_in">substr</span>(<span class="keyword">int</span> pos , <span class="keyword">int</span> len); <span class="comment">//返回从pos下标开始，长度为len的子串，时间复杂度为O(len)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//==========增===========</span></span><br><span class="line"><span class="built_in">insert</span>(<span class="keyword">int</span> pos,string); <span class="comment">//在pos号下，插入字符串string</span></span><br><span class="line"><span class="built_in">insert</span>(iterator it , iterator str , iterator end);<span class="comment">//将[str,end)之间的字符串 插入到it所指的位置之前</span></span><br><span class="line"></span><br><span class="line">string str = <span class="string">&quot;safs&quot;</span> , str2=<span class="string">&quot;134&quot;</span>;</span><br><span class="line">str.<span class="built_in">insert</span>(<span class="number">3</span>,str2); <span class="comment">//str = &quot;saf123s&quot;</span></span><br><span class="line">string str3 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">str2.<span class="built_in">insert</span>(str2.<span class="built_in">begin</span>()+<span class="number">1</span>,str3.<span class="built_in">begin</span>(),str3.<span class="built_in">end</span>());<span class="comment">//str2 = &quot;1abc34&quot;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//===========删=O(N)==================</span></span><br><span class="line">str.<span class="built_in">erase</span>(iterator it); <span class="comment">//用于删除单个元素</span></span><br><span class="line">str.<span class="built_in">erase</span>(iterator first, iterator last); <span class="comment">//用于删除[first,last)区间</span></span><br><span class="line">str.<span class="built_in">erase</span>(<span class="keyword">int</span> pos , length);<span class="comment">//</span></span><br><span class="line">string str = <span class="string">&quot;dasdfas</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string"> str.clear();//清空字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//=======find=======</span></span><br><span class="line"><span class="string">str.find(str2); //当str2是str的子串时，返回其在str中第一次出现的位置，如果str2不是str子串，返回-1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//===替换</span></span><br><span class="line"><span class="string">str.replace(int pos, int len , str2);//把str从pos下标开始的，长度为len的子串替换为str2(str2的长度可以超过len,)</span></span><br><span class="line"><span class="string">str.replace(iterator it1, iterator it2,str2);</span></span><br><span class="line"><span class="string">    </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="相关库函数"><a href="#相关库函数" class="headerlink" title="相关库函数"></a>相关库函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span>  <span class="title">isalnum</span><span class="params">(<span class="keyword">char</span> c)</span></span>; <span class="comment">//用于检测一个字符是否是字母或者十进制数字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isalpha</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isdigit</span><span class="params">(<span class="keyword">char</span> c)</span></span>;<span class="comment">//用于检测一个字符是否是十进制数</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> str[] = <span class="string">&quot;*ab%c123_ABC-.&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>( <span class="built_in">isalnum</span>(str[i]) ) n++;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;There are %d characters in str is alphanumeric.\n&quot;</span>, n);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">///There are 9 characters in str is alphanumeric.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><h4 id="大小写字母转换-transform"><a href="#大小写字母转换-transform" class="headerlink" title="大小写字母转换(transform)"></a>大小写字母转换(<a target="_blank" rel="noopener" href="https://blog.csdn.net/lihaidong1991/article/details/96098070?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&spm=1001.2101.3001.4242">transform</a>)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//===大小写字母转换===transform</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">template &lt;class InputIterator, class OutputIterator, class UnaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator first1, InputIterator last1,</span></span><br><span class="line"><span class="comment">                            OutputIterator result, UnaryOperation op);</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">template &lt;class InputIterator1, class InputIterator2,</span></span><br><span class="line"><span class="comment">          class OutputIterator, class BinaryOperation&gt;</span></span><br><span class="line"><span class="comment">  OutputIterator transform (InputIterator1 first1, InputIterator1 last1,</span></span><br><span class="line"><span class="comment">                            InputIterator2 first2, OutputIterator result,</span></span><br><span class="line"><span class="comment">                            BinaryOperation binary_op);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line">	<span class="function">string <span class="title">strsrc</span><span class="params">(<span class="string">&quot;Hello, World!&quot;</span>)</span></span>;</span><br><span class="line">	<span class="built_in">transform</span>(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrc.<span class="built_in">begin</span>(), to_upper);	<span class="comment">// 转换为大写</span></span><br><span class="line"> </span><br><span class="line">	<span class="function">string <span class="title">strsrc</span><span class="params">(<span class="string">&quot;Hello, World!&quot;</span>)</span></span>;</span><br><span class="line">	<span class="built_in">transform</span>(strsrc.<span class="built_in">begin</span>(), strsrc.<span class="built_in">end</span>(), strsrct.<span class="built_in">begin</span>(), to_lower); <span class="comment">// 转换为小写</span></span><br></pre></td></tr></table></figure>
+
+<p>版权声明：本文为CSDN博主「ningto.com」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tujiaw/article/details/6976424">https://blog.csdn.net/tujiaw/article/details/6976424</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stl/" rel="tag"># stl</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/06/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/" rel="prev" title="双指针">
+                  <i class="fa fa-chevron-left"></i> 双指针
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/" rel="next" title="字符串总结">
+                  字符串总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="手写数字识别MNIST　数据集 由不同风格的手写数字组成(0-9) 每个数字都有7000张，每张图片都是28*28的灰度图片 训练时：将训练集和测试集分为60k Vs 10k 1. No deeping learningX:[1….28*28] 每个点都是０－１，表示该像素点的灰度值 关键点：参数的维度定义，以及每层转换的含义    2.代码实现 1234567891011121314151617">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分类问题的引入">
+<meta property="og:url" content="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="手写数字识别MNIST　数据集 由不同风格的手写数字组成(0-9) 每个数字都有7000张，每张图片都是28*28的灰度图片 训练时：将训练集和测试集分为60k Vs 10k 1. No deeping learningX:[1….28*28] 每个点都是０－１，表示该像素点的灰度值 关键点：参数的维度定义，以及每层转换的含义    2.代码实现 1234567891011121314151617">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-28.png">
+<meta property="og:image" content="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-55.png">
+<meta property="og:image" content="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-57.png">
+<meta property="article:published_time" content="2020-08-23T07:54:03.000Z">
+<meta property="article:modified_time" content="2020-08-24T00:45:00.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="大创">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-28.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/","path":"2020/08/23/分类问题的引入/","title":"分类问题的引入"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>分类问题的引入 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">手写数字识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-No-deeping-learning"><span class="nav-number">1.1.</span> <span class="nav-text">1. No deeping learning</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/23/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          分类问题的引入
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+
+      <time title="Erstellt: 2020-08-23 15:54:03" itemprop="dateCreated datePublished" datetime="2020-08-23T15:54:03+08:00">2020-08-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Bearbeitet am</span>
+        <time title="Geändert am: 2020-08-24 08:45:00" itemprop="dateModified" datetime="2020-08-24T08:45:00+08:00">2020-08-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">in</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="手写数字识别"><a href="#手写数字识别" class="headerlink" title="手写数字识别"></a>手写数字识别</h2><p><strong>MNIST　数据集</strong></p>
+<p>由不同风格的手写数字组成(0-9)</p>
+<p>每个数字都有7000张，每张图片都是28*28的灰度图片</p>
+<p>训练时：将训练集和测试集分为60k Vs 10k</p>
+<h3 id="1-No-deeping-learning"><a href="#1-No-deeping-learning" class="headerlink" title="1. No deeping learning"></a>1. No deeping learning</h3><p>X:[1….28*28]</p>
+<p>每个点都是０－１，表示该像素点的灰度值</p>
+<p>关键点：参数的维度定义，以及每层转换的含义</p>
+<p><img src="%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-28.png" alt="2020-08-22_16-28"></p>
+<p><img src="%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-55.png" alt="2020-08-22_16-55"></p>
+<p><img src="%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E5%BC%95%E5%85%A5/2020-08-22_16-57.png" alt="2020-08-22_16-57"></p>
+<p>2.代码实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-encodng: utf-8-*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File: minist.py.py</span></span><br><span class="line"><span class="string">@Contact: 2257925767@qq.com</span></span><br><span class="line"><span class="string">@Author:wangyu</span></span><br><span class="line"><span class="string">@Version:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@Desciption:</span></span><br><span class="line"><span class="string">        手写数字识别的核心代码</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        还存在一些问题没有解决－－－自己得到的数据比老师的代码迭代的次数要少很多</span></span><br><span class="line"><span class="string">    env: </span></span><br><span class="line"><span class="string">        pytorch 1.3.1</span></span><br><span class="line"><span class="string">@DateTime: 2020/8/22下午5:04 </span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.nn <span class="keyword">import</span> functional <span class="keyword">as</span> F <span class="comment">#常见的激活函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> optim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> util <span class="keyword">import</span> plot_image, plot_curve, one_hot</span><br><span class="line"></span><br><span class="line"><span class="comment"># step1 . load dataset,采用向量并行</span></span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">512</span></span><br><span class="line"></span><br><span class="line">train_loader = torch.utils.data.DataLoader(</span><br><span class="line">    torchvision.datasets.MNIST(<span class="string">&quot;mnist_data&quot;</span>,train=<span class="literal">True</span>,download=<span class="literal">True</span>,</span><br><span class="line">                               transform= torchvision.transforms.Compose([torchvision.transforms.ToTensor(),<span class="comment">#将numby格式数据转成pytorch</span></span><br><span class="line">                                                                            torchvision.transforms.Normalize(</span><br><span class="line">                                                                                (<span class="number">0.1307</span>,),(<span class="number">0.3081</span>,)), <span class="comment">#对像素点的灰度值进行正则化，会提高优化效率</span></span><br><span class="line">                                                                          ])),batch_size = batch_size,shuffle = <span class="literal">True</span>)<span class="comment">#随机打散</span></span><br><span class="line"></span><br><span class="line">test_loader = torch.utils.data.DataLoader(</span><br><span class="line">    torchvision.datasets.MNIST(<span class="string">&quot;mnist_data/&quot;</span>,train=<span class="literal">False</span>,download=<span class="literal">True</span>,</span><br><span class="line">                               transform= torchvision.transforms.Compose([torchvision.transforms.ToTensor(),<span class="comment">#将numby格式数据转成pytorch</span></span><br><span class="line">                                                                            torchvision.transforms.Normalize(</span><br><span class="line">                                                                                (<span class="number">0.1307</span>,),(<span class="number">0.3081</span>,)), <span class="comment">#对像素点的灰度值进行正则化，会提高优化效率</span></span><br><span class="line">                                                                          ])),batch_size = batch_size,shuffle = <span class="literal">False</span>)<span class="comment">#随机打散</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x,y = <span class="built_in">next</span>(<span class="built_in">iter</span>(train_loader))</span><br><span class="line"><span class="built_in">print</span>(x.shape,y.shape,x.<span class="built_in">min</span>(),x.<span class="built_in">max</span>())</span><br><span class="line">plot_image(x,y,<span class="string">&#x27;image_test&#x27;</span>) <span class="comment">#检查数据集</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span><span class="comment">#初始化函数:搭建网络结构</span></span><br><span class="line">        <span class="built_in">super</span>(Net,self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#wx+b</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">28</span>*<span class="number">28</span>,<span class="number">256</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">256</span>,<span class="number">64</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">64</span>,<span class="number">10</span>)<span class="comment">#28*28 =&gt; 256 =&gt;64这个是随机确定的,最后一层的输出是由分类的种类数决定的</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self,x</span>):</span><span class="comment">#网络的计算过程</span></span><br><span class="line">        <span class="comment"># x :[batch_size,1,28,28] 1:表示只有一个通道</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#h1= relu(xw1+b1)</span></span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        <span class="comment">#h1=relu(h1w2+b2)</span></span><br><span class="line">        x=F.relu(self.fc2(x))</span><br><span class="line">        <span class="comment">#h3=h2w3+b3 --这里没有使用激活函数，只是简单输出</span></span><br><span class="line">        x=self.fc3(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">net = Net()<span class="comment">#实例化一个net</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义优化器</span></span><br><span class="line">optimizer = optim.SGD(net.parameters(),lr=<span class="number">0.01</span>,momentum=<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line">train_loss=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> batch_idx , (x,y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader): <span class="comment">#迭代一次数据集</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.调整数据的尺寸，构建网络，通过网络计算预测值</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#x: [b,1,28,28], y:[512]</span></span><br><span class="line">        <span class="comment"># [b,1,28,28] =&gt; [b,784]</span></span><br><span class="line">        x =x.view(x.size(<span class="number">0</span>),<span class="number">28</span>*<span class="number">28</span>) <span class="comment">#size[0]表示batch_size</span></span><br><span class="line">        <span class="comment">#=&gt;[b,10]</span></span><br><span class="line">        out = net(x) <span class="comment">#经过网络计算出来的值</span></span><br><span class="line">        y_onehot = one_hot(y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#2.定义梯度</span></span><br><span class="line">        <span class="comment">#loss = mse_loss(out,y_onehot) 欧式距离</span></span><br><span class="line">        loss = F.mse_loss(out,y_onehot)</span><br><span class="line"><span class="comment">#3.梯度清０</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line"><span class="comment">#4.梯度计算过程</span></span><br><span class="line">        loss.backward()</span><br><span class="line"></span><br><span class="line"><span class="comment">#5.参数更新</span></span><br><span class="line">        <span class="comment">#w&#x27;= w-lr*grad</span></span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        train_loss.append(loss.item())<span class="comment">#loss: tensor =&gt; numpy</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> batch_idx % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(epoch,batch_idx,loss.item())</span><br><span class="line"></span><br><span class="line">plot_curve(train_loss)</span><br><span class="line"></span><br><span class="line"><span class="comment">#get optimal[w1,b2,w2,b2,w3,b3]</span></span><br><span class="line"></span><br><span class="line">total_correct = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x,y <span class="keyword">in</span> test_loader:</span><br><span class="line">    x = x.view(x.size(<span class="number">0</span>),<span class="number">28</span>*<span class="number">28</span>)</span><br><span class="line">    out = net(x)</span><br><span class="line">    <span class="comment">#out = net(x)</span></span><br><span class="line">    pred = out.argmax(dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    correct = pred.eq(y).<span class="built_in">sum</span>().<span class="built_in">float</span>().item()</span><br><span class="line">    total_correct+= correct</span><br><span class="line"></span><br><span class="line">total_num = <span class="built_in">len</span>(test_loader.dataset)</span><br><span class="line">acc=total_correct/total_num</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;test acc:&#x27;</span>,acc)</span><br><span class="line"></span><br><span class="line">x,y = <span class="built_in">next</span>(<span class="built_in">iter</span>(test_loader))</span><br><span class="line">out = net(x.view(x.size(<span class="number">0</span>),<span class="number">28</span>*<span class="number">28</span>))</span><br><span class="line">pred = out.argmax(dim=<span class="number">1</span>)</span><br><span class="line">plot_image(x,pred,<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-encodng: utf-8-*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File: util.py.py</span></span><br><span class="line"><span class="string">@Contact: 2257925767@qq.com</span></span><br><span class="line"><span class="string">@Author:wangyu</span></span><br><span class="line"><span class="string">@Version:</span></span><br><span class="line"><span class="string">        手写数字识别的工具文件</span></span><br><span class="line"><span class="string">@Desciption:</span></span><br><span class="line"><span class="string">    env: </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@DateTime: 2020/8/22下午5:04 </span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>  torch</span><br><span class="line"><span class="keyword">from</span>    matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_curve</span>(<span class="params">data</span>):</span><span class="comment">#计算训练曲线</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    plt.plot(<span class="built_in">range</span>(<span class="built_in">len</span>(data)), data, color=<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">    plt.legend([<span class="string">&#x27;value&#x27;</span>], loc=<span class="string">&#x27;upper right&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;step&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;value&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_image</span>(<span class="params">img, label, name</span>):</span><span class="comment">#展现出识别结果</span></span><br><span class="line"></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">        plt.subplot(<span class="number">2</span>, <span class="number">3</span>, i + <span class="number">1</span>)</span><br><span class="line">        plt.tight_layout()</span><br><span class="line">        plt.imshow(img[i][<span class="number">0</span>]*<span class="number">0.3081</span>+<span class="number">0.1307</span>, cmap=<span class="string">&#x27;gray&#x27;</span>, interpolation=<span class="string">&#x27;none&#x27;</span>)</span><br><span class="line">        plt.title(<span class="string">&quot;&#123;&#125;: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(name, label[i].item()))</span><br><span class="line">        plt.xticks([])</span><br><span class="line">        plt.yticks([])</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one_hot</span>(<span class="params">label, depth=<span class="number">10</span></span>):</span><span class="comment">#完成one-hot编码</span></span><br><span class="line">    out = torch.zeros(label.size(<span class="number">0</span>), depth)</span><br><span class="line">    idx = torch.LongTensor(label).view(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    out.scatter_(dim=<span class="number">1</span>, index=idx, value=<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/" rel="prev" title="简单的回归问题">
+                  <i class="fa fa-chevron-left"></i> 简单的回归问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/24/pytroch%E7%B4%A2%E5%BC%95%E4%B8%8E%E5%88%87%E7%89%87/" rel="next" title="pytroch索引与切片">
+                  pytroch索引与切片 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

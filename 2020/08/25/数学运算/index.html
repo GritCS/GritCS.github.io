@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Suche...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="数学运算1. element-cal123456789101112#汇总torch.add ;  +torch.sub; -torch.div ; &#x2F;torch.mul; *a.pow(n) ; a**na.sqrt()a.rsqrt()  #平方根的倒数a.exp()a.log()a.log2()a.log10()      利用重载后的运算符     2.矩阵的乘除123torch.mm()#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学运算">
+<meta property="og:url" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="Think World">
+<meta property="og:description" content="数学运算1. element-cal123456789101112#汇总torch.add ;  +torch.sub; -torch.div ; &#x2F;torch.mul; *a.pow(n) ; a**na.sqrt()a.rsqrt()  #平方根的倒数a.exp()a.log()a.log2()a.log10()      利用重载后的运算符     2.矩阵的乘除123torch.mm()#">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-40.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-58.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-06.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49_1.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-07.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11_12.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-19.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-25.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-26.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-54.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-59.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_12-05.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-11.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-49.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-10.png">
+<meta property="og:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-14.png">
+<meta property="article:published_time" content="2020-08-24T23:33:03.000Z">
+<meta property="article:modified_time" content="2020-08-25T02:17:22.000Z">
+<meta property="article:author" content="Sherry Wang">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="大创">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png">
+
+
+<link rel="canonical" href="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/","path":"2020/08/25/数学运算/","title":"数学运算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数学运算 | Think World</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Think World</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">从个人成长角度来说，从经历中学点什么总是最重要的</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">数学运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-element-cal"><span class="nav-number">1.1.</span> <span class="nav-text">1. element-cal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B9%98%E9%99%A4"><span class="nav-number">1.2.</span> <span class="nav-text">2.矩阵的乘除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%EF%BC%92D%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B9%98%E9%99%A4"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 ２D矩阵的乘除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%A4%9A%E7%BB%B4%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B9%98%E9%99%A4"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 多维矩阵的乘除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3%E5%85%B6%E4%BB%96%E8%AE%A1%E7%AE%97"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3其他计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%B1%9E%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">统计属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">高阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#where-%E8%AF%AD%E5%8F%A5"><span class="nav-number">3.1.</span> <span class="nav-text">where 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gather-%E8%AF%AD%E5%8F%A5"><span class="nav-number">3.2.</span> <span class="nav-text">gather 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">3.2.1.</span> <span class="nav-text">提出的背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">3.2.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sherry Wang"
+      src="/images/aa.webp">
+  <p class="site-author-name" itemprop="name">Sherry Wang</p>
+  <div class="site-description" itemprop="description">记录点滴成长</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数学运算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Veröffentlicht am</span>
+      
+
+      <time title="Erstellt: 2020-08-25 07:33:03 / Geändert am: 10:17:22" itemprop="dateCreated datePublished" datetime="2020-08-25T07:33:03+08:00">2020-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">in</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+          . 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-element-cal"><a href="#1-element-cal" class="headerlink" title="1. element-cal"></a>1. element-cal</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#汇总</span></span><br><span class="line">torch.add ;  +</span><br><span class="line">torch.sub; -</span><br><span class="line">torch.div ; /</span><br><span class="line">torch.mul; *</span><br><span class="line">a.<span class="built_in">pow</span>(n) ; a**n</span><br><span class="line">a.sqrt()</span><br><span class="line">a.rsqrt()  <span class="comment">#平方根的倒数</span></span><br><span class="line">a.exp()</span><br><span class="line">a.log()</span><br><span class="line">a.log2()</span><br><span class="line">a.log10()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>利用重载后的运算符</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png" alt="2020-08-25_10-49"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-40.png" alt="2020-08-25_10-40"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-58.png" alt="2020-08-25_17-58"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-06.png" alt="2020-08-25_11-06"></p>
+<h3 id="2-矩阵的乘除"><a href="#2-矩阵的乘除" class="headerlink" title="2.矩阵的乘除"></a>2.矩阵的乘除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.mm()<span class="comment">#只适用于2D</span></span><br><span class="line"><span class="meta">@</span></span><br><span class="line">torch.matmul()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-1-２D矩阵的乘除"><a href="#2-1-２D矩阵的乘除" class="headerlink" title="2.1 ２D矩阵的乘除"></a>2.1 ２D矩阵的乘除</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49_1.png" alt="2020-08-25_10-49_1"></p>
+<h4 id="2-2-多维矩阵的乘除"><a href="#2-2-多维矩阵的乘除" class="headerlink" title="2.2 多维矩阵的乘除"></a>2.2 多维矩阵的乘除</h4><p>实际就是支持多个矩阵对并行相乘[只计算最低的两维数据]</p>
+<p><strong>broadcasting</strong>机制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在计算过程中，可以使用broadcasting对矩阵进行扩展，</span></span><br><span class="line"><span class="comment">#可以使用matmul的标准：1. 低维（1,2）数据要满足矩阵乘法的行/列数的要求，</span></span><br><span class="line"><span class="comment">#高维数据要完全匹配或者经过broadcasting机制可以匹配</span></span><br><span class="line"><span class="comment">#一维数据，求点积</span></span><br><span class="line"></span><br><span class="line">a = torch.tensor([<span class="number">2</span>])</span><br><span class="line">b= torch.tensor([<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape) <span class="comment">#计算得到标量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#只计算低维数据，高维数据完全匹配</span></span><br><span class="line">a = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line">c = torch.matmul(a,b)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c.shape)</span><br><span class="line"><span class="comment">#broadcasting 机制</span></span><br><span class="line">b = torch.rand(<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">1</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3其他计算"><a href="#2-3其他计算" class="headerlink" title="2.3其他计算"></a>2.3其他计算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a.floor()</span><br><span class="line"></span><br><span class="line">a.ceil()</span><br><span class="line"></span><br><span class="line">a.<span class="built_in">round</span>()<span class="comment">#四舍五入</span></span><br><span class="line"></span><br><span class="line">a.trunc()<span class="comment">#取整数部分</span></span><br><span class="line"></span><br><span class="line">a.frac()<span class="comment">#取小数部分</span></span><br><span class="line"></span><br><span class="line">a.clamp(<span class="built_in">min</span>,<span class="built_in">max</span>) <span class="comment">#如果a[i]&lt;min ，a[i] =min ； 如果a[i]&gt;max ，a[i]=max</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>函数相关实例</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-07.png" alt="2020-08-25_18-07"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)*<span class="number">15</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.clamp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[ 0.1522,  8.6243, 10.4471],</span></span><br><span class="line"><span class="string">        [ 2.0610,  8.4947, 10.7278]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[ 5.0000,  8.6243, 10.0000],</span></span><br><span class="line"><span class="string">        [ 5.0000,  8.4947, 10.0000]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="统计属性"><a href="#统计属性" class="headerlink" title="统计属性"></a>统计属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##相关函数计算</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11_12.png" alt="2020-08-25_11_12"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-19.png" alt="2020-08-25_11-19"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-25.png" alt="2020-08-25_11-25"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-26.png" alt="2020-08-25_11-26"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-54.png" alt="2020-08-25_11-54"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-59.png" alt="2020-08-25_11-59"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_12-05.png" alt="2020-08-25_12-05"></p>
+<p>附录：</p>
+<p>1。在某维度上argmax的理解—感觉自己对抽象几何不是特别理解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a = torch.randn(<span class="number">4</span>,<span class="number">10</span>)a</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.argmax())</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 7.0244e-01, -1.8047e-01, -1.3860e+00, -2.7422e-02,  1.0189e-01,</span></span><br><span class="line"><span class="string">         -4.1896e-01,  2.3863e+00, -2.3053e-01, -1.7369e-02,  1.8899e-01],</span></span><br><span class="line"><span class="string">        [ 1.0445e-01, -5.9622e-01, -8.3666e-01, -7.0087e-01, -2.1692e-01,</span></span><br><span class="line"><span class="string">          1.2431e-01, -2.3204e-01, -5.3630e-01, -1.1655e+00,  4.6021e-01],</span></span><br><span class="line"><span class="string">        [-1.1210e+00, -4.4479e-01,  1.0892e+00, -1.1631e+00,  7.8703e-01,</span></span><br><span class="line"><span class="string">         -3.9018e-01, -6.1701e-01,  8.2018e-01,  1.2167e-01, -1.6905e+00],</span></span><br><span class="line"><span class="string">        [-1.4846e+00,  9.5270e-01,  2.2757e-01,  1.5931e+00,  2.9075e-01,</span></span><br><span class="line"><span class="string">          1.3509e+00,  1.5353e+00, -1.1048e+00,  7.0249e-04, -1.1067e-01]])</span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string">tensor([0, 3, 2, 3, 2, 3, 0, 2, 2, 1])</span></span><br><span class="line"><span class="string">tensor([6, 9, 2, 3])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.在某维度上范式的计算的理解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = torch.FloatTensor([<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>,<span class="number">4.</span>,<span class="number">5.</span>,<span class="number">6.</span>,<span class="number">7.</span>,<span class="number">8.</span>,<span class="number">9.</span>,<span class="number">10.</span>])</span><br><span class="line">b = a.view(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 1.,  2.,  3.,  4.,  5.],</span></span><br><span class="line"><span class="string">        [ 6.,  7.,  8.,  9., 10.]])</span></span><br><span class="line"><span class="string">tensor([ 7.,  9., 11., 13., 15.])</span></span><br><span class="line"><span class="string">tensor([15., 40.])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="高阶操作"><a href="#高阶操作" class="headerlink" title="高阶操作"></a>高阶操作</h2><h3 id="where-语句"><a href="#where-语句" class="headerlink" title="where 语句"></a>where 语句</h3><p>代替for循环，可以利用GPU进行加速计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">cond = torch.tensor([[<span class="number">0.6769</span>,<span class="number">0.7271</span>],[<span class="number">0.8884</span>,<span class="number">0.4163</span>]])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">0.</span>]])</span><br><span class="line"></span><br><span class="line">b = torch.tensor([[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.where(cond&gt;<span class="number">0.5</span>,a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##同上面等效，可以体会一下语义</span></span><br><span class="line">c =torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span>(cond[i][j]&gt;<span class="number">0.5</span>):</span><br><span class="line">            c[i][j] = a[i][j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c[i][j] = b[i][j]</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="gather-语句"><a href="#gather-语句" class="headerlink" title="gather 语句"></a>gather 语句</h3><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-11.png" alt="2020-08-25_18-11"></p>
+<h4 id="提出的背景"><a href="#提出的背景" class="headerlink" title="提出的背景"></a>提出的背景</h4><p>可以自行体会含义</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-49.png" alt="2020-08-25_17-49"></p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-10.png" alt="2020-08-25_18-10"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-14.png" alt="2020-08-25_18-14"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/%E5%A4%A7%E5%88%9B/" rel="tag"># 大创</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/25/%E5%90%88%E5%B9%B6%E4%B8%8E%E5%88%86%E5%89%B2/" rel="prev" title="合并与分割">
+                  <i class="fa fa-chevron-left"></i> 合并与分割
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/25/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A6%82%E8%BF%B0/" rel="next" title="语义分割概述">
+                  语义分割概述 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
