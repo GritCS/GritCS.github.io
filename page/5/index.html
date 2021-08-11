@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
@@ -163,6 +163,207 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/06/c-11%E5%88%86%E7%AB%A01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/06/c-11%E5%88%86%E7%AB%A01/" class="post-title-link" itemprop="url">c++11分章1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2021-02-06 20:23:18" itemprop="dateCreated datePublished" datetime="2021-02-06T20:23:18+08:00">2021-02-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 09:23:31" itemprop="dateModified" datetime="2021-07-25T09:23:31+08:00">2021-07-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>主要内容: 引用,指针,数组,动态内存分配</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ul>
+<li><p>&lt;类型&gt;&amp;&lt;变量&gt; = &lt;对象或变量&gt;</p>
+</li>
+<li><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>引用就是变量的另一个别名,对应的变量/对象必须存在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">int</span>&amp; rx = x;</span><br><span class="line"><span class="comment">// int x,&amp;rx = x;</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>​    1.通过引用所做的读写操作实际上是作用于原变量上的</p>
+<p>​    2.引用必须在声明时,开始初始化</p>
+<p>​    3.引用一旦初始化,引用的名字不能再指定给其他变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a &#123; <span class="number">0</span> &#125;, b &#123; <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span>&amp; r &#123; a &#125;;  <span class="comment">// 引用变量 r 在声明的同时就要初始化，r是a的别名</span></span><br><span class="line"> </span><br><span class="line">r = <span class="number">42</span>;  <span class="comment">// 相当于 a = 42</span></span><br><span class="line">r = b;   <span class="comment">// 相当于 a = b; 执行后 a 的值是1</span></span><br><span class="line">         <span class="comment">// 此处不是让r变成b的引用</span></span><br><span class="line">         <span class="comment">// 引用r声明并初始化后，r就不能再改为其它变量的引用</span></span><br><span class="line"><span class="keyword">int</span>&amp; r2 = a;  <span class="comment">// 继续给a起别名</span></span><br><span class="line"><span class="keyword">int</span>&amp; r3 = r;  <span class="comment">// 声明引用变量 r3，用r初始化</span></span><br><span class="line">              <span class="comment">// 这个相当于 int&amp; r3 = a; 因为 r 是 a 的别名</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="指针和引用的差异"><a href="#指针和引用的差异" class="headerlink" title="指针和引用的差异"></a>指针和引用的差异</h3><p><strong>指针和引用的应用场景是函数参数传递</strong></p>
+<p>void f(int* pa ,int* pb);  void f(int&amp; pa,int&amp; pb);</p>
+<p>从软件设计角度来看，使用引用更好，因为调用方不需要额外传参数时进行取地址运算.</p>
+<ul>
+<li>存取值的方式<ul>
+<li>对指针变量需要使用*来读取相应内存的内容</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>指针没有要求</li>
+</ul>
+</li>
+<li>对象或变量的存在性<ul>
+<li>引用有要求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="const和引用"><a href="#const和引用" class="headerlink" title="const和引用"></a>const和引用</h3><p>**const &lt;类型&gt;&amp;**常用于返回值以及参数传递（保证不能修改相应的变量）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量的引用</span></span><br><span class="line"><span class="keyword">int</span>    val =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">int</span> &amp; myval1=var;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; myval2 = var;</span><br><span class="line">myval1 = <span class="number">300</span>;<span class="comment">//合法，可以通过myval2对var进行修改，此时myval2,myval3,var同时被修改</span></span><br><span class="line">myval2 = <span class="number">100</span>;<span class="comment">//非法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常量的引用</span></span><br><span class="line"> <span class="keyword">int</span> b=<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; aa=b;<span class="comment">//b的引用，可以选择用const的修饰</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; bb=<span class="number">1</span>;<span class="comment">//这里必须用const修饰</span></span><br><span class="line">aa = <span class="number">10</span>；<span class="comment">//非法</span></span><br><span class="line">bb = <span class="number">20</span>;<span class="comment">//非法</span></span><br></pre></td></tr></table></figure></li>
+<li><h3 id="引用在参数传递中的使用"><a href="#引用在参数传递中的使用" class="headerlink" title="引用在参数传递中的使用"></a>引用在参数传递中的使用</h3><p>如果在函数中不修改变量，建议使用 const T&amp;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var =<span class="number">100</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> cvar  =<span class="number">200</span>;</span><br><span class="line"><span class="comment">/*形参：</span></span><br><span class="line"><span class="comment">void f(int a1,int &amp;a2, const int&amp; a3) </span></span><br><span class="line"><span class="comment">&#123;  &#125;*/</span> </span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//2和a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,var,var);</span><br><span class="line"></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,cvar,cvar);<span class="comment">//cvar与a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,var,cvar);</span><br><span class="line"></span><br><span class="line"><span class="built_in">f</span>(<span class="number">1</span>,cvar,var);<span class="comment">//cvar和a2 不合法</span></span><br><span class="line"><span class="built_in">f</span>(var,var,var);</span><br><span class="line"><span class="built_in">f</span>(cvar,var,cvar);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="二维数组的初始化方式"><a href="#二维数组的初始化方式" class="headerlink" title="二维数组的初始化方式"></a>二维数组的初始化方式</h2><h2 id="空指针和动态内存分配"><a href="#空指针和动态内存分配" class="headerlink" title="空指针和动态内存分配"></a>空指针和动态内存分配</h2><p>1.1 0带来的二义性问题</p>
+<ul>
+<li>C语言中，空指针使用(void *)0来表示, 有时候，用“NULL”来表示空指针(由编译器决定实现方式，一种可能的实现方式是#define NULL 0)</li>
+<li>C++03中，空指针使用“0”来表示。0既是一个常量整数，也是一个常量空指针。</li>
+<li><strong>C++11中引入保留字“nullptr”作为空指针</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/01/C-%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">C++中字符串总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2021-02-01 14:57:37" itemprop="dateCreated datePublished" datetime="2021-02-01T14:57:37+08:00">2021-02-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 08:44:27" itemprop="dateModified" datetime="2021-07-25T08:44:27+08:00">2021-07-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="c-中string，字符指针，字符数组之间的区别"><a href="#c-中string，字符指针，字符数组之间的区别" class="headerlink" title="c++中string，字符指针，字符数组之间的区别"></a>c++中string，字符指针，字符数组之间的区别</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>c/c++中设置有常量：在程序运行过程中，其值不能改变的量称为常量</p>
+<p>常量分为不同的类型：整型常量(3)，浮点型常量(3.12)，字符型常量(‘a’)，字符串常量(“abc”)</p>
+<p>常量一般有两种表现形式：</p>
+<ul>
+<li>直接常量：直接以值的形式表示的常量称之为直接常量</li>
+<li>符号常量：用标识符命名的常量称为符号常量，也就是在直接常量上再取一个名字，方便程序后续维护．习惯用大写字母和下划线来命名<ul>
+<li>两种定义方式<ul>
+<li>const 类型　符号常量名字＝常量值</li>
+<li>#define 符号常量名　常量值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符指针和字符数组的区别"><a href="#字符指针和字符数组的区别" class="headerlink" title="字符指针和字符数组的区别"></a>字符指针和字符数组的区别</h3><p>c/c++中<strong>每个字符串都以字符’/0’作为结尾</strong>．为了节省内存，c/c++把常量字符串放到单独的一个内存区域，当几个指针赋值给相同的常量字符串时，它们实际会指向相同的内存地址．但是用常量内存初始化数组时，情况却有所不同．</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str1[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="keyword">char</span> str2[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="comment">//str1!=str2</span></span><br><span class="line"><span class="comment">//c++会为str1,str2分配两个长度为12个字节的空间，并把&quot;hello world&quot;的内容分别复制到数组中．</span></span><br><span class="line"><span class="comment">//str1,str2是两个不同的字符数组，所以初始地址不同</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>* str3 = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="keyword">char</span>* str4 = <span class="string">&quot;helo world&quot;</span>;</span><br><span class="line"><span class="comment">//str3==str4</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考资料</p>
+<p>＜剑指offer</p>
+<p>&lt; <a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2236.html">http://c.biancheng.net/view/2236.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1043,277 +1244,6 @@
 <p><img src="%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/2020-08-30_19-20_1.png" alt="2020-08-30_19-20_1"></p>
 <p><img src="%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/2020-08-30_19-20_2.png" alt="2020-08-30_19-20_2"></p>
 <p><strong>数据集不平衡时， precision和recall等指标就不具备参考性</strong>，所以引出了AP<br>，它的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56961620">相关介绍用例子介绍比较合适</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/aa.webp">
-      <meta itemprop="name" content="Sherry Wang">
-      <meta itemprop="description" content="记录点滴成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" class="post-title-link" itemprop="url">随机梯度下降</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">نُشر في</span>
-
-      <time title="أُنشأ: 2020-08-26 09:41:39" itemprop="dateCreated datePublished" datetime="2020-08-26T09:41:39+08:00">2020-08-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">عُدل في</span>
-        <time title="عُدل: 2021-07-25 09:06:33" itemprop="dateModified" datetime="2021-07-25T09:06:33+08:00">2021-07-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">في</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png" alt="2020-08-26_09-57"></p>
-<p>梯度是方向导数最大的地方</p>
-<h3 id="利用SGD深度学习的一般步骤"><a href="#利用SGD深度学习的一般步骤" class="headerlink" title="利用SGD深度学习的一般步骤"></a>利用SGD深度学习的一般步骤</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-05.png" alt="2020-08-26_10-05"></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-21.png" alt="2020-08-26_10-21"></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-22.png" alt="2020-08-26_10-22"></p>
-<h3 id="影响优化器的因素"><a href="#影响优化器的因素" class="headerlink" title="影响优化器的因素"></a>影响优化器的因素</h3><p>每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习</p>
-<h4 id="梯度问题"><a href="#梯度问题" class="headerlink" title="梯度问题"></a>梯度问题</h4><h6 id="局部最小值"><a href="#局部最小值" class="headerlink" title="局部最小值"></a>局部最小值</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-26.png" alt="2020-08-26_10-26"></p>
-<h6 id="鞍点"><a href="#鞍点" class="headerlink" title="鞍点"></a>鞍点</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-31.png" alt="2020-08-26_10-31"></p>
-<h4 id="权重初始值"><a href="#权重初始值" class="headerlink" title="权重初始值"></a>权重初始值</h4><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-34.png" alt="2020-08-26_10-34"></p>
-<p>不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现<strong>梯度消失</strong>或者<strong>梯度爆炸</strong>的问题</p>
-<p>常见的初始化方法：[还没有彻底的理解，先学习一个框架]</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62850258">https://zhuanlan.zhihu.com/p/62850258</a></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-35.png" alt="2020-08-26_10-35"></p>
-<h4 id="learning-rate"><a href="#learning-rate" class="headerlink" title="learning rate"></a>learning rate</h4><p>逐步衰减;过大，可能会出现震荡，不会达到局部最优解;过小，优化的速度会很慢</p>
-<h4 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h4><p>动量：用来逃出局部最优解</p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-04.png" alt="2020-08-26_11-04"></p>
-<h2 id="激活函数与loss的梯度计算"><a href="#激活函数与loss的梯度计算" class="headerlink" title="激活函数与loss的梯度计算"></a>激活函数与loss的梯度计算</h2><p>注意！！！：梯度是向量，这是我之前一致都不大注意的点，将它与导数混淆</p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-16.png" alt="2020-08-26_11-16"></p>
-<h3 id="激活函数的概念"><a href="#激活函数的概念" class="headerlink" title="激活函数的概念"></a>激活函数的概念</h3><p>灵感来自 青蛙的神经元的结构–一个阈值函数：神经元并不是各个输入的加权求和而是只有大于某个阈值之后才会输出，输出值是固定的值</p>
-<p>早期的激活函数</p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-22.png" alt="2020-08-26_11-22"></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Doris12138lucky/article/details/104375745">之前自己总结有各种激活函数</a>：</p>
-<p>课程里所提到的几个简单的激活函数，以及对应的导数</p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-14.png" alt="2020-08-26_16-14"></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15.png" alt="2020-08-26_16-15"></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15_1.png" alt="2020-08-26_16-15_1"></p>
-<h4 id="在pytorch相对应的函数"><a href="#在pytorch相对应的函数" class="headerlink" title="在pytorch相对应的函数"></a>在pytorch相对应的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.sigmoid()</span><br><span class="line"></span><br><span class="line">torch.tanh()</span><br><span class="line"></span><br><span class="line">torch.nn.functional.relu()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="常见的loss函数"><a href="#常见的loss函数" class="headerlink" title="常见的loss函数"></a>常见的loss函数</h3><p>mean-square-error</p>
-<p>Cross-Entropy-loss</p>
-<p>Softmax</p>
-<h4 id="相关导数推导"><a href="#相关导数推导" class="headerlink" title="相关导数推导"></a>相关导数推导</h4><h6 id="mse"><a href="#mse" class="headerlink" title="mse"></a>mse</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_2.png" alt="2020-08-26_16-20_2"></p>
-<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20.png" alt="2020-08-26_16-20"></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_1.png" alt="2020-08-26_16-20_1"></p>
-<h3 id="pytorch中的自动求导"><a href="#pytorch中的自动求导" class="headerlink" title="pytorch中的自动求导"></a>pytorch中的自动求导</h3><h4 id="torch-autograd-grad"><a href="#torch-autograd-grad" class="headerlink" title="torch.autograd.grad()"></a><code>torch.autograd.grad()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">#方法2：</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">0</span>],[a],retain_graph= <span class="literal">True</span>)) <span class="comment">#单个计算每个损失函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">1</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">2</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.5666, 0.6252, 0.9636], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.2819, 0.2989, 0.4192], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">(tensor([ 0.2024, -0.0842, -0.1182]),)</span></span><br><span class="line"><span class="string">(tensor([-0.0842,  0.2096, -0.1253]),)</span></span><br><span class="line"><span class="string">(tensor([-0.1182, -0.1253,  0.2435]),)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="loss-backword"><a href="#loss-backword" class="headerlink" title="loss.backword()"></a><code>loss.backword()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">##p.backward() 报错 ，因为此时p为向量，没有办法进行求导</span></span><br><span class="line"><span class="comment"># pytorch: grad can be implicitly created only for scalar outputs</span></span><br><span class="line"><span class="comment">##只能对单个y进行自动求导，</span></span><br><span class="line"><span class="comment">#所以单独列开，同时由于p[0]-p[2]都使用同一个计算图，</span></span><br><span class="line"><span class="comment"># 但是pytorch的计算图如果没有显式声明要保存，计算一次之后会作废，所以要置retain_graph=True</span></span><br><span class="line"><span class="comment"># retain_graph 有效次数是1次，即如果下次还需要用到计算图，还是需要置为True</span></span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">1</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">2</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(a.grad) </span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.1281, 0.9067, 0.9391], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.1842, 0.4013, 0.4145], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">tensor([1.4901e-08, 4.4703e-08, 1.4901e-08])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.grad(</span><br><span class="line"></span><br><span class="line">outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line"></span><br><span class="line">inputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]],</span><br><span class="line"></span><br><span class="line">grad_outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>,</span><br><span class="line"></span><br><span class="line">retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    																		<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line">create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>,</span><br><span class="line"></span><br><span class="line">only_inputs: <span class="built_in">bool</span> = <span class="literal">True</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    												<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allow_unused: <span class="built_in">bool</span> = <span class="literal">False</span>) → <span class="type">Tuple</span>[torch.Tensor, ...] </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.backward(</span><br><span class="line">			tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line">			</span><br><span class="line">			grad_tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>, </span><br><span class="line">			</span><br><span class="line">			grad_variables: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor],<span class="literal">None</span>] = <span class="literal">None</span>) → <span class="literal">None</span></span><br><span class="line">			</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#该函数是将所有的梯度计算都累加到需要计算梯度的变量的grad属性中</span></span><br></pre></td></tr></table></figure>
-
-<p>官方文档建议使用第一种，因为第二种存在内存泄漏问题（也不是很清楚</p>
-<h4 id="遇到的bug和解决问题"><a href="#遇到的bug和解决问题" class="headerlink" title="遇到的bug和解决问题"></a>遇到的bug和解决问题</h4><p>代码背景</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br></pre></td></tr></table></figure>
-
-<p><strong>RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.</strong></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-45.png" alt="2020-08-26_16-45"></p>
-<p>修改方案： retain_graph</p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png" alt="2020-08-26_16-46"></p>
-<p><strong>pytorch: grad can be implicitly created only for scalar outputs</strong></p>
-<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png" alt="2020-08-26_16-49"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/aa.webp">
-      <meta itemprop="name" content="Sherry Wang">
-      <meta itemprop="description" content="记录点滴成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">数学运算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">نُشر في</span>
-
-      <time title="أُنشأ: 2020-08-25 07:33:03" itemprop="dateCreated datePublished" datetime="2020-08-25T07:33:03+08:00">2020-08-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">عُدل في</span>
-        <time title="عُدل: 2021-07-25 09:12:05" itemprop="dateModified" datetime="2021-07-25T09:12:05+08:00">2021-07-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">في</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-element-cal"><a href="#1-element-cal" class="headerlink" title="1. element-cal"></a>1. element-cal</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#汇总</span></span><br><span class="line">torch.add ;  +</span><br><span class="line">torch.sub; -</span><br><span class="line">torch.div ; /</span><br><span class="line">torch.mul; *</span><br><span class="line">a.<span class="built_in">pow</span>(n) ; a**n</span><br><span class="line">a.sqrt()</span><br><span class="line">a.rsqrt()  <span class="comment">#平方根的倒数</span></span><br><span class="line">a.exp()</span><br><span class="line">a.log()</span><br><span class="line">a.log2()</span><br><span class="line">a.log10()</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>利用重载后的运算符</p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png" alt="2020-08-25_10-49"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-40.png" alt="2020-08-25_10-40"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-58.png" alt="2020-08-25_17-58"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-06.png" alt="2020-08-25_11-06"></p>
-<h3 id="2-矩阵的乘除"><a href="#2-矩阵的乘除" class="headerlink" title="2.矩阵的乘除"></a>2.矩阵的乘除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.mm()<span class="comment">#只适用于2D</span></span><br><span class="line"><span class="meta">@</span></span><br><span class="line">torch.matmul()</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-1-２D矩阵的乘除"><a href="#2-1-２D矩阵的乘除" class="headerlink" title="2.1 ２D矩阵的乘除"></a>2.1 ２D矩阵的乘除</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49_1.png" alt="2020-08-25_10-49_1"></p>
-<h4 id="2-2-多维矩阵的乘除"><a href="#2-2-多维矩阵的乘除" class="headerlink" title="2.2 多维矩阵的乘除"></a>2.2 多维矩阵的乘除</h4><p>实际就是支持多个矩阵对并行相乘[只计算最低的两维数据]</p>
-<p><strong>broadcasting</strong>机制</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在计算过程中，可以使用broadcasting对矩阵进行扩展，</span></span><br><span class="line"><span class="comment">#可以使用matmul的标准：1. 低维（1,2）数据要满足矩阵乘法的行/列数的要求，</span></span><br><span class="line"><span class="comment">#高维数据要完全匹配或者经过broadcasting机制可以匹配</span></span><br><span class="line"><span class="comment">#一维数据，求点积</span></span><br><span class="line"></span><br><span class="line">a = torch.tensor([<span class="number">2</span>])</span><br><span class="line">b= torch.tensor([<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape) <span class="comment">#计算得到标量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#只计算低维数据，高维数据完全匹配</span></span><br><span class="line">a = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line">c = torch.matmul(a,b)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c.shape)</span><br><span class="line"><span class="comment">#broadcasting 机制</span></span><br><span class="line">b = torch.rand(<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">1</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3其他计算"><a href="#2-3其他计算" class="headerlink" title="2.3其他计算"></a>2.3其他计算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a.floor()</span><br><span class="line"></span><br><span class="line">a.ceil()</span><br><span class="line"></span><br><span class="line">a.<span class="built_in">round</span>()<span class="comment">#四舍五入</span></span><br><span class="line"></span><br><span class="line">a.trunc()<span class="comment">#取整数部分</span></span><br><span class="line"></span><br><span class="line">a.frac()<span class="comment">#取小数部分</span></span><br><span class="line"></span><br><span class="line">a.clamp(<span class="built_in">min</span>,<span class="built_in">max</span>) <span class="comment">#如果a[i]&lt;min ，a[i] =min ； 如果a[i]&gt;max ，a[i]=max</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>函数相关实例</p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-07.png" alt="2020-08-25_18-07"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)*<span class="number">15</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.clamp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[ 0.1522,  8.6243, 10.4471],</span></span><br><span class="line"><span class="string">        [ 2.0610,  8.4947, 10.7278]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[ 5.0000,  8.6243, 10.0000],</span></span><br><span class="line"><span class="string">        [ 5.0000,  8.4947, 10.0000]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="统计属性"><a href="#统计属性" class="headerlink" title="统计属性"></a>统计属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##相关函数计算</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11_12.png" alt="2020-08-25_11_12"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-19.png" alt="2020-08-25_11-19"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-25.png" alt="2020-08-25_11-25"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-26.png" alt="2020-08-25_11-26"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-54.png" alt="2020-08-25_11-54"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-59.png" alt="2020-08-25_11-59"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_12-05.png" alt="2020-08-25_12-05"></p>
-<p>附录：</p>
-<p>1。在某维度上argmax的理解—感觉自己对抽象几何不是特别理解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a = torch.randn(<span class="number">4</span>,<span class="number">10</span>)a</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.argmax())</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 7.0244e-01, -1.8047e-01, -1.3860e+00, -2.7422e-02,  1.0189e-01,</span></span><br><span class="line"><span class="string">         -4.1896e-01,  2.3863e+00, -2.3053e-01, -1.7369e-02,  1.8899e-01],</span></span><br><span class="line"><span class="string">        [ 1.0445e-01, -5.9622e-01, -8.3666e-01, -7.0087e-01, -2.1692e-01,</span></span><br><span class="line"><span class="string">          1.2431e-01, -2.3204e-01, -5.3630e-01, -1.1655e+00,  4.6021e-01],</span></span><br><span class="line"><span class="string">        [-1.1210e+00, -4.4479e-01,  1.0892e+00, -1.1631e+00,  7.8703e-01,</span></span><br><span class="line"><span class="string">         -3.9018e-01, -6.1701e-01,  8.2018e-01,  1.2167e-01, -1.6905e+00],</span></span><br><span class="line"><span class="string">        [-1.4846e+00,  9.5270e-01,  2.2757e-01,  1.5931e+00,  2.9075e-01,</span></span><br><span class="line"><span class="string">          1.3509e+00,  1.5353e+00, -1.1048e+00,  7.0249e-04, -1.1067e-01]])</span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string">tensor([0, 3, 2, 3, 2, 3, 0, 2, 2, 1])</span></span><br><span class="line"><span class="string">tensor([6, 9, 2, 3])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.在某维度上范式的计算的理解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = torch.FloatTensor([<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>,<span class="number">4.</span>,<span class="number">5.</span>,<span class="number">6.</span>,<span class="number">7.</span>,<span class="number">8.</span>,<span class="number">9.</span>,<span class="number">10.</span>])</span><br><span class="line">b = a.view(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 1.,  2.,  3.,  4.,  5.],</span></span><br><span class="line"><span class="string">        [ 6.,  7.,  8.,  9., 10.]])</span></span><br><span class="line"><span class="string">tensor([ 7.,  9., 11., 13., 15.])</span></span><br><span class="line"><span class="string">tensor([15., 40.])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="高阶操作"><a href="#高阶操作" class="headerlink" title="高阶操作"></a>高阶操作</h2><h3 id="where-语句"><a href="#where-语句" class="headerlink" title="where 语句"></a>where 语句</h3><p>代替for循环，可以利用GPU进行加速计算</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">cond = torch.tensor([[<span class="number">0.6769</span>,<span class="number">0.7271</span>],[<span class="number">0.8884</span>,<span class="number">0.4163</span>]])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">0.</span>]])</span><br><span class="line"></span><br><span class="line">b = torch.tensor([[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.where(cond&gt;<span class="number">0.5</span>,a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##同上面等效，可以体会一下语义</span></span><br><span class="line">c =torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span>(cond[i][j]&gt;<span class="number">0.5</span>):</span><br><span class="line">            c[i][j] = a[i][j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c[i][j] = b[i][j]</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="gather-语句"><a href="#gather-语句" class="headerlink" title="gather 语句"></a>gather 语句</h3><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-11.png" alt="2020-08-25_18-11"></p>
-<h4 id="提出的背景"><a href="#提出的背景" class="headerlink" title="提出的背景"></a>提出的背景</h4><p>可以自行体会含义</p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-49.png" alt="2020-08-25_17-49"></p>
-<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-10.png" alt="2020-08-25_18-10"></p>
-<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-14.png" alt="2020-08-25_18-14"></p>
 
       
     </div>

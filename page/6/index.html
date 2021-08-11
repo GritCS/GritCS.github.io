@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
@@ -163,6 +163,277 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/08/26/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" class="post-title-link" itemprop="url">随机梯度下降</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2020-08-26 09:41:39" itemprop="dateCreated datePublished" datetime="2020-08-26T09:41:39+08:00">2020-08-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 09:06:33" itemprop="dateModified" datetime="2021-07-25T09:06:33+08:00">2021-07-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">في</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_09-57.png" alt="2020-08-26_09-57"></p>
+<p>梯度是方向导数最大的地方</p>
+<h3 id="利用SGD深度学习的一般步骤"><a href="#利用SGD深度学习的一般步骤" class="headerlink" title="利用SGD深度学习的一般步骤"></a>利用SGD深度学习的一般步骤</h3><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-05.png" alt="2020-08-26_10-05"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-21.png" alt="2020-08-26_10-21"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-22.png" alt="2020-08-26_10-22"></p>
+<h3 id="影响优化器的因素"><a href="#影响优化器的因素" class="headerlink" title="影响优化器的因素"></a>影响优化器的因素</h3><p>每个都是一个研究方向，这里只是简单列出，只有有机会会分专题详细学习</p>
+<h4 id="梯度问题"><a href="#梯度问题" class="headerlink" title="梯度问题"></a>梯度问题</h4><h6 id="局部最小值"><a href="#局部最小值" class="headerlink" title="局部最小值"></a>局部最小值</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-26.png" alt="2020-08-26_10-26"></p>
+<h6 id="鞍点"><a href="#鞍点" class="headerlink" title="鞍点"></a>鞍点</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-31.png" alt="2020-08-26_10-31"></p>
+<h4 id="权重初始值"><a href="#权重初始值" class="headerlink" title="权重初始值"></a>权重初始值</h4><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-34.png" alt="2020-08-26_10-34"></p>
+<p>不仅仅课程中所提到的问题：由于之后网络层次比较深刻，所以会出现<strong>梯度消失</strong>或者<strong>梯度爆炸</strong>的问题</p>
+<p>常见的初始化方法：[还没有彻底的理解，先学习一个框架]</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">https://blog.csdn.net/u012328159/article/details/80025785?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62850258">https://zhuanlan.zhihu.com/p/62850258</a></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_10-35.png" alt="2020-08-26_10-35"></p>
+<h4 id="learning-rate"><a href="#learning-rate" class="headerlink" title="learning rate"></a>learning rate</h4><p>逐步衰减;过大，可能会出现震荡，不会达到局部最优解;过小，优化的速度会很慢</p>
+<h4 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h4><p>动量：用来逃出局部最优解</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-04.png" alt="2020-08-26_11-04"></p>
+<h2 id="激活函数与loss的梯度计算"><a href="#激活函数与loss的梯度计算" class="headerlink" title="激活函数与loss的梯度计算"></a>激活函数与loss的梯度计算</h2><p>注意！！！：梯度是向量，这是我之前一致都不大注意的点，将它与导数混淆</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-16.png" alt="2020-08-26_11-16"></p>
+<h3 id="激活函数的概念"><a href="#激活函数的概念" class="headerlink" title="激活函数的概念"></a>激活函数的概念</h3><p>灵感来自 青蛙的神经元的结构–一个阈值函数：神经元并不是各个输入的加权求和而是只有大于某个阈值之后才会输出，输出值是固定的值</p>
+<p>早期的激活函数</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_11-22.png" alt="2020-08-26_11-22"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Doris12138lucky/article/details/104375745">之前自己总结有各种激活函数</a>：</p>
+<p>课程里所提到的几个简单的激活函数，以及对应的导数</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-14.png" alt="2020-08-26_16-14"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15.png" alt="2020-08-26_16-15"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-15_1.png" alt="2020-08-26_16-15_1"></p>
+<h4 id="在pytorch相对应的函数"><a href="#在pytorch相对应的函数" class="headerlink" title="在pytorch相对应的函数"></a>在pytorch相对应的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.sigmoid()</span><br><span class="line"></span><br><span class="line">torch.tanh()</span><br><span class="line"></span><br><span class="line">torch.nn.functional.relu()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="常见的loss函数"><a href="#常见的loss函数" class="headerlink" title="常见的loss函数"></a>常见的loss函数</h3><p>mean-square-error</p>
+<p>Cross-Entropy-loss</p>
+<p>Softmax</p>
+<h4 id="相关导数推导"><a href="#相关导数推导" class="headerlink" title="相关导数推导"></a>相关导数推导</h4><h6 id="mse"><a href="#mse" class="headerlink" title="mse"></a>mse</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_2.png" alt="2020-08-26_16-20_2"></p>
+<h6 id="softmax"><a href="#softmax" class="headerlink" title="softmax"></a>softmax</h6><p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20.png" alt="2020-08-26_16-20"></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-20_1.png" alt="2020-08-26_16-20_1"></p>
+<h3 id="pytorch中的自动求导"><a href="#pytorch中的自动求导" class="headerlink" title="pytorch中的自动求导"></a>pytorch中的自动求导</h3><h4 id="torch-autograd-grad"><a href="#torch-autograd-grad" class="headerlink" title="torch.autograd.grad()"></a><code>torch.autograd.grad()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">#方法2：</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">0</span>],[a],retain_graph= <span class="literal">True</span>)) <span class="comment">#单个计算每个损失函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">1</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.autograd.grad(p[<span class="number">2</span>],[a],retain_graph= <span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.5666, 0.6252, 0.9636], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.2819, 0.2989, 0.4192], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">(tensor([ 0.2024, -0.0842, -0.1182]),)</span></span><br><span class="line"><span class="string">(tensor([-0.0842,  0.2096, -0.1253]),)</span></span><br><span class="line"><span class="string">(tensor([-0.1182, -0.1253,  0.2435]),)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="loss-backword"><a href="#loss-backword" class="headerlink" title="loss.backword()"></a><code>loss.backword()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment">##p.backward() 报错 ，因为此时p为向量，没有办法进行求导</span></span><br><span class="line"><span class="comment"># pytorch: grad can be implicitly created only for scalar outputs</span></span><br><span class="line"><span class="comment">##只能对单个y进行自动求导，</span></span><br><span class="line"><span class="comment">#所以单独列开，同时由于p[0]-p[2]都使用同一个计算图，</span></span><br><span class="line"><span class="comment"># 但是pytorch的计算图如果没有显式声明要保存，计算一次之后会作废，所以要置retain_graph=True</span></span><br><span class="line"><span class="comment"># retain_graph 有效次数是1次，即如果下次还需要用到计算图，还是需要置为True</span></span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">1</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line">p[<span class="number">2</span>].backward(retain_graph =<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(a.grad) </span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([0.1281, 0.9067, 0.9391], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([0.1842, 0.4013, 0.4145], grad_fn=&lt;SoftmaxBackward&gt;)</span></span><br><span class="line"><span class="string">tensor([1.4901e-08, 4.4703e-08, 1.4901e-08])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.grad(</span><br><span class="line"></span><br><span class="line">outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line"></span><br><span class="line">inputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]],</span><br><span class="line"></span><br><span class="line">grad_outputs: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>,</span><br><span class="line"></span><br><span class="line">retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    																		<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line">create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>,</span><br><span class="line"></span><br><span class="line">only_inputs: <span class="built_in">bool</span> = <span class="literal">True</span>, <span class="comment"># True--------the function will only return a list of gradients w.r.t the specified inputs.</span></span><br><span class="line">    												<span class="comment"># False,  will be accumulated into their .grad attribute.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allow_unused: <span class="built_in">bool</span> = <span class="literal">False</span>) → <span class="type">Tuple</span>[torch.Tensor, ...] </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.backward(</span><br><span class="line">			tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor]], </span><br><span class="line">			</span><br><span class="line">			grad_tensors: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor], <span class="literal">None</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			retain_graph: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>, </span><br><span class="line">			</span><br><span class="line">			create_graph: <span class="built_in">bool</span> = <span class="literal">False</span>, </span><br><span class="line">			</span><br><span class="line">			grad_variables: <span class="type">Union</span>[torch.Tensor, <span class="type">Sequence</span>[torch.Tensor],<span class="literal">None</span>] = <span class="literal">None</span>) → <span class="literal">None</span></span><br><span class="line">			</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#该函数是将所有的梯度计算都累加到需要计算梯度的变量的grad属性中</span></span><br></pre></td></tr></table></figure>
+
+<p>官方文档建议使用第一种，因为第二种存在内存泄漏问题（也不是很清楚</p>
+<h4 id="遇到的bug和解决问题"><a href="#遇到的bug和解决问题" class="headerlink" title="遇到的bug和解决问题"></a>遇到的bug和解决问题</h4><p>代码背景</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">a = torch.rand(<span class="number">3</span>) <span class="comment"># [batch, class_num]</span></span><br><span class="line">a.requires_grad_()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">p = F.softmax(a,dim=<span class="number">0</span>)<span class="comment">#在第0维上，也就是 class_num上,定义损失函数</span></span><br><span class="line"><span class="built_in">print</span>(p)</span><br></pre></td></tr></table></figure>
+
+<p><strong>RuntimeError: Trying to backward through the graph a second time, but the buffers have already been freed. Specify retain_graph=True when calling backward the first time.</strong></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-45.png" alt="2020-08-26_16-45"></p>
+<p>修改方案： retain_graph</p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-46.png" alt="2020-08-26_16-46"></p>
+<p><strong>pytorch: grad can be implicitly created only for scalar outputs</strong></p>
+<p><img src="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/2020-08-26_16-49.png" alt="2020-08-26_16-49"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/aa.webp">
+      <meta itemprop="name" content="Sherry Wang">
+      <meta itemprop="description" content="记录点滴成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/08/25/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">数学运算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2020-08-25 07:33:03" itemprop="dateCreated datePublished" datetime="2020-08-25T07:33:03+08:00">2020-08-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 09:12:05" itemprop="dateModified" datetime="2021-07-25T09:12:05+08:00">2021-07-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">في</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h2><h3 id="1-element-cal"><a href="#1-element-cal" class="headerlink" title="1. element-cal"></a>1. element-cal</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#汇总</span></span><br><span class="line">torch.add ;  +</span><br><span class="line">torch.sub; -</span><br><span class="line">torch.div ; /</span><br><span class="line">torch.mul; *</span><br><span class="line">a.<span class="built_in">pow</span>(n) ; a**n</span><br><span class="line">a.sqrt()</span><br><span class="line">a.rsqrt()  <span class="comment">#平方根的倒数</span></span><br><span class="line">a.exp()</span><br><span class="line">a.log()</span><br><span class="line">a.log2()</span><br><span class="line">a.log10()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>利用重载后的运算符</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49.png" alt="2020-08-25_10-49"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-40.png" alt="2020-08-25_10-40"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-58.png" alt="2020-08-25_17-58"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-06.png" alt="2020-08-25_11-06"></p>
+<h3 id="2-矩阵的乘除"><a href="#2-矩阵的乘除" class="headerlink" title="2.矩阵的乘除"></a>2.矩阵的乘除</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.mm()<span class="comment">#只适用于2D</span></span><br><span class="line"><span class="meta">@</span></span><br><span class="line">torch.matmul()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-1-２D矩阵的乘除"><a href="#2-1-２D矩阵的乘除" class="headerlink" title="2.1 ２D矩阵的乘除"></a>2.1 ２D矩阵的乘除</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_10-49_1.png" alt="2020-08-25_10-49_1"></p>
+<h4 id="2-2-多维矩阵的乘除"><a href="#2-2-多维矩阵的乘除" class="headerlink" title="2.2 多维矩阵的乘除"></a>2.2 多维矩阵的乘除</h4><p>实际就是支持多个矩阵对并行相乘[只计算最低的两维数据]</p>
+<p><strong>broadcasting</strong>机制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在计算过程中，可以使用broadcasting对矩阵进行扩展，</span></span><br><span class="line"><span class="comment">#可以使用matmul的标准：1. 低维（1,2）数据要满足矩阵乘法的行/列数的要求，</span></span><br><span class="line"><span class="comment">#高维数据要完全匹配或者经过broadcasting机制可以匹配</span></span><br><span class="line"><span class="comment">#一维数据，求点积</span></span><br><span class="line"></span><br><span class="line">a = torch.tensor([<span class="number">2</span>])</span><br><span class="line">b= torch.tensor([<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape) <span class="comment">#计算得到标量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#只计算低维数据，高维数据完全匹配</span></span><br><span class="line">a = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line">c = torch.matmul(a,b)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c.shape)</span><br><span class="line"><span class="comment">#broadcasting 机制</span></span><br><span class="line">b = torch.rand(<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line">b = torch.rand(<span class="number">4</span>,<span class="number">1</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">28</span>,<span class="number">64</span>)</span><br><span class="line">b = torch.rand(<span class="number">1</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.matmul(a,b).shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([4, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">torch.Size([1, 3, 28, 32])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3其他计算"><a href="#2-3其他计算" class="headerlink" title="2.3其他计算"></a>2.3其他计算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a.floor()</span><br><span class="line"></span><br><span class="line">a.ceil()</span><br><span class="line"></span><br><span class="line">a.<span class="built_in">round</span>()<span class="comment">#四舍五入</span></span><br><span class="line"></span><br><span class="line">a.trunc()<span class="comment">#取整数部分</span></span><br><span class="line"></span><br><span class="line">a.frac()<span class="comment">#取小数部分</span></span><br><span class="line"></span><br><span class="line">a.clamp(<span class="built_in">min</span>,<span class="built_in">max</span>) <span class="comment">#如果a[i]&lt;min ，a[i] =min ； 如果a[i]&gt;max ，a[i]=max</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>函数相关实例</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-07.png" alt="2020-08-25_18-07"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">a = torch.rand(<span class="number">2</span>,<span class="number">3</span>)*<span class="number">15</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.clamp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[ 0.1522,  8.6243, 10.4471],</span></span><br><span class="line"><span class="string">        [ 2.0610,  8.4947, 10.7278]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[ 5.0000,  8.6243, 10.0000],</span></span><br><span class="line"><span class="string">        [ 5.0000,  8.4947, 10.0000]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="统计属性"><a href="#统计属性" class="headerlink" title="统计属性"></a>统计属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##相关函数计算</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11_12.png" alt="2020-08-25_11_12"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-19.png" alt="2020-08-25_11-19"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-25.png" alt="2020-08-25_11-25"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-26.png" alt="2020-08-25_11-26"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-54.png" alt="2020-08-25_11-54"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_11-59.png" alt="2020-08-25_11-59"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_12-05.png" alt="2020-08-25_12-05"></p>
+<p>附录：</p>
+<p>1。在某维度上argmax的理解—感觉自己对抽象几何不是特别理解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a = torch.randn(<span class="number">4</span>,<span class="number">10</span>)a</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(a.argmax())</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(a.argmax(dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 7.0244e-01, -1.8047e-01, -1.3860e+00, -2.7422e-02,  1.0189e-01,</span></span><br><span class="line"><span class="string">         -4.1896e-01,  2.3863e+00, -2.3053e-01, -1.7369e-02,  1.8899e-01],</span></span><br><span class="line"><span class="string">        [ 1.0445e-01, -5.9622e-01, -8.3666e-01, -7.0087e-01, -2.1692e-01,</span></span><br><span class="line"><span class="string">          1.2431e-01, -2.3204e-01, -5.3630e-01, -1.1655e+00,  4.6021e-01],</span></span><br><span class="line"><span class="string">        [-1.1210e+00, -4.4479e-01,  1.0892e+00, -1.1631e+00,  7.8703e-01,</span></span><br><span class="line"><span class="string">         -3.9018e-01, -6.1701e-01,  8.2018e-01,  1.2167e-01, -1.6905e+00],</span></span><br><span class="line"><span class="string">        [-1.4846e+00,  9.5270e-01,  2.2757e-01,  1.5931e+00,  2.9075e-01,</span></span><br><span class="line"><span class="string">          1.3509e+00,  1.5353e+00, -1.1048e+00,  7.0249e-04, -1.1067e-01]])</span></span><br><span class="line"><span class="string">tensor(6)</span></span><br><span class="line"><span class="string">tensor([0, 3, 2, 3, 2, 3, 0, 2, 2, 1])</span></span><br><span class="line"><span class="string">tensor([6, 9, 2, 3])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.在某维度上范式的计算的理解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = torch.FloatTensor([<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>,<span class="number">4.</span>,<span class="number">5.</span>,<span class="number">6.</span>,<span class="number">7.</span>,<span class="number">8.</span>,<span class="number">9.</span>,<span class="number">10.</span>])</span><br><span class="line">b = a.view(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(b.norm(<span class="number">1</span>,dim=<span class="number">1</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">tensor([[ 1.,  2.,  3.,  4.,  5.],</span></span><br><span class="line"><span class="string">        [ 6.,  7.,  8.,  9., 10.]])</span></span><br><span class="line"><span class="string">tensor([ 7.,  9., 11., 13., 15.])</span></span><br><span class="line"><span class="string">tensor([15., 40.])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="高阶操作"><a href="#高阶操作" class="headerlink" title="高阶操作"></a>高阶操作</h2><h3 id="where-语句"><a href="#where-语句" class="headerlink" title="where 语句"></a>where 语句</h3><p>代替for循环，可以利用GPU进行加速计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">cond = torch.tensor([[<span class="number">0.6769</span>,<span class="number">0.7271</span>],[<span class="number">0.8884</span>,<span class="number">0.4163</span>]])</span><br><span class="line"></span><br><span class="line">a = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">0.</span>]])</span><br><span class="line"></span><br><span class="line">b = torch.tensor([[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.where(cond&gt;<span class="number">0.5</span>,a,b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##同上面等效，可以体会一下语义</span></span><br><span class="line">c =torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span>(cond[i][j]&gt;<span class="number">0.5</span>):</span><br><span class="line">            c[i][j] = a[i][j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c[i][j] = b[i][j]</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">output:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">tensor([[0., 0.],</span></span><br><span class="line"><span class="string">        [0., 1.]])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="gather-语句"><a href="#gather-语句" class="headerlink" title="gather 语句"></a>gather 语句</h3><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-11.png" alt="2020-08-25_18-11"></p>
+<h4 id="提出的背景"><a href="#提出的背景" class="headerlink" title="提出的背景"></a>提出的背景</h4><p>可以自行体会含义</p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_17-49.png" alt="2020-08-25_17-49"></p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-10.png" alt="2020-08-25_18-10"></p>
+<p><img src="%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/2020-08-25_18-14.png" alt="2020-08-25_18-14"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -983,520 +1254,6 @@
 <p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-23_1.png" alt="2020-08-24_00-23_1"></p>
 <h3 id="9-randperm-random-shuffle"><a href="#9-randperm-random-shuffle" class="headerlink" title="9.randperm(random.shuffle)"></a>9.randperm(random.shuffle)</h3><p>??</p>
 <p><img src="pytorch%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2020-08-24_00-26.png" alt="2020-08-24_00-26"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/23/git%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/aa.webp">
-      <meta itemprop="name" content="Sherry Wang">
-      <meta itemprop="description" content="记录点滴成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/08/23/git%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">git命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">نُشر في</span>
-
-      <time title="أُنشأ: 2020-08-23 08:07:42" itemprop="dateCreated datePublished" datetime="2020-08-23T08:07:42+08:00">2020-08-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">عُدل في</span>
-        <time title="عُدل: 2021-07-25 09:27:22" itemprop="dateModified" datetime="2021-07-25T09:27:22+08:00">2021-07-25</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="git学习和博客搭建的相关资源"><a href="#git学习和博客搭建的相关资源" class="headerlink" title="git学习和博客搭建的相关资源"></a>git学习和博客搭建的相关资源</h2><h3 id="1-hexo搭建博客的相关参考博客"><a href="#1-hexo搭建博客的相关参考博客" class="headerlink" title="1. hexo搭建博客的相关参考博客"></a>1. hexo搭建博客的相关参考博客</h3><p>​    a.如何在本地库增加新的博客</p>
-<p><a target="_blank" rel="noopener" href="https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/</a></p>
-<p> b.如何搭建博客</p>
-<p>​    <a target="_blank" rel="noopener" href="http://www.wzqj.top/2019/02/26/linux%E4%B8%8B%E4%BD%BF%E7%94%A8-Github-Pages-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">http://www.wzqj.top/2019/02/26/linux%E4%B8%8B%E4%BD%BF%E7%94%A8-Github-Pages-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017986794">https://segmentfault.com/a/1190000017986794</a></p>
-<p>c.hexo的常见命令</p>
-<p><a target="_blank" rel="noopener" href="https://vel.life/Hexo-%E5%8D%9A%E6%96%87%E7%BC%96%E8%BE%91%E6%89%8B%E5%86%8C/">https://vel.life/Hexo-%E5%8D%9A%E6%96%87%E7%BC%96%E8%BE%91%E6%89%8B%E5%86%8C/</a></p>
-<p><strong>托管中心</strong><code>维护远程库</code></p>
-<ul>
-<li><strong>内网：可以自己搭建一个GitLab服务器</strong></li>
-<li><strong>外网：可以使用码云、Github</strong></li>
-</ul>
-<p><strong>版本控制工具</strong></p>
-<ul>
-<li><strong>集中式</strong>：CSV ,<strong>SVN</strong>,VSS</li>
-<li><strong>分布式</strong>：<strong>Git</strong>，Darcs,…</li>
-</ul>
-<h2 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h2><h3 id="1-1本地库初始化"><a href="#1-1本地库初始化" class="headerlink" title="1.1本地库初始化"></a>1.1本地库初始化</h3><p><code>进入文件夹</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">注意：生成的 .git 目录中存放的是本地库相关文件，不要删除</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2设置签名"><a href="#1-2设置签名" class="headerlink" title="1.2设置签名"></a>1.2设置签名</h3><ul>
-<li><p>项目(仓库)级别<code>仅在当前本地库有效</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name tom  #设置用户名tom</span><br><span class="line">git config user.email liu@qq.com #设置用户邮箱</span><br></pre></td></tr></table></figure></li>
-<li><p>系统用户级别<code>仅在当前登录的操作系统用户有效</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name tom</span><br><span class="line">git config --global user.email liu@qq.com</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>仅仅加了一个 <code>--global</code></p>
-<p>优先级别：<code>项目级别</code>  &gt;  <code>系统级别</code></p>
-<p>信息保存位置：<code>~/.gitconfig 文件</code>   </p>
-</blockquote>
-<h3 id="1-3基本操作"><a href="#1-3基本操作" class="headerlink" title="1.3基本操作"></a>1.3基本操作</h3><h4 id="1-3-1-状态查看"><a href="#1-3-1-状态查看" class="headerlink" title="1.3.1 状态查看"></a>1.3.1 状态查看</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status   #查看工作区、暂存区状态</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-2-添加"><a href="#1-3-2-添加" class="headerlink" title="1.3.2 添加"></a>1.3.2 添加</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add fileName  #指定文件</span><br><span class="line">git add . #所有</span><br><span class="line">说明：将工作区的文件添加到暂存区</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached filename</span><br><span class="line">git rm /*</span><br><span class="line">＃将filename对应的文件从缓存区撤回，但是文件仍保留在工作区，相当于是add的一个撤回操作　sudo权限</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-3-3-提交"><a href="#1-3-3-提交" class="headerlink" title="1.3.3 提交"></a>1.3.3 提交</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &#x27;commit message&#x27; fileName</span><br><span class="line">说明：将暂存区内容提交到本地库,不需要再通过vim编辑提交的说明信息，没有提交信息，本次提交将无效</span><br><span class="line">git commit *</span><br><span class="line">说明：将暂存区中的所有内容都提交到本地库中</span><br></pre></td></tr></table></figure>
-
-<p>文件修改之后</p>
-<ol>
-<li>要先git add加到暂存区中，之后再添加到git commit</li>
-<li>或者直接使用 git -a commit filename 这时本次提交不能撤回(git rm /*)</li>
-</ol>
-<h4 id="1-3-4-查看历史记录"><a href="#1-3-4-查看历史记录" class="headerlink" title="1.3.4 查看历史记录"></a>1.3.4 查看历史记录</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git log #查看提交的日志，包括时间，提交的说明信息</span><br><span class="line">git reflog  #常用</span><br><span class="line">git log --greph #图形显示,更直观</span><br><span class="line">git log --pretty=oneline #每行日志</span><br><span class="line">git log --oneline #简洁显示</span><br><span class="line">说明：HEAD@&#123;移动到当前版本需要多少步&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_10-49.png" alt="2020-08-23_10-49"></p>
-<p>哈希值＋指针移动量＋提交的说明信息</p>
-<p>多屏控制的方式：</p>
-<p>１．空格向下翻页　，ｂ向下翻页　，ｑ退出</p>
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_10-59.png" alt="2020-08-23_10-59"></p>
-<h4 id="1-3-5-前进后退"><a href="#1-3-5-前进后退" class="headerlink" title="1.3.5 前进后退"></a>1.3.5 前进后退</h4><ul>
-<li><p>基于索引值<code>推荐</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br><span class="line">例子：git reset --hard a6ace91 #回到这个状态，a6ace91指的是日志的短的索引值</span><br></pre></td></tr></table></figure></li>
-<li><p>使用 <strong>^</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line">例子：git reset --hard HEAD^^</span><br><span class="line">注意：几个 ^ 表示后退几步</span><br></pre></td></tr></table></figure></li>
-<li><p>使用 <strong>~</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br><span class="line">例子：git reset --hard HEAD~3</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="1-3-6-reset的三个参数比较"><a href="#1-3-6-reset的三个参数比较" class="headerlink" title="1.3.6 reset的三个参数比较"></a>1.3.6 reset的三个参数比较</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">soft: </span><br><span class="line">  - 仅本地库移动HEAD 指针</span><br><span class="line">mixed:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区</span><br><span class="line">hard:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区－－及暂存区的文件也回到之前的版本</span><br><span class="line">  - 重置工作区</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-7-删除文件并找回"><a href="#1-3-7-删除文件并找回" class="headerlink" title="1.3.7　删除文件并找回"></a>1.3.7　删除文件并找回</h4><ul>
-<li><strong>相当于建立一个快照，虽然删除了，但只要添加到暂存区，就能找回</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br></pre></td></tr></table></figure>
-
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_11-45.png" alt="2020-08-23_11-45"></p>
-<h4 id="1-3-8-文件差异比较"><a href="#1-3-8-文件差异比较" class="headerlink" title="1.3.8 文件差异比较"></a>1.3.8 文件差异比较</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff 文件名 #将工作区中的文件与暂存区中的文件进行比较</span><br><span class="line">git diff 哈希值 文件名  #将工作区中的文件和历史中的一个版本比较</span><br><span class="line">git diff  #不带文件名，则比较多个文件</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-分支管理"><a href="#2-2-分支管理" class="headerlink" title="2.2 分支管理"></a>2.2 分支管理</h3><p><code>hot_fix</code> <code>master</code> <code>feature_x</code> <code>feature_y</code></p>
-<h4 id="2-2-1-什么是分支管理"><a href="#2-2-1-什么是分支管理" class="headerlink" title="2.2.1 什么是分支管理"></a>2.2.1 什么是分支管理</h4><ul>
-<li>在版本控制中，使用推进多个任务</li>
-</ul>
-<h4 id="2-2-2-分支的好处"><a href="#2-2-2-分支的好处" class="headerlink" title="2.2.2 分支的好处"></a>2.2.2 分支的好处</h4><ul>
-<li>同时并行推进多个功能开发，提高开发效率</li>
-<li>某一分支开发失败，不会对其它分支有任何影响</li>
-</ul>
-<h4 id="2-2-3-分支操作"><a href="#2-2-3-分支操作" class="headerlink" title="2.2.3 分支操作"></a>2.2.3 分支操作</h4><ul>
-<li>创建分支</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看分支</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">git branch -v </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>切换分支</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br><span class="line">git checkout -b 分支名   #创建分支并直接切换到该分支</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>合并分支<code>相当于把修改了的文件拉过来</code></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git merge xxx</span><br><span class="line">注意：合并分支的时候要明确谁谁合并</span><br><span class="line">	我在a分支里面修改了。要合并到master，就先切换到master，然后合并b</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除分支</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d 分支名</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-2-4-解决冲突"><a href="#2-2-4-解决冲突" class="headerlink" title="2.2.4 解决冲突"></a>2.2.4 解决冲突</h4><ul>
-<li>冲突的表现</li>
-<li>冲突的解决<ul>
-<li>第一步：编辑，删除特殊标记<code>&lt;&lt;&lt;</code> <code>===</code></li>
-<li>第二步：修改到满意位置，保存退出</li>
-<li>第三步：添加到缓存区  <code>git  add 文件名</code></li>
-<li>第四步：提交到本地库<code>git commit -m &#39;日志信息&#39; </code>  <code>注意：后面一定不能带文件名</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Git-结合Github"><a href="#Git-结合Github" class="headerlink" title="Git 结合Github"></a>Git 结合Github</h2><p><code>别分手</code>  <code>别名 分支名</code></p>
-<h4 id="1-1-创建远程库地址别名"><a href="#1-1-创建远程库地址别名" class="headerlink" title="1.1 创建远程库地址别名"></a>1.1 创建远程库地址别名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v  #查看远程地址别名</span><br><span class="line">git remote add 别名 远程地址 </span><br><span class="line">例子：git remote add origin https://xx</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-推送"><a href="#1-2-推送" class="headerlink" title="1.2 推送"></a>1.2 推送</h4><p><code>开发修改完把本地库的文件推送到远程仓库</code> <code>前提是提交到了本地库才可以推送</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push 远程库别名 分支名</span><br><span class="line">git push -u 远程库别名 分支名    #-u指定默认主机</span><br><span class="line">例子：git push origin master</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-克隆"><a href="#1-3-克隆" class="headerlink" title="1.3 克隆"></a>1.3 克隆</h4><p><code>完整的把远程库克隆到本地</code>  <code>克隆下来后不要在主分支里面做开发</code> <code>clone进行一次，从无到有的过程，更新用pull</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone  远程地址</span><br><span class="line">例子：git clone https://xx</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-拉取"><a href="#1-4-拉取" class="headerlink" title="1.4 拉取"></a>1.4 拉取</h4><p>  <code>本地存在clone下来的文件  就用pull更新</code>  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pull = fetch + merge</span><br><span class="line">	git fetch 别名 分支名</span><br><span class="line">	git merge 别名 分支名</span><br><span class="line">git pull 别名 分支名</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-5-解决冲突"><a href="#1-5-解决冲突" class="headerlink" title="1.5 解决冲突"></a>1.5 解决冲突</h4><p><code>注意：解决冲突后的提交是不能带文件名的</code></p>
-<p><code>如果不是基于远程库最新版做的修改不能推送，必须先pull下来安装冲突办法解决</code></p>
-<h4 id="1-6-rebase"><a href="#1-6-rebase" class="headerlink" title="1.6 rebase"></a>1.6 rebase</h4><p><code>提交记录简洁不分叉</code>  <code>没学懂，感觉有点鸡肋</code> <code>混眼熟</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i 索引号</span><br><span class="line">git rebase -i HEAD~3  #合并最近三条记录</span><br><span class="line">说明：在vim编辑里面改成s</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-7-beyond-compare"><a href="#1-7-beyond-compare" class="headerlink" title="1.7 beyond compare"></a>1.7 beyond compare</h4><p><code>用软件解决冲突</code> </p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.安装 ：</span><br><span class="line">	beyond compare </span><br><span class="line">2.配置：</span><br><span class="line">    git config --local merge.tool bc3  #合并名称</span><br><span class="line">    git config --local mergetool.path &#x27;/usr/local/bin/bcomp&#x27; #软件路径</span><br><span class="line">    git config --local mergetool.keepBackup false  #False不用保存备份</span><br><span class="line">3.应用：</span><br><span class="line">	git mergetool</span><br><span class="line">说明：--local指只在当前操作系统有效</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-8-跨团队合作"><a href="#1-8-跨团队合作" class="headerlink" title="1.8 跨团队合作"></a>1.8 跨团队合作</h4><p><code>代码review之后合并</code></p>
-<ul>
-<li><p><strong>适用于个人</strong></p>
-<p><strong>邀请成员</strong>:<code>Settings</code> –&gt; <code>Collaborators</code> –&gt;<code>填写用户名</code> –&gt;<code>打开链接接受邀请</code></p>
-</li>
-<li><p><strong>企业</strong>   <code>创建一个组织</code> <code>方便管理</code></p>
-</li>
-<li><p><strong>review</strong></p>
-<p><code>组织做review</code>  <code>通过Pull request</code></p>
-</li>
-<li><p><strong>给开源社区共享代码</strong></p>
-<p><code>点击别人仓库的fork 到自己的仓库</code>   – &gt; <code>然后clone下来 修改后推送到远程库</code>  –&gt; <code>点击Pull Request请求</code> –&gt; <code>Create pull request发消息</code></p>
-</li>
-</ul>
-<h4 id="1-9-Tag标签"><a href="#1-9-Tag标签" class="headerlink" title="1.9 Tag标签"></a>1.9 Tag标签</h4><p><code>为了清晰的版本管理，公司一般不会直接使用commit提交</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.0 -m &#x27;版本介绍&#x27;   #创建本地tag信息</span><br><span class="line">git tag -d v1.0    		#删除tag</span><br><span class="line">git push origin --tags   #将本地tag信息推送到远程库</span><br><span class="line">git pull origin --tags    #拉取到本地</span><br><span class="line"></span><br><span class="line">git checkout v.10    #切换tag</span><br><span class="line">git clone -b v0.1 地址   #指定tag下载代码</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-10-SSH-免密登录"><a href="#1-10-SSH-免密登录" class="headerlink" title="1.10 SSH 免密登录"></a>1.10 SSH 免密登录</h4><ul>
-<li>输入:<code>ssh-keygen -t rsa -C GitHub邮箱地址</code>  </li>
-<li>进入<code>.ssh</code>目录，复制<code>id_rsa.pub</code>文件内容</li>
-<li>登录GitHub。<code>Settings</code>  –&gt; <code>SSH and GPG keys </code> –&gt; <code>New SSH Key    </code></li>
-<li>回到git通过ssh地址创建。<code>git remote add 别名 SSH地址  </code></li>
-</ul>
-<h2 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h2><h4 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在项目开发过程中使用Git的方式</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h4><h5 id="1-2-1-集中式工作流"><a href="#1-2-1-集中式工作流" class="headerlink" title="1.2.1 集中式工作流"></a>1.2.1 集中式工作流</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像SVN一样，集中式工作流有一个中央仓库，所有的修改都提交到了Master分支上</span><br></pre></td></tr></table></figure>
-
-<h5 id="1-2-2-GitFlow工作流"><a href="#1-2-2-GitFlow工作流" class="headerlink" title="1.2.2 GitFlow工作流 *"></a>1.2.2 GitFlow工作流 <code>*</code></h5><p>主干分支<code>master</code>  开发分支<code>develop</code>  修复分支<code>hotfix</code>   预发布分支<code>release</code>  功能分支<code>feature</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitFlow 有独立的分支，让发布迭代过程更流畅。</span><br></pre></td></tr></table></figure>
-
-<h5 id="1-2-3-Forking-工作流"><a href="#1-2-3-Forking-工作流" class="headerlink" title="1.2.3 Forking 工作流"></a>1.2.3 Forking 工作流</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 GitFlow 基础上， 充分利用了 Git 的 Fork 和 pull request 的功能以达到代码审核的目的。 </span><br><span class="line">安全可靠地管理大团队的开发者</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/30/cluster/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/aa.webp">
-      <meta itemprop="name" content="Sherry Wang">
-      <meta itemprop="description" content="记录点滴成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/30/cluster/" class="post-title-link" itemprop="url">聚类分析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">نُشر في</span>
-
-      <time title="أُنشأ: 2020-05-30 17:19:37" itemprop="dateCreated datePublished" datetime="2020-05-30T17:19:37+08:00">2020-05-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">عُدل في</span>
-        <time title="عُدل: 2021-07-25 09:22:55" itemprop="dateModified" datetime="2021-07-25T09:22:55+08:00">2021-07-25</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">في</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-        </span>
-          ، 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">聚类</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="机器学习—聚类篇"><a href="#机器学习—聚类篇" class="headerlink" title="机器学习—聚类篇"></a>机器学习—聚类篇</h2><h3 id="1-聚类算法的概述"><a href="#1-聚类算法的概述" class="headerlink" title="1.聚类算法的概述:"></a>1.聚类算法的概述:</h3><p>聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) , </p>
-<p>聚类既能作为一个单独过程,用于找寻数据内在的分布结构,也可作为分类等其他学习任务的前驱过程.例如,在一些商业应用中需对新用户的类型进行判别, {且定义”用户类型”对商家来说却可能不太容易,此时往往可先对用户数据进行聚类,根据聚类结果将每个簇定义为一个类,然后再基于这些类训练分类模型,用于判别新用户的类型.</p>
-<p>训练的目标:</p>
-<p>1.簇间的距离较大,簇内的距离较小</p>
-<h3 id="2-指标和距离公式的选择"><a href="#2-指标和距离公式的选择" class="headerlink" title="2.指标和距离公式的选择"></a>2.指标和距离公式的选择</h3><p> 性能指标:簇内的相似度 和  簇间的相似度</p>
-<p><img src="cluster/7.png" alt="7"></p>
-<p><img src="cluster/8.png" alt="8"></p>
-<p><img src="cluster/8.5.png" alt="8.5"></p>
-<p><img src="cluster/9.png" alt="9"></p>
-<h3 id="3-常见聚类算法"><a href="#3-常见聚类算法" class="headerlink" title="3.常见聚类算法"></a>3.常见聚类算法</h3><h4 id="3-1聚类算法类别"><a href="#3-1聚类算法类别" class="headerlink" title="3.1聚类算法类别"></a>3.1聚类算法类别</h4><table>
-<thead>
-<tr>
-<th>类别</th>
-<th>典型算法</th>
-<th>算法的基本策略</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Partitioning approach</td>
-<td>K-means,k-medoids,CLARANS,PAM</td>
-<td>Construct various partitions and then evaluate them by come criterion</td>
-</tr>
-<tr>
-<td>Hierarchical (层次) approach</td>
-<td>Diana,Agnes,BIRCH,ROCK,CAMELEON</td>
-<td>create a hierarchical decomposition of the set of data(or object) using some criterion</td>
-</tr>
-<tr>
-<td>Density-based approach</td>
-<td>DBSACN,OPTICS, DenClue</td>
-<td>based on connectivity and density functions</td>
-</tr>
-<tr>
-<td>Grid-based approach</td>
-<td>STING,WaveCluster,CLQUE</td>
-<td>based multiple-level granularity (多层次粒度)structure</td>
-</tr>
-<tr>
-<td>Model-based</td>
-<td>EM,SOM,COBWEB</td>
-<td>A model is hypothesized for each of the clusters and tries to find the best fit of that model to each other</td>
-</tr>
-<tr>
-<td>Frequent pattern-based</td>
-<td>pCluster</td>
-<td>based on the analysis of frequent patterns</td>
-</tr>
-<tr>
-<td>used-guided or constraint-based</td>
-<td>COD(obstacles),constrained clustering</td>
-<td>cluster by considering user-specified or application-specifier constraints</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line">2.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					#对于每个质点</span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					#将数据点分类到距离最近的簇 </span><br><span class="line">3.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line">4.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
-
-<p>目标函数 : 假设<img src="https://www.zhihu.com/equation?tex=x_i(i=1,2,%E2%80%A6,n)" alt="[公式]">是数据点，<img src="https://www.zhihu.com/equation?tex=%5Cmu_j(j=1,2,%E2%80%A6,k)" alt="[公式]">是初始化的数据中心</p>
-<p>​                                                        $min\sum_{i=1}^n min ||x_i -\mu_j||^2$</p>
-<p>这个函数是非凸优化函数,会收敛于局部最优解</p>
-<p>函数的曲线如下:[以k=2为例]</p>
-<p><img src="cluster/3.jpg" alt="3"></p>
-<h5 id="4-1-2算法的基本评价"><a href="#4-1-2算法的基本评价" class="headerlink" title="4.1.2算法的基本评价"></a>4.1.2算法的基本评价</h5><p>时间复杂度: $O(tkn)$ :t :迭代的次数,k表示类别的个数,n表示样本的数量</p>
-<p>相比较     RAM :$O(k(n-k)^2)$                                       CLARA: $O(ks^2 +k(n-k)$</p>
-<p>算法的复杂度比较低,不过很可能得到的是局部最优解(可以通过,模拟退火和 遗传算法 得到最优解)</p>
-<p>缺点: 1. 只能适用于 中心值有意义的数据,不适用于categorical data</p>
-<p>​            2.需要提前确定k值</p>
-<p>​            3.因为会出现进入局部最优解的现象,所以会对噪音点,以及最初中心点的设置会很敏感</p>
-<p>​            4. Not suitable to discover clusters with non-convex shapes</p>
-<h5 id="4-1-3对于K-means-算法的改进"><a href="#4-1-3对于K-means-算法的改进" class="headerlink" title="4.1.3对于K-means 算法的改进"></a>4.1.3对于K-means 算法的改进</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以用 modes来代替均值,用其他方法取确定质点</span><br><span class="line">更换其它衡量clusters相似性的标准,处理categorical object---目标函数</span><br><span class="line">using  frequency-based method to update modes of cluster</span><br><span class="line">a mixture of categorical </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-2-K-Medoids"><a href="#4-2-K-Medoids" class="headerlink" title="4.2 K-Medoids"></a>4.2 K-Medoids</h4><p>Find representative object,called medoids ,in clusters</p>
-<h5 id="4-2-1-PAM"><a href="#4-2-1-PAM" class="headerlink" title="4.2.1 PAM"></a>4.2.1 PAM</h5><p>PAM(Partitioning Around Medoids,1987)是作为K-medoids的基础算法,基本流程:</p>
-<ol>
-<li><p>首先随机选择k个对象作为中心</p>
-</li>
-<li><p>把每个对象分配给离它最近的中心,然后随机地选择一个非中心交替替换中心对象</p>
-</li>
-<li><p>计算分配后的距离改进量,进而得到改进的cost ,如果cost&lt;0,即结果有改进,则进行交换</p>
-</li>
-<li><p>直到目标函数不再有改进为止</p>
-<p>算法复杂度比较高,只适用于小数据集</p>
-</li>
-</ol>
-<h5 id="4-2-2-CLARA"><a href="#4-2-2-CLARA" class="headerlink" title="4.2.2 CLARA"></a>4.2.2 CLARA</h5><p>它从数据集中抽取多个样本集, 对每个样本集使用PAM, 并以最好的聚类作为输出</p>
-<h6 id="CLARA-算法的步骤"><a href="#CLARA-算法的步骤" class="headerlink" title="CLARA 算法的步骤:"></a><strong>CLARA 算法的步骤:</strong></h6><p>　　(1) for 　i = 1 to v (选样的次数) ,重复执行下列步骤( (2) ～ (4) ) :<br>　　(2) 随机地从整个数据库中抽取一个N(例如：(40 + 2 k))个对象的样本,调用PAM方法从样本中找出样本的k个最优的中心点。<br>　　(3)对于每个点,把它归类到距离它最近的点的簇<br>　　(4) 计算上一步中得到的聚类的总代价. 若该值小于当前的最小值,用该值替换当前的最小值,保留在这次选样中得到的k个代表对象作为到目前为止得到的最好的代表对象的集合.<br>　　(5) 返回到步骤(1) ,开始下一个循环.<br>　　算法结束后，输出最好的聚类结果</p>
-<h6 id="优点"><a href="#优点" class="headerlink" title="优点:"></a>优点:</h6><p>可以处理的数据集比 PAM大</p>
-<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h6><p>1有效性依赖于样本集的大小</p>
-<p>2 基于样本的好的聚类并不一定是整个数据集的好的聚类, 样本可能发生倾斜<br>　　例如, Oi是整个数据集上最佳的k个中心点之一, 但它不包含在样本中, CLARA将找不到最佳聚类</p>
-<h5 id="4-2-3-CLARANS"><a href="#4-2-3-CLARANS" class="headerlink" title="4.2.3 CLARANS"></a>4.2.3 CLARANS</h5><h5 id="focusing-spatial-data-structure"><a href="#focusing-spatial-data-structure" class="headerlink" title="focusing+spatial data structure"></a>focusing+spatial data structure</h5><h3 id="5-层次化聚类方法"><a href="#5-层次化聚类方法" class="headerlink" title="5.层次化聚类方法"></a>5.层次化聚类方法</h3><p>一般来说分为两类:</p>
-<ul>
-<li>Agglomerative 层次聚类：又称自底向上（bottom-up）的层次聚类，每一个对象最开始都是一个 <code>cluster</code>，每次按一定的准则将最相近的两个 <code>cluster</code> 合并生成一个新的 <code>cluster</code>，如此往复，直至最终所有的对象都属于一个 <code>cluster</code>。这里主要关注此类算法。</li>
-<li><strong>Divisive 层次聚类</strong>： 又称自顶向下（top-down）的层次聚类，最开始所有的对象均属于一个 <code>cluster</code>，每次按一定的准则将某个 <code>cluster</code> 划分为多个 <code>cluster</code>，如此往复，直至每个对象均是一个 <code>cluster</code>。</li>
-</ul>
-<p>优点:1 .不需要提前确定k,但是需要一个停止条件</p>
-<p>​            2.可以用树状结构来反映训练的过程,并且得到不同k情况下</p>
-<p>的划分方案</p>
-<p>缺点: 1</p>
-<p>主要思想:</p>
-<ol>
-<li><p>每次找到距离最近的两个点作为一个簇</p>
-<pre><code>              2. 把同一个簇的所有点看作一个点
-                                             3. 重复上述操作.....直到达到停止条件
-</code></pre>
-</li>
-</ol>
-<h4 id="5-1-AGNES（Agglomerative-Nesting"><a href="#5-1-AGNES（Agglomerative-Nesting" class="headerlink" title="5.1 AGNES（Agglomerative Nesting)"></a>5.1 AGNES（Agglomerative Nesting)</h4><p>sklearn  源码:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class sklearn.cluster.AgglomerativeClustering(n_clusters=2, affinity=’euclidean’, memory=None, connectivity=None, compute_full_tree=’auto’, linkage=’ward’, pooling_func=&lt;function mean&gt;)</span><br></pre></td></tr></table></figure>
-
-<p>算法的主要过程:</p>
-<p>single linkage: 适用两个簇之间 距离最小的一对点的距离作为簇之间的</p>
-<p><img src="cluster/2.1.png" alt="2.1"></p>
-<p>可以看到，该 算法的时间复杂度为 <img src="https://www.zhihu.com/equation?tex=O(n%5E3)" alt="[公式]"> （由于每次合并两个 <code>cluster</code> 时都要遍历大小为 <img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]">的距离矩阵来搜索最小距离，而这样的操作需要进行 <img src="https://www.zhihu.com/equation?tex=n%E2%88%921" alt="[公式]"> 次），空间复杂度为<img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]"> （由于要存储距离矩阵）</p>
-<h4 id="5-2-DIANA"><a href="#5-2-DIANA" class="headerlink" title="5.2 DIANA"></a>5.2 DIANA</h4><p>是AGNES算法的反过程,最后结果是每个样本都是属于一类</p>
-<h4 id="5-3-BIRCH"><a href="#5-3-BIRCH" class="headerlink" title="5.3 BIRCH"></a>5.3 BIRCH</h4><p>链接:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6179132.html">https://www.cnblogs.com/pinard/p/6179132.html</a></p>
-<p>链接:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/22458092">https://zhuanlan.zhihu.com/p/22458092</a></p>
-<h5 id="5-3-1-CF-Tree动态建立的过程"><a href="#5-3-1-CF-Tree动态建立的过程" class="headerlink" title="5.3.1 CF Tree动态建立的过程:"></a>5.3.1 CF Tree动态建立的过程:</h5><p>基本概念:</p>
-<p><strong>CF（Clustering Feature）：</strong>类簇总体信息三元组<img src="https://www.zhihu.com/equation?tex=(N,+LS,+SS)" alt="[公式]">，其中<img src="https://www.zhihu.com/equation?tex=N" alt="[公式]">是一个类簇中数据点个数，<img src="https://www.zhihu.com/equation?tex=LS" alt="[公式]">是类簇中所有数据点的加和值，即<img src="https://www.zhihu.com/equation?tex=%5Csum_%7Bi=1%7D%5E%7BN%7D%7B%5Cbar%7BX_%7Bi%7D%7D%7D+" alt="[公式]">，<img src="https://www.zhihu.com/equation?tex=SS" alt="[公式]">是类簇中所有数据点的平方和<img src="https://www.zhihu.com/equation?tex=%5Csum_%7Bi=1%7D%5E%7BN%7D%7B%5Cbar%7BX_%7Bi%7D%7D%5E2%7D+" alt="[公式]">，CF相当于对一个类簇的信息做了总结。</p>
-<p>性质: </p>
-<p><strong>CF可加性定理</strong>：</p>
-<p>​                针对两个不相交的类簇，其CF向量分别为<img src="https://www.zhihu.com/equation?tex=CF_%7B1%7D=(N_%7B1%7D,+LS_%7B1%7D,+SS_%7B1%7D)" alt="[公式]">，<img src="https://www.zhihu.com/equation?tex=CF_%7B2%7D=(N_%7B2%7D,+LS_%7B2%7D,+SS_%7B2%7D)" alt="[公式]">，那么这两个不相交类簇合并后的CF向量为：<img src="https://www.zhihu.com/equation?tex=CF_%7B1%7D+CF_%7B2%7D=(N_%7B1%7D+N_%7B2%7D,+LS_%7B1%7D+LS_%7B2%7D,+SS_%7B1%7D+SS_%7B2%7D)" alt="[公式]">。这里的证明比较简单，就略去了。<br>在BRICH中，针对一个类簇，通常只保留其CF向量信息，这样做比较节省空间且高效，后续的聚类需要的计算只需要根据类簇的CF向量即可完成。<br><strong>CF Tree：</strong>类似于B树的一颗高度平衡树，有三个参数：内部节点平衡因子B，叶节点平衡因子L，簇半径T。每个非叶子节点至多包含B个项，形式为<img src="https://www.zhihu.com/equation?tex=%5BCF_%7Bi%7D,+child_%7Bi%7D%5D" alt="[公式]">，其中<img src="https://www.zhihu.com/equation?tex=child_%7Bi%7D" alt="[公式]">是指向第i个子节点的指针。每个叶子节点至多包含L个项，且包含指向前后叶子节点的指针prev和next，其中的每一项代表一个类簇，且满足类簇直径小于T。树的结构如下图：</p>
-<p><img src="https://pic1.zhimg.com/80/e117c5b3d038b06c3ab4ebd0748c25f4_720w.png" alt="img"></p>
-<p>CF Tree会随着新的数据点的加入而动态的建立起来，其插入过程包含以下几步：<br>（1）从根节点开始，递归向下选择最近的孩子节点，这里最近的度量是根据前面提到的<img src="https://www.zhihu.com/equation?tex=D0,+D1,+D2,+D3,+D4" alt="[公式]">中任意一个确定；<br>（2）如果在（1）中找到了最近的叶子节点中的一个<img src="https://www.zhihu.com/equation?tex=L_%7Bt%7D" alt="[公式]">，检查其中最近的CF元组能否不超过阈值T吸收此数据点，若能，更新CF值；若不能，是否有空间（<strong>这里每个节点能分配的空间有限，可参见下面的参数表</strong>）添加新的元组，若能则添加新的元组，若不能，分裂距离最远的一对元组到两个叶子节点，作为初始的种子，将其他元组按距离最近原则重新分配到两个新的叶子节点上。<br>（3）从叶子节点向上回溯修改每个非叶子节点的CF值，若叶子节点发生分裂，则在父节点中增加相应的CF元组，同样，父节点也可能需要分裂，则持续分裂直至根节点，最终如果根节点发生分类，则树的高度需要加1。</p>
-<p>算法的流程:</p>
-<p><img src="https://pic2.zhimg.com/80/f44accd4b4f605ee470e547e53b7c411_720w.png" alt="img"></p>
-<h5 id="5-3-3算法评价"><a href="#5-3-3算法评价" class="headerlink" title="5.3.3算法评价"></a>5.3.3算法评价</h5><p>优点:</p>
-<p>1.节省内存 2.速度快 4可以识别噪音点</p>
-<p>缺点:</p>
-<p>1.结果依赖于数据点的插入顺序  </p>
-<p>2.对于非球状的簇聚类效果非常不好 </p>
-<p>3.对于高维数据簇类效果不好</p>
-<p>4.局部性可能会导致聚类效果不佳</p>
-<h4 id="5-4-ROCK"><a href="#5-4-ROCK" class="headerlink" title="5.4 ROCK"></a>5.4 ROCK</h4><p>相似度的计算:<strong>jaccard系数,余弦相似度</strong></p>
-<blockquote>
-<p>Jaccard 系数    定义为A与B交集的大小与A与B并集的大小的比值，值越大，相似度越高。</p>
-</blockquote>
-<p><img src="https://pic4.zhimg.com/80/v2-4f2c545cdc35a92f8c72cfd26f39ad8b_720w.png" alt="img"></p>
-<blockquote>
-<p>余弦相似度，是通过计算两个向量的夹角余弦值来评估他们的相似度。<br>值越接近1，就说明夹角角度越接近0°，也就是两个向量越相似，就叫做余弦相似</p>
-</blockquote>
-<p><img src="https://pic2.zhimg.com/80/v2-d3b5323b80d3f1919739f33135a2954d_720w.jpg" alt="img"></p>
-<p>适用于类别型数据,核心思想是利用链接作为相似性的度量,而不仅仅是依赖于距离</p>
-<p>clustering categorical data by neighbor and link analysis</p>
-<h4 id="5-5-CHAMELEON"><a href="#5-5-CHAMELEON" class="headerlink" title="5.5 CHAMELEON"></a>5.5 CHAMELEON</h4><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55896918">https://zhuanlan.zhihu.com/p/55896918</a></p>
-<h3 id="6-基于密度的聚类算法"><a href="#6-基于密度的聚类算法" class="headerlink" title="6. 基于密度的聚类算法"></a>6. 基于密度的聚类算法</h3><p>“密度聚类” 基于密度的聚类(density-based clustering),此类算法假设聚类结构能通过样本分布的紧密程度确定.通常情况下,从样本密度的角度来考察样本之间的可连接性,并基于<strong>可连接样本</strong>不断扩展聚类簇以获得最后的聚类结果</p>
-<p>主要特点: 1. 可以处理任何形状的cluster</p>
-<p>​                    2.可以处理噪音</p>
-<p>​                    3.一次扫描</p>
-<p>​                    4.需要设置密度参数,作为终止条件</p>
-<h4 id="6-1-DBSCAN"><a href="#6-1-DBSCAN" class="headerlink" title="6.1 DBSCAN"></a>6.1 DBSCAN</h4><p>参考链接:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6208966.html">https://www.cnblogs.com/pinard/p/6208966.html</a></p>
-<p>​                    机器学习–周志华</p>
-<p>==一般建议:当数据比较稠密时,而且数据集不是凸的,那么用DBSCAN 会比 K-means聚类效果很好,如果聚类效果不是很好时,不建议用DBSCAN==</p>
-<h5 id="6-1-1算法介绍"><a href="#6-1-1算法介绍" class="headerlink" title="6.1.1算法介绍"></a>6.1.1算法介绍</h5><p>是基于一组”邻域”(neighborhood) 参数($\epsilon $  ,$MinPts$)来刻画样本分类的紧密程度,</p>
-<p>$\epsilon$ 表示了 域的半径长度</p>
-<p>$MinPts$ :成为核心点的最低密度标准</p>
-<p>定义: 给定的数据集$D = { x_1,x_2…x_m }$</p>
-<p><img src="cluster/3.png" alt="3"></p>
-<p><img src="cluster/4.png" alt="4"></p>
-<p>所以想要找到满足连接性和最大性的簇的方法就是:如果 $x$ 为核心对象,由 $x$密度可达的所有样本组成的集合$X = {  x^{‘}  \in D | x_{‘}由x密度可达 }$ 即为满足要求的簇</p>
-<h5 id="6-1-2算法的主要流程"><a href="#6-1-2算法的主要流程" class="headerlink" title="6.1.2算法的主要流程"></a>6.1.2算法的主要流程</h5><p>I:寻找样本集中所有的核心对象</p>
-<p>II:形成 满足连接性和最大性的所有核心对象</p>
-<p><img src="cluster/5.png" alt="5"></p>
-<h5 id="6-1-3算法小结"><a href="#6-1-3算法小结" class="headerlink" title="6.1.3算法小结"></a>6.1.3算法小结</h5><p>　DBSCAN的主要优点有：</p>
-<p>　　　1） 可以对任意形状的稠密数据集进行聚类，相对的，K-Means之类的聚类算法一般只适用于凸数据集。</p>
-<p>　　　2） 可以在聚类的同时发现异常点，对数据集中的异常点不敏感。</p>
-<p>　　　3） 聚类结果没有偏倚，相对的，K-Means之类的聚类算法初始值对聚类结果有很大影响。</p>
-<p>  DBSCAN的主要缺点有：</p>
-<p>　　　　1）如果样本集的密度不均匀、聚类间距差相差很大时，聚类质量较差，这时用DBSCAN聚类一般不适合。</p>
-<p>　　　2） 如果样本集较大时，聚类收敛时间较长，此时可以对搜索最近邻时建立的$KD$树或者球树进行规模限制来改进。</p>
-<p>　　　3） 调参相对于传统的K-Means之类的聚类算法稍复杂，主要需要对距离阈值ϵϵ，邻域样本数阈值$MinPts$联合调参，不同的参数组合对最后的聚类效果有较大影响。</p>
-<h4 id="6-2-OPTICS"><a href="#6-2-OPTICS" class="headerlink" title="6.2 OPTICS"></a>6.2 OPTICS</h4><p>该算法是DBSCAN算法的改进(相关概念延续上面)</p>
-<h5 id="6-2-1-定义"><a href="#6-2-1-定义" class="headerlink" title="6.2.1 定义"></a>6.2.1 定义</h5><p><img src="cluster/6.png" alt="6"></p>
-<p>说明:如果当x为核心点时,</p>
-<p>$$rd(y,x) =\begin{cases} d(x,y) \qquad 当y不是x邻域中的点\ cd(x) \qquad 当y是邻域中的点时,为x的核心距离   \end{cases}$$</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LoveCarpenter/article/details/85049135">https://blog.csdn.net/LoveCarpenter/article/details/85049135</a></p>
-<p><a target="_blank" rel="noopener" href="https://bacterous.github.io/2018/01/06/OPTICS%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/#%E5%AE%9A%E4%B9%89">https://bacterous.github.io/2018/01/06/OPTICS%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/#%E5%AE%9A%E4%B9%89</a></p>
-<h4 id="6-3-DENCLUE"><a href="#6-3-DENCLUE" class="headerlink" title="6.3 DENCLUE"></a>6.3 DENCLUE</h4><h4 id="6-4-CLIQUE"><a href="#6-4-CLIQUE" class="headerlink" title="6.4 CLIQUE"></a>6.4 CLIQUE</h4><h3 id="7-网格聚类法"><a href="#7-网格聚类法" class="headerlink" title="7.网格聚类法"></a>7.网格聚类法</h3><ol>
-<li><p>STING (a STatistical INformation Grid approach) by Wang, Yang<br>and Muntz (1997)</p>
-</li>
-<li><p>WaveCluster by Sheikholeslami, Chatterjee, and Zhang (VLDB’98)</p>
-<p>​    A multi-resolution clustering approach using wavelet method</p>
-</li>
-<li><p>CLIQUE: Agrawal, et al. (SIGMOD’98)On high-dimensional data (thus put in the section of clustering high-dimensional data</p>
-</li>
-</ol>
-<h3 id="参考链接🔗"><a href="#参考链接🔗" class="headerlink" title="参考链接🔗"></a>参考链接🔗</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/104355127">https://zhuanlan.zhihu.com/p/104355127</a></p>
 
       
     </div>
