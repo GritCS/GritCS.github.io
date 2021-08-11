@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CH">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"بحث...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="最短路问题   算法 算法思路 备注    Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可以用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构复习_图论1">
 <meta property="og:url" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/index.html">
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="最短路问题   算法 算法思路 备注    Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可以用">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CH">
 <meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
 <meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png">
 <meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png">
@@ -47,7 +47,7 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/","path":"2021/05/31/数据结构复习-图论1/","title":"数据结构复习_图论1"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CH","comments":true,"permalink":"http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/","path":"2021/05/31/数据结构复习-图论1/","title":"数据结构复习_图论1"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>数据结构复习_图论1 | Think World</title>
@@ -68,7 +68,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="تشغيل شريط التصفح" role="button">
     </div>
   </div>
 
@@ -108,10 +108,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          عام
         </li>
       </ul>
 
@@ -135,18 +135,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
           <span class="site-state-item-count">61</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
@@ -184,7 +184,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CH">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -207,22 +207,22 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2021-05-31 10:06:28" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
+      <time title="أُنشأ: 2021-05-31 10:06:28" itemprop="dateCreated datePublished" datetime="2021-05-31T10:06:28+08:00">2021-05-31</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-25 09:11:56" itemprop="dateModified" datetime="2021-07-25T09:11:56+08:00">2021-07-25</time>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 09:11:56" itemprop="dateModified" datetime="2021-07-25T09:11:56+08:00">2021-07-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E4%BF%9D%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">保研</span></a>
         </span>
@@ -396,7 +396,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CH">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"بحث...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="简单的回归问题１．从简单到复杂&#x3D;&#x3D;梯度下降算法&#x3D;&#x3D;：梯度是深度学习的核心 １.简单的小例子  ２.问题的迭代 求解$y &#x3D; wx+b$　二元一次方程$w, b$的值 　　i.中学阶段：　求解二元一次方程的方法－－&gt;消元法(利用Closed Form Solution精确求得ｗ,b的解) ​        ii.引入噪音(noise：），模拟现实情况，我们的目标并不是为了得到一个精确解，而是得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的回归问题">
 <meta property="og:url" content="http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="简单的回归问题１．从简单到复杂&#x3D;&#x3D;梯度下降算法&#x3D;&#x3D;：梯度是深度学习的核心 １.简单的小例子  ２.问题的迭代 求解$y &#x3D; wx+b$　二元一次方程$w, b$的值 　　i.中学阶段：　求解二元一次方程的方法－－&gt;消元法(利用Closed Form Solution精确求得ｗ,b的解) ​        ii.引入噪音(noise：），模拟现实情况，我们的目标并不是为了得到一个精确解，而是得">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CH">
 <meta property="og:image" content="http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/2020-08-22_06-44.png">
 <meta property="og:image" content="http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/2020-08-22_06-57.png">
 <meta property="og:image" content="http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/2020-08-22_06-59.png">
@@ -43,7 +43,7 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/","path":"2020/08/23/简单的回归问题/","title":"简单的回归问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CH","comments":true,"permalink":"http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/","path":"2020/08/23/简单的回归问题/","title":"简单的回归问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>简单的回归问题 | Think World</title>
@@ -64,7 +64,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="تشغيل شريط التصفح" role="button">
     </div>
   </div>
 
@@ -104,10 +104,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          عام
         </li>
       </ul>
 
@@ -131,18 +131,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
           <span class="site-state-item-count">61</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
@@ -180,7 +180,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CH">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/23/%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,22 +203,22 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2020-08-23 15:53:54" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:54+08:00">2020-08-23</time>
+      <time title="أُنشأ: 2020-08-23 15:53:54" itemprop="dateCreated datePublished" datetime="2020-08-23T15:53:54+08:00">2020-08-23</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-25 08:59:29" itemprop="dateModified" datetime="2021-07-25T08:59:29+08:00">2021-07-25</time>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 08:59:29" itemprop="dateModified" datetime="2021-07-25T08:59:29+08:00">2021-07-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
         </span>
@@ -306,7 +306,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
     </div>

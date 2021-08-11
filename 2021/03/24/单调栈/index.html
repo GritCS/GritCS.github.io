@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CH">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"بحث...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="单调栈从名字上就听的出来，单调栈中存放的数据应该是有序的，所以单调栈也分为单调递增栈和单调递减栈  单调递增栈：(上面元素是最小元素) 单调递增栈就是从栈底到栈顶数据是从大到小 单调递减栈：(上面元素是最大元素) 单调递减栈就是从栈底到栈顶数据是从小到大  应用题目1 ​    1.视野总和 描叙：有n个人站队，所有的人全部向右看，个子高的可以看到个子低的发型，给出每个人的身高，问所有人能看到其他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单调栈">
 <meta property="og:url" content="http://example.com/2021/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/index.html">
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="单调栈从名字上就听的出来，单调栈中存放的数据应该是有序的，所以单调栈也分为单调递增栈和单调递减栈  单调递增栈：(上面元素是最小元素) 单调递增栈就是从栈底到栈顶数据是从大到小 单调递减栈：(上面元素是最大元素) 单调递减栈就是从栈底到栈顶数据是从小到大  应用题目1 ​    1.视野总和 描叙：有n个人站队，所有的人全部向右看，个子高的可以看到个子低的发型，给出每个人的身高，问所有人能看到其他">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CH">
 <meta property="article:published_time" content="2021-03-24T10:20:24.000Z">
 <meta property="article:modified_time" content="2021-07-25T01:22:42.526Z">
 <meta property="article:author" content="Sherry Wang">
@@ -38,7 +38,7 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/","path":"2021/03/24/单调栈/","title":"单调栈"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CH","comments":true,"permalink":"http://example.com/2021/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/","path":"2021/03/24/单调栈/","title":"单调栈"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>单调栈 | Think World</title>
@@ -59,7 +59,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="تشغيل شريط التصفح" role="button">
     </div>
   </div>
 
@@ -99,10 +99,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          عام
         </li>
       </ul>
 
@@ -126,18 +126,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
           <span class="site-state-item-count">61</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
         <span class="site-state-item-count">23</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
@@ -175,7 +175,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CH">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -198,16 +198,16 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2021-03-24 18:20:24" itemprop="dateCreated datePublished" datetime="2021-03-24T18:20:24+08:00">2021-03-24</time>
+      <time title="أُنشأ: 2021-03-24 18:20:24" itemprop="dateCreated datePublished" datetime="2021-03-24T18:20:24+08:00">2021-03-24</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-25 09:22:42" itemprop="dateModified" datetime="2021-07-25T09:22:42+08:00">2021-07-25</time>
+        <span class="post-meta-item-text">عُدل في</span>
+        <time title="عُدل: 2021-07-25 09:22:42" itemprop="dateModified" datetime="2021-07-25T09:22:42+08:00">2021-07-25</time>
       </span>
 
   
@@ -331,7 +331,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Sherry Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
     </div>
