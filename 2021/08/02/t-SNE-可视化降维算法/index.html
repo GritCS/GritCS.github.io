@@ -28,8 +28,9 @@
 <meta property="og:description" content="t-SNE介绍 t-SNE是由t-分布和随机近邻嵌入(Stochastic neighbor Embedding)组成 其重要用途是 可视化和探索高维数据。它的主要目标是将高维数据集转换为低维数据集，并且可视化效果更好。采用非线性降维技术，可以捕获复杂的流行数据。  t-SNE工作原理SNE算法在介绍t-SNE之前，我们先介绍SNE算法  ​    核心思想：    数据降维时，要保证： 在高维空">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2021/08/02/t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210802161150.png">
+<meta property="og:image" content="http://example.com/2021/08/02/t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210803133641.jpg">
 <meta property="article:published_time" content="2021-08-02T06:04:42.000Z">
-<meta property="article:modified_time" content="2021-08-02T08:39:41.590Z">
+<meta property="article:modified_time" content="2021-08-11T09:07:59.261Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="可视化工具">
 <meta name="twitter:card" content="summary">
@@ -127,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -138,7 +139,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -201,10 +202,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-08-02 14:04:42 / Modified: 16:39:41" itemprop="dateCreated datePublished" datetime="2021-08-02T14:04:42+08:00">2021-08-02</time>
+      <time title="Created: 2021-08-02 14:04:42" itemprop="dateCreated datePublished" datetime="2021-08-02T14:04:42+08:00">2021-08-02</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-08-11 17:07:59" itemprop="dateModified" datetime="2021-08-11T17:07:59+08:00">2021-08-11</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -256,8 +263,15 @@
 <p><img src="t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210802161150.png" alt="20210802161150"></p>
 <p>如上图所示，要是$p_{ij}$ 和$q_{ij}$相等，在高维空间中比较接近的点(对应正态分布)，在低维空间中要更接近(对应t-分布)；而对与高维空间中较远的点，在低维空间中需要更远。</p>
 <p>所以在t-SNE中，用t-分布，重新定义了低维空间中的概率分布，如下所示<br>$$<br>q_{ij} = \frac{(1+||y_i - y_j||^2)^{-1}}{ \sum_{k\neq l}(1+||y_k - y_l||^2)^{-1}}<br>$$</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>“封装成一个函数”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> manifold </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    tSNE对数据进行t-sne可视化</span></span><br><span class="line"><span class="string">    @para：</span></span><br><span class="line"><span class="string">    X：shape（num,dim) num为数据点的个数，dim是每个数据点的特征的维度  eg：（100，3）表示一共有100个数据点，每个数据点是3维向量</span></span><br><span class="line"><span class="string">    label：shape(num,1) 对应每个数据点的类别标签</span></span><br><span class="line"><span class="string">    colorlist: dict:&#123;&quot;red&quot;:red&#125;每个类别对应的颜色</span></span><br><span class="line"><span class="string">    n_components:数据点降维之后的维度，默认是2</span></span><br><span class="line"><span class="string">    init:和库函数的含义一样，可以选择&quot;pca: &quot;random&quot;</span></span><br><span class="line"><span class="string">    perplexity:建议5-50，数据量越大，该值应该设置的越大</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tSNE</span>(<span class="params">X,label,colorlist,n_components=<span class="number">2</span>,init=<span class="string">&quot;pca&quot;</span>, perplexity=<span class="number">10</span></span>):</span></span><br><span class="line">    <span class="comment">#降维</span></span><br><span class="line">    tsne = manifold.TSNE(n_components=n_components,init=init,random_state=<span class="number">0</span>, perplexity=<span class="number">10</span>)</span><br><span class="line">    X_tsne = tsne.fit_transform(X)<span class="comment">#(187500, 2)</span></span><br><span class="line">    <span class="comment">#可视化</span></span><br><span class="line">    <span class="keyword">for</span> color <span class="keyword">in</span> colorlist.keys():</span><br><span class="line">        plt.scatter(X_tsne[colorlist[color][:,<span class="number">0</span>]][:,<span class="number">0</span>], X_tsne[colorlist[color][:,<span class="number">0</span>]][:,<span class="number">1</span>],s=<span class="number">0.01</span>, c=color)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 
+<p>“应用实例”</p>
+<p>使用时，需要自己计算colorlis</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#加载图片和标签</span></span><br><span class="line">X= np.asarray(Image.<span class="built_in">open</span>(<span class="string">&quot;D:/Users/July/Desktop/image1.jpg&quot;</span>)) <span class="comment">#(366, 500,3)</span></span><br><span class="line">label = np.asarray(Image.<span class="built_in">open</span>(<span class="string">&quot;D:/Users/July/Desktop/label1.png&quot;</span>)) <span class="comment">#(366,500)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调整尺寸</span></span><br><span class="line">label = label.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">X=X.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算colorlist</span></span><br><span class="line">red= label==<span class="number">0</span></span><br><span class="line">green= label ==<span class="number">5</span></span><br><span class="line">blue = label ==<span class="number">255</span></span><br><span class="line">yellow = label ==<span class="number">11</span></span><br><span class="line">colorlist=&#123;&#125;</span><br><span class="line">colorlist[<span class="string">&#x27;red&#x27;</span>]=red</span><br><span class="line">colorlist[<span class="string">&#x27;green&#x27;</span>]=green</span><br><span class="line">colorlist[<span class="string">&#x27;blue&#x27;</span>]=blue</span><br><span class="line">colorlist[<span class="string">&#x27;yellow&#x27;</span>]=yellow</span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">tSNE(X,label,colorlist)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p><img src="t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210803133641.jpg" alt="20210803133641"></p>
 
     </div>
 
@@ -279,6 +293,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/08/03/Grad-CAM/" rel="next" title="Grad-CAM">
+                  Grad-CAM <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
