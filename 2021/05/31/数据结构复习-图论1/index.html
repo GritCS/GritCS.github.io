@@ -27,20 +27,20 @@
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="最短路问题   算法 算法思路 备注    Dijkstra 求解权图的单源最短路径按照非递减次序依次得到各顶点的最小路径长度。适用条件:不存在负权边 时间复杂度是O(n^2+e),与边数无关;空间复杂度O(E)​   Bellman-Ford算法 求解权图的单源最短路径使用条件:可以计算包含负权的边，不能计算包含负圈的边思路：对每条边进行松弛操作，循环v-1次,因为最短路最多包含n-1条边可以用">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/数据结构复习-图论1/2.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png">
+<meta property="og:image" content="http://example.com/.com//2.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png">
 <meta property="article:published_time" content="2021-05-31T02:06:28.000Z">
 <meta property="article:modified_time" content="2021-07-25T01:11:56.111Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
+<meta name="twitter:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png">
 
 
 <link rel="canonical" href="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/">
@@ -277,10 +277,20 @@
 <td>多源最短路，时间复杂度O(V^３)​</td>
 </tr>
 </tbody></table>
-<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" alt="2021-05-31_15-59"></p>
-<h3 id="相关算法的伪代码"><a href="#相关算法的伪代码" class="headerlink" title="相关算法的伪代码"></a>相关算法的伪代码</h3><p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png" alt="2021-06-19_19-09"></p>
-<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png" alt="2021-06-19_19-09_1"></p>
-<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png" alt="2021-06-19_19-08"></p>
+<img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-59.png" class title="2021-05-31_15-59">
+
+
+
+<h3 id="相关算法的伪代码"><a href="#相关算法的伪代码" class="headerlink" title="相关算法的伪代码"></a>相关算法的伪代码</h3><img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09.png" class title="2021-06-19_19-09">
+
+<img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-09_1.png" class title="2021-06-19_19-09_1">
+
+
+
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-06-19_19-08.png" class title="2021-06-19_19-08">
+
+
+
 <h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><blockquote>
 <p>最长路径的计算    </p>
 <p>次短路计算</p>
@@ -307,7 +317,7 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png" alt="2021-05-31_15-57"></p>
+<img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/2021-05-31_15-57.png" class title="2021-05-31_15-57">
 </blockquote>
 <blockquote>
 <p>闭圈法/破圈法</p>
@@ -342,9 +352,10 @@
 <p>  关于活动的量<br>③ 活动ai的最早开始时间e(i):<br> 设活动ai为有向边&lt;vj ,vk&gt;，则 e(i) = ve(j)。<br>  ve(j)是从源点v0到vj的最长路径长度，决定了所有从vj开始的活动的最早开始时间。<br>④ 活动ai的最迟开始时间 l(i):<br>  l(i) 是在不会引起工期延误的前提下，该活动允许的最迟开始时间。设活动ai为有向边&lt;vj ,vk&gt;, 则 l(i) = vl(k)-weight(&lt;j, k&gt;)。</p>
 <p>   关键活动： l(i)＝ e(i) 表示活动ak 是没有时间余量的关键活动</p>
 </blockquote>
-<img src="数据结构复习-图论1/2.png" alt="2" style="zoom: 33%;" />
+<img src="/.com//2.png" alt="2" style="zoom: 33%;">
 
-<p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png" alt="1"></p>
+<img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E5%9B%BE%E8%AE%BA1/1.png" class width="1">
+
 
     </div>
 

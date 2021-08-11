@@ -20,20 +20,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="操作系统进程通讯的几种方式进程同步与进程互斥称为进程之间的低级通信 进程间大量数据的传递称为进程之间的高级通信。进程之间的低级通信和高级通信称为进程间通信  颠簸颠簸又译抖动, 是指页面在内存与外存之间频繁地调度, 以至于系统用于调度页面所需要的时间比进程实际运行所占用的时间还要多 颠簸是由于页故障率比较高产生的结果，严重影响系统的效率 原因： 1. 分给进程的物理页框过少  2 .淘汰算法不合理">
+<meta name="description" content="操作系统进程通讯的几种方式进程同步与进程互斥称为进程之间的低级通信 进程间大量数据的传递称为进程之间的高级通信。进程之间的低级通信和高级通信称为进程间通信       颠簸颠簸又译抖动, 是指页面在内存与外存之间频繁地调度, 以至于系统用于调度页面所需要的时间比进程实际运行所占用的时间还要多 颠簸是由于页故障率比较高产生的结果，严重影响系统的效率 原因： 1. 分给进程的物理页框过少  2 .淘汰">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试专业课问题总结">
 <meta property="og:url" content="http://example.com/2021/06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="操作系统进程通讯的几种方式进程同步与进程互斥称为进程之间的低级通信 进程间大量数据的传递称为进程之间的高级通信。进程之间的低级通信和高级通信称为进程间通信  颠簸颠簸又译抖动, 是指页面在内存与外存之间频繁地调度, 以至于系统用于调度页面所需要的时间比进程实际运行所占用的时间还要多 颠簸是由于页故障率比较高产生的结果，严重影响系统的效率 原因： 1. 分给进程的物理页框过少  2 .淘汰算法不合理">
+<meta property="og:description" content="操作系统进程通讯的几种方式进程同步与进程互斥称为进程之间的低级通信 进程间大量数据的传递称为进程之间的高级通信。进程之间的低级通信和高级通信称为进程间通信       颠簸颠簸又译抖动, 是指页面在内存与外存之间频繁地调度, 以至于系统用于调度页面所需要的时间比进程实际运行所占用的时间还要多 颠簸是由于页故障率比较高产生的结果，严重影响系统的效率 原因： 1. 分给进程的物理页框过少  2 .淘汰">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png">
+<meta property="og:image" content="http://example.com/.com//06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png">
 <meta property="article:published_time" content="2021-06-16T07:05:56.000Z">
 <meta property="article:modified_time" content="2021-08-11T09:22:11.456Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png">
+<meta name="twitter:image" content="http://example.com/.com//06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png">
 
 
 <link rel="canonical" href="http://example.com/2021/06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
@@ -233,7 +233,12 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="进程通讯的几种方式"><a href="#进程通讯的几种方式" class="headerlink" title="进程通讯的几种方式"></a>进程通讯的几种方式</h2><p>进程同步与进程互斥称为进程之间的低级通信</p>
 <p>进程间大量数据的传递称为进程之间的高级通信。进程之间的低级通信和高级通信称为进程间通信</p>
-<p><img src="%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png" alt="2021-06-19_21-53"></p>
+<img src="/.com//06/16/%E9%9D%A2%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/2021-06-19_21-53.png" class title="2021-06-19_21-53">
+
+
+
+
+
 <h2 id="颠簸"><a href="#颠簸" class="headerlink" title="颠簸"></a>颠簸</h2><p>颠簸又译抖动, 是指页面在内存与外存之间频繁地调度, 以至于系统用于调度页面所需要的时间比进程实际运行所占用的时间还要多</p>
 <p>颠簸是由于页故障率比较高产生的结果，严重影响系统的效率</p>
 <p>原因： 1. 分给进程的物理页框过少</p>

@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Think World">
 <meta property="og:description" content="机器学习—聚类篇1.聚类算法的概述:聚类试图 将数据集中的样本划分为若干个通常是不相交的子集,每个子集对聚类算法而言,样本簇亦称”类”称为一个”簇” (cluster). 通过这样的划分,每个簇可能对应于一些潜在的概念(类别) ,  聚类既能作为一个单独过程,用于找寻数据内在的分布结构,也可作为分类等其他学习任务的前驱过程.例如,在一些商业应用中需对新用户的类型进行判别, {且定义”用户类型”对商">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/7.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/8.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/8.5.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/9.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/7.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/8.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/8.5.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/9.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=x_i(i=1,2,%E2%80%A6,n)">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cmu_j(j=1,2,%E2%80%A6,k)">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/3.jpg">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/2.1.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/3.jpg">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/2.1.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=O(n%5E3)">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=O(n%5E2)+">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=n%E2%88%921">
@@ -56,16 +56,16 @@
 <meta property="og:image" content="https://pic2.zhimg.com/80/f44accd4b4f605ee470e547e53b7c411_720w.png">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-4f2c545cdc35a92f8c72cfd26f39ad8b_720w.png">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-d3b5323b80d3f1919739f33135a2954d_720w.jpg">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/3.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/4.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/5.png">
-<meta property="og:image" content="http://example.com/2020/05/30/cluster/cluster/6.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/3.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/4.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/5.png">
+<meta property="og:image" content="http://example.com/.com//05/30/cluster/6.png">
 <meta property="article:published_time" content="2020-05-30T09:19:37.000Z">
 <meta property="article:modified_time" content="2021-07-25T01:22:55.472Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/05/30/cluster/cluster/7.png">
+<meta name="twitter:image" content="http://example.com/.com//05/30/cluster/7.png">
 
 
 <link rel="canonical" href="http://example.com/2020/05/30/cluster/">
@@ -272,10 +272,20 @@
 <p>训练的目标:</p>
 <p>1.簇间的距离较大,簇内的距离较小</p>
 <h3 id="2-指标和距离公式的选择"><a href="#2-指标和距离公式的选择" class="headerlink" title="2.指标和距离公式的选择"></a>2.指标和距离公式的选择</h3><p> 性能指标:簇内的相似度 和  簇间的相似度</p>
-<p><img src="cluster/7.png" alt="7"></p>
-<p><img src="cluster/8.png" alt="8"></p>
-<p><img src="cluster/8.5.png" alt="8.5"></p>
-<p><img src="cluster/9.png" alt="9"></p>
+<img src="/.com//05/30/cluster/7.png" class width="7">
+
+<img src="/.com//05/30/cluster/8.png" class width="8">
+
+<img src="/.com//05/30/cluster/8.5.png" class title="8.5">
+
+
+
+<img src="/.com//05/30/cluster/9.png" class width="9">
+
+
+
+
+
 <h3 id="3-常见聚类算法"><a href="#3-常见聚类算法" class="headerlink" title="3.常见聚类算法"></a>3.常见聚类算法</h3><h4 id="3-1聚类算法类别"><a href="#3-1聚类算法类别" class="headerlink" title="3.1聚类算法类别"></a>3.1聚类算法类别</h4><table>
 <thead>
 <tr>
@@ -325,13 +335,14 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line">2.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					#对于每个质点</span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					#将数据点分类到距离最近的簇 </span><br><span class="line">3.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line">4.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
+<h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line"><span class="number">2</span>.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					<span class="meta">#对于每个质点</span></span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					<span class="meta">#将数据点分类到距离最近的簇 </span></span><br><span class="line"><span class="number">3</span>.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line"><span class="number">4</span>.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
 
 <p>目标函数 : 假设<img src="https://www.zhihu.com/equation?tex=x_i(i=1,2,%E2%80%A6,n)" alt="[公式]">是数据点，<img src="https://www.zhihu.com/equation?tex=%5Cmu_j(j=1,2,%E2%80%A6,k)" alt="[公式]">是初始化的数据中心</p>
 <p>​                                                        $min\sum_{i=1}^n min ||x_i -\mu_j||^2$</p>
 <p>这个函数是非凸优化函数,会收敛于局部最优解</p>
 <p>函数的曲线如下:[以k=2为例]</p>
-<p><img src="cluster/3.jpg" alt="3"></p>
+<img src="/.com//05/30/cluster/3.jpg" class width="3">
+
 <h5 id="4-1-2算法的基本评价"><a href="#4-1-2算法的基本评价" class="headerlink" title="4.1.2算法的基本评价"></a>4.1.2算法的基本评价</h5><p>时间复杂度: $O(tkn)$ :t :迭代的次数,k表示类别的个数,n表示样本的数量</p>
 <p>相比较     RAM :$O(k(n-k)^2)$                                       CLARA: $O(ks^2 +k(n-k)$</p>
 <p>算法的复杂度比较低,不过很可能得到的是局部最优解(可以通过,模拟退火和 遗传算法 得到最优解)</p>
@@ -339,7 +350,7 @@
 <p>​            2.需要提前确定k值</p>
 <p>​            3.因为会出现进入局部最优解的现象,所以会对噪音点,以及最初中心点的设置会很敏感</p>
 <p>​            4. Not suitable to discover clusters with non-convex shapes</p>
-<h5 id="4-1-3对于K-means-算法的改进"><a href="#4-1-3对于K-means-算法的改进" class="headerlink" title="4.1.3对于K-means 算法的改进"></a>4.1.3对于K-means 算法的改进</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以用 modes来代替均值,用其他方法取确定质点</span><br><span class="line">更换其它衡量clusters相似性的标准,处理categorical object---目标函数</span><br><span class="line">using  frequency-based method to update modes of cluster</span><br><span class="line">a mixture of categorical </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="4-1-3对于K-means-算法的改进"><a href="#4-1-3对于K-means-算法的改进" class="headerlink" title="4.1.3对于K-means 算法的改进"></a>4.1.3对于K-means 算法的改进</h5><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以用 modes来代替均值,用其他方法取确定质点</span><br><span class="line">更换其它衡量clusters相似性的标准,处理categorical object---目标函数</span><br><span class="line"><span class="keyword">using</span>  frequency-based <span class="function"><span class="keyword">method</span> <span class="title">to</span> <span class="title">update</span> <span class="title">modes</span> <span class="title">of</span> <span class="title">cluster</span></span></span><br><span class="line"><span class="function"><span class="title">a</span> <span class="title">mixture</span> <span class="title">of</span> <span class="title">categorical</span> </span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
 
 <h4 id="4-2-K-Medoids"><a href="#4-2-K-Medoids" class="headerlink" title="4.2 K-Medoids"></a>4.2 K-Medoids</h4><p>Find representative object,called medoids ,in clusters</p>
 <h5 id="4-2-1-PAM"><a href="#4-2-1-PAM" class="headerlink" title="4.2.1 PAM"></a>4.2.1 PAM</h5><p>PAM(Partitioning Around Medoids,1987)是作为K-medoids的基础算法,基本流程:</p>
@@ -377,11 +388,12 @@
 </li>
 </ol>
 <h4 id="5-1-AGNES（Agglomerative-Nesting"><a href="#5-1-AGNES（Agglomerative-Nesting" class="headerlink" title="5.1 AGNES（Agglomerative Nesting)"></a>5.1 AGNES（Agglomerative Nesting)</h4><p>sklearn  源码:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class sklearn.cluster.AgglomerativeClustering(n_clusters=2, affinity=’euclidean’, memory=None, connectivity=None, compute_full_tree=’auto’, linkage=’ward’, pooling_func=&lt;function mean&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> sklearn.cluster.<span class="constructor">AgglomerativeClustering(<span class="params">n_clusters</span>=2, <span class="params">affinity</span>=’<span class="params">euclidean</span>’, <span class="params">memory</span>=None, <span class="params">connectivity</span>=None, <span class="params">compute_full_tree</span>=’<span class="params">auto</span>’, <span class="params">linkage</span>=’<span class="params">ward</span>’, <span class="params">pooling_func</span>=&lt;<span class="params">function</span> <span class="params">mean</span>&gt;)</span></span><br></pre></td></tr></table></figure>
 
 <p>算法的主要过程:</p>
 <p>single linkage: 适用两个簇之间 距离最小的一对点的距离作为簇之间的</p>
-<p><img src="cluster/2.1.png" alt="2.1"></p>
+<img src="/.com//05/30/cluster/2.1.png" class title="2.1">
+
 <p>可以看到，该 算法的时间复杂度为 <img src="https://www.zhihu.com/equation?tex=O(n%5E3)" alt="[公式]"> （由于每次合并两个 <code>cluster</code> 时都要遍历大小为 <img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]">的距离矩阵来搜索最小距离，而这样的操作需要进行 <img src="https://www.zhihu.com/equation?tex=n%E2%88%921" alt="[公式]"> 次），空间复杂度为<img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]"> （由于要存储距离矩阵）</p>
 <h4 id="5-2-DIANA"><a href="#5-2-DIANA" class="headerlink" title="5.2 DIANA"></a>5.2 DIANA</h4><p>是AGNES算法的反过程,最后结果是每个样本都是属于一类</p>
 <h4 id="5-3-BIRCH"><a href="#5-3-BIRCH" class="headerlink" title="5.3 BIRCH"></a>5.3 BIRCH</h4><p>链接:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6179132.html">https://www.cnblogs.com/pinard/p/6179132.html</a></p>
@@ -426,12 +438,15 @@
 <p>$\epsilon$ 表示了 域的半径长度</p>
 <p>$MinPts$ :成为核心点的最低密度标准</p>
 <p>定义: 给定的数据集$D = { x_1,x_2…x_m }$</p>
-<p><img src="cluster/3.png" alt="3"></p>
-<p><img src="cluster/4.png" alt="4"></p>
+<img src="/.com//05/30/cluster/3.png" class width="3">
+
+<img src="/.com//05/30/cluster/4.png" class width="4">
+
 <p>所以想要找到满足连接性和最大性的簇的方法就是:如果 $x$ 为核心对象,由 $x$密度可达的所有样本组成的集合$X = {  x^{‘}  \in D | x_{‘}由x密度可达 }$ 即为满足要求的簇</p>
 <h5 id="6-1-2算法的主要流程"><a href="#6-1-2算法的主要流程" class="headerlink" title="6.1.2算法的主要流程"></a>6.1.2算法的主要流程</h5><p>I:寻找样本集中所有的核心对象</p>
 <p>II:形成 满足连接性和最大性的所有核心对象</p>
-<p><img src="cluster/5.png" alt="5"></p>
+<img src="/.com//05/30/cluster/5.png" class width="5">
+
 <h5 id="6-1-3算法小结"><a href="#6-1-3算法小结" class="headerlink" title="6.1.3算法小结"></a>6.1.3算法小结</h5><p>　DBSCAN的主要优点有：</p>
 <p>　　　1） 可以对任意形状的稠密数据集进行聚类，相对的，K-Means之类的聚类算法一般只适用于凸数据集。</p>
 <p>　　　2） 可以在聚类的同时发现异常点，对数据集中的异常点不敏感。</p>
@@ -441,7 +456,8 @@
 <p>　　　2） 如果样本集较大时，聚类收敛时间较长，此时可以对搜索最近邻时建立的$KD$树或者球树进行规模限制来改进。</p>
 <p>　　　3） 调参相对于传统的K-Means之类的聚类算法稍复杂，主要需要对距离阈值ϵϵ，邻域样本数阈值$MinPts$联合调参，不同的参数组合对最后的聚类效果有较大影响。</p>
 <h4 id="6-2-OPTICS"><a href="#6-2-OPTICS" class="headerlink" title="6.2 OPTICS"></a>6.2 OPTICS</h4><p>该算法是DBSCAN算法的改进(相关概念延续上面)</p>
-<h5 id="6-2-1-定义"><a href="#6-2-1-定义" class="headerlink" title="6.2.1 定义"></a>6.2.1 定义</h5><p><img src="cluster/6.png" alt="6"></p>
+<h5 id="6-2-1-定义"><a href="#6-2-1-定义" class="headerlink" title="6.2.1 定义"></a>6.2.1 定义</h5><img src="/.com//05/30/cluster/6.png" class width="6">
+
 <p>说明:如果当x为核心点时,</p>
 <p>$$rd(y,x) =\begin{cases} d(x,y) \qquad 当y不是x邻域中的点\ cd(x) \qquad 当y是邻域中的点时,为x的核心距离   \end{cases}$$</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LoveCarpenter/article/details/85049135">https://blog.csdn.net/LoveCarpenter/article/details/85049135</a></p>

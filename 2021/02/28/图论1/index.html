@@ -20,23 +20,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="图论图的存储结构点：只关注顶点的编号，可以不存储;如果存储，可以使用线性表存储图的顶点集合(v1,v2,….vn) 边：采用邻接矩阵，邻接表，边表表示 邻接矩阵 顶点表: 用一个一维数组存储图中顶点的信息， 边表：用一个二维数组存储图中边的信息，存储顶点之间邻接关系的二维数组称为邻接矩阵   12345678#define MaxVertexNum 100typedef char VertexTy">
+<meta name="description" content="图论图的存储结构点：只关注顶点的编号，可以不存储;如果存储，可以使用线性表存储图的顶点集合(v1,v2,….vn) 边：采用邻接矩阵，邻接表，边表表示 邻接矩阵 顶点表: 用一个一维数组存储图中顶点的信息， 边表：用一个二维数组存储图中边的信息，存储顶点之间邻接关系的二维数组称为邻接矩阵    12345678#define MaxVertexNum 100typedef char VertexT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图论1">
 <meta property="og:url" content="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="图论图的存储结构点：只关注顶点的编号，可以不存储;如果存储，可以使用线性表存储图的顶点集合(v1,v2,….vn) 边：采用邻接矩阵，邻接表，边表表示 邻接矩阵 顶点表: 用一个一维数组存储图中顶点的信息， 边表：用一个二维数组存储图中边的信息，存储顶点之间邻接关系的二维数组称为邻接矩阵   12345678#define MaxVertexNum 100typedef char VertexTy">
+<meta property="og:description" content="图论图的存储结构点：只关注顶点的编号，可以不存储;如果存储，可以使用线性表存储图的顶点集合(v1,v2,….vn) 边：采用邻接矩阵，邻接表，边表表示 邻接矩阵 顶点表: 用一个一维数组存储图中顶点的信息， 边表：用一个二维数组存储图中边的信息，存储顶点之间邻接关系的二维数组称为邻接矩阵    12345678#define MaxVertexNum 100typedef char VertexT">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png">
-<meta property="og:image" content="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-20.png">
-<meta property="og:image" content="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-38.png">
+<meta property="og:image" content="http://example.com/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png">
+<meta property="og:image" content="http://example.com/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-20.png">
+<meta property="og:image" content="http://example.com/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-38.png">
 <meta property="article:published_time" content="2021-02-28T01:18:00.000Z">
 <meta property="article:modified_time" content="2021-07-25T01:10:36.865Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="机试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png">
+<meta name="twitter:image" content="http://example.com/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png">
 
 
 <link rel="canonical" href="http://example.com/2021/02/28/%E5%9B%BE%E8%AE%BA1/">
@@ -231,7 +231,8 @@
 <li>顶点表: 用一个<strong>一维数组</strong>存储图中顶点的信息，</li>
 <li>边表：用一个<strong>二维数组</strong>存储图中边的信息，存储顶点之间邻接关系的二维数组称为邻接矩阵</li>
 </ul>
-<p><img src="%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png" alt="2021-02-28_16-29"></p>
+<img src="/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-29.png" class title="2021-02-28_16-29">
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MaxVertexNum 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> VertexType			<span class="comment">//顶点编号的数据类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> EdgeType				<span class="comment">//有权图中边上权值的数据类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	VertexType Vex[MaxVertexNum]; 										<span class="comment">//顶点表，可以省略</span></span><br><span class="line">	EdgeType Edge[MaxVertexNum][MaxVertexNum]; 	<span class="comment">//边表</span></span><br><span class="line">	<span class="keyword">int</span> vexnum,arcnum;</span><br><span class="line">&#125; MGraph;</span><br></pre></td></tr></table></figure>
 
 
@@ -247,8 +248,12 @@
 
 
 <p><strong>邻接链表表示无向图</strong></p>
-<p><img src="%E5%9B%BE%E8%AE%BA1/2021-02-28_16-20.png" alt="2021-02-28_16-20"></p>
-<h4 id="邻接链表-V-S-邻接矩阵"><a href="#邻接链表-V-S-邻接矩阵" class="headerlink" title="邻接链表 V.S. 邻接矩阵"></a>邻接链表 V.S. 邻接矩阵</h4><p><img src="%E5%9B%BE%E8%AE%BA1/2021-02-28_16-38.png" alt="2021-02-28_16-38"></p>
+<img src="/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-20.png" class title="2021-02-28_16-20">
+
+<h4 id="邻接链表-V-S-邻接矩阵"><a href="#邻接链表-V-S-邻接矩阵" class="headerlink" title="邻接链表 V.S. 邻接矩阵"></a>邻接链表 V.S. 邻接矩阵</h4><img src="/.com//02/28/%E5%9B%BE%E8%AE%BA1/2021-02-28_16-38.png" class title="2021-02-28_16-38">
+
+
+
 <h2 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h2><h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h2 id="最短路问题"><a href="#最短路问题" class="headerlink" title="最短路问题"></a>最短路问题</h2><p>对于无权图而言，可以利用广度优先搜索查找单源最短路径</p>
 <p>对于有权图而言，可以利用Dijkstra算法计算单源最短路径，利用Floyd算法计算顶点之间的最短路</p>
 <h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>保存的数据:</p>

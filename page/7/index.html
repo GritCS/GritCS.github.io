@@ -234,60 +234,63 @@
 <li><strong>分布式</strong>：<strong>Git</strong>，Darcs,…</li>
 </ul>
 <h2 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h2><h3 id="1-1本地库初始化"><a href="#1-1本地库初始化" class="headerlink" title="1.1本地库初始化"></a>1.1本地库初始化</h3><p><code>进入文件夹</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">注意：生成的 .git 目录中存放的是本地库相关文件，不要删除</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">init</span></span><br><span class="line">注意：生成的 .git 目录中存放的是本地库相关文件，不要删除</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-2设置签名"><a href="#1-2设置签名" class="headerlink" title="1.2设置签名"></a>1.2设置签名</h3><ul>
 <li><p>项目(仓库)级别<code>仅在当前本地库有效</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name tom  #设置用户名tom</span><br><span class="line">git config user.email liu@qq.com #设置用户邮箱</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="keyword">user</span>.name tom  <span class="comment">#设置用户名tom</span></span><br><span class="line">git config <span class="keyword">user</span>.email liu@qq.com <span class="comment">#设置用户邮箱</span></span><br></pre></td></tr></table></figure></li>
 <li><p>系统用户级别<code>仅在当前登录的操作系统用户有效</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name tom</span><br><span class="line">git config --global user.email liu@qq.com</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">config</span> <span class="comment">--global user.name tom</span></span><br><span class="line">git <span class="built_in">config</span> <span class="comment">--global user.email liu@qq.com</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <blockquote>
 <p>仅仅加了一个 <code>--global</code></p>
 <p>优先级别：<code>项目级别</code>  &gt;  <code>系统级别</code></p>
 <p>信息保存位置：<code>~/.gitconfig 文件</code>   </p>
 </blockquote>
-<h3 id="1-3基本操作"><a href="#1-3基本操作" class="headerlink" title="1.3基本操作"></a>1.3基本操作</h3><h4 id="1-3-1-状态查看"><a href="#1-3-1-状态查看" class="headerlink" title="1.3.1 状态查看"></a>1.3.1 状态查看</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status   #查看工作区、暂存区状态</span><br></pre></td></tr></table></figure>
+<h3 id="1-3基本操作"><a href="#1-3基本操作" class="headerlink" title="1.3基本操作"></a>1.3基本操作</h3><h4 id="1-3-1-状态查看"><a href="#1-3-1-状态查看" class="headerlink" title="1.3.1 状态查看"></a>1.3.1 状态查看</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> status   <span class="comment">#查看工作区、暂存区状态</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="1-3-2-添加"><a href="#1-3-2-添加" class="headerlink" title="1.3.2 添加"></a>1.3.2 添加</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add fileName  #指定文件</span><br><span class="line">git add . #所有</span><br><span class="line">说明：将工作区的文件添加到暂存区</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached filename</span><br><span class="line">git rm /*</span><br><span class="line">＃将filename对应的文件从缓存区撤回，但是文件仍保留在工作区，相当于是add的一个撤回操作　sudo权限</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-2-添加"><a href="#1-3-2-添加" class="headerlink" title="1.3.2 添加"></a>1.3.2 添加</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span> fileName  <span class="meta">#指定文件</span></span><br><span class="line">git <span class="keyword">add</span> . <span class="meta">#所有</span></span><br><span class="line">说明：将工作区的文件添加到暂存区</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="1-3-3-提交"><a href="#1-3-3-提交" class="headerlink" title="1.3.3 提交"></a>1.3.3 提交</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &#x27;commit message&#x27; fileName</span><br><span class="line">说明：将暂存区内容提交到本地库,不需要再通过vim编辑提交的说明信息，没有提交信息，本次提交将无效</span><br><span class="line">git commit *</span><br><span class="line">说明：将暂存区中的所有内容都提交到本地库中</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -<span class="literal">-cached</span> filename</span><br><span class="line">git <span class="built_in">rm</span> /*</span><br><span class="line">＃将filename对应的文件从缓存区撤回，但是文件仍保留在工作区，相当于是add的一个撤回操作　sudo权限</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-3-3-提交"><a href="#1-3-3-提交" class="headerlink" title="1.3.3 提交"></a>1.3.3 提交</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">commit</span> -m <span class="string">&#x27;commit message&#x27;</span> fileName</span><br><span class="line">说明：将暂存区内容提交到本地库,不需要再通过vim编辑提交的说明信息，没有提交信息，本次提交将无效</span><br><span class="line">git <span class="keyword">commit</span> *</span><br><span class="line">说明：将暂存区中的所有内容都提交到本地库中</span><br></pre></td></tr></table></figure>
 
 <p>文件修改之后</p>
 <ol>
 <li>要先git add加到暂存区中，之后再添加到git commit</li>
 <li>或者直接使用 git -a commit filename 这时本次提交不能撤回(git rm /*)</li>
 </ol>
-<h4 id="1-3-4-查看历史记录"><a href="#1-3-4-查看历史记录" class="headerlink" title="1.3.4 查看历史记录"></a>1.3.4 查看历史记录</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git log #查看提交的日志，包括时间，提交的说明信息</span><br><span class="line">git reflog  #常用</span><br><span class="line">git log --greph #图形显示,更直观</span><br><span class="line">git log --pretty=oneline #每行日志</span><br><span class="line">git log --oneline #简洁显示</span><br><span class="line">说明：HEAD@&#123;移动到当前版本需要多少步&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-4-查看历史记录"><a href="#1-3-4-查看历史记录" class="headerlink" title="1.3.4 查看历史记录"></a>1.3.4 查看历史记录</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">#查看提交的日志，包括时间，提交的说明信息</span></span><br><span class="line">git reflog  <span class="comment">#常用</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--greph #图形显示,更直观</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--pretty=oneline #每行日志</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--oneline #简洁显示</span></span><br><span class="line">说明：HEAD@&#123;移动到当前版本需要多少步&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_10-49.png" alt="2020-08-23_10-49"></p>
+<img src="/.com//08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_10-49.png" class title="2020-08-23_10-49">
+
 <p>哈希值＋指针移动量＋提交的说明信息</p>
 <p>多屏控制的方式：</p>
 <p>１．空格向下翻页　，ｂ向下翻页　，ｑ退出</p>
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_10-59.png" alt="2020-08-23_10-59"></p>
+<img src="/.com//08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_10-59.png" class title="2020-08-23_10-59">
+
 <h4 id="1-3-5-前进后退"><a href="#1-3-5-前进后退" class="headerlink" title="1.3.5 前进后退"></a>1.3.5 前进后退</h4><ul>
 <li><p>基于索引值<code>推荐</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br><span class="line">例子：git reset --hard a6ace91 #回到这个状态，a6ace91指的是日志的短的索引值</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard 指针位置</span></span><br><span class="line">例子：git <span class="keyword">reset</span> <span class="comment">--hard a6ace91 #回到这个状态，a6ace91指的是日志的短的索引值</span></span><br></pre></td></tr></table></figure></li>
 <li><p>使用 <strong>^</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line">例子：git reset --hard HEAD^^</span><br><span class="line">注意：几个 ^ 表示后退几步</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD^</span></span><br><span class="line">例子：git <span class="keyword">reset</span> <span class="comment">--hard HEAD^^</span></span><br><span class="line">注意：几个 ^ 表示后退几步</span><br></pre></td></tr></table></figure></li>
 <li><p>使用 <strong>~</strong> 符号<code>只能后退</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br><span class="line">例子：git reset --hard HEAD~3</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD~n</span></span><br><span class="line">例子：git <span class="keyword">reset</span> <span class="comment">--hard HEAD~3</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="1-3-6-reset的三个参数比较"><a href="#1-3-6-reset的三个参数比较" class="headerlink" title="1.3.6 reset的三个参数比较"></a>1.3.6 reset的三个参数比较</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">soft: </span><br><span class="line">  - 仅本地库移动HEAD 指针</span><br><span class="line">mixed:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区</span><br><span class="line">hard:</span><br><span class="line">  - 在本地库移动HEAD指针</span><br><span class="line">  - 重置暂存区－－及暂存区的文件也回到之前的版本</span><br><span class="line">  - 重置工作区</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-6-reset的三个参数比较"><a href="#1-3-6-reset的三个参数比较" class="headerlink" title="1.3.6 reset的三个参数比较"></a>1.3.6 reset的三个参数比较</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">soft: </span><br><span class="line"><span class="bullet">  -</span> 仅本地库移动HEAD 指针</span><br><span class="line">mixed:</span><br><span class="line"><span class="bullet">  -</span> 在本地库移动HEAD指针</span><br><span class="line"><span class="bullet">  -</span> 重置暂存区</span><br><span class="line">hard:</span><br><span class="line"><span class="bullet">  -</span> 在本地库移动HEAD指针</span><br><span class="line"><span class="bullet">  -</span> 重置暂存区－－及暂存区的文件也回到之前的版本</span><br><span class="line"><span class="bullet">  -</span> 重置工作区</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-3-7-删除文件并找回"><a href="#1-3-7-删除文件并找回" class="headerlink" title="1.3.7　删除文件并找回"></a>1.3.7　删除文件并找回</h4><ul>
 <li><strong>相当于建立一个快照，虽然删除了，但只要添加到暂存区，就能找回</strong></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 指针位置</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard 指针位置</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="git%E5%91%BD%E4%BB%A4/2020-08-23_11-45.png" alt="2020-08-23_11-45"></p>
-<h4 id="1-3-8-文件差异比较"><a href="#1-3-8-文件差异比较" class="headerlink" title="1.3.8 文件差异比较"></a>1.3.8 文件差异比较</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff 文件名 #将工作区中的文件与暂存区中的文件进行比较</span><br><span class="line">git diff 哈希值 文件名  #将工作区中的文件和历史中的一个版本比较</span><br><span class="line">git diff  #不带文件名，则比较多个文件</span><br></pre></td></tr></table></figure>
+<img src="/.com//08/23/git%E5%91%BD%E4%BB%A4/2020-08-23_11-45.png" class title="2020-08-23_11-45">
+
+<h4 id="1-3-8-文件差异比较"><a href="#1-3-8-文件差异比较" class="headerlink" title="1.3.8 文件差异比较"></a>1.3.8 文件差异比较</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">diff </span>文件名 <span class="comment">#将工作区中的文件与暂存区中的文件进行比较</span></span><br><span class="line">git <span class="keyword">diff </span>哈希值 文件名  <span class="comment">#将工作区中的文件和历史中的一个版本比较</span></span><br><span class="line">git <span class="keyword">diff </span> <span class="comment">#不带文件名，则比较多个文件</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="2-2-分支管理"><a href="#2-2-分支管理" class="headerlink" title="2.2 分支管理"></a>2.2 分支管理</h3><p><code>hot_fix</code> <code>master</code> <code>feature_x</code> <code>feature_y</code></p>
 <h4 id="2-2-1-什么是分支管理"><a href="#2-2-1-什么是分支管理" class="headerlink" title="2.2.1 什么是分支管理"></a>2.2.1 什么是分支管理</h4><ul>
@@ -300,27 +303,27 @@
 <h4 id="2-2-3-分支操作"><a href="#2-2-3-分支操作" class="headerlink" title="2.2.3 分支操作"></a>2.2.3 分支操作</h4><ul>
 <li>创建分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span>分支名</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>查看分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">git branch -v </span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch</span></span><br><span class="line"><span class="keyword"></span>git <span class="keyword">branch </span>-v </span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>切换分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br><span class="line">git checkout -b 分支名   #创建分支并直接切换到该分支</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br><span class="line">git checkout -<span class="keyword">b </span>分支名   <span class="comment">#创建分支并直接切换到该分支</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>合并分支<code>相当于把修改了的文件拉过来</code></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git merge xxx</span><br><span class="line">注意：合并分支的时候要明确谁谁合并</span><br><span class="line">	我在a分支里面修改了。要合并到master，就先切换到master，然后合并b</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git merge xxx</span><br><span class="line">注意：合并分支的时候要明确谁谁合并</span><br><span class="line">	我在a分支里面修改了。要合并到<span class="literal">master</span>，就先切换到<span class="literal">master</span>，然后合并b</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>删除分支</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d 分支名</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span>-d 分支名</span><br></pre></td></tr></table></figure>
 
 
 
@@ -335,24 +338,24 @@
 </li>
 </ul>
 <h2 id="Git-结合Github"><a href="#Git-结合Github" class="headerlink" title="Git 结合Github"></a>Git 结合Github</h2><p><code>别分手</code>  <code>别名 分支名</code></p>
-<h4 id="1-1-创建远程库地址别名"><a href="#1-1-创建远程库地址别名" class="headerlink" title="1.1 创建远程库地址别名"></a>1.1 创建远程库地址别名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v  #查看远程地址别名</span><br><span class="line">git remote add 别名 远程地址 </span><br><span class="line">例子：git remote add origin https://xx</span><br></pre></td></tr></table></figure>
+<h4 id="1-1-创建远程库地址别名"><a href="#1-1-创建远程库地址别名" class="headerlink" title="1.1 创建远程库地址别名"></a>1.1 创建远程库地址别名</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v  <span class="meta">#查看远程地址别名</span></span><br><span class="line">git remote <span class="keyword">add</span> 别名 远程地址 </span><br><span class="line">例子：git remote <span class="keyword">add</span> origin https:<span class="comment">//xx</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="1-2-推送"><a href="#1-2-推送" class="headerlink" title="1.2 推送"></a>1.2 推送</h4><p><code>开发修改完把本地库的文件推送到远程仓库</code> <code>前提是提交到了本地库才可以推送</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push 远程库别名 分支名</span><br><span class="line">git push -u 远程库别名 分支名    #-u指定默认主机</span><br><span class="line">例子：git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> 远程库别名 分支名</span><br><span class="line">git <span class="keyword">push</span> -u 远程库别名 分支名    <span class="meta">#-u指定默认主机</span></span><br><span class="line">例子：git <span class="keyword">push</span> origin master</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-3-克隆"><a href="#1-3-克隆" class="headerlink" title="1.3 克隆"></a>1.3 克隆</h4><p><code>完整的把远程库克隆到本地</code>  <code>克隆下来后不要在主分支里面做开发</code> <code>clone进行一次，从无到有的过程，更新用pull</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone  远程地址</span><br><span class="line">例子：git clone https://xx</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span>  <span class="title">远程地址</span></span><br><span class="line"><span class="title">例子：git</span> <span class="keyword">clone</span> <span class="title">https</span>://xx</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-4-拉取"><a href="#1-4-拉取" class="headerlink" title="1.4 拉取"></a>1.4 拉取</h4><p>  <code>本地存在clone下来的文件  就用pull更新</code>  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pull = fetch + merge</span><br><span class="line">	git fetch 别名 分支名</span><br><span class="line">	git merge 别名 分支名</span><br><span class="line">git pull 别名 分支名</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pull <span class="operator">=</span> <span class="keyword">fetch</span> <span class="operator">+</span> <span class="keyword">merge</span></span><br><span class="line">	git <span class="keyword">fetch</span> 别名 分支名</span><br><span class="line">	git <span class="keyword">merge</span> 别名 分支名</span><br><span class="line">git pull 别名 分支名</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-5-解决冲突"><a href="#1-5-解决冲突" class="headerlink" title="1.5 解决冲突"></a>1.5 解决冲突</h4><p><code>注意：解决冲突后的提交是不能带文件名的</code></p>
 <p><code>如果不是基于远程库最新版做的修改不能推送，必须先pull下来安装冲突办法解决</code></p>
 <h4 id="1-6-rebase"><a href="#1-6-rebase" class="headerlink" title="1.6 rebase"></a>1.6 rebase</h4><p><code>提交记录简洁不分叉</code>  <code>没学懂，感觉有点鸡肋</code> <code>混眼熟</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i 索引号</span><br><span class="line">git rebase -i HEAD~3  #合并最近三条记录</span><br><span class="line">说明：在vim编辑里面改成s</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> 索引号</span><br><span class="line">git rebase -<span class="selector-tag">i</span> HEAD~<span class="number">3</span>  #合并最近三条记录</span><br><span class="line">说明：在vim编辑里面改成s</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-7-beyond-compare"><a href="#1-7-beyond-compare" class="headerlink" title="1.7 beyond compare"></a>1.7 beyond compare</h4><p><code>用软件解决冲突</code> </p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.安装 ：</span><br><span class="line">	beyond compare </span><br><span class="line">2.配置：</span><br><span class="line">    git config --local merge.tool bc3  #合并名称</span><br><span class="line">    git config --local mergetool.path &#x27;/usr/local/bin/bcomp&#x27; #软件路径</span><br><span class="line">    git config --local mergetool.keepBackup false  #False不用保存备份</span><br><span class="line">3.应用：</span><br><span class="line">	git mergetool</span><br><span class="line">说明：--local指只在当前操作系统有效</span><br></pre></td></tr></table></figure>
+ <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>安装 ：</span><br><span class="line">	beyond compare </span><br><span class="line"><span class="number">2.</span>配置：</span><br><span class="line">    git config --<span class="keyword">local</span> merge.tool bc3  <span class="meta">#合并名称</span></span><br><span class="line">    git config --<span class="keyword">local</span> mergetool.path <span class="string">&#x27;/usr/local/bin/bcomp&#x27;</span> <span class="meta">#软件路径</span></span><br><span class="line">    git config --<span class="keyword">local</span> mergetool.keepBackup <span class="literal">false</span>  <span class="meta">#False不用保存备份</span></span><br><span class="line"><span class="number">3.</span>应用：</span><br><span class="line">	git mergetool</span><br><span class="line">说明：--<span class="keyword">local</span>指只在当前操作系统有效</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-8-跨团队合作"><a href="#1-8-跨团队合作" class="headerlink" title="1.8 跨团队合作"></a>1.8 跨团队合作</h4><p><code>代码review之后合并</code></p>
 <ul>
@@ -369,7 +372,7 @@
 </li>
 </ul>
 <h4 id="1-9-Tag标签"><a href="#1-9-Tag标签" class="headerlink" title="1.9 Tag标签"></a>1.9 Tag标签</h4><p><code>为了清晰的版本管理，公司一般不会直接使用commit提交</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.0 -m &#x27;版本介绍&#x27;   #创建本地tag信息</span><br><span class="line">git tag -d v1.0    		#删除tag</span><br><span class="line">git push origin --tags   #将本地tag信息推送到远程库</span><br><span class="line">git pull origin --tags    #拉取到本地</span><br><span class="line"></span><br><span class="line">git checkout v.10    #切换tag</span><br><span class="line">git clone -b v0.1 地址   #指定tag下载代码</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> v1.<span class="number">0</span> -m &#x27;版本介绍&#x27;   <span class="comment">#创建本地tag信息</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-d</span> v1.<span class="number">0</span>    		<span class="comment">#删除tag</span></span><br><span class="line">git push origin --tags   <span class="comment">#将本地tag信息推送到远程库</span></span><br><span class="line">git pull origin --tags    <span class="comment">#拉取到本地</span></span><br><span class="line"></span><br><span class="line">git checkout v.<span class="number">10</span>    <span class="comment">#切换tag</span></span><br><span class="line">git <span class="keyword">clone</span> <span class="title">-b</span> v0.<span class="number">1</span> 地址   <span class="comment">#指定tag下载代码</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -379,14 +382,14 @@
 <li>登录GitHub。<code>Settings</code>  –&gt; <code>SSH and GPG keys </code> –&gt; <code>New SSH Key    </code></li>
 <li>回到git通过ssh地址创建。<code>git remote add 别名 SSH地址  </code></li>
 </ul>
-<h2 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h2><h4 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在项目开发过程中使用Git的方式</span><br></pre></td></tr></table></figure>
+<h2 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h2><h4 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在项目开发过程中使用Git的方式</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h4><h5 id="1-2-1-集中式工作流"><a href="#1-2-1-集中式工作流" class="headerlink" title="1.2.1 集中式工作流"></a>1.2.1 集中式工作流</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像SVN一样，集中式工作流有一个中央仓库，所有的修改都提交到了Master分支上</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h4><h5 id="1-2-1-集中式工作流"><a href="#1-2-1-集中式工作流" class="headerlink" title="1.2.1 集中式工作流"></a>1.2.1 集中式工作流</h5><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像SVN一样，集中式工作流有一个中央仓库，所有的修改都提交到了<span class="literal">Master</span>分支上</span><br></pre></td></tr></table></figure>
 
 <h5 id="1-2-2-GitFlow工作流"><a href="#1-2-2-GitFlow工作流" class="headerlink" title="1.2.2 GitFlow工作流 *"></a>1.2.2 GitFlow工作流 <code>*</code></h5><p>主干分支<code>master</code>  开发分支<code>develop</code>  修复分支<code>hotfix</code>   预发布分支<code>release</code>  功能分支<code>feature</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitFlow 有独立的分支，让发布迭代过程更流畅。</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">GitFlow</span> 有独立的分支，让发布迭代过程更流畅。</span><br></pre></td></tr></table></figure>
 
-<h5 id="1-2-3-Forking-工作流"><a href="#1-2-3-Forking-工作流" class="headerlink" title="1.2.3 Forking 工作流"></a>1.2.3 Forking 工作流</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 GitFlow 基础上， 充分利用了 Git 的 Fork 和 pull request 的功能以达到代码审核的目的。 </span><br><span class="line">安全可靠地管理大团队的开发者</span><br></pre></td></tr></table></figure>
+<h5 id="1-2-3-Forking-工作流"><a href="#1-2-3-Forking-工作流" class="headerlink" title="1.2.3 Forking 工作流"></a>1.2.3 Forking 工作流</h5><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 GitFlow 基础上， 充分利用了 Git 的 Fork 和 pull <span class="built_in">request</span> 的功能以达到代码审核的目的。 </span><br><span class="line">安全可靠地管理大团队的开发者</span><br></pre></td></tr></table></figure>
 
 
       
@@ -476,10 +479,20 @@
 <p>训练的目标:</p>
 <p>1.簇间的距离较大,簇内的距离较小</p>
 <h3 id="2-指标和距离公式的选择"><a href="#2-指标和距离公式的选择" class="headerlink" title="2.指标和距离公式的选择"></a>2.指标和距离公式的选择</h3><p> 性能指标:簇内的相似度 和  簇间的相似度</p>
-<p><img src="cluster/7.png" alt="7"></p>
-<p><img src="cluster/8.png" alt="8"></p>
-<p><img src="cluster/8.5.png" alt="8.5"></p>
-<p><img src="cluster/9.png" alt="9"></p>
+<img src="/.com//05/30/cluster/7.png" class width="7">
+
+<img src="/.com//05/30/cluster/8.png" class width="8">
+
+<img src="/.com//05/30/cluster/8.5.png" class title="8.5">
+
+
+
+<img src="/.com//05/30/cluster/9.png" class width="9">
+
+
+
+
+
 <h3 id="3-常见聚类算法"><a href="#3-常见聚类算法" class="headerlink" title="3.常见聚类算法"></a>3.常见聚类算法</h3><h4 id="3-1聚类算法类别"><a href="#3-1聚类算法类别" class="headerlink" title="3.1聚类算法类别"></a>3.1聚类算法类别</h4><table>
 <thead>
 <tr>
@@ -529,13 +542,14 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line">2.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					#对于每个质点</span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					#将数据点分类到距离最近的簇 </span><br><span class="line">3.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line">4.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
+<h3 id="4-Partition-Algorithm"><a href="#4-Partition-Algorithm" class="headerlink" title="4. Partition Algorithm"></a>4. Partition Algorithm</h3><h4 id="4-1-k-means"><a href="#4-1-k-means" class="headerlink" title="4.1 k-means"></a>4.1 k-means</h4><h5 id="4-1-1算法的基本步骤"><a href="#4-1-1算法的基本步骤" class="headerlink" title="4.1.1算法的基本步骤:"></a>4.1.1算法的基本步骤:</h5><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.创建k个点作为初始质点(经常是随机选取)</span><br><span class="line"><span class="number">2</span>.当任意一个点的簇分配结果发生变化时</span><br><span class="line">			*对于每个数据集中的数据点</span><br><span class="line">					<span class="meta">#对于每个质点</span></span><br><span class="line">							计算出质心与数据点之间的距离</span><br><span class="line">					<span class="meta">#将数据点分类到距离最近的簇 </span></span><br><span class="line"><span class="number">3</span>.对于每个簇,计算簇中的所有点的均值作为新的质心</span><br><span class="line"><span class="number">4</span>.重复上述操作,直至目标函数不再出现更优的结果</span><br></pre></td></tr></table></figure>
 
 <p>目标函数 : 假设<img src="https://www.zhihu.com/equation?tex=x_i(i=1,2,%E2%80%A6,n)" alt="[公式]">是数据点，<img src="https://www.zhihu.com/equation?tex=%5Cmu_j(j=1,2,%E2%80%A6,k)" alt="[公式]">是初始化的数据中心</p>
 <p>​                                                        $min\sum_{i=1}^n min ||x_i -\mu_j||^2$</p>
 <p>这个函数是非凸优化函数,会收敛于局部最优解</p>
 <p>函数的曲线如下:[以k=2为例]</p>
-<p><img src="cluster/3.jpg" alt="3"></p>
+<img src="/.com//05/30/cluster/3.jpg" class width="3">
+
 <h5 id="4-1-2算法的基本评价"><a href="#4-1-2算法的基本评价" class="headerlink" title="4.1.2算法的基本评价"></a>4.1.2算法的基本评价</h5><p>时间复杂度: $O(tkn)$ :t :迭代的次数,k表示类别的个数,n表示样本的数量</p>
 <p>相比较     RAM :$O(k(n-k)^2)$                                       CLARA: $O(ks^2 +k(n-k)$</p>
 <p>算法的复杂度比较低,不过很可能得到的是局部最优解(可以通过,模拟退火和 遗传算法 得到最优解)</p>
@@ -543,7 +557,7 @@
 <p>​            2.需要提前确定k值</p>
 <p>​            3.因为会出现进入局部最优解的现象,所以会对噪音点,以及最初中心点的设置会很敏感</p>
 <p>​            4. Not suitable to discover clusters with non-convex shapes</p>
-<h5 id="4-1-3对于K-means-算法的改进"><a href="#4-1-3对于K-means-算法的改进" class="headerlink" title="4.1.3对于K-means 算法的改进"></a>4.1.3对于K-means 算法的改进</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以用 modes来代替均值,用其他方法取确定质点</span><br><span class="line">更换其它衡量clusters相似性的标准,处理categorical object---目标函数</span><br><span class="line">using  frequency-based method to update modes of cluster</span><br><span class="line">a mixture of categorical </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="4-1-3对于K-means-算法的改进"><a href="#4-1-3对于K-means-算法的改进" class="headerlink" title="4.1.3对于K-means 算法的改进"></a>4.1.3对于K-means 算法的改进</h5><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以用 modes来代替均值,用其他方法取确定质点</span><br><span class="line">更换其它衡量clusters相似性的标准,处理categorical object---目标函数</span><br><span class="line"><span class="keyword">using</span>  frequency-based <span class="function"><span class="keyword">method</span> <span class="title">to</span> <span class="title">update</span> <span class="title">modes</span> <span class="title">of</span> <span class="title">cluster</span></span></span><br><span class="line"><span class="function"><span class="title">a</span> <span class="title">mixture</span> <span class="title">of</span> <span class="title">categorical</span> </span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
 
 <h4 id="4-2-K-Medoids"><a href="#4-2-K-Medoids" class="headerlink" title="4.2 K-Medoids"></a>4.2 K-Medoids</h4><p>Find representative object,called medoids ,in clusters</p>
 <h5 id="4-2-1-PAM"><a href="#4-2-1-PAM" class="headerlink" title="4.2.1 PAM"></a>4.2.1 PAM</h5><p>PAM(Partitioning Around Medoids,1987)是作为K-medoids的基础算法,基本流程:</p>
@@ -581,11 +595,12 @@
 </li>
 </ol>
 <h4 id="5-1-AGNES（Agglomerative-Nesting"><a href="#5-1-AGNES（Agglomerative-Nesting" class="headerlink" title="5.1 AGNES（Agglomerative Nesting)"></a>5.1 AGNES（Agglomerative Nesting)</h4><p>sklearn  源码:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class sklearn.cluster.AgglomerativeClustering(n_clusters=2, affinity=’euclidean’, memory=None, connectivity=None, compute_full_tree=’auto’, linkage=’ward’, pooling_func=&lt;function mean&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> sklearn.cluster.<span class="constructor">AgglomerativeClustering(<span class="params">n_clusters</span>=2, <span class="params">affinity</span>=’<span class="params">euclidean</span>’, <span class="params">memory</span>=None, <span class="params">connectivity</span>=None, <span class="params">compute_full_tree</span>=’<span class="params">auto</span>’, <span class="params">linkage</span>=’<span class="params">ward</span>’, <span class="params">pooling_func</span>=&lt;<span class="params">function</span> <span class="params">mean</span>&gt;)</span></span><br></pre></td></tr></table></figure>
 
 <p>算法的主要过程:</p>
 <p>single linkage: 适用两个簇之间 距离最小的一对点的距离作为簇之间的</p>
-<p><img src="cluster/2.1.png" alt="2.1"></p>
+<img src="/.com//05/30/cluster/2.1.png" class title="2.1">
+
 <p>可以看到，该 算法的时间复杂度为 <img src="https://www.zhihu.com/equation?tex=O(n%5E3)" alt="[公式]"> （由于每次合并两个 <code>cluster</code> 时都要遍历大小为 <img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]">的距离矩阵来搜索最小距离，而这样的操作需要进行 <img src="https://www.zhihu.com/equation?tex=n%E2%88%921" alt="[公式]"> 次），空间复杂度为<img src="https://www.zhihu.com/equation?tex=O(n%5E2)+" alt="[公式]"> （由于要存储距离矩阵）</p>
 <h4 id="5-2-DIANA"><a href="#5-2-DIANA" class="headerlink" title="5.2 DIANA"></a>5.2 DIANA</h4><p>是AGNES算法的反过程,最后结果是每个样本都是属于一类</p>
 <h4 id="5-3-BIRCH"><a href="#5-3-BIRCH" class="headerlink" title="5.3 BIRCH"></a>5.3 BIRCH</h4><p>链接:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6179132.html">https://www.cnblogs.com/pinard/p/6179132.html</a></p>
@@ -630,12 +645,15 @@
 <p>$\epsilon$ 表示了 域的半径长度</p>
 <p>$MinPts$ :成为核心点的最低密度标准</p>
 <p>定义: 给定的数据集$D = { x_1,x_2…x_m }$</p>
-<p><img src="cluster/3.png" alt="3"></p>
-<p><img src="cluster/4.png" alt="4"></p>
+<img src="/.com//05/30/cluster/3.png" class width="3">
+
+<img src="/.com//05/30/cluster/4.png" class width="4">
+
 <p>所以想要找到满足连接性和最大性的簇的方法就是:如果 $x$ 为核心对象,由 $x$密度可达的所有样本组成的集合$X = {  x^{‘}  \in D | x_{‘}由x密度可达 }$ 即为满足要求的簇</p>
 <h5 id="6-1-2算法的主要流程"><a href="#6-1-2算法的主要流程" class="headerlink" title="6.1.2算法的主要流程"></a>6.1.2算法的主要流程</h5><p>I:寻找样本集中所有的核心对象</p>
 <p>II:形成 满足连接性和最大性的所有核心对象</p>
-<p><img src="cluster/5.png" alt="5"></p>
+<img src="/.com//05/30/cluster/5.png" class width="5">
+
 <h5 id="6-1-3算法小结"><a href="#6-1-3算法小结" class="headerlink" title="6.1.3算法小结"></a>6.1.3算法小结</h5><p>　DBSCAN的主要优点有：</p>
 <p>　　　1） 可以对任意形状的稠密数据集进行聚类，相对的，K-Means之类的聚类算法一般只适用于凸数据集。</p>
 <p>　　　2） 可以在聚类的同时发现异常点，对数据集中的异常点不敏感。</p>
@@ -645,7 +663,8 @@
 <p>　　　2） 如果样本集较大时，聚类收敛时间较长，此时可以对搜索最近邻时建立的$KD$树或者球树进行规模限制来改进。</p>
 <p>　　　3） 调参相对于传统的K-Means之类的聚类算法稍复杂，主要需要对距离阈值ϵϵ，邻域样本数阈值$MinPts$联合调参，不同的参数组合对最后的聚类效果有较大影响。</p>
 <h4 id="6-2-OPTICS"><a href="#6-2-OPTICS" class="headerlink" title="6.2 OPTICS"></a>6.2 OPTICS</h4><p>该算法是DBSCAN算法的改进(相关概念延续上面)</p>
-<h5 id="6-2-1-定义"><a href="#6-2-1-定义" class="headerlink" title="6.2.1 定义"></a>6.2.1 定义</h5><p><img src="cluster/6.png" alt="6"></p>
+<h5 id="6-2-1-定义"><a href="#6-2-1-定义" class="headerlink" title="6.2.1 定义"></a>6.2.1 定义</h5><img src="/.com//05/30/cluster/6.png" class width="6">
+
 <p>说明:如果当x为核心点时,</p>
 <p>$$rd(y,x) =\begin{cases} d(x,y) \qquad 当y不是x邻域中的点\ cd(x) \qquad 当y是邻域中的点时,为x的核心距离   \end{cases}$$</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LoveCarpenter/article/details/85049135">https://blog.csdn.net/LoveCarpenter/article/details/85049135</a></p>
@@ -769,9 +788,9 @@
 </li>
 <li>  何时停止划分</li>
 </ul>
-<h3 id="3-1-如何决定测试条件的分配"><a href="#3-1-如何决定测试条件的分配" class="headerlink" title="3.1 如何决定测试条件的分配"></a>3.1 如何决定测试条件的分配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由特征的类型以及分类的种类(形成2叉树,还是多叉树)有关系</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-如何决定测试条件的分配"><a href="#3-1-如何决定测试条件的分配" class="headerlink" title="3.1 如何决定测试条件的分配"></a>3.1 如何决定测试条件的分配</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由特征的类型以及分类的种类<span class="comment">(形成2叉树,还是多叉树)</span>有关系</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-2-贪心的策略"><a href="#3-2-贪心的策略" class="headerlink" title="3.2 贪心的策略:"></a>3.2 贪心的策略:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在不同的划分策略中,选择划分结果中,**子节点不纯度最高**(less impurity&amp;&amp;homogeneous class)对应的划分结果</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-贪心的策略"><a href="#3-2-贪心的策略" class="headerlink" title="3.2 贪心的策略:"></a>3.2 贪心的策略:</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在不同的划分策略中,选择划分结果中,**子节点不纯度最高**(less impurity<span class="meta">&amp;&amp;homogeneous class)对应的划分结果</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>如何评价 impurity?</strong></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
@@ -792,9 +811,11 @@
 </tbody></table>
 <h4 id="3-2-1-GINI"><a href="#3-2-1-GINI" class="headerlink" title="3.2.1 GINI"></a>3.2.1 GINI</h4><p>k单个结点的不纯度计算<br>                                                    $GINI(t) = 1 -\sum_[p(j|t)]^2$</p>
 <p>其中 t:表示结点t,GINI(t) 表示该结点t的不纯度的$p(j|t)$表示类别  j  在结点 t 中所占的比例</p>
-<p><img src="DT/1.png" alt="1"></p>
+<img src="/.com//05/29/DT/1.png" class width="1">
+
 <p>计算这整个划分方法:<img src="https://img-blog.csdnimg.cn/20200525191734542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RvcmlzMTIxMzhsdWNreQ==,size_16,color_FFFFFF,t_70"><br>连续型数值类型</p>
-<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><p><img src="DT/2.png" alt="2"></p>
+<h4 id="3-2-2Entropy"><a href="#3-2-2Entropy" class="headerlink" title="3.2.2Entropy"></a>3.2.2Entropy</h4><img src="/.com//05/29/DT/2.png" class width="2">
+
 <h4 id="3-2-3Misclassification-error"><a href="#3-2-3Misclassification-error" class="headerlink" title="3.2.3Misclassification error"></a>3.2.3Misclassification error</h4><p>计算公式:  </p>
 <p>​                    $Error(t) = 1 -max_iP(i|t)$</p>
 <h3 id="何时停止划分结点"><a href="#何时停止划分结点" class="headerlink" title="何时停止划分结点?"></a>何时停止划分结点?</h3><ol>

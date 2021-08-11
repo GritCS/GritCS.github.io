@@ -258,7 +258,7 @@
 <p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘*’ 的正则表达式匹配。</p>
 <p>   ‘.’ 匹配任意单个字符<br>   ‘*’ 匹配零个或多个前面的那一个元素</p>
 <p>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;输入：s = &quot;aa&quot; p = &quot;a*&quot;</span><br><span class="line">&gt;输出：true</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;输入：<span class="attr">s</span> = <span class="string">&quot;aa&quot;</span> <span class="attr">p</span> = <span class="string">&quot;a*&quot;</span></span><br><span class="line">&gt;输出：<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <h6 id="动态规划思路"><a href="#动态规划思路" class="headerlink" title="动态规划思路"></a>动态规划思路</h6><p>按照上面介绍的过程分析一下吧！</p>
 <p>​    明确「状态」 -&gt; 定义 dp 数组/函数的含义 -&gt; 明确「选择」-&gt; 明确 base case</p>
@@ -269,7 +269,7 @@
 <p><strong>base case</strong>以及一些细节信息：如果出现空串如何匹配</p>
 <p>为了方便计算，我们定义dp[i+1][j+1]表示s[:i] 和 p[:j]的匹配结果，并且dp[0][0]=true,</p>
 <p>同时考虑到，如果出现s为空串，p为”#*&quot;类型，e.g. s=””,p=”a*”,</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=&#x27; &#x27;+s;</span><br><span class="line">p=&#x27; &#x27;+p;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">s</span>=<span class="string">&#x27; &#x27;</span>+s<span class="comment">;</span></span><br><span class="line"><span class="attr">p</span>=<span class="string">&#x27; &#x27;</span>+p<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果不设置这个，不会进入状态转移判断方程，直接退出循环，误判为　匹配失败。</p>
 <p>dp转移方程</p>

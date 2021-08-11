@@ -20,27 +20,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="推荐博客:[link1] 知识框架  查找表：用于查找的数据集合 静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表 ​                静态查找方法：顺序查找，折半查找，散列查找。 动态查找：可以动态地插入或者删除的查找表 ​                　动态查找的方法：平衡二叉树和B树 算法比较 斐波那契查找随着斐波那契数列的递增，前后两个数的比值会越">
+<meta name="description" content="推荐博客:[link1] 知识框架  查找表：用于查找的数据集合 静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表 ​                静态查找方法：顺序查找，折半查找，散列查找。 动态查找：可以动态地插入或者删除的查找表 ​                　动态查找的方法：平衡二叉树和B树 算法比较  斐波那契查找随着斐波那契数列的递增，前后两个数的比值会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构-查找">
 <meta property="og:url" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="推荐博客:[link1] 知识框架  查找表：用于查找的数据集合 静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表 ​                静态查找方法：顺序查找，折半查找，散列查找。 动态查找：可以动态地插入或者删除的查找表 ​                　动态查找的方法：平衡二叉树和B树 算法比较 斐波那契查找随着斐波那契数列的递增，前后两个数的比值会越">
+<meta property="og:description" content="推荐博客:[link1] 知识框架  查找表：用于查找的数据集合 静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表 ​                静态查找方法：顺序查找，折半查找，散列查找。 动态查找：可以动态地插入或者删除的查找表 ​                　动态查找的方法：平衡二叉树和B树 算法比较  斐波那契查找随着斐波那契数列的递增，前后两个数的比值会">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/2021-05-31_19-15.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/2021-05-31_21-49.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/4.jpg">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/3.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/2.png">
-<meta property="og:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/1.png">
+<meta property="og:image" content="http://example.com/.com//2021-05-31_19-15.png">
+<meta property="og:image" content="http://example.com/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png">
+<meta property="og:image" content="http://example.com/.com//2021-05-31_21-49.png">
+<meta property="og:image" content="http://example.com/.com//4.jpg">
+<meta property="og:image" content="http://example.com/.com//3.png">
+<meta property="og:image" content="http://example.com/.com//2.png">
+<meta property="og:image" content="http://example.com/.com//1.png">
 <meta property="article:published_time" content="2021-05-31T09:16:10.000Z">
 <meta property="article:modified_time" content="2021-05-31T15:30:16.000Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/数据结构-查找/2021-05-31_19-15.png">
+<meta name="twitter:image" content="http://example.com/.com//2021-05-31_19-15.png">
 
 
 <link rel="canonical" href="http://example.com/2021/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/">
@@ -224,14 +224,15 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>推荐博客:<a target="_blank" rel="noopener" href="https://blog.csdn.net/sayhello_world/article/details/77200009#t1">[link1]</a></p>
-<h2 id="知识框架"><a href="#知识框架" class="headerlink" title="知识框架"></a>知识框架</h2><img src="数据结构-查找/2021-05-31_19-15.png" alt="2021-05-31_19-15" style="zoom: 80%;" />
+<h2 id="知识框架"><a href="#知识框架" class="headerlink" title="知识框架"></a>知识框架</h2><img src="/.com//2021-05-31_19-15.png" alt="2021-05-31_19-15" style="zoom: 80%;">
 
 <p>查找表：用于查找的数据集合</p>
 <p>静态查找：查找时，只是检索满足某个条件的特定数据元素，而不动态的修改查找表</p>
 <p>​                静态查找方法：顺序查找，折半查找，散列查找。</p>
 <p>动态查找：可以动态地插入或者删除的查找表</p>
 <p>​                　动态查找的方法：平衡二叉树和B树</p>
-<h2 id="算法比较"><a href="#算法比较" class="headerlink" title="算法比较"></a>算法比较</h2><p><img src="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png" alt="2021-05-31_19-38"></p>
+<h2 id="算法比较"><a href="#算法比较" class="headerlink" title="算法比较"></a>算法比较</h2><img src="/.com//05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE/2021-05-31_19-38.png" class title="2021-05-31_19-38">
+
 <h3 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h3><p>随着斐波那契数列的递增，前后两个数的比值会越来越接近0.618，为了防止查找树退化，是二分查找的一种提升算法，通过运用黄金比例的概念在数列中选择查找点进行查找，提高查找效率。</p>
 <h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><p>按照数值的分布信息，我们可以将查找的点改进为如下：</p>
 <p>　　mid=low+(key-a[low])/(a[high]-a[low])*(high-low)，</p>
@@ -244,7 +245,7 @@
 <h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>散列方法是按照关键字编址的一项技术:以关键字K为自变量，通过函数h(K)计算地址.散列表建立了关键点和存储地址之间的一种直接映射关系</p>
 <p>散列算法的核心是　散列函数h(x) 和　冲突消解的方法</p>
 <p>常见的散列函数：</p>
-<img src="数据结构-查找/2021-05-31_21-49.png" alt="2021-05-31_21-49" style="zoom:80%;" />
+<img src="/.com//2021-05-31_21-49.png" alt="2021-05-31_21-49" style="zoom:80%;">
 
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/higerMan/p/11907117.html"><strong>冲突消解的方法</strong></a>：拉链法(拉链　和　合并拉链法)，线性探查方法(线性探查，二次探查，随机探查)，再哈希法，建立公共溢出区</p>
 <h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>1.AVL树的创建</p>
@@ -288,13 +289,13 @@
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020416577">https://segmentfault.com/a/1190000020416577</a></p>
 <p>B/B+树之间的不同</p>
-<img src="数据结构-查找/4.jpg" alt="4" style="zoom:80%;" />
+<img src="/.com//4.jpg" alt="4" style="zoom:80%;">
 
-<img src="数据结构-查找/3.png" alt="3" style="zoom:80%;" />
+<img src="/.com//3.png" alt="3" style="zoom:80%;">
 
-<img src="数据结构-查找/2.png" alt="2" style="zoom:80%;" />
+<img src="/.com//2.png" alt="2" style="zoom:80%;">
 
-<img src="数据结构-查找/1.png" alt="1" style="zoom: 80%;" />
+<img src="/.com//1.png" alt="1" style="zoom: 80%;">
 
 <h3 id="理解B-B-树的应用背景"><a href="#理解B-B-树的应用背景" class="headerlink" title="理解B/B+树的应用背景"></a>理解B/B+树的应用背景</h3><h4 id="为什么B树适合在磁盘中查找？"><a href="#为什么B树适合在磁盘中查找？" class="headerlink" title="为什么B树适合在磁盘中查找？"></a>为什么B树适合在磁盘中查找？</h4><p>B树，概括来说是一个节点可以拥有多于2个子节点的二叉查找树。与自平衡二叉查找树不同，B树为系统最优化<strong>大块数据的读和写操作</strong>。B-tree算法减少定位记录时所经历的中间过程，也就是减少了磁盘的IO操作。</p>
 <h4 id="为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？"><a href="#为什么MySQL的索引要使用B-树而不是其它树形结构-比如B树？" class="headerlink" title="为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？"></a>为什么MySQL的索引要使用B+树而不是其它树形结构?比如B树？</h4><p>​        因为B树不管叶子节点还是非叶子节点，都会保存数据，这样导致在非叶子节点中能保存的指针数量变少（有些资料也称为扇出）</p>

@@ -406,7 +406,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-08-11 17:07:59" itemprop="dateModified" datetime="2021-08-11T17:07:59+08:00">2021-08-11</time>
+        <time title="Modified: 2021-08-11 18:15:57" itemprop="dateModified" datetime="2021-08-11T18:15:57+08:00">2021-08-11</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -456,7 +456,7 @@
 <p> 随机变量t可以表示为<br>$$<br>t = \frac{\hat x - \mu}{ s / \sqrt{N} }<br>$$<br>我们称t服从自由度为n-1的t分布。 </p>
 </blockquote>
 <p>t-分布是长尾分布。相比于高斯分布，他尾部更宽一些，处理小样本和异常点时，鲁棒性较高</p>
-<p><img src="t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210802161150.png" alt="20210802161150"></p>
+<p><img src="/.com//20210802161150.png" alt="20210802161150"></p>
 <p>如上图所示，要是$p_{ij}$ 和$q_{ij}$相等，在高维空间中比较接近的点(对应正态分布)，在低维空间中要更接近(对应t-分布)；而对与高维空间中较远的点，在低维空间中需要更远。</p>
 <p>所以在t-SNE中，用t-分布，重新定义了低维空间中的概率分布，如下所示<br>$$<br>q_{ij} = \frac{(1+||y_i - y_j||^2)^{-1}}{ \sum_{k\neq l}(1+||y_k - y_l||^2)^{-1}}<br>$$</p>
 <h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>“封装成一个函数”</p>
@@ -467,7 +467,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#加载图片和标签</span></span><br><span class="line">X= np.asarray(Image.<span class="built_in">open</span>(<span class="string">&quot;D:/Users/July/Desktop/image1.jpg&quot;</span>)) <span class="comment">#(366, 500,3)</span></span><br><span class="line">label = np.asarray(Image.<span class="built_in">open</span>(<span class="string">&quot;D:/Users/July/Desktop/label1.png&quot;</span>)) <span class="comment">#(366,500)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调整尺寸</span></span><br><span class="line">label = label.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">X=X.reshape(-<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算colorlist</span></span><br><span class="line">red= label==<span class="number">0</span></span><br><span class="line">green= label ==<span class="number">5</span></span><br><span class="line">blue = label ==<span class="number">255</span></span><br><span class="line">yellow = label ==<span class="number">11</span></span><br><span class="line">colorlist=&#123;&#125;</span><br><span class="line">colorlist[<span class="string">&#x27;red&#x27;</span>]=red</span><br><span class="line">colorlist[<span class="string">&#x27;green&#x27;</span>]=green</span><br><span class="line">colorlist[<span class="string">&#x27;blue&#x27;</span>]=blue</span><br><span class="line">colorlist[<span class="string">&#x27;yellow&#x27;</span>]=yellow</span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">tSNE(X,label,colorlist)</span><br></pre></td></tr></table></figure>
 
 <p>运行结果</p>
-<p><img src="t-SNE-%E5%8F%AF%E8%A7%86%E5%8C%96%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95/20210803133641.jpg" alt="20210803133641"></p>
+<p><img src="/.com//20210803133641.jpg" alt="20210803133641"></p>
 
       
     </div>
@@ -746,7 +746,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png" alt="image-20210704143335093"></p>
+          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704143335093.png" class title="image-20210704143335093">
+
+
+
 <p>数据链路层    </p>
 <p>​        介质访问控制子层：主要任务是为每个节点隔离来自同一信道上其它节点所传送的信号，以调节活动节点的传输。</p>
 <p>​        常见的介质控制方法有：信道划分介质访问控制，随机访问介质访问控制和轮询访问介质访问控制，</p>
@@ -758,7 +761,7 @@
 </blockquote>
 <p><strong>最小帧长的计算</strong>：</p>
 <p>​    原理是 因为是边发边侦听，所以要确保发送站在发送数据的同时，能检测可能存在的冲突，需要在发送完帧之前能够收到自己发送出去的数据(对方发出的拥塞信号)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最小帧长 = 2* 总线传播时延 * 数据传输率</span><br><span class="line">总线传播时延 = 信道长度 * 信道宽度</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">最小帧长 = 2<span class="emphasis">* 总线传播时延 *</span> 数据传输率</span><br><span class="line">总线传播时延 = 信道长度 <span class="emphasis">* 信道宽度</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -766,7 +769,8 @@
 <p>CSMA/CA协议</p>
 <p>适用于无线网络。</p>
 </blockquote>
-<h3 id="TCP-流量控制和差错控制"><a href="#TCP-流量控制和差错控制" class="headerlink" title="TCP 流量控制和差错控制"></a>TCP 流量控制和差错控制</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704152537844.png" alt="image-20210704152537844"></p>
+<h3 id="TCP-流量控制和差错控制"><a href="#TCP-流量控制和差错控制" class="headerlink" title="TCP 流量控制和差错控制"></a>TCP 流量控制和差错控制</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704152537844.png" class title="image-20210704152537844">
+
 <p>-==流量控制：是一个速度匹配服务，匹配发送方的发送速率和接收方的读取速率==</p>
 <p>-==TCP 拥塞控制： 是为了防止过多的数据注入网络，保证网络中的路由器或链路不致过载。拥塞往往表现为通讯时延的增加。==</p>
 <p>流量控制和差错控制的共同点：都是可以通过控制发送方发送数据的速率来达到控制效果。</p>
@@ -776,24 +780,28 @@
 <p>​    元素移动次数与关键字的初始排列次序无关的是：基数排序</p>
 <p>​    元素比较次数与关键词的初始序列无关的是 选择排序</p>
 <p>​    算法的时间复杂度与初始序列无关的是 选择排序</p>
-<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704220113711.png" alt="image-20210704220113711"></p>
-<h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h3 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704184909217.png" alt="image-20210704184909217"></p>
-<h3 id="Cache结构"><a href="#Cache结构" class="headerlink" title="Cache结构"></a>Cache结构</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Snipaste_2021-07-04_19-54-40.png" alt="Snipaste_2021-07-04_19-54-40"></p>
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704220113711.png" class title="image-20210704220113711">
+
+<h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h3 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704184909217.png" class title="image-20210704184909217">
+
+
+
+<h3 id="Cache结构"><a href="#Cache结构" class="headerlink" title="Cache结构"></a>Cache结构</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/Snipaste_2021-07-04_19-54-40.png" class title="Snipaste_2021-07-04_19-54-40">
+
 <h4 id="cache地址映射"><a href="#cache地址映射" class="headerlink" title="cache地址映射"></a>cache地址映射</h4><p>​    cache结构： 标记项|数据项</p>
 <p>​    标记项：标记地址+有效位+脏位(可选,写回法)+替换计数位(可选)</p>
 <ol>
 <li><p>直接映射方法</p>
 <p>​    直接映射的地址结构： 标记地址+cache块号+块内地址</p>
-<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200545526.png" alt="image-20210704200545526"></p>
-</li>
+<img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200545526.png" class title="image-20210704200545526"></li>
 <li><p>全相联映射</p>
-<p>​    <img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200607826.png" alt="image-20210704200607826"></p>
+<p>​    <img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200607826.png" class title="image-20210704200607826"></p>
 </li>
 <li><p>组相联映射</p>
-<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200629636.png" alt="image-20210704200629636"></p>
-</li>
+<img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200629636.png" class title="image-20210704200629636"></li>
 </ol>
-<h4 id="Cache中替换算法和写策略"><a href="#Cache中替换算法和写策略" class="headerlink" title="Cache中替换算法和写策略"></a>Cache中替换算法和写策略</h4><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200754536.png" alt="image-20210704200754536"></p>
+<h4 id="Cache中替换算法和写策略"><a href="#Cache中替换算法和写策略" class="headerlink" title="Cache中替换算法和写策略"></a>Cache中替换算法和写策略</h4><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200754536.png" class title="image-20210704200754536">
+
 <p>写策略</p>
 <p>​    命中时，</p>
 <p>​        写直达：对cache写命中时，必须把数据同时写入主存中。</p>
@@ -801,12 +809,16 @@
 <p>​    非命中时</p>
 <p>​        写分配：加载主存中的块写到cache中，然后之后更新主存中的块</p>
 <p>​        写不分配：直接写到主存中，不加载到内存中</p>
-<h3 id="访问冲突"><a href="#访问冲突" class="headerlink" title="访问冲突"></a>访问冲突</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png" alt="image-20210704200306480"></p>
+<h3 id="访问冲突"><a href="#访问冲突" class="headerlink" title="访问冲突"></a>访问冲突</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704200306480.png" class title="image-20210704200306480">
+
 <h3 id="内存地址计算"><a href="#内存地址计算" class="headerlink" title="内存地址计算"></a>内存地址计算</h3><p>内存地址 = 基址寄存器+形式地址</p>
-<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210705140249579.png" alt="image-20210705140249579"></p>
-<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png" alt="image-20210704202347114"></p>
+<img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210705140249579.png" class title="image-20210705140249579">
+
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704202347114.png" class title="image-20210704202347114">
+
 <h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><a target="_blank" rel="noopener" href="https://github.com/GritCS/course_note/blob/master/2020os%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BA%92%E6%96%A5%EF%BC%8C%E5%90%8C%E6%AD%A5%EF%BC%8C%E6%AD%BB%E9%94%81.md">[之前OS的复习笔记]</a></p>
-<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png" alt="image-20210704212020783"></p>
+<img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704212020783.png" class title="image-20210704212020783">
+
 <p>死锁的4个必要条件：资源独占，不可剥夺，保持申请，循环等待</p>
 <blockquote>
 <p>① 资源独占。一个资源在同一时刻只能被分配给一个进程。如果某一进程申请某一资源，该资源正在被另外的某一进程所占有，则申请者需要等待，直到占有者释放该资源。</p>
@@ -834,8 +846,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="缺页发生的调度"><a href="#缺页发生的调度" class="headerlink" title="缺页发生的调度"></a>缺页发生的调度</h3><p>​    <img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215007867.png" alt="image-20210704215007867"></p>
-<p><img src="%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215043716.png" alt="image-20210704215043716"></p>
+<h3 id="缺页发生的调度"><a href="#缺页发生的调度" class="headerlink" title="缺页发生的调度"></a>缺页发生的调度</h3><p>​    <img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215007867.png" class title="image-20210704215007867"></p>
+<img src="/.com//07/04/%E7%AC%94%E8%AF%95%E4%B8%93%E4%B8%9A%E8%AF%BE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210704215043716.png" class title="image-20210704215043716">
+
 
       
     </div>
@@ -913,15 +926,15 @@
 <p>/=\  感觉机器学习数据挖掘之类的学习起来好有意思！！gg</p>
 <p><strong>在这里列一下我之后机试的计划</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> 贪心算法(背包问题==我想起来之前参加pat时候遇到的问题)</li>
-<li><input disabled="" type="checkbox"> 动态规划</li>
-<li><input disabled="" type="checkbox"> KMP</li>
-<li><input disabled="" type="checkbox"> 大整数运算（一般作为签到题）</li>
-<li><input disabled="" type="checkbox"> 二分算法</li>
-<li><input disabled="" type="checkbox"> 之后就是针对院校进行机试<ul>
-<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master">https://github.com/youngyangyang04/leetcode-master</a></li>
-<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="http://www.noobdream.com/DreamJudge/Issue/page/0/?page=1&problem_id_name=&problem_source=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%AD%A6&algorithm_type=All">N诺</a></li>
-<li><input disabled="" type="checkbox"> pat(按照前计划，柳神的代码可以学到好多)</li>
+<li><input disabled type="checkbox"> 贪心算法(背包问题==我想起来之前参加pat时候遇到的问题)</li>
+<li><input disabled type="checkbox"> 动态规划</li>
+<li><input disabled type="checkbox"> KMP</li>
+<li><input disabled type="checkbox"> 大整数运算（一般作为签到题）</li>
+<li><input disabled type="checkbox"> 二分算法</li>
+<li><input disabled type="checkbox"> 之后就是针对院校进行机试<ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master">https://github.com/youngyangyang04/leetcode-master</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://www.noobdream.com/DreamJudge/Issue/page/0/?page=1&problem_id_name=&problem_source=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%AD%A6&algorithm_type=All">N诺</a></li>
+<li><input disabled type="checkbox"> pat(按照前计划，柳神的代码可以学到好多)</li>
 </ul>
 </li>
 </ul>
@@ -1064,7 +1077,7 @@
 
 <h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><p> 通过以上代码不难发现，数据项在Vue的实例中，但删除操作要在组件中完成，那么组件如何才能删除Vue实例中的数据呢?此时就涉及到参数传递与事件分发了，Vue为我们提供了自定义事件的功能很好的帮助我们解决了这个问题;</p>
 <p> 使用<code>this.$emit (‘自定义事件名’,参数)</code></p>
-<p><img src="../../vue/vue%E5%9F%BA%E7%A1%80/vue1.png" alt="vue1"></p>
+<p><img src="/.com//../vue/vue%E5%9F%BA%E7%A1%80/vue1.png" alt="vue1"></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">meta</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>index<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/vue&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;vue&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">todo</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-title</span> <span class="attr">slot</span>=<span class="string">&quot;todo-title&quot;</span> <span class="attr">:title</span>=<span class="string">&quot;title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">todo-title</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">todo-items</span> <span class="attr">slot</span>=<span class="string">&quot;todo-items&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(item,index) in todoItems&quot;</span> </span></span><br><span class="line"><span class="tag">                <span class="attr">:item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">v-bind:index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">v-on:remove</span>=<span class="string">&quot;removeItems(index)&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">todo-items</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">todo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--：是v-bind的简写，通过v-on将vue中的函数和组件中的自定义方法进行绑定，key是绑定remove中用到的参数--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"> </span></span><br><span class="line"><span class="javascript">       Vue.component(<span class="string">&quot;todo&quot;</span>,&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;\</span></span></span><br><span class="line"><span class="string"><span class="javascript">                            &lt;slot name=&quot;todo-title&quot;&gt;&lt;/slot&gt;\</span></span></span><br><span class="line"><span class="string"><span class="javascript">                            &lt;ul&gt;\</span></span></span><br><span class="line"><span class="string"><span class="javascript">                                &lt;slot name=&quot;todo-items&quot;&gt; &lt;/slot&gt;\</span></span></span><br><span class="line"><span class="string"><span class="javascript">                            &lt;/ul&gt;\</span></span></span><br><span class="line"><span class="string"><span class="javascript">                        &lt;/div&gt;&#x27;</span></span></span><br><span class="line"><span class="javascript">       &#125;);</span></span><br><span class="line"><span class="javascript">       <span class="comment">//通过指定solt的name来绑定组件</span></span></span><br><span class="line"><span class="javascript">       Vue.component(<span class="string">&quot;todo-title&quot;</span>,&#123;</span></span><br><span class="line"><span class="javascript">           <span class="attr">props</span>:[<span class="string">&#x27;title&#x27;</span>],</span></span><br><span class="line"><span class="javascript">           <span class="attr">template</span>:<span class="string">&#x27;&lt;div&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;&#x27;</span></span></span><br><span class="line"><span class="javascript">       &#125;);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">       Vue.component(<span class="string">&quot;todo-items&quot;</span>,&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">props</span>:[<span class="string">&#x27;item&#x27;</span>,<span class="string">&#x27;index&#x27;</span>],</span></span><br><span class="line"><span class="javascript">            <span class="attr">template</span>: <span class="string">&#x27;&lt;li&gt;&#123;&#123;item&#125;&#125;     &lt;button @click=&quot;remove&quot;&gt; delete &lt;/button&gt;&lt;/li&gt;&#x27;</span> ,</span></span><br><span class="line"><span class="javascript">            <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">remove</span>: <span class="function"><span class="keyword">function</span> (<span class="params">index</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">this</span>.$emit(<span class="string">&#x27;remove&#x27;</span>,index) <span class="comment">//这里的remove的名称就是自定义的函数名</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// alert(&quot;111&quot;);</span></span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">       &#125;);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">       <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">el</span>:<span class="string">&quot;#vue&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">title</span>: <span class="string">&quot;what do you like?&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">todoItems</span>: [<span class="string">&quot;happiness&quot;</span>,<span class="string">&quot;movie&quot;</span>,<span class="string">&quot;runnig&quot;</span>,<span class="string">&quot;reading&quot;</span>]</span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">removeItems</span>: <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">this</span>.todoItems.splice(index,<span class="number">1</span>);<span class="comment">//利用javascript中的语法</span></span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">           </span></span><br><span class="line"><span class="javascript">       &#125;);</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -1168,12 +1181,12 @@
 </tr>
 <tr>
 <td><strong>中科大</strong></td>
-<td>机试和上交的机试形式差不多，都是非OJ形式。具体而言，三小时做五道算法题，开始的时候给你发纸质的题目和示例（中文），然后自己写程序自己想样例测试，最后工作人员拷走你电脑上的程序。题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。题目样例没有全通过的话最后会有老师阅卷打分，这点和北航一样。<br/></td>
+<td>机试和上交的机试形式差不多，都是非OJ形式。具体而言，三小时做五道算法题，开始的时候给你发纸质的题目和示例（中文），然后自己写程序自己想样例测试，最后工作人员拷走你电脑上的程序。题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。题目样例没有全通过的话最后会有老师阅卷打分，这点和北航一样。<br></td>
 <td><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e800b2de4810">2019</a></td>
 </tr>
 <tr>
 <td>北航</td>
-<td>题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。虽然之前的通知和宣讲会说最好是C标准编程，但实际上都是可以用的。然而北航的评测系统不是OJ形式，只能显示你提交的代码编译是否通过，具体能不能AC只能靠本地自己编用例测试了（所以一定要细心！！）。不过还好，如果你有一道题没有AC的话，老师会查看你的源代码，根据你代码体现的思想和编码习惯什么的给分，所以就算做不完也一定要记得提交呀！<br/></td>
+<td>题目采用C/C++，允许使用STL，编译器有VC,VS,code blocks, dev c++等。虽然之前的通知和宣讲会说最好是C标准编程，但实际上都是可以用的。然而北航的评测系统不是OJ形式，只能显示你提交的代码编译是否通过，具体能不能AC只能靠本地自己编用例测试了（所以一定要细心！！）。不过还好，如果你有一道题没有AC的话，老师会查看你的源代码，根据你代码体现的思想和编码习惯什么的给分，所以就算做不完也一定要记得提交呀！<br></td>
 <td></td>
 </tr>
 <tr>
@@ -1212,7 +1225,7 @@
 <p>代码实现:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findN</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt; <span class="number">8</span> <span class="comment">// 整型一般是 32 位，上面我是假设 8 位。</span></span><br><span class="line">    <span class="built_in"><span class="keyword">return</span></span> (n + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="上交"><a href="#上交" class="headerlink" title="上交"></a>上交</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1. 给定两个英文单词，每次操作可以删去任一单词中的任一字母，求使两个单词最终一样的最少操作次数</span><br><span class="line">Eg：给定eat和sea，最少操作次数为2。</span><br><span class="line">输入：eat/sea</span><br><span class="line">输出：2</span><br><span class="line"></span><br><span class="line">2. 商店中有若干商品，它们也会打包在一起优惠出售，现给出需要购买的商品数量，求最低购买价格。要求购买的商品数量刚好符合题目要求。</span><br><span class="line">eg：</span><br><span class="line">输入信息：[2,4],[[3,0,5],[1,2,10]],[3,2]</span><br><span class="line">题目解释：</span><br><span class="line">输入：第一个矩阵是商品单买的价格，第二个矩阵为各种打包售卖时的数目与价格，第三个矩阵是各类商品需要购买数量</span><br><span class="line">输出：最低价格</span><br><span class="line">举例：商店中有A、B两种商品，A价格为2元，B价格为4元；优惠组合一包含3个A商品，0个B商品，共5元；优惠组合二包含1个A商品，2个B商品，共10元；现在要购买3个A商品，2个B商品；</span><br><span class="line">答案：最低价格是，购买1个优惠组合一（含3个A、0个B），5元；再单独购买2个B，8元；共计13元</span><br><span class="line">输出信息：13</span><br><span class="line"></span><br><span class="line">3. 一个有序三元组（a,b,c）, 1&lt;=a&lt;=X, 1&lt;=b&lt;=Y, 1&lt;=c&lt;=Z，且a，b，c皆为正整数。</span><br><span class="line"> 给定X,Y,Z求所有能够形成三角形的(a,b,c)的数目。(3,4,5)和(3,5,4)为两个三角形。</span><br><span class="line"> 输入:X Y Z（三个数都在1到10的九次方之间）</span><br><span class="line"> 输出数量。输出结果对1000000007取模。</span><br><span class="line"> 样例:</span><br><span class="line"> 输入：2 3 3</span><br><span class="line"> 输出：9</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="上交"><a href="#上交" class="headerlink" title="上交"></a>上交</h2><figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 给定两个英文单词，每次操作可以删去任一单词中的任一字母，求使两个单词最终一样的最少操作次数</span><br><span class="line">Eg：给定eat和sea，最少操作次数为<span class="number">2</span>。</span><br><span class="line">输入：eat/sea</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 商店中有若干商品，它们也会打包在一起优惠出售，现给出需要购买的商品数量，求最低购买价格。要求购买的商品数量刚好符合题目要求。</span><br><span class="line">eg：</span><br><span class="line">输入信息：[<span class="number">2</span>,<span class="number">4</span>],[[<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>]],[<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">题目解释：</span><br><span class="line">输入：第一个矩阵是商品单买的价格，第二个矩阵为各种打包售卖时的数目与价格，第三个矩阵是各类商品需要购买数量</span><br><span class="line">输出：最低价格</span><br><span class="line">举例：商店中有A、B两种商品，A价格为<span class="number">2</span>元，B价格为<span class="number">4</span>元；优惠组合一包含<span class="number">3</span>个A商品，<span class="number">0</span>个B商品，共<span class="number">5</span>元；优惠组合二包含<span class="number">1</span>个A商品，<span class="number">2</span>个B商品，共<span class="number">10</span>元；现在要购买<span class="number">3</span>个A商品，<span class="number">2</span>个B商品；</span><br><span class="line">答案：最低价格是，购买<span class="number">1</span>个优惠组合一（含<span class="number">3</span>个A、<span class="number">0</span>个B），<span class="number">5</span>元；再单独购买<span class="number">2</span>个B，<span class="number">8</span>元；共计<span class="number">13</span>元</span><br><span class="line">输出信息：<span class="number">13</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>. 一个有序三元组（a,b,c）, <span class="number">1</span>&lt;=a&lt;=<span class="keyword">X</span>, <span class="number">1</span>&lt;=b&lt;=<span class="keyword">Y</span>, <span class="number">1</span>&lt;=c&lt;=<span class="keyword">Z</span>，且a，b，c皆为正整数。</span><br><span class="line"> 给定<span class="keyword">X</span>,<span class="keyword">Y</span>,<span class="keyword">Z</span>求所有能够形成三角形的(a,b,c)的数目。(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)和(<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>)为两个三角形。</span><br><span class="line"> 输入:<span class="keyword">X</span> <span class="keyword">Y</span> <span class="keyword">Z</span>（三个数都在<span class="number">1</span>到<span class="number">10</span>的九次方之间）</span><br><span class="line"> 输出数量。输出结果对<span class="number">1000000007</span>取模。</span><br><span class="line"> 样例:</span><br><span class="line"> 输入：<span class="number">2</span> <span class="number">3</span> <span class="number">3</span></span><br><span class="line"> 输出：<span class="number">9</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       
@@ -1302,7 +1315,8 @@
 <p>含有n个叶子结点的huffman树，一共有2n-1个结点，huffman中只包含叶子结点和度为2的点.</p>
 <p><strong>可以用堆来构造。</strong>，时间复杂度是O(nlogn)</p>
 <p>构建过程</p>
-<p><img src="%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_14-30.png" alt="2021-06-18_14-30"></p>
+<img src="/.com//06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_14-30.png" class title="2021-06-18_14-30">
+
 <h2 id="huffman编码："><a href="#huffman编码：" class="headerlink" title="huffman编码："></a>huffman编码：</h2><p>​    可变长编码，把字符出现的频率看作是结点的权重</p>
 <h2 id="后缀表达式"><a href="#后缀表达式" class="headerlink" title="后缀表达式"></a>后缀表达式</h2><p>运算符紧跟在操作数的表达式，没有括号，运算符之间不存在优先级的差别，计算过程完全按照运算符出现的先后顺序进行。</p>
 <h3 id="中缀转后缀"><a href="#中缀转后缀" class="headerlink" title="中缀转后缀"></a>中缀转后缀</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/menglong1108/p/11619896.html#:~:text=%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%20%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%E6%88%91%E4%BB%AC%E4%BA%BA%E7%B1%BB%E8%83%BD%E8%AF%86%E5%88%AB%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BF%9B%E8%A1%8C%E8%BF%90%E7%AE%97%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E5%8D%B3%E6%88%91%E4%BB%AC%E4%B8%8A%E8%BF%B0%E7%9A%84%E8%BF%87%E7%A8%8B%29%E3%80%82,%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99%201%EF%BC%89%E6%88%91%E4%BB%AC%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAstack%E6%A0%88%E7%BB%93%E6%9E%84%E5%AD%98%E5%82%A8%E6%93%8D%E4%BD%9C%E7%AC%A6%EF%BC%8C%E7%94%A8%E4%B8%80%E4%B8%AAList%E7%BB%93%E6%9E%84%E5%AD%98%E5%82%A8%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BB%93%E6%9E%9C%202%EF%BC%89%E9%A6%96%E5%85%88%E8%AF%BB%E5%8F%96%E5%88%B0%E6%95%B0%E5%AD%97%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%85%A5list%E4%B8%AD">link</a></p>
@@ -1348,7 +1362,8 @@
 </li>
 <li>NP-hard问题: 即所有的NP问题都能约化到它，但是他不一定是一个NP问题</li>
 </ul>
-<p><img src="%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_16-14.png" alt="2021-06-18_16-14"></p>
+<img src="/.com//06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_16-14.png" class title="2021-06-18_16-14">
+
 <h2 id="如何判断一个树是否是一个完全二叉树"><a href="#如何判断一个树是否是一个完全二叉树" class="headerlink" title="如何判断一个树是否是一个完全二叉树"></a>如何判断一个树是否是一个完全二叉树</h2><blockquote>
 <p>​    通过层次遍历的方式：</p>
 <p>基本思路是层次遍历该树，从第一个度不为２的结点开始，之后的结点的度都为0．</p>

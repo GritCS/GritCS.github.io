@@ -20,21 +20,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="list的底层结构环形双向链表   List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.com&#x2F;pr">
+<meta name="description" content="list的底层结构环形双向链表         List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL-list">
 <meta property="og:url" content="http://example.com/2021/04/01/STL-list/index.html">
 <meta property="og:site_name" content="Think World">
-<meta property="og:description" content="list的底层结构环形双向链表   List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.com&#x2F;pr">
+<meta property="og:description" content="list的底层结构环形双向链表         List的重要性质：  插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响 ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效 不支持随机存取，下标操作和at()函数  list的相关操作https:&#x2F;&#x2F;leetcode-cn.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-41.png">
-<meta property="og:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-49.png">
+<meta property="og:image" content="http://example.com/.com//04/01/STL-list/2021-04-01_14-41.png">
+<meta property="og:image" content="http://example.com/.com//04/01/STL-list/2021-04-01_14-49.png">
 <meta property="article:published_time" content="2021-04-01T06:39:52.000Z">
 <meta property="article:modified_time" content="2021-07-05T00:32:08.245Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="stl">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/04/01/STL-list/STL-list/2021-04-01_14-41.png">
+<meta name="twitter:image" content="http://example.com/.com//04/01/STL-list/2021-04-01_14-41.png">
 
 
 <link rel="canonical" href="http://example.com/2021/04/01/STL-list/">
@@ -224,8 +224,14 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="list的底层结构"><a href="#list的底层结构" class="headerlink" title="list的底层结构"></a>list的底层结构</h2><p><strong>环形双向链表</strong></p>
-<p><img src="STL-list/2021-04-01_14-41.png" alt="2021-04-01_14-41"></p>
-<p><img src="STL-list/2021-04-01_14-49.png" alt="2021-04-01_14-49"></p>
+<img src="/.com//04/01/STL-list/2021-04-01_14-41.png" class title="2021-04-01_14-41">
+
+
+
+<img src="/.com//04/01/STL-list/2021-04-01_14-49.png" class title="2021-04-01_14-49">
+
+
+
 <p><strong>List的重要性质：</strong></p>
 <ol>
 <li><strong>插入操作(insert) 和 接合操作(splice)都不会造成原有的list失效，只有删除时，指向被删除元素的那个迭代器会失效，其他不受影响</strong> ; 而vector的迭代器，如果插入导致原来的数组容量扩充，会造成所有的迭代器失效</li>
