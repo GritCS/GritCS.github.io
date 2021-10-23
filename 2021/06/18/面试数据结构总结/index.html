@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/.com//06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_14-30.png">
 <meta property="og:image" content="http://example.com/.com//06/18/%E9%9D%A2%E8%AF%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/2021-06-18_16-14.png">
 <meta property="article:published_time" content="2021-06-18T03:06:40.000Z">
-<meta property="article:modified_time" content="2021-07-25T00:58:15.091Z">
+<meta property="article:modified_time" content="2021-09-19T00:01:02.030Z">
 <meta property="article:author" content="Sherry Wang">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -210,7 +210,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-25 08:58:15" itemprop="dateModified" datetime="2021-07-25T08:58:15+08:00">2021-07-25</time>
+        <time title="Modified: 2021-09-19 08:01:02" itemprop="dateModified" datetime="2021-09-19T08:01:02+08:00">2021-09-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
 </ul>
 <h2 id="堆及其应用"><a href="#堆及其应用" class="headerlink" title="堆及其应用"></a>堆及其应用</h2><p><a target="_blank" rel="noopener" href="https://gritcs.github.io/2021/02/20/%E5%A0%86/">[link]</a></p>
 <p>堆维护一个偏序关系，能够支持的操作是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> index)</span></span>; <span class="comment">//尝试将index元素上浮</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> index)</span></span>;　<span class="comment">//尝试将index处元素下沉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inser</span><span class="params">(<span class="keyword">int</span> val)</span></span>;<span class="comment">//直接在堆的最末尾插入值为val的结点，之后为并使用up(len)操作，维护堆的有序性</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//删除index处的元素，实现是先将index处元素和堆最后的元素交换，删除最后的元素，并采用up//down维护堆的操作</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> index)</span></span>; <span class="comment">//尝试将index元素上浮</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> index)</span></span>;　<span class="comment">//尝试将index处元素下沉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inser</span><span class="params">(<span class="keyword">int</span> val)</span></span>;<span class="comment">//直接在堆的最末尾插入值为val的结点，之后为并使用up(len)操作，维护堆的有序性</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//删除index处的元素，实现是先将index处元素和堆最后的元素交换，删除最后的元素，并采用down维护堆的操作</span></span><br></pre></td></tr></table></figure>
 
 <p>应用：　1.优先级队列 　2.堆排序</p>
 <h2 id="时间复杂度-空间复杂度"><a href="#时间复杂度-空间复杂度" class="headerlink" title="时间复杂度//空间复杂度"></a>时间复杂度//空间复杂度</h2><p>​    时间：一个语句的频度是指该语句在算法中被重复执行的次数，算法中所有语句的频度之和记为T(n)，它是该算法问题规模n的函数，时间复杂度主要是为了分析T(n)的数量级。</p>
